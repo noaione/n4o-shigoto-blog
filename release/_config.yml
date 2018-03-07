@@ -1,10 +1,10 @@
 # Blog settings
-permalink: /blog/:title
+permalink: /release/:title
 
 
 # My variables
-name: TerrificSubs
-description: Bring Innovation to Indonesian Fansub
+name: N4O
+description: Shit web for file hosting :v
 google_verification: null
 
 
