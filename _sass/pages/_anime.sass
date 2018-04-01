@@ -1,0 +1,36 @@
+.anime-meta
+  margin-bottom: 30px
+
+  .anime-title
+    display: table
+
+  p
+    text-align: justify
+
+  &:after
+    content: ""
+    display: table
+    clear: both
+
+  img
+    float: left
+    max-width: 225px
+    max-height: 318px
+    margin-right: 20px
+
+  p
+    margin: 0 0 3px 0
+
+@media screen and (max-width: 600px)
+  .anime-meta
+    &:after
+    img
+      float: none
+      display: block
+      margin: 0 auto
+
+  .anime-link
+    .post-list
+      li
+        .post-date
+          display: none

@@ -1,0 +1,54 @@
+# Site settings
+title: Hatsukoi Fansubs | Fansub yang membuatmu jatuh cinta &#10084; #website title
+description: Fansub yang membuatmu jatuh cinta
+
+google_analytics: UA-101869891-1
+
+# Facebook, for SEO
+facebook:
+  publisher: https://www.facebook.com/hatsukoi.indonesia
+
+# Default things, very nice
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Hatsukoi"
+  -
+    scope:
+      path: "pages"
+    values:
+      layout: "default"
+  -
+    scope:
+      path: "anime"
+    values:
+      layout: "anime"
+
+# Pagination
+paginate: 12
+paginate_path: "/page:num/"
+
+#Timezone
+timezone: Asia/Jakarta
+
+# Build settings
+markdown: kramdown
+markdown_ext:  markdown,mkdown,mkdn,mkd,md
+
+redcarpet:
+  extensions: ["tables", "autolink", "strikethrough", "space_after_headers", "fenced_code_blocks"]
+
+# plugins
+plugins_dir: [jekyll-paginate]
+
+# gems
+gems:
+  - jekyll-paginate
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+exclude: [node_modules]

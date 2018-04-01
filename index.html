@@ -1,25 +1,48 @@
-<html><head>
-  <link rel="shortcut icon" href="http://noaione.github.io/favicon.png">
-  <title>N4O - Shit web for Hosting personal files :v</title>
-  <style type="text/css">
-   * { font-size: 12px; font-family: "Arial", "Helvetica", sans-serif; margin: 0 }
-   body { background: #fff url("/img/chino.jpg") no-repeat fixed center center; text-align: center; background-position: 50% 100%;background-size: 33% auto;}
-   ul { position: absolute; left: 0; right: 0; background-color: #58d; padding: 5px 0 }
-   li { display: inline; list-style-type: none; margin: 0 10px }
-   a { color: #FFF; text-decoration: none }
-   p { position: absolute; bottom: 0; left: 0; right: 0; height: 28px; background-color: #58d; font-size: 14px; color: #FFF }
-  </style>
- </head>
- <body>
-   <p></p>
-  <p>Desain Website nyolong dari TerrificSubs atau Padang Perwira Yudha</p>
-  <ul>
-   <li><a href="https://aise.fansub.web.id">web</a></li>
-   <li><a href="https://github.com/noaione/noaione.github.io">manage</a></li>
-   <li><a href="https://noaione.github.io/release">skrip_blog</a></li>
-   <li><a href="https://www.facebook.com/aisesubs/">facebook</a></li>
-  </ul>
+---
+layout: main
+---
+<ul class="post-list">
+  {% for post in paginator.posts %}
+  <li>
+      <a class="post-link" href="{{ site.url }}{{ post.url}}">{{ post.title }}</a>
+      <span class="post-date">{{ post.date | date_to_long_string }}</span>
+  </li>
+  {% endfor %}
+</ul>
 
+<!-- pagination -->
+{% if paginator.total_pages > 1 %}
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&laquo; Prev</a>
+  {% else %}
+  {% endif %}
 
+  {% for page in (1..paginator.total_pages) %}
+    {% if page == paginator.page %}
+      <span class="page-active">{{ page }}</span>
+    {% elsif page == 1 %}
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">{{ page }}</a>
+    {% else %}
+      <a href="{{ site.paginate_path | prepend: site.baseurl | replace: '//', '/' | replace: ':num', page }}">{{ page }}</a>
+    {% endif %}
+  {% endfor %}
 
-</body></html>
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Next &raquo;</a>
+  {% else %}
+  {% endif %}
+</div>
+{% endif %}
+
+<div class="fb-page" data-href="https://www.facebook.com/hatsukoi.indonesia" data-width="500" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+  <blockquote cite="https://www.facebook.com/hatsukoi.indonesia" class="fb-xfbml-parse-ignore">
+    <a href="https://www.facebook.com/hatsukoi.indonesia">Hatsukoi Fansubs</a>
+  </blockquote>
+</div>
+
+<div class="fb-page" id="pas600" data-href="https://www.facebook.com/hatsukoi.indonesia" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false">
+  <blockquote cite="https://www.facebook.com/hatsukoi.indonesia" class="fb-xfbml-parse-ignore">
+    <a href="https://www.facebook.com/hatsukoi.indonesia">Hatsukoi Fansubs</a>
+  </blockquote>
+</div>

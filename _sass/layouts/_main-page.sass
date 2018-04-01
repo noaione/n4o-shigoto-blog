@@ -1,0 +1,95 @@
+.main-cover
+  img
+    margin: 0 auto
+    width: 100%
+    height: 280px
+    border-radius: 20px
+
+.top-desc
+  margin: 10px 0 10px 0
+  color: $primary-color
+  border-bottom: 2px solid $primary-color
+  font-size: 1.17em
+
+  .fa
+    &.fa-rss
+      margin-right: 5px
+
+.post-list
+  list-style: none
+  margin: 0 0 20px 0
+  padding: 0
+
+  li
+    padding-left: 5px
+    padding-right: 5px
+
+    .post-link
+      text-decoration: none
+      color: $text-color
+      transition: 0.25s
+
+      &:hover
+        background: lighten($text-color, 60%)
+
+    .post-date
+      float: right
+
+    &:hover
+      background-color: $accent-color
+      border-radius: 5px
+
+.pagination
+  text-align: center
+  margin-bottom: 30px
+  color: $primary-color
+  font-style: normal
+
+  a
+    text-decoration: none
+    color: #FFF
+    background-color: $primary-color
+    margin-right: 2px
+    padding: 3px 7px 3px 7px
+    border-radius: 5px
+
+    &:hover
+      background-color: $accent-color
+
+  span
+    margin-right: 2px
+    color: #FFF
+    background-color: $primary-color
+    padding: 3px 7px 3px 7px
+    border-radius: 5px
+
+  .page-active
+    margin-right: 2px
+    color: #FFF
+    background-color: $accent-color
+    padding: 3px 7px 3px 7px
+    border-radius: 5px
+
+.fb-page.fb_iframe_widget
+  display: block
+  text-align: center
+  margin-bottom: 30px
+
+#pas600.fb-page.fb_iframe_widget
+  display: none
+
+@media screen and (max-width: 600px)
+  .main-cover
+    img
+      height: 160px
+
+  .post-list
+    li
+      .post-date
+        display: none
+
+  .fb-page.fb_iframe_widget
+    display: none
+
+  #pas600.fb-page.fb_iframe_widget
+    display: block

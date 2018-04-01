@@ -1,0 +1,33 @@
+/* Reset Basic Elements ============================================== */
+html, body
+  margin: 0
+  padding: 0
+
+
+/* Basic Styling ============================================== */
+body
+  font-family: 'Fira Sans', sans-serif
+  font-size: 16px
+  line-height: 1.5
+  color: $text-color
+  background-color: $bg-color
+  background-image: url(/gambar/site/left.png), url(/gambar/site/right.png)
+  background-position: left 0px bottom 90%, right 0px bottom 90%
+  background-repeat: no-repeat
+
+@media screen and (max-width: 1215px)
+  body
+    background-image: none
+
+@media screen and (min-width: 1600px)
+  body
+    background-position: left 15% bottom 90%, right 15% bottom 90%
+
+@media screen and (min-width: 2200px)
+  body
+    background-position: left 25% bottom 90%, right 25% bottom 90%
+
+
+/* Headers ============================================== */
+h1, h2, h3, h4, h5, h6
+  font-weight: bold
