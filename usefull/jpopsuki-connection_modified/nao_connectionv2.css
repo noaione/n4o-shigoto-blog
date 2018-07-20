@@ -7,8 +7,8 @@
 
 @font-face {
     font-family: 'narkisim';
-    src: url('https://noaione.github.io/usefull/css/nrkis_0.woff2') format('woff2'),
-         url('https://noaione.github.io/usefull/css/nrkis_0.woff') format('woff');
+    src: url('fonts/nrkis_0.woff2') format('woff2'),
+         url('fonts/nrkis_0.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
