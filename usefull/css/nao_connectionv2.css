@@ -1,5 +1,10 @@
 /* @group Global Site Styles */
 
+* {
+	padding: 0em;
+	margin: 0em;
+}
+
 @font-face {
     font-family: 'narkisim';
     src: url('https://noaione.github.io/usefull/css/nrkis_0.woff2') format('woff2'),
@@ -7,11 +12,6 @@
     font-weight: normal;
     font-style: normal;
 
-}
-
-* {
-	padding: 0em;
-	margin: 0em;
 }
 
 html {
@@ -359,7 +359,7 @@ p.min_padding {
 	border-bottom: 1px solid #303030;
 	background: #454545;
 	color: #fff;
-font-weight: normal;
+font-weight: bold;
 font-size: 10pt;
 letter-spacing: 1px;
 font-family: narkisim;
@@ -441,7 +441,8 @@ color: #fff;
 .colhead_dark {
 	background: #454545;
 	color: #fff;
-font-size: 8pt;
+font-size: 10pt;
+letter-spacing: 1px;
 font-family: narkisim;
 	vertical-align: middle;
 
@@ -452,14 +453,14 @@ font-family: narkisim;
 }
 
 td.label, label {
-	font: 1.2em narkisim, "Times New Roman", Times, serif;
+	font: narkisim, "Times New Roman", Times, serif;
 	text-align: right;
 	color: #b4c7d1;
-	letter-spacing: 2px;
+	letter-spacing: 0.7px;
 }
 
 .poll label {
-	font: normal normal 1em "Trebuchet MS", "Lucida Grande", Lucida, Verdana, sans-serif;
+	font: normal normal narkisim, "Lucida Grande", Lucida, Verdana, sans-serif;
 	text-decoration: none;
 	letter-spacing: normal;
 }
@@ -1237,7 +1238,7 @@ background-color: rgba(255,0,0,0.15);
 	display: inline-block;
 	letter-spacing: .15em;
 
-	font: small-caps 1.6em Georgia, "Times New Roman", Times, serif;
+	font: small-caps 1.6em narkisim, "Times New Roman", Times, serif;
 }
 
 .torrent_title_box {
@@ -1248,21 +1249,23 @@ background-color: rgba(255,0,0,0.15);
 .torrent_name {
 	padding-bottom: 5px;
 	font-size: 1.1em;
-	letter-spacing: 1.3px;
+	letter-spacing: 1px;
 }
 
 .torrent_table td a {
 	margin: 0;
-	font:  1.2em narkisim;
+	font: narkisim;
+font-size: 9pt;
 color: #fff;
 	padding: 2px;
-letter-spacing: 1px;
+letter-spacing: 0.5px;
+font-weight: normal;
 	vertical-align: top;
 }
 
 .torrent_table tr {
 	margin: 0;
-font-size: 8pt;
+font-size: 9pt;
 	padding: 2px;
 	vertical-align: top;
 }
@@ -1872,6 +1875,7 @@ div.thin2 {
 	color: #ccc;
 	margin:  0;
 	padding:  0;
+	letter-spacing: 1px;
 	text-align: left;
 	vertical-align: top;
 }
