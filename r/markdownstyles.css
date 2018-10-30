@@ -9,14 +9,15 @@ ul {
     margin-left: 6px;
     padding-left: 6px;
 }
+
 li {
-    padding-left: 1em;
+    padding-left: 2em;
     text-indent: -1em;
 }
 
 li:before {
     content: "-";
-    padding-right: 6px;
+    padding-right: 8px;
     font-weight: bold;
 }
 
