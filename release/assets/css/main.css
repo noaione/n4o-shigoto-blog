@@ -112,10 +112,10 @@ blockquote{
     margin-bottom:5px
 }
 .blog h2{
-    font-size:1.1em;
-    font-weight:700;
-    margin-top:25px;
-    margin-bottom:5px
+    font-size:1.2em;
+    margin-top:5px;
+    margin-bottom:5px;
+	margin-left: 3px;
 }
 .music{
     padding-bottom:30px
