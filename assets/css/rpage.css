@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+body {
+    background:
+    radial-gradient(black 3px, transparent 4px),
+    radial-gradient(black 3px, transparent 4px),
+    linear-gradient(#fff 4px, transparent 0),
+    linear-gradient(45deg, transparent 74px, transparent 75px, #a4a4a4 75px, #a4a4a4 76px, transparent 77px, transparent 109px),
+    linear-gradient(-45deg, transparent 75px, transparent 76px, #a4a4a4 76px, #a4a4a4 77px, transparent 78px, transparent 109px),
+    #fff;
+    background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
+    background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#inner {
+    margin: auto;
+    width: 50%;
+    box-shadow: 0 0 5px 2px #777777;
+    padding: 10px;
+    background-color: white;
+}
+.thumbnail-image {
+    max-width:100%;
+    max-height:100%;
+    vertical-align: middle;
+}
+
+a {
+    color: #bd2929;
+}
+a:visited {
+    color: #561010;
+}
+
+.bullet {
+    margin-top: 0em;
+    margin-left: 0.8em;
+}
+
+.header {
+    margin: 0.2em 0em 0.4em 0em;
+    text-align: center;
+}
+
+h3 {
+    margin-top: 0.5em;
+    margin-bottom: 0.2em;
+}
+
+p {
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+}
+
+.greenText {
+    color: #3fa74c;
+    font-style: italic;
+}
+
+.infosection {
+    height: 115%;
+}
+
+.link, .credit, .other-link {
+    margin-left: 0.4em;
+    box-shadow: 0 0 0px 0px black;
+}
+
+.bullet_info {
+    left: 1em;
+    position: relative;
+}
