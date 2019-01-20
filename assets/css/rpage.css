@@ -11,6 +11,7 @@ body {
     background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
     background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
     font-family: 'Open Sans', sans-serif;
+    overflow-x: hidden;
 }
 
 #inner {
@@ -94,9 +95,11 @@ p {
         width: 100%;
         background-color: white;
         box-shadow: 0 0 0px 0px #777777;
+        padding-left: 3px;
     }
     .header {
         font-size: 1.2em;
+        padding-bottom: 5px;
     }
 
     p {
@@ -118,7 +121,7 @@ p {
 }
 
 /* Tablet Mode */
-@media only screen and (min-width: 401px) and (max-width: 960px) {
+@media only screen and (min-width: 421px) and (max-width: 960px) {
     #inner {
         margin: auto;
         width: 80%;
