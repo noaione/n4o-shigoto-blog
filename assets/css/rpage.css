@@ -28,7 +28,9 @@ body, h1, h2, h3, a, p {
 .thumbnail-image {
     max-width:100%;
     max-height:100%;
-    vertical-align: middle;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 a {
@@ -36,6 +38,10 @@ a {
 }
 a:visited {
     color: #561010;
+}
+
+a.greenText, a.greenText:visited {
+    color: #3fa74c;
 }
 
 .bullet {
@@ -67,7 +73,7 @@ p {
     height: 115%;
 }
 
-.link, .credit, .other-link {
+.link, .credit, .other-link, .info {
     margin-left: 0.4em;
     box-shadow: 0 0 0px 0px black;
 }
@@ -97,7 +103,7 @@ p {
         font-size: 1em;
     }
 
-    h3, .bullet_info, .link, .credit, .other-link, a, a:visited, .infosection {
+    h3, .bullet_info, .link, .credit, .other-link, .info , a, a:visited, .infosection {
         font-size: 0.9em;
     }
     .bullet_info {
@@ -128,7 +134,7 @@ p {
         font-size: 1.2em;
     }
 
-    h3, .bullet_info, .link, .credit, .other-link, a, a:visited, .infosection {
+    h3, .bullet_info, .link, .credit, .other-link, .info , a, a:visited, .infosection {
         font-size: 1.1em;
     }
     .bullet_info {
