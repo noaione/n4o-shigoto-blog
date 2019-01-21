@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 body {
+    font-family: 'Open Sans', sans-serif;
+    overflow-x: hidden;
     background:
     radial-gradient(black 3px, transparent 4px),
     radial-gradient(black 3px, transparent 4px),
@@ -9,9 +11,7 @@ body {
     linear-gradient(-45deg, transparent 75px, transparent 76px, #a4a4a4 76px, #a4a4a4 77px, transparent 78px, transparent 109px),
     #fff;
     background-size: 109px 109px, 109px 109px,100% 6px, 109px 109px, 109px 109px;
-    background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
-    font-family: 'Open Sans', sans-serif;
-    overflow-x: hidden;
+    background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px; 
 }
 
 #inner {
@@ -20,6 +20,7 @@ body {
     box-shadow: 0 0 5px 2px #777777;
     padding: 10px;
     background-color: white;
+    animation: fadein 2s;
 }
 
 body, h1, h2, h3, a, p {
@@ -148,5 +149,24 @@ p {
         margin-left: 0.2em;
         margin-top: 0.7em;
         margin-bottom: 0.4em;
+    }
+}
+
+
+@keyframes fadein {
+    from {
+            opacity: 0;
+    }
+    to {
+            opacity: 1;
+    }
+}
+
+@-webkit-keyframes rotation {
+    from {
+            opacity: 0;
+    }
+    to {
+            opacity: 1;
     }
 }
