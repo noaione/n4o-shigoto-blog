@@ -19,12 +19,21 @@ table {
     border-collapse:collapse;
     border-spacing:0
 }
-body {
+body.lightmode {
     color:#272727;
     background:#fff;
     font-family:"Inconsolata";
     font-size:90%;
-    font-weight:400
+    font-weight:400;
+	transition: all 1s;
+}
+body.darkmode {
+    color:#c2c2c2;
+    background:#3e3e3e;
+    font-family:"Inconsolata";
+    font-size:90%;
+    font-weight:400;
+	transition: all 1s;
 }
 h1 {
     margin-bottom:5px
@@ -33,23 +42,49 @@ p {
     font-size:1em;
     line-height:150%
 }
-a {
+body.lightmode a {
     color:#1A0DAB;
-    text-decoration:none
+    text-decoration:none;
+	transition: all 1s;
 }
-a:visited {
+body.lightmode a:visited {
     color:#1A0DAB;
-    text-decoration:none
+    text-decoration:none;
+	transition: all 1s;
 }
-a:hover {
+body.lightmode a:hover {
     color:#1A0DAB;
     text-decoration:none;
     padding-bottom:1px;
-    border-bottom:1px solid #1A0DAB
+    border-bottom:1px solid #1A0DAB;
+	transition: all 1s;
 }
-a:active {
+body.lightmode a:active {
     color:#1A0DAB;
-    text-decoration:none
+    text-decoration:none;
+	transition: all 1s;
+}
+body.darkmode a {
+    color:#9d98d0;
+    text-decoration:none;
+	transition: all 1s;
+}
+body.darkmode a:visited {
+    color:#9d98d0;
+    text-decoration:none;
+	transition: all 1s;
+}
+body.darkmode a:hover {
+    color:#9d98d0;
+    text-decoration:none;
+    padding-bottom:1px;
+    border-bottom:1px solid #9d98d0;
+	transition: all 1s;
+}
+body.darkmode a:active {
+    color:#9d98d0;
+    text-decoration:none;
+	transition: all 1s;
 }
 ul {
     list-style:none
@@ -92,9 +127,17 @@ blockquote {
         display:block
     }
 }
-.header h1 {
+body.lightmode .header h1 {
     font-size:2em;
-    margin-bottom:0
+    margin-bottom:0;
+	color: #272727;
+	transition: all 1s;
+}
+body.darkmode .header h1 {
+    font-size:2em;
+    margin-bottom:0;
+	color: #c2c2c2;
+	transition: all 1s;
 }
 .header ul {
     margin-top:10px

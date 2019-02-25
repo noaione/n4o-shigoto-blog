@@ -1,14 +1,5 @@
 <html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" class=" scriptsOn">
     <head>
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90117853-5"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            
-            gtag('config', 'UA-90117853-5');
-        </script>
         <link rel="stylesheet" href="materialize.min.css" type="text/css" media="screen,projection" />
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta charset="utf-8">
@@ -26,7 +17,7 @@
         <meta property="og:site_name" content="N4O Blog" />
         <meta name="theme-color" content="#86c5dA">
     </head>
-    <body>
+    <body id="wrapper-m", class="lightmode">
         <div class="wrapper">
         <div class="header">
             <h1>N4O - simple guy doing fansubbing works</h1>
@@ -46,6 +37,9 @@
                 <li>
                 <a href="http://nyaa.si/user/NoAiOne" class="waves-effect" rel="nofollow noreferrer">nyaa</a>
                 </li>
+				<li>
+				<a onClick="DarkMode()" class="waves-effect">light</a>
+				</li>
             </ul>
         </div>
         <div class="blog">
@@ -82,6 +76,13 @@
             <li><a href="https://github.com/noaione/yuu">yuu - A simple AbemaTV video downloader</a></li>
         </ul>
     </body>
+	<script>
+		function DarkMode() {
+			var body = document.getElementById("wrapper-m");
+			var current = body.className;
+			body.className = current == "darkmode" ? "lightmode" : "darkmode";
+		}
+	</script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="materialize.min.js"></script>
     <script>
@@ -129,4 +130,13 @@
         });
         }
     </script>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-90117853-5"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+		
+		gtag('config', 'UA-90117853-5');
+	</script>
 </html>
