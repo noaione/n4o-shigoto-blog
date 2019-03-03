@@ -17,7 +17,7 @@
 			{% if page.urls %}
 				<h3 class="infosection link">Link</h3>
 				{% for url in page.urls %}
-					<li id="{{ url.id }}" class="bullet_info"><strong>{{ url.text }}</strong>: <a href="{% if url.link != # %}{{ url.link }}{% else %}#{% endif %}">{% if url.link %}{{ url.link }}{% else %}<s>Download</s>{% endif %}</a> <strong>@ {% if url.status %}{{ url.status }}{% else %}Unknown{% endif %}</strong></li>
+					<li id="{{ url.id }}" class="bullet_info"><strong>{{ url.text }}</strong>: <a href="{% if url.link != '#' %}{{ url.link }}{% else %}#{% endif %}">{% if url.link %}{{ url.link }}{% else %}<s>Download</s>{% endif %}</a> <strong>@ {% if url.status %}{{ url.status }}{% else %}Unknown{% endif %}</strong></li>
 				{% endfor %}
 			{% endif %}
 

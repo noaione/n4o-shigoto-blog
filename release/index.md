@@ -1,7 +1,5 @@
 ---
 layout: releases
 title: "Releases"
-excerpt: "Kumpulan hutang piutang N4O"
-comments: false
-site_name: "Release"
+excerpt: "All N4O Release (Semua hutang yang dirilis N4O)"
 ---
