@@ -1,0 +1,96 @@
+<html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" class=" scriptsOn">
+    <head>
+        {% include head.html %}
+        <link rel="stylesheet" href="{{ site.url }}/assets/css/release.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700">
+    </head>
+    <body id="wrapper-m", class="lightmode">
+        <div class="wrapper">
+        <div class="header">
+            <h1>N4O - simple guy doing fansubbing works</h1>
+            <ul>
+                <li>
+                <a href="{{ site.url }}" class="waves-effect" rel="nofollow noreferrer">home</a>
+                </li>
+                <li>
+                <a href="{{ site.url }}/blog" class="waves-effect" rel="nofollow noreferrer">my blog</a>
+                </li>
+                <li>
+                <a href="https://github.com/noaione" class="waves-effect" rel="nofollow noreferrer">github</a>
+                </li>
+                <li>
+                <a href="https://www.facebook.com/noaione" class="waves-effect" rel="nofollow noreferrer">facebook</a>
+                </li>
+                <li>
+                <a href="http://nyaa.si/user/NoAiOne" class="waves-effect" rel="nofollow noreferrer">nyaa</a>
+                </li>
+				<li>
+				<a onClick="DarkMode()" class="waves-effect">light</a>
+				</li>
+            </ul>
+        </div>
+        <div class="blog">
+        <h1>Posts:</h1>
+        <h2>BDMV:</h2>
+        <ul>
+        {% for post in site.posts %}
+            {% if post.site_name == "BDMV" %}
+            <li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+		</ul>
+
+		<h2>Personal Release:</h2>
+		<ul>
+        {% for post in site.posts %}
+            {% if post.site_name == "Release" %}
+            <li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></li>
+            {% endif %}
+        {% endfor %}
+		</ul>
+
+		<h2>Unimportant stuff:</h2>
+		<ul>
+            <li><a href="https://github.com/noaione/mpv-discordRPC">mpv media player integration with Discord Rich Presence</a></li>
+            <li><a href="https://github.com/noaione/n4ofunc">VapourSynth Function</a></li>
+            <li><a href="https://github.com/noaione/yuu">yuu - A simple AbemaTV video downloader</a></li>
+        </ul>
+    </body>
+	<script>
+		function DarkMode() {
+			var body = document.getElementById("wrapper-m");
+			var current = body.className;
+			body.className = current == "darkmode" ? "lightmode" : "darkmode";
+		}
+	</script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="{{ site.url }}/assets/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".button-collapse").sideNav({
+                menuWidth: 240,
+                edge: 'left',
+                closeOnClick: true
+            });
+            $(".button-project").sideNav({
+                menuWidth: 240,
+                edge: 'right',
+                closeOnClick: true
+            });
+            $('.dropdown-button').dropdown({
+                inDuration: 300,
+                outDuration: 225,
+                constrainWidth: false, // Does not change width of dropdown to that of the activator
+                hover: true, // Activate on hover
+                gutter: 0, // Spacing from edge
+                belowOrigin: false, // Displays dropdown below the button
+                alignment: 'left', // Displays dropdown with edge aligned to the left of button
+                stopPropagation: false // Stops event propagation
+            });
+            $('.modal').modal();
+            $('.collapsible').collapsible();
+            $('.tooltipped').tooltip({delay: 50});
+        });
+    </script>
+    {% include scripts.html %}
+</html>
