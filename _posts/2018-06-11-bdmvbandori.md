@@ -4,6 +4,7 @@ title:  "BanG Dream!"
 excerpt: "BanG the Girls in your Dream"
 feature: "https://puu.sh/CzQ7t/cb636831dc.jpg"
 site_name: "BDMV"
+comments: true
 credit: "U3-Project & UnperceivedExistence@U2"
 totalsize: "172.32 GiB"
 urls:

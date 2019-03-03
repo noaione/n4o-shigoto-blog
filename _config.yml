@@ -3,7 +3,7 @@ title:              N4O
 description:        "Fagsubber, encoder, and 'programmer'"
 locale:             en_US
 url:                https://blog.n4o.xyz
-background:         https://p.n4o.xyz/i/ffe456.png
+avatar:             https://p.n4o.xyz/i/ffe456.png
 logo:               https://p.n4o.xyz/i/nao250px.png
 notfoundimage:      https://static.thenounproject.com/png/801773-200.png
 
@@ -19,7 +19,7 @@ kramdown:
   enable_coderay:   false
 
 # Custom
-
+disqus_shortname:   n4oblog
 
 # Gems
 gems:

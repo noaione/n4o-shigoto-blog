@@ -28,6 +28,9 @@
 				<li class="bullet_info"><a href="/release">Release</a></li>
 				<li class="bullet_info"><a href="https://nyaa.si/user/NoAiOne">Nyaa.si</a></li>
 			</div>
+			{% if page.comments and site.disqus_shortname %}
+				{% include disqus_comments.html %}
+			{% endif %}
 		</div>
 	</div>
 	{% include scripts.html %}

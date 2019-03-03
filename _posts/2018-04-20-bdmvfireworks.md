@@ -4,6 +4,7 @@ title:  "Uchiage Hanabi, Shita kara Miru ka? Yoko kara Miru ka?"
 excerpt: "Just see the fireworks whicever side you want tbh"
 feature: "https://puu.sh/CzQ4x/95828b1ff7.jpg"
 site_name: "BDMV"
+comments: true
 credit: "UnperceivedExistence@U2"
 totalsize: "112.034 GiB"
 urls:

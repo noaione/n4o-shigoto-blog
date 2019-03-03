@@ -4,6 +4,7 @@ title:  "BanG Dream! Garupa Pico"
 excerpt: "Why are my cute band dying?"
 feature: "https://p.n4o.xyz/i/u2vb4lmv.jpg"
 site_name: "Release"
+comments: true
 staff_list:
   - 
       name: "AbemaTV"

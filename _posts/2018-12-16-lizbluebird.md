@@ -4,6 +4,7 @@ title:  "Liz to Aoi Tori"
 excerpt: "Where's my Kumiko and Reina Ship?"
 feature: "https://puu.sh/CzRSf/de30c0edb6.png"
 site_name: "Release"
+comments: true
 staff_list:
   - 
       name: "BDMV"
