@@ -6,6 +6,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     font:inherit;
     vertical-align:baseline
 }
+#wrapper-m {
+	animation: fadein 1s;
+}
 a {
     text-decoration:none
 }
@@ -21,7 +24,7 @@ table {
 }
 body.lightmode {
     color:#272727;
-    background:#fff;
+    background:#eeeeee;
     font-family:"Inconsolata";
     font-size:90%;
     font-weight:400;
@@ -311,4 +314,13 @@ color: #106655;
 }
 fak {
 color: red;
+}
+
+@keyframes fadein {
+    from {
+            opacity: 0;
+    }
+    to {
+            opacity: 1;
+    }
 }

@@ -12,12 +12,11 @@
 
 			{{ content }}
 
-			
 			<div class="infosection">
 			{% if page.urls %}
 				<h3 class="infosection link">Link</h3>
 				{% for url in page.urls %}
-					<li id="{{ url.id }}" class="bullet_info"><strong>{{ url.text }}</strong>: <a href="{% if url.link != '#' %}{{ url.link }}{% else %}#{% endif %}">{% if url.link %}{{ url.link }}{% else %}<s>Download</s>{% endif %}</a> <strong>@ {% if url.status %}{{ url.status }}{% else %}Unknown{% endif %}</strong></li>
+					<li id="{{ url.id }}" class="bullet_info"><strong>{{ url.text }}</strong>: <a href="{% if url.link != '#' %}{{ url.link }}{% else %}#{% endif %}">{% if url.link != '#' %}Download{% else %}<s>Download</s>{% endif %}</a> <strong>@ {% if url.status %}{{ url.status }}{% else %}Unknown{% endif %}</strong></li>
 				{% endfor %}
 			{% endif %}
 
@@ -30,7 +29,7 @@
 
 				<h3 class="infosection other-link">Other stuff</h3>
 					<li class="bullet_info">Discord: <strong>N4O#8868</strong></li>
-					<li class="bullet_info"><a href="{{ site.url }}/release">Release</a></li>
+					<li class="bullet_info"><a href="/release">Release</a></li>
 					<li class="bullet_info"><a href="https://nyaa.si/user/NoAiOne">Nyaa.si</a></li>
 			</div>
 		</div>

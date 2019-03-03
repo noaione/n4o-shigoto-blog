@@ -1,31 +1,32 @@
 <html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" class=" scriptsOn">
     <head>
+		<link rel="stylesheet" href="materialize.min.css" type="text/css" media="screen,projection" />
         {% include head.html %}
-        <link rel="stylesheet" href="{{ site.url }}/assets/css/release.css">
+        <link rel="stylesheet" href="/assets/css/release.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700">
     </head>
-    <body id="wrapper-m", class="lightmode">
+    <body id="wrapper-m" class="lightmode">
         <div class="wrapper">
         <div class="header">
             <h1>N4O - simple guy doing fansubbing works</h1>
             <ul>
                 <li>
-                <a href="{{ site.url }}" class="waves-effect" rel="nofollow noreferrer">home</a>
+					<a href="{{ site.url }}" class="waves-effect" rel="nofollow noreferrer">home</a>
                 </li>
                 <li>
-                <a href="{{ site.url }}/blog" class="waves-effect" rel="nofollow noreferrer">my blog</a>
+					<a href="{{ site.url }}/blog" class="waves-effect" rel="nofollow noreferrer">my blog</a>
                 </li>
                 <li>
-                <a href="https://github.com/noaione" class="waves-effect" rel="nofollow noreferrer">github</a>
+					<a href="https://github.com/noaione" class="waves-effect" rel="nofollow noreferrer">github</a>
                 </li>
                 <li>
-                <a href="https://www.facebook.com/noaione" class="waves-effect" rel="nofollow noreferrer">facebook</a>
+					<a href="https://www.facebook.com/noaione" class="waves-effect" rel="nofollow noreferrer">facebook</a>
                 </li>
                 <li>
-                <a href="http://nyaa.si/user/NoAiOne" class="waves-effect" rel="nofollow noreferrer">nyaa</a>
+					<a href="http://nyaa.si/user/NoAiOne" class="waves-effect" rel="nofollow noreferrer">nyaa</a>
                 </li>
 				<li>
-				<a onClick="DarkMode()" class="waves-effect">light</a>
+					<a onClick="DarkMode()" class="waves-effect">light</a>
 				</li>
             </ul>
         </div>
@@ -35,7 +36,7 @@
         <ul>
         {% for post in site.posts %}
             {% if post.site_name == "BDMV" %}
-            <li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></li>
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
             {% endif %}
         {% endfor %}
 		</ul>
@@ -44,7 +45,7 @@
 		<ul>
         {% for post in site.posts %}
             {% if post.site_name == "Release" %}
-            <li><a href="{{ site.url }}{{ post.url }}">{{ post.title }}</a></li>
+            <li><a href="{{ post.url }}">{{ post.title }}</a></li>
             {% endif %}
         {% endfor %}
 		</ul>
@@ -64,7 +65,7 @@
 		}
 	</script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="{{ site.url }}/assets/js/materialize.min.js"></script>
+    <script type="text/javascript" src="materialize.min.js"></script>
     <script>
         $(document).ready(function(){
             $(".button-collapse").sideNav({
