@@ -2,6 +2,8 @@
 
 Access Release page: https://blog.n4o.xyz/release
 
+Old website for archive purpose
+
 ---
 
 Hosted with Github & Gitlab
