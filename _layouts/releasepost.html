@@ -13,10 +13,16 @@
 			{{ content }}
 
 			<div class="infosection">
+			{% if page.vainfo %}
+				<h3 class="infosection info">Information</h3>
+				{% for inf in page.vainfo %}
+					<li class="bullet_info"><strong>{{ inf.head }}:</strong> {{ inf.body }}</li>
+				{% endfor %}
+			{% endif %}
 			{% if page.urls %}
 				<h3 class="infosection link">Link</h3>
 				{% for url in page.urls %}
-					<li id="{{ url.id }}" class="bullet_info"><strong>{{ url.text }}</strong>: <a href="{% if url.link != '#' %}{{ url.link }}{% else %}#{% endif %}">{% if url.link != '#' %}Download{% else %}<s>Download</s>{% endif %}</a> <strong>@ {% if url.status %}{{ url.status }}{% else %}Unknown{% endif %}</strong></li>
+					<li id="{{ url.id }}" class="bullet_info"><strong>{{ url.text }}</strong>: <a href="{% if url.link != '#' %}{{ url.link }}{% else %}#{% endif %}">{% if url.link != '#' %}Download{% else %}<s>Download</s>{% endif %}</a>{% if url.status %} <strong>@ {{ url.status }}</strong>{% endif %}</li>
 				{% endfor %}
 			{% endif %}
 
@@ -31,10 +37,10 @@
 					<li class="bullet_info">Discord: <strong>N4O#8868</strong></li>
 					<li class="bullet_info"><a href="/release">Release</a></li>
 					<li class="bullet_info"><a href="https://nyaa.si/user/NoAiOne">Nyaa.si</a></li>
-			</div>
 			{% if page.comments and site.disqus_shortname %}
-				{% include disqus_comments.html %}
+			{% include disqus_comments.html %}
 			{% endif %}
+			</div>
 		</div>
 	</div>
 	{% include scripts.html %}
