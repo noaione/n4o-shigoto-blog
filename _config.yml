@@ -1,0 +1,35 @@
+# Site
+title:              N4O
+description:        "Fagsubber, encoder, and 'programmer'"
+locale:             en_US
+url:                https://blog.n4o.xyz
+avatar:             https://p.n4o.xyz/i/ffe456.png
+logo:               https://p.n4o.xyz/i/nao250px.png
+notfoundimage:      https://static.thenounproject.com/png/801773-200.png
+
+# Jekyll
+permalink:          /r/:title
+markdown:           kramdown
+highlighter:        rouge
+kramdown:
+  auto_ids:         true
+  footnote_nr:      1
+  entity_output:    as_char
+  toc_levels:       1..6
+  enable_coderay:   false
+
+# Custom
+disqus_shortname:   n4oblog
+
+# Gems
+gems:
+  - jekyll-mentions
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-gist
+
+jekyll-mentions:
+    base_url: https://github.com
+
+# Exclude list
+exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile]

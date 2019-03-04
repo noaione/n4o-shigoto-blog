@@ -1,22 +1,15 @@
+---
+title: 404
+excerpt: "Page not found"
+---
 <!DOCTYPE html>
 <html>
    <head>
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90117853-5"></script>
-      <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          
-          gtag('config', 'UA-90117853-5');
-      </script>
-      <link rel="icon" href="/assets/img/favicon.png">
-      <title>N4O - 404</title>
-      <meta name="description" content="404 Page not found">
+      {% include head.html %}
       <style type="text/css">
          body {
             position: absolute;
-            font: "Calibri";
+            font-family: 'Open Sans', sans-serif;
             width: 780px;
             height: 650px;
             left: 50%;
@@ -28,13 +21,14 @@
             color: rgb(100,100,100);
          }
       </style>
+   </head>
    <body>
-      <h2><img src="https://static.thenounproject.com/png/801773-200.png" alt="Logo" /></h2>
+      <h2><img src="{{ site.notfoundimage }}" alt="Logo" /></h2>
       <h1>404</h1>
       <h3><b>Not Found</b></h3>
       <p>Link requested are not found in this server.<br />Please contact this website administrator<br />Discord: N4O#8868 | email: noaione0809@gmail.com</p>
-      <span style="font-size: 10pt"><a href="https://blog.n4o.xyz">main page</a> || <a href="https://github.com/noaione/noaione.github.io">manage</a> || <a href="https://blog.n4o.xyz/release">release</a></span>
+      <span style="font-size: 10pt"><a href="{{ site.url }}">main page</a> || <a href="https://github.com/noaione/noaione.github.io">manage</a> || <a href="{{ site.url }}/release">release</a></span>
    </body>
-   </head>
+   {% include scripts.html %}
 </html>
 
