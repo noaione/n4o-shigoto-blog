@@ -65,10 +65,6 @@ p {
     margin-bottom: 0.4em;
 }
 
-.greenText::before {
-	content: ">" !important;
-}
-
 .greenText {
     color: #3fa74c;
     font-style: italic;
