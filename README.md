@@ -2,7 +2,7 @@
 
 Access Release page: https://blog.n4o.xyz/release
 
-This is Jekyll rewrite version that will be merged soon enough
+This is Jekyll rewrite version
 
 ---
 

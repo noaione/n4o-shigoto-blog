@@ -5,7 +5,7 @@
     <title>{{ site.title }}{% if page.site_name %} {{ page.site_name }}{% endif %}{% if page.title %} - {{ page.title }}{% endif %}</title>
     <meta name="description" content="{% if page.excerpt %}{{ page.excerpt }}{% else %}{{ site.description }}{% endif %}">
     <!-- Open Graph -->
-    <meta property="og:locale" content="{{ site.locale }}">
+    <meta property="og:locale" content="{% if page.lang %}{{ page.lang }}{% else %}{{ site.locale }}{% endif %}">
     <meta property="og:type" content="article">
     <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
     {% if page.excerpt %}

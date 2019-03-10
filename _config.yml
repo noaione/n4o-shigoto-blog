@@ -22,7 +22,7 @@ kramdown:
 disqus_shortname:   n4oblog
 
 # Gems
-gems:
+plugins:
   - jekyll-mentions
   - jekyll-feed
   - jekyll-sitemap
