@@ -14,13 +14,12 @@
 			<p><strong>Size:</strong> {{ page.totalsize }}</p>
 			{{ content }}
 
-			{% if page.urls %}
 			<div class="infosection">
+			{% if page.urls %}
 				<h3 class="infosection link">Link</h3>
 				{% for url in page.urls %}
 					<li id="{{ url.id }}" class="bullet_info"><strong>{{ url.text }}</strong>{% if url.link %}: <a href="{{ url.link }}">Download</a>{% endif %}</li>
 				{% endfor %}
-			</div>
 			{% endif %}
 
 			<h3 class="infosection other-link">Other stuff</h3>
@@ -28,9 +27,8 @@
 				<li class="bullet_info"><a href="/release">Release</a></li>
 				<li class="bullet_info"><a href="https://nyaa.si/user/NoAiOne">Nyaa.si</a></li>
 			</div>
-			{% if page.comments and site.disqus_shortname %}
-				{% include disqus_comments.html %}
-			{% endif %}
+			{% include disqus_comments.html %}
+			</div>
 		</div>
 	</div>
 	{% include scripts.html %}

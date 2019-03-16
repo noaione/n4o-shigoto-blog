@@ -1,7 +1,6 @@
 ---
 layout: releasepost
 title:  "Tonari no Kyuuketsuki-san - Vol 1 (BD)"
-excerpt: "Kapan punya tetangga kayak gini"
 feature: "https://puu.sh/D0HHh/6e38812506.png"
 site_name: "Release"
 lang: "id_ID"
@@ -37,12 +36,10 @@ urls:
     link: "https://drive.google.com/drive/folders/18qYWg8sEE5vq_gIdzJKLQPM30MISSuHb?usp=sharing"
     text: "Bonus CD (FLAC)"
 ---
-BELUM MATI!
+Kapan punya tetangga kayak gini
 
-Ada Bonus CD bagi yang mau
+BELUM MATI!<br>
+Ada Bonus CD bagi yang mau<br>
+Tolong kasitau kesalahan di Discord atau comment biar cepet di v2 pas batch :wink:
 
-Tolong kasitau kesalahan di Discord
-
-Server Discord: [http://discord.gg/d49CfCb](http://discord.gg/d49CfCb)
-
-Atau PM aja: N4O#8868
+Server: [https://discord.gg/d49CfCb](https://discord.gg/d49CfCb)

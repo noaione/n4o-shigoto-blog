@@ -33,14 +33,12 @@
 				{% endfor %}
 			{% endif %}
 
-				<h3 class="infosection other-link">{% if page.lang == "id_ID" %}Hal Lain{% else %}Other stuff{% endif %}</h3>
-					<li class="bullet_info">Discord: <strong>N4O#8868</strong></li>
-					<li class="bullet_info"><a href="/release">Release</a></li>
-					<li class="bullet_info"><a href="https://nyaa.si/user/NoAiOne">Nyaa.si</a></li>
-			{% if page.comments and site.disqus_shortname %}
-			{% include disqus_comments.html %}
-			{% endif %}
+			<h3 class="infosection other-link">{% if page.lang == "id_ID" %}Hal Lain{% else %}Other stuff{% endif %}</h3>
+				<li class="bullet_info">Discord: <strong>N4O#8868</strong></li>
+				<li class="bullet_info"><a href="/release">Release</a></li>
+				<li class="bullet_info"><a href="https://nyaa.si/user/NoAiOne">Nyaa.si</a></li>
 			</div>
+			{% include disqus_comments.html %}
 		</div>
 	</div>
 	{% include scripts.html %}

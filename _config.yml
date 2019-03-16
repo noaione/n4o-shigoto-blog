@@ -6,6 +6,7 @@ url:                https://blog.n4o.xyz
 avatar:             https://p.n4o.xyz/i/ffe456.png
 logo:               https://p.n4o.xyz/i/nao250px.png
 notfoundimage:      https://static.thenounproject.com/png/801773-200.png
+author:             N4O
 
 # Jekyll
 permalink:          /r/:title
@@ -27,6 +28,7 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
   - jekyll-gist
+  - jekyll-seo-tag
 
 jekyll-mentions:
     base_url: https://github.com
