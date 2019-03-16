@@ -9,7 +9,6 @@ credit: "UnperceivedExistence@U2"
 totalsize: "112.034 GiB"
 urls:
   - 
-      id: "vol01"
       link: "https://drive.google.com/drive/folders/1eHTA-UVicXwA4KVQGGTtNSfHX2TQcw0L?usp=sharing"
       text: "Vol 01"
 ---

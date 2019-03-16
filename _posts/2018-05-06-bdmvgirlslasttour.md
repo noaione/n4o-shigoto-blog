@@ -9,7 +9,6 @@ credit: "UnperceivedExistence@U2"
 totalsize: "100.629 GiB"
 urls:
   - 
-      id: "AllVol"
       link: "https://bit.ly/bdmv_girlslasttour"
       text: "Vol 01-03"
 ---

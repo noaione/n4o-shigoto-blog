@@ -29,15 +29,11 @@ staff_list:
       work: "Quarity Check"
 urls:
   - 
-      id: "1stcour"
       link: "http://bit.ly/naoPico1"
       text: "Episode 01-13 (1st Cour)"
-      status: "Release"
-  - 
-      id: "2ndcour"
+  -
       link: "http://bit.ly/naoPico2"
       text: "Episode 14-26 (2nd Cour)"
-      status: "Release"
 ---
 
 Soooooooooo, can Garupa Pico stop killing the bands please?

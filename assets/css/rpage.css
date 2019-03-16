@@ -37,17 +37,13 @@ body, h1, h2, h3, a, p {
 a {
     color: #bd2929;
 }
+
 a:visited {
     color: #561010;
 }
 
 a.greenText, a.greenText:visited {
     color: #3fa74c;
-}
-
-.bullet {
-    margin-top: 0em;
-    margin-left: 0.8em;
 }
 
 .header {
@@ -72,17 +68,69 @@ p {
 }
 
 .infosection {
+	margin-top: 1.5em;
     height: 115%;
+	margin-bottom: 0.5em;
+	text-align: center;
 }
 
-.link, .credit, .other-link, .info {
-    margin-left: 0.4em;
-    box-shadow: 0 0 0px 0px black;
+.info-head {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+	text-align: center;
+	font-weight: 700;
+	font-size: 17px;
 }
 
-.bullet_info {
-    left: 1em;
-    position: relative;
+.info-img {
+	opacity: 1.0;
+	transition: all 0.25s;
+}
+
+.info-img:hover, .info-img:active {
+	opacity: 0.7;
+}
+
+.staff-list {
+	margin-top: 0.2em;
+	margin-bottom: 0.2em;
+	text-align: center;
+	font-size: 1em;
+}
+
+.btn--dl, .btn-dl:visited {
+	background-color: #87a3bb;
+	border: none;
+	color: white !important;
+	padding: 14px 14px;
+	text-align: center;
+	text-decoration: none;
+	font-weight: 700;		
+	display: inline-block;
+	font-size: 14px;
+	margin: 4px 2px;
+	cursor: pointer;
+	transition: all 0.25s;
+	border-radius: 5px;
+}
+
+.btn--dl:hover, .btn--dl:active {
+  background-color: #68839a;
+  border-radius: 15px;
+}
+
+.btn--dl-disabled {
+	background-color: #6f4343;
+	color: #dedede !important;
+	cursor: not-allowed;
+	border-radius: 5px;
+	padding: 14px 14px;
+	text-align: center;
+	text-decoration: none;
+	font-weight: 700;		
+	display: inline-block;
+	font-size: 14px;
+	margin: 4px 2px;
 }
 
 /* Mobile version */
@@ -107,7 +155,7 @@ p {
         font-size: 1em;
     }
 
-    h3, .bullet_info, .link, .credit, .other-link, .info , a, a:visited, .infosection {
+    h3, .link, .credit, .other-link, .info , a, a:visited, .infosection {
         font-size: 0.9em;
     }
     .bullet_info {
@@ -138,7 +186,7 @@ p {
         font-size: 1.2em;
     }
 
-    h3, .bullet_info, .link, .credit, .other-link, .info , a, a:visited, .infosection {
+    h3, .link, .credit, .other-link, .info , a, a:visited, .infosection {
         font-size: 1.1em;
     }
     .bullet_info {
@@ -152,6 +200,76 @@ p {
     }
 }
 
+/**
+ * Tooltip Styles
+ */
+
+/* Add this attribute to the element that needs a tooltip */
+[data-tooltip] {
+    position: relative;
+    z-index: 2;
+    animation: fadein 0.25s;
+}
+  
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+    visibility: hidden;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+    opacity: 0;
+    pointer-events: none;
+    animation: fadein 0.25s;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    margin-bottom: 5px;
+    margin-left: -80px;
+    padding: 7px;
+    width: 160px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    background-color: #000;
+    background-color: hsla(0, 0%, 20%, 0.9);
+    color: #fff;
+    content: attr(data-tooltip);
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+    animation: fadein 0.25s;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+    position: absolute;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -5px;
+    width: 0;
+    border-top: 5px solid #000;
+    border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    content: " ";
+    font-size: 0;
+    line-height: 0;
+    animation: fadein 0.25s;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+    visibility: visible;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+    opacity: 1;
+    animation: fadein 0.25s;
+}
 
 @keyframes fadein {
     from {

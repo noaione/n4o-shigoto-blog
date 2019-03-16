@@ -12,20 +12,11 @@ staff_list:
   - 
     name: "N4O"
     work: "Encode"
-vainfo:
-  -
-    head: "Video"
-    body: "BD | x264 1920x1080 Hi10P CRF20"
-  -
-    head: "Audio"
-    body: "BD | FLAC 2.0 (Live), AAC 2.0 (Documentary)"
 urls:
   - 
-    id: "liveDL"
     link: "https://www.perpusindo.info/berkas/rM5nKL07"
     text: "Live"
   - 
-    id: "documentaryDL"
     link: "https://www.perpusindo.info/berkas/b37IhTiY"
     text: "Documentary"
 ---

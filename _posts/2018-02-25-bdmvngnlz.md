@@ -9,7 +9,6 @@ credit: "RinZ&kimisecond"
 totalsize: "41.537 GiB"
 urls:
   - 
-      id: "vol1"
       link: "http://www.perpusindo.info/berkas/ynehkpib"
       text: "Vol 01"
 ---

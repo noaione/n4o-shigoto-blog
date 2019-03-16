@@ -23,25 +23,15 @@ staff_list:
       work: "Encoder"
 urls:
   - 
-      id: "dl"
       link: "https://www.perpusindo.info/berkas/lGjfSxNm"
       text: "Episode 00 (Movie)"
-      status: "Release"
   - 
-      id: "subspatch"
       link: "https://p.n4o.xyz/files/N4O_Liz_AoiTori_v2.ass"
       text: "Updated Subs (Changed Song TL Line)"
-      status: "Release"
 ---
 
 {:.greenText} 
-\>naoko yamada
-
-{:.greenText}
-\>feet shot
-
-{:.greenText}
-\>gay
-
-{:.greenText}
+\>naoko yamada<br>
+\>feet shot<br>
+\>gay<br>
 \>based

@@ -30,7 +30,6 @@ urls:
     id: "bdvol1"
     link: "https://www.perpusindo.info/berkas/OuYFHtp4"
     text: "Episode 01-03 (Vol 1)"
-    status: "Rilis"
   - 
     id: "bonus"
     link: "https://drive.google.com/drive/folders/18qYWg8sEE5vq_gIdzJKLQPM30MISSuHb?usp=sharing"
@@ -41,5 +40,3 @@ Kapan punya tetangga kayak gini
 BELUM MATI!<br>
 Ada Bonus CD bagi yang mau<br>
 Tolong kasitau kesalahan di Discord atau comment biar cepet di v2 pas batch :wink:
-
-Server: [https://discord.gg/d49CfCb](https://discord.gg/d49CfCb)

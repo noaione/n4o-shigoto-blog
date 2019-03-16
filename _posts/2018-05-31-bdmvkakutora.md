@@ -9,7 +9,6 @@ credit: "UCCUSS@U2"
 totalsize: "63.278 GiB"
 urls:
   - 
-      id: "AllDisc"
       link: "https://bit.ly/bdmvkakutora"
       text: "Disc 01-02"
 ---

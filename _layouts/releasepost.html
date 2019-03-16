@@ -13,31 +13,32 @@
 			{{ content }}
 
 			<div class="infosection">
-			{% if page.vainfo %}
-				<h3 class="infosection info">{% if page.lang == "id_ID" %}Informasi{% else %}Information{% endif %}</h3>
-				{% for inf in page.vainfo %}
-					<li class="bullet_info"><strong>{{ inf.head }}:</strong> {{ inf.body }}</li>
-				{% endfor %}
-			{% endif %}
-			{% if page.urls %}
-				<h3 class="infosection link">Link</h3>
-				{% for url in page.urls %}
-					<li id="{{ url.id }}" class="bullet_info"><strong>{{ url.text }}</strong>{% if url.link %}: <a href="{{ url.link }}">Download</a>{% endif %}{% if url.status %} @ {{ url.status }}{% endif %}</li>
-				{% endfor %}
-			{% endif %}
-
 			{% if page.staff_list %}
-				<h3 class="infosection credit">{% if page.lang == "id_ID" %}Tukang Kerja{% else %}Credit{% endif %}</h3>
+				<p id="staff" class="info-head">{% if page.lang == "id_ID" %}Tukang Kerja{% else %}Credit{% endif %}</p>
 				{% for staff in page.staff_list %}
-					<li class="bullet_info"><strong>{{ staff.work }}:</strong> {{ staff.name }}</li>
+					<p class="staff-list"><strong>{{ staff.work }}:</strong> {{ staff.name }}</li>
+				{% endfor %}
+			{% endif %}
+				
+			{% if page.urls %}
+				<p id="dl" class="info-head">Download</p>
+				{% for url in page.urls %}
+					{% if url.link %}
+					<a class="btn--dl" href="{{ url.link }}" {% if url.status %}data-tooltip="@ {{ url.status }}"{% endif %}>{{ url.text }}</a>
+					{% else %}
+					<a class="btn--dl-disabled" {% if url.status %}data-tooltip="@ {{ url.status }}"{% endif %}>{{ url.text }}</a>
+					{% endif %}
 				{% endfor %}
 			{% endif %}
 
-			<h3 class="infosection other-link">{% if page.lang == "id_ID" %}Hal Lain{% else %}Other stuff{% endif %}</h3>
-				<li class="bullet_info">Discord: <strong>N4O#8868</strong></li>
-				<li class="bullet_info"><a href="/release">Release</a></li>
-				<li class="bullet_info"><a href="https://nyaa.si/user/NoAiOne">Nyaa.si</a></li>
+				<p id="other" class="info-head">{% if page.lang == "id_ID" %}Hal Lain{% else %}Other stuff{% endif %}</p>
+					<a class="info-img" href="https://discord.gg/d49CfCb"><img src="/assets/img/discord.png" width="35px" /></a>
+					<a class="info-img" href="/release"><img src="/assets/img/favicon.png" width="32px" /></a>
+					<a class="info-img" href="https://nyaa.si/user/NoAiOne"><img src="/assets/img/nyaa.png" width="32px" /></a>
+					<br>
+					<p style="font-size: 11.5px;"><strong>Discord</strong>: N4O#8868</p>
 			</div>
+			<br>
 			{% include disqus_comments.html %}
 		</div>
 	</div>

@@ -2,14 +2,13 @@
 layout: releasebdmv
 title:  "BanG Dream!"
 excerpt: "BanG the Girls in your Dream"
-feature: "https://puu.sh/CzQ7t/cb636831dc.jpg"
+feature: "https://puu.sh/D0Jms/0369ae78c9.png"
 site_name: "BDMV"
 comments: true
 credit: "U3-Project & UnperceivedExistence@U2"
 totalsize: "172.32 GiB"
 urls:
-  - 
-      id: "AllVol"
+  -
       link: "https://bit.ly/bdmvbandori"
       text: "Vol 01-07"
 ---
