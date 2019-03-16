@@ -4,6 +4,7 @@ title:  "Tonari no Kyuuketsuki-san - Vol 1 (BD)"
 feature: "https://puu.sh/D0HHh/6e38812506.png"
 site_name: "Release"
 lang: "id_ID"
+tags: ["tonakyuu", 'bd', "serial"]
 comments: true
 staff_list:
   - 

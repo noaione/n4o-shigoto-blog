@@ -7,6 +7,7 @@ site_name: "BDMV"
 comments: true
 credit: "UnperceivedExistence@U2"
 totalsize: "112.034 GiB"
+tags: ["bdmv"]
 urls:
   - 
       link: "https://drive.google.com/drive/folders/1eHTA-UVicXwA4KVQGGTtNSfHX2TQcw0L?usp=sharing"

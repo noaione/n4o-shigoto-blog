@@ -19,7 +19,7 @@
 					<a href="https://github.com/noaione" class="waves-effect" rel="nofollow noreferrer">github</a>
                 </li>
                 <li>
-					<a href="tags" class="waves-effect" rel="nofollow noreferrer">tags</a>
+					<a href="/release" class="waves-effect" rel="nofollow noreferrer">release</a>
                 </li>
                 <li>
 					<a href="https://www.facebook.com/noaione" class="waves-effect" rel="nofollow noreferrer">fb</a>
@@ -36,31 +36,33 @@
             </ul>
         </div>
         <div class="blog">
-        <h1>Posts:</h1>
-        <h2>BDMV:</h2>
+        <h1>Tags:</h1>
         <ul>
-        {% for post in site.posts %}
-            {% if post.site_name == "BDMV" %}
-            <li><a href="{{ post.url }}" class="waves-effect">{{ post.title }}</a></li>
-            {% endif %}
-        {% endfor %}
+		{% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
+		{% assign tags_list = site_tags | split:',' | sort %}
+		
+		<ul class="entry-meta inline-list">
+			<li>| 
+		  {% for item in (0..site.tags.size) %}{% unless forloop.last %}
+			{% capture this_word %}{{ tags_list[item] | strip_newlines }}{% endcapture %}
+			<a href="#{{ this_word }}" class="tag"><span class="term">{{ this_word }}</span>: <span class="count">{{ site.tags[this_word].size }}</span></a> | 
+		  {% endunless %}{% endfor %}
+		  </li>
 		</ul>
 
-		<h2>Personal Release:</h2>
-		<ul>
-        {% for post in site.posts %}
-            {% if post.site_name == "Release" %}
-            <li><a href="{{ post.url }}" class="waves-effect">{{ post.title }}</a></li>
-            {% endif %}
-        {% endfor %}
-		</ul>
+		{% for item in (0..site.tags.size) %}{% unless forloop.last %}
+		  {% capture this_word %}{{ tags_list[item] | strip_newlines }}{% endcapture %}
+			<li>
+			<h2 id="{{ this_word }}">{{ this_word }}:</h2>
+				<ul>
+			{% for post in site.tags[this_word] %}{% if post.title != null %}
+			  <li><a href="{{ site.url }}{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+			{% endif %}{% endfor %}
+				</ul>
+			</li><!-- /.hentry -->
+		{% endunless %}{% endfor %}
 
-		<h2>Unimportant stuff:</h2>
-		<ul>
-            <li><a href="https://github.com/noaione/mpv-discordRPC" class="waves-effect">mpv media player integration with Discord Rich Presence</a></li>
-            <li><a href="https://github.com/noaione/n4ofunc" class="waves-effect">VapourSynth Function</a></li>
-            <li><a href="https://github.com/noaione/yuu" class="waves-effect">yuu - A simple AbemaTV video downloader</a></li>
-        </ul>
+		</ul>
     </body>
 	<script>
 		function DarkMode() {

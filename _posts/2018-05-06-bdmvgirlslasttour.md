@@ -7,6 +7,7 @@ site_name: "BDMV"
 comments: true
 credit: "UnperceivedExistence@U2"
 totalsize: "100.629 GiB"
+tags: ["bdmv"]
 urls:
   - 
       link: "https://bit.ly/bdmv_girlslasttour"

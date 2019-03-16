@@ -5,6 +5,7 @@ excerpt: '"How to not fuck up your camping" tutorial'
 feature: "https://i.imgur.com/qD0e5lI.jpg"
 site_name: "Release"
 comments: true
+tags: ['live', "yurucamp"]
 staff_list:
   - 
     name: "BDMV (paihctom@U2)"

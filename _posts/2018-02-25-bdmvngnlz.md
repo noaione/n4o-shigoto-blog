@@ -7,6 +7,7 @@ site_name: "BDMV"
 comments: true
 credit: "RinZ&kimisecond"
 totalsize: "41.537 GiB"
+tags: ["bdmv"]
 urls:
   - 
       link: "http://www.perpusindo.info/berkas/ynehkpib"

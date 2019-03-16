@@ -7,6 +7,7 @@ site_name: "BDMV"
 comments: true
 credit: "UCCUSS@U2"
 totalsize: "63.278 GiB"
+tags: ["bdmv"]
 urls:
   - 
       link: "https://bit.ly/bdmvkakutora"

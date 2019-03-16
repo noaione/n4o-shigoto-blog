@@ -7,6 +7,7 @@ site_name: "BDMV"
 comments: true
 credit: "U3-Project & UnperceivedExistence@U2"
 totalsize: "172.32 GiB"
+tags: ["bdmv"]
 urls:
   -
       link: "https://bit.ly/bdmvbandori"
