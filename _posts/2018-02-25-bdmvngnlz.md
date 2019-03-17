@@ -2,7 +2,7 @@
 layout: releasebdmv
 title:  "No Game No Life: Zero"
 excerpt: "No Game No Life Prologue Story BDMV"
-feature: "https://puu.sh/CzQm6/d172bc0d7e.jpg"
+image: "https://puu.sh/CzQm6/d172bc0d7e.jpg"
 site_name: "BDMV"
 comments: true
 credit: "RinZ&kimisecond"

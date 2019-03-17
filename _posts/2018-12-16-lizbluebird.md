@@ -2,7 +2,7 @@
 layout: releasepost
 title:  "Liz to Aoi Tori"
 excerpt: "Where's my Kumiko and Reina Ship?"
-feature: "https://puu.sh/CzRSf/de30c0edb6.png"
+image: "https://puu.sh/CzRSf/de30c0edb6.png"
 site_name: "Release"
 comments: true
 tags: ["bd", "hibike", "movie"]

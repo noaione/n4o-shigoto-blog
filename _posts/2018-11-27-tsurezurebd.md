@@ -2,7 +2,7 @@
 layout: releasepost
 title:  "Tsurezure Children (BD)"
 excerpt: '"Kehidupan SMAmu tak semesra ini" versi BD'
-feature: "https://puu.sh/CzRUH/6b999a1354.png"
+image: "https://puu.sh/CzRUH/6b999a1354.png"
 site_name: "Release"
 comments: true
 tags: ["bd", "tsurezure", "serial"]

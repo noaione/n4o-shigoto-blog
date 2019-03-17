@@ -2,7 +2,7 @@
 layout: releasebdmv
 title:  "Kakuchou Shoujo Kei Trinary"
 excerpt: "AR Grils"
-feature: "https://puu.sh/CzQ7t/cb636831dc.jpg"
+image: "https://puu.sh/CzQ7t/cb636831dc.jpg"
 site_name: "BDMV"
 comments: true
 credit: "UCCUSS@U2"

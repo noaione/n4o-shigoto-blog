@@ -2,7 +2,7 @@
 layout: releasebdmv
 title:  "BanG Dream!"
 excerpt: "BanG the Girls in your Dream"
-feature: "https://puu.sh/D0Jms/0369ae78c9.png"
+image: "https://puu.sh/D0Jms/0369ae78c9.png"
 site_name: "BDMV"
 comments: true
 credit: "U3-Project & UnperceivedExistence@U2"

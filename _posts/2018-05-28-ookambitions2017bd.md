@@ -2,10 +2,10 @@
 layout: releasepost
 title:  'ONE OK ROCK 2017 JAPAN WORLD TOUR "AMBITIONS"'
 excerpt: 'ONE OK ROCK 2017 JP Tour "AMBITIONS"'
-feature: "https://puu.sh/CzRqB/4636063725.jpg"
+image: "https://puu.sh/CzRqB/4636063725.jpg"
 site_name: "Release"
 comments: true
-tags: ["bd", 'live', "ook"]
+tags: ["bd", 'live']
 staff_list:
   - 
     name: "BDMV (mucc6@jpopsuki)"
