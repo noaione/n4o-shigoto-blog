@@ -122,8 +122,9 @@ p {
 }
 
 .btn--dl:hover, .btn--dl:active {
-  background-color: #68839a;
-  border-radius: 15px;
+	background-color: #68839a;
+	border-radius: 15px;
+	text-decoration: none;
 }
 
 .btn--dl-disabled {
@@ -138,6 +139,10 @@ p {
 	display: inline-block;
 	font-size: 14px;
 	margin: 4px 2px;
+}
+
+.btn--dl-disabled:hover, .btn--dl-disabled:active {
+	text-decoration: none;
 }
 
 /* Mobile version */

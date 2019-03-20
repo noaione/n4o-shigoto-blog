@@ -12,7 +12,7 @@ staff_list:
     name: "kakeruSMC@U2@ADC"
   - 
     work: "Skrip Asli"
-    name: '<a href="https://yukisubs.com/category/tsurezure-children/">Yukisubs</a'
+    name: '<a href="https://yukisubs.com/category/tsurezure-children/">Yukisubs</a>'
   - 
     work: "Penata Ulang Waktu"
     name: "N4O"

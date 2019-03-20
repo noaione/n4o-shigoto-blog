@@ -8,7 +8,9 @@
 	<div id="outer">
 		<div id="inner">
 			<h1 class="header">{{ page.title }}</h1>
+			{% if page.image %}
 			<img class="thumbnail-image" src="{{ page.image }}" alt="Image" />
+			{% endif %}
 
 			<p><strong>Credit to:</strong> {{ page.credit }}</p>
 			<p><strong>Size:</strong> {{ page.totalsize }}</p>

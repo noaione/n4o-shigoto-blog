@@ -2,7 +2,7 @@
 layout: releasepost
 title:  "Hanamori Yumiri - Hajimete no Camp Nyuumon"
 excerpt: '"How to not fuck up your camping" tutorial'
-image: "https://i.imgur.com/qD0e5lI.jpg"
+image: "https://puu.sh/D2JEH/36d4d42f65.jpg"
 site_name: "Release"
 comments: true
 tags: ['live', "yurucamp"]
