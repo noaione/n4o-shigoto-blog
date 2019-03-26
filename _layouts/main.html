@@ -53,20 +53,22 @@
         {{ content }}
         </div>
         {% capture current_page %}{{ page.url | relative_url }}{% endcapture %}
-        
+
+        <!-- Load every js first then naoTimes.js -->
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
         {% if page.url == "/release/" %}
-		 <!-- Hidden naoTimes iframe loader -->
-		<iframe style="display:none" onload="naoTimesProcess('{{ site.naotimes_discordid }}')" src="/release"></iframe>
         <div id='progress' class="progress-wrapper">
+                <script type="text/javascript" src="/assets/js/naoTimes.js"></script>
+                <script type="text/javascript">
+                    naoTimesProcess("{{ site.naotimes_discordid }}");
+                </script>
                 <br>
                 <h1 style="font-size:1.4em;;">Project Status</h1>
         </div>
         {% endif %}
         </div>
     </body>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-    <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
-	<script type="text/javascript" src="/assets/js/naoTimes.js"></script>
     <script>
         $(document).ready(function(){
             $(".button-collapse").sideNav({
