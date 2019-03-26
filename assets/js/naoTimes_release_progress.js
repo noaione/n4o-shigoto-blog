@@ -7,7 +7,7 @@ function GETJSON(yourUrl){
 
 function naoTimesProcess(disID) {
 	var div_data = document.getElementById("progress");
-	var json_data = GETJSON('https://gist.githubusercontent.com/noaione/1dff370f9802d2ee13ae8412a8026d7b/raw/c1fbe89e26f112b7d97a0194946cbe1202545e74/nao_showtimes.json');
+	var json_data = GETJSON('https://gist.githubusercontent.com/noaione/1dff370f9802d2ee13ae8412a8026d7b/raw/nao_showtimes.json');
 	var dis_data = json_data[disID.toString()];
 	var available_anime = [];
 	for (a in dis_data['anime']) {
