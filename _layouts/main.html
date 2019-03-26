@@ -1,10 +1,21 @@
+---
+layout: compress
+---
 <html xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" class=" scriptsOn">
     <head>
 		<link rel="stylesheet" href="/assets/css/materialize.min.css" type="text/css" media="screen,projection" />
         {% include head.html %}
         <link rel="stylesheet" href="/assets/css/release.css">
+        <!-- Move darkMode() script to upper part so it doesn't get blocked by naoTimes loading -->
+        <script>
+                function DarkMode() {
+                    var body = document.getElementById("wrapper-m");
+                    var current = body.className;
+                    body.className = current == "darkmode" ? "lightmode" : "darkmode";
+                }
+        </script>
     </head>
-    <body id="wrapper-m" class="lightmode" {% if page.url == '/release/' %}onload="naoTimesProcess('{{ site.naotimes_discordid }}')"{% endif %}>
+    <body id="wrapper-m" class="lightmode">
         <div class="wrapper">
         <div class="header">
             <h1>N4O - simple guy doing fansubbing works</h1>
@@ -47,6 +58,8 @@
         {% capture current_page %}{{ page.url | relative_url }}{% endcapture %}
         
         {% if page.url == "/release/" %}
+		 <!-- Hidden naoTimes iframe loader -->
+		<iframe style="display:none" onload="naoTimesProcess('{{ site.naotimes_discordid }}')" src="https://blog.n4o.xyz/release"></iframe>
         <div id='progress' class="progress-wrapper">
                 <br>
                 <h1 style="font-size:1.4em;;">Project Status</h1>
@@ -54,13 +67,6 @@
         {% endif %}
         </div>
     </body>
-	<script>
-		function DarkMode() {
-			var body = document.getElementById("wrapper-m");
-			var current = body.className;
-			body.className = current == "darkmode" ? "lightmode" : "darkmode";
-		}
-	</script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
 	<script type="text/javascript" src="/assets/js/naoTimes_release_progress.js"></script>
