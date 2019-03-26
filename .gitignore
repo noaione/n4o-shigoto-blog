@@ -3,5 +3,5 @@ _site
 _drafts
 _example
 
-
+*.bat
 *.lock

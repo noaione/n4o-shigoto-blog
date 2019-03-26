@@ -6,6 +6,55 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
     font:inherit;
     vertical-align:baseline
 }
+body.lightmode .progress-wrapper {
+    float: none;
+    text-align: center;
+    padding: 5px 5px 15px 5px;
+    margin: auto;
+    background-color: #272727;
+    color: #eeeeee;
+    -webkit-box-shadow: 0px 0px 14px 1px rgba(26,26,26,1);
+    -moz-box-shadow: 0px 0px 14px 1px rgba(26,26,26,1);
+    box-shadow: 0px 0px 14px 1px rgba(26,26,26,1);
+    transition: all 1s;
+}
+body.lightmode .progress-wrapper:hover {
+    -webkit-box-shadow: 0px 0px 14px 5px rgba(26,26,26,1);
+    -moz-box-shadow: 0px 0px 14px 5px rgba(26,26,26,1);
+    box-shadow: 0px 0px 14px 5px rgba(26,26,26,1);
+}
+
+.progress-wrapper h1, .progress-wrapper h2 {
+    font-weight: 700;
+}
+
+.progress-wrapper h1 {
+    font-size: 1.4em;
+}
+
+.progress-wrapper h2 {
+    font-size: 1.1em;
+}
+
+body.darkmode .progress-wrapper {
+    float: none;
+    text-align: center;
+    padding: 5px 5px 15px 5px;
+    margin: auto;
+    background-color: #ababab;
+    color: #333333;
+    -webkit-box-shadow: 0px 0px 14px 1px rgb(115, 115, 115);
+    -moz-box-shadow: 0px 0px 14px 1px rgb(115, 115, 115);
+    box-shadow: 0px 0px 14px 1px rgb(115, 115, 115);
+    transition: all 1s;
+}
+
+body.darkmode .progress-wrapper:hover {
+    -webkit-box-shadow: 0px 0px 14px 4px rgb(115, 115, 115);
+    -moz-box-shadow: 0px 0px 14px 4px rgb(115, 115, 115);
+    box-shadow: 0px 0px 14px 4px rgb(115, 115, 115);
+}
+
 #wrapper-m {
 	animation: fadein 1s;
 }

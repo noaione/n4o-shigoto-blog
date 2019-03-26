@@ -1,0 +1,57 @@
+{% for member in site.data.progress %}
+	{% if member[0] == site.naotimes_discordid %}
+		{% assign anime = member[1].anime %}
+	{% endif %}
+{% endfor %}
+
+{% for a in anime %}
+	{% for stat in a[1].status %}
+		{% if stat[1].status == 'released' %}
+			{% continue %}
+		{% else %}
+			{% if stat[1].staff_status.TL == 'x' %}
+				{% assign tl_stat = "TL " %}
+			{% else %}
+				{% assign tl_stat = "" %}
+			{% endif %}
+			{% if stat[1].staff_status.TLC == 'x' %}
+				{% assign tlc_stat = "TLC " %}
+			{% else %}
+				{% assign tlc_stat = "" %}
+			{% endif %}
+			{% if stat[1].staff_status.ENC == 'x' %}
+				{% assign enc_stat = "Encode " %}
+			{% else %}
+				{% assign enc_stat = "" %}
+			{% endif %}
+			{% if stat[1].staff_status.ED == 'x' %}
+				{% assign ed_stat = "Edit " %}
+			{% else %}
+				{% assign ed_stat = "" %}
+			{% endif %}
+			{% if stat[1].staff_status.TM == 'x' %}
+				{% assign tm_stat = "Timing " %}
+			{% else %}
+				{% assign tm_stat = "" %}
+			{% endif %}
+			{% if stat[1].staff_status.TS == 'x' %}
+				{% assign ts_stat = "TS " %}
+			{% else %}
+				{% assign ts_stat = "" %}
+			{% endif %}
+			{% if stat[1].staff_status.QC == 'x' %}
+				{% assign qc_stat = "QC" %}
+			{% else %}
+				{% assign qc_stat = "" %}
+            {% endif %}
+            {% if stat[0].size < 2 %}
+            {% assign n_ep = '0' | append: stat[0] %}
+            {% else %}
+            {% assign n_ep = stat[0] %}
+            {% endif %}
+        <h2>{{ a[0] }}</h2>
+        <ul> {{ n_ep }} @ {{ tl_stat | append: tlc_stat | append: enc_stat | append: ed_stat | append: tm_stat | append: ts_stat | append: qc_stat }}</ul><br>
+			{% break %}
+		{% endif %}
+	{% endfor %}
+{% endfor %}
