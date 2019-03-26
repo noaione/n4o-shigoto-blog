@@ -11,12 +11,13 @@ function nT_json_data(response) {
 }
 
 function naoTimesProcess(disID) {
-	fetch('https://gist.githubusercontent.com/noaione/1dff370f9802d2ee13ae8412a8026d7b/raw/nao_showtimes.json')
+	fetch('https://api.github.com/gists/1dff370f9802d2ee13ae8412a8026d7b')
 	.then(nT_resolve_status)
 	.then(nT_json_data)
 	.then(function(nT_data) {
 		var div_data = document.getElementById("progress");
-		var dis_data = nT_data[disID];
+		var json_data = JSON.parse(nT_data['files']['nao_showtimes.json']['content'])
+		var dis_data = json_data[disID];
 		var available_anime = [];
 
 		for (a in dis_data['anime']) {
