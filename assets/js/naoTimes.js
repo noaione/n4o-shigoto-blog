@@ -17,20 +17,16 @@ function naoTimesProcess(disID) {
 	.then(function(nT_data) {
 		var div_data = document.getElementById("progress");
 		var dis_data = nT_data[disID];
-		console.log(dis_data);
 		var available_anime = [];
+
 		for (a in dis_data['anime']) {
 			available_anime.push(a);
 		}
-	
-		console.log(available_anime);
-		
+
 		for (ava in available_anime) {
 			var textRes = '';
 			var current_episode = '';
-			console.log(dis_data['anime'][available_anime[ava]]);
 			for (stat in dis_data['anime'][available_anime[ava]]['status']) {
-				console.log(dis_data['anime'][available_anime[ava]]['status'][stat]);
 				if (dis_data['anime'][available_anime[ava]]['status'][stat]['status'] != 'released') {
 					current_episode += stat;
 					if (dis_data['anime'][available_anime[ava]]['status'][stat]['staff_status']['TL'] == 'y') {
