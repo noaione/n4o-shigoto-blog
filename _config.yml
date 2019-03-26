@@ -19,11 +19,6 @@ kramdown:
   toc_levels:       1..6
   enable_coderay:   false
 
-# Custom API
-jekyll_get:
-  data: progress
-  json: https://gist.githubusercontent.com/noaione/1dff370f9802d2ee13ae8412a8026d7b/raw/657bb6d3a9a9dda73445e277464c60c9cab40985/nao_showtimes.json
-
 # Custom
 disqus_shortname:   n4oblog
 naotimes_discordid: '472705451117641729'
@@ -35,8 +30,6 @@ plugins:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-seo-tag
-  
-plugins_dir: ./_plugins
 
 jekyll-mentions:
     base_url: https://github.com

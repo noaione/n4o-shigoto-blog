@@ -4,7 +4,7 @@
         {% include head.html %}
         <link rel="stylesheet" href="/assets/css/release.css">
     </head>
-    <body id="wrapper-m" class="lightmode">
+    <body id="wrapper-m" class="lightmode" {% if page.url == '/release/' %}onload="naoTimesProcess('{{ site.naotimes_discordid }}')"{% endif %}>
         <div class="wrapper">
         <div class="header">
             <h1>N4O - simple guy doing fansubbing works</h1>
@@ -50,7 +50,6 @@
         <div id='progress' class="progress-wrapper">
                 <br>
                 <h1 style="font-size:1.4em;;">Project Status</h1>
-                {% include progress.html %}
         </div>
         {% endif %}
         </div>
@@ -64,6 +63,7 @@
 	</script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="/assets/js/materialize.min.js"></script>
+	<script type="text/javascript" src="/assets/js/naoTimes_release_progress.js"></script>
     <script>
         $(document).ready(function(){
             $(".button-collapse").sideNav({
