@@ -8,6 +8,8 @@ logo:               https://p.n4o.xyz/i/nao250px.png
 notfoundimage:      https://static.thenounproject.com/png/801773-200.png
 author:             N4O
 
+timezone: "Asia/Jakarta"
+
 # Jekyll
 permalink:          /r/:title
 markdown:           kramdown
