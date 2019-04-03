@@ -24,6 +24,15 @@ body.lightmode .progress-wrapper:hover {
     box-shadow: 0px 0px 14px 5px rgba(26,26,26,1);
 }
 
+.naotimes-header {
+    font-size: 1.4em;
+    margin: 10px 0px;
+}
+
+.naotimes-animeprogress {
+    margin: 0px 0px 10px;
+}
+
 .progress-wrapper h1, .progress-wrapper h2 {
     font-weight: 700;
 }
@@ -168,11 +177,15 @@ blockquote {
         padding:20px
     }
 }
+.head-hotlink {
+    text-align: center;
+    padding-bottom: 15px;
+}
 .header {
     display:flex;
     justify-content:space-between;
     align-items:baseline;
-    padding-bottom:50px
+    padding-bottom:25px
 }
 @media screen and(max-width: 600px) {
     .header {

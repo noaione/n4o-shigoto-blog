@@ -15,7 +15,8 @@ function naoTimesProcess(disID) {
 	.then(nT_resolve_status)
 	.then(nT_json_data)
 	.then(function(nT_data) {
-		var div_data = document.getElementById("progress");
+		var div_data = document.getElementById("naoprogress");
+		var loading_elem = document.getElementById('naotimes-loading');
 		var json_data = JSON.parse(nT_data['files']['nao_showtimes.json']['content'])
 		var dis_data = json_data[disID];
 		var available_anime = [];
@@ -63,7 +64,7 @@ function naoTimesProcess(disID) {
 					if (dis_data['anime'][available_anime[ava]]['status'][stat]['staff_status']['QC'] == 'y') {
 						textRes += '';
 					} else {
-						textRes += 'QC ';
+						textRes += 'QC';
 					}
 					break;
 				} else {
@@ -74,9 +75,11 @@ function naoTimesProcess(disID) {
 				continue;
 			} else {
 				var h2_node = document.createElement("h2");
+				h2_node.classList.add("naotimes-animetitle")
 				var h2_textNode = document.createTextNode(available_anime[ava]);
 				var stat_node = document.createElement("ul");
-				if (current_episode.length < 2) {
+				stat_node.classList.add("naotimes-animeprogress")
+				if (current_episode.length < 2) { // pad number
 					var current_episode = '0' + current_episode;
 				}
 				var final_text = current_episode + ' @ ' + textRes;
@@ -85,9 +88,9 @@ function naoTimesProcess(disID) {
 				stat_node.appendChild(stat_textNode);
 				div_data.appendChild(h2_node);
 				div_data.appendChild(stat_node);
-				div_data.appendChild(document.createElement("br"));
 			}
 		}
+		loading_elem.parentNode.removeChild(loading_elem)
 	}).catch(function(error) {
 		console.log('Request failed', error);
 	});
