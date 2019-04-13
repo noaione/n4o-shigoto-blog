@@ -1,6 +1,6 @@
 # Site
 title:              N4O
-description:        "Fagsubber, encoder, and 'programmer'"
+description:        'Fagsubber, encoder, and "programmer"'
 locale:             en_US
 url:                https://blog.n4o.xyz
 avatar:             https://p.n4o.xyz/i/ffe456.png
@@ -12,6 +12,8 @@ timezone: "Asia/Jakarta"
 
 # Jekyll
 permalink:          /r/:title
+paginate:           8
+paginate_path:      /release/page:num
 markdown:           kramdown
 highlighter:        rouge
 kramdown:
@@ -32,6 +34,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-seo-tag
+  - jekyll-paginate
 
 jekyll-mentions:
     base_url: https://github.com

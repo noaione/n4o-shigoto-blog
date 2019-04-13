@@ -1,0 +1,32 @@
+<html xmlns:og="https://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml" class=" scriptsOn">
+<head>
+    {% include head.html %}
+    <link rel="stylesheet" href="/assets/css/releasev2.css">
+</head>
+<body>
+    <header id='top' class='main-header'>
+        <div class='module title color-2'>
+            <h1 style="color: #f2f2f2;">{{ site.title }}</h1>
+            <span style="color: #f2f2f2;">Simple guy doing fansubbing works</span>
+        </div>
+
+        <nav class='module main-menu color-4'>
+            <a href='/'>Home</a>
+            <a href='/blog'>blog</a>
+            <a href='https://github.com/noaione'>GitHub</a>
+            <a
+                href="/{% if page.linkto != 'release' %}{{ 'release/' | append: page.linkto }}{% else %}{{ page.linkto }}{% endif %}">{{ page.linkto }}</a>
+            <a href='/feed.xml'>RSS</a>
+        </nav>
+
+        <div class='module links color-3'>
+            {% include naoTimes.html %}
+        </div>
+    </header>
+
+    {{ content }}
+
+    {% include scripts.html %}
+
+</body>
+</html>
