@@ -19,10 +19,11 @@
                 href="/{% if page.linkto != 'release' %}{{ 'release/' | append: page.linkto }}{% else %}{{ page.linkto }}{% endif %}">{{ page.linkto }}</a>
             <a href='/feed.xml'>RSS</a>
         </nav>
-
-        <div class='module links color-3'>
+		
+        <div class='module naotimes color-3'>
             {% include naoTimes.html %}
         </div>
+
     </header>
 
     {{ content }}

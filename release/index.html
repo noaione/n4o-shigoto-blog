@@ -1,7 +1,7 @@
 ---
 layout: mainv2
 title: "Releases"
-excerpt: "All N4O Release (Semua hutang yang dirilis N4O)"
+excerpt: "N4O Releases and stuff"
 linkto: "tags"
 ---
 <section class='main-content'>
@@ -18,15 +18,14 @@ linkto: "tags"
             <div style="text-align: center">
                 <img src='{{ post.image }}' alt="Image" style="width: 50%">
             </div>
+			<br>
             <p>{{ post.excerpt | strip_html | truncate: 250 }}</p>
             {% capture categ %}
-            {% assign tags_size = post.tags | size %}
             {% for t in post.tags %}
             <a href="/release/tags#{{ t }}">{{ t }}</a>{% if post.tags.last != t %},{% endif %}
             {% endfor %}
             {% endcapture %}
-            {% assign categ_len = categ | size | minus: 1 %}
-            <span class='categories'>{{ categ | slice: 0, categ_len }}</span>
+            <span class='categories'>{{ categ }}</span>
         </article>
     {% endfor %}
 
