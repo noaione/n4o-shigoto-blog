@@ -15,7 +15,9 @@ linkto: "tags"
                     </a>
                 </h2>
             </header>
-            <img src='{{ post.image }}' alt="Image" style="width:45%">
+            <div style="text-align: center">
+                <img src='{{ post.image }}' alt="Image" style="width: 50%">
+            </div>
             <p>{{ post.excerpt | strip_html | truncate: 250 }}</p>
             {% capture categ %}
             {% assign tags_size = post.tags | size %}
