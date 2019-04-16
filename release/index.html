@@ -11,7 +11,7 @@ linkto: "tags"
             <header>
                 <h2>
                     <a href='{{ post.url }}' title='{{ post.title }}'>
-                        {% if post.site_name == "BDMV" %}{{ post.title | prepend: "[BDMV] "}}{% else %}{{ post.title }}{% endif %}
+                        {% if post.site_name == "BDMV" %}{{ post.title | prepend: "[BDMV] " }}{% else %}{{ post.title }}{% endif %}
                     </a>
                 </h2>
             </header>
@@ -22,7 +22,7 @@ linkto: "tags"
             <p>{{ post.excerpt | strip_html | truncate: 250 }}</p>
             {% capture categ %}
             {% for t in post.tags %}
-            <a href="/release/tags#{{ t }}">{{ t }}</a>{% if post.tags.last != t %},{% endif %}
+            <a href="/release/tags/{{ t }}">{{ t }}</a>{% if post.tags.last != t %},{% endif %}
             {% endfor %}
             {% endcapture %}
             <span class='categories'>{{ categ }}</span>

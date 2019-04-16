@@ -712,6 +712,68 @@ div.awesomplete mark {
 /* ------------------------------------------------------------------------
  - naoTimes
  -------------------------------------------------------------------------*/
+ .entry-tag-meta {
+    font-size: 12px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #d1d1d1;
+    padding-left: 0;
+}
+.entry-tag-meta a {
+    color: #d1d1d1;
+}
+.entry-tag-meta li {
+    list-style-type: none;
+    display: inline;
+}
+.entry-tag-meta .tag {
+    display: inline-block;
+    border: 1px solid;
+    border-color: rgba(229, 230, 233, 0.5) rgba(223, 224, 228, 0.5) #d0d1d5;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    text-decoration: none;
+    background-color: #fff;
+    color: #383838;
+    -webkit-transition: 0.75s;
+    -moz-transition: 0.75s;
+    -ms-transition: 0.75s;
+    -o-transition: 0.75s;
+    transition: 0.75s;
+    margin: 2px 5px;
+}
+.entry-tag-meta .tag span {
+    float: left;
+    padding: 2px 6px;
+}
+.entry-tag-meta .tag .count {
+    background-color: #d9d9d9;
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -webkit-border-bottom-left-radius: 0;
+    -webkit-border-top-left-radius: 0;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    -moz-border-radius-bottomleft: 0;
+    -moz-border-radius-topleft: 0;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    -webkit-background-clip: padding-box;
+    -moz-background-clip: padding;
+    background-clip: padding-box;
+}
+.entry-tag-meta .tag:hover {
+    background-color: #d9d9d9;
+    box-shadow: 0 0 1px 0 rgba(40, 40, 40, 0.5);
+}
+
+
+/* ------------------------------------------------------------------------
+ - naoTimes
+ -------------------------------------------------------------------------*/
 .naotimes-header {
     font-size: 1.2em;
     margin: 10px 0px;

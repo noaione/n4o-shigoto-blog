@@ -1,0 +1,85 @@
+<html xmlns:og="https://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml" class=" scriptsOn">
+<head>
+    {% include head.html %}
+    <link rel="stylesheet" href="/assets/css/releasev2.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet">
+</head>
+<body>
+    <header id='top' class='main-header'>
+        <div class='module title color-2'>
+            <h1 style="color: #f2f2f2;">{{ site.title }}</h1>
+            <span style="color: #f2f2f2;">Simple guy doing fansubbing works</span>
+        </div>
+
+        <nav class='module main-menu color-4'>
+            <a href='/'>Home</a>
+            <a href='/blog'>blog</a>
+            <a href='https://github.com/noaione'>GitHub</a>
+            <a href="/{% if page.linkto != 'release' %}{{ 'release/' | append: page.linkto }}{% else %}{{ page.linkto }}{% endif %}">{{ page.linkto }}</a>
+            {% if page.custom_tags %}<a href="/release/tags/">Tags</a>{% endif %}
+            <a href='/feed.xml'>RSS</a>
+        </nav>
+
+        <div class='module naotimes color-3'>
+            {% include naoTimes.html %}
+        </div>
+    </header>
+
+    <div class="main-content">
+        <article class="module color-3">
+            {% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture %}
+            {% assign tags_list = site_tags | split:',' | sort %}
+            {% if page.custom_tags %}
+            {% for item in (0..site.tags.size) %}{% unless forloop.last %}
+            {% if tags_list[item] == page.custom_tags %}{% capture this_word_head %}{{ tags_list[item] | strip_newlines }}{% endcapture %}{% endif %}
+            {% endunless %}{% endfor %}
+            {% endif %}
+            <h1>Tags and Categories{% if page.custom_tags %}: {{ page.custom_tags }} ({{ site.tags[this_word_head].size }}){% endif %}</h1>
+            {% unless page.custom_tags %}
+            <ul>
+                <ul class="entry-tag-meta">
+                    <li>
+                        {% for item in (0..site.tags.size) %}{% unless forloop.last %}
+                        {% capture this_word %}{{ tags_list[item] | strip_newlines }}{% endcapture %}
+                        <b><a href="/release/tags/{{ this_word }}" id="{{ this_word }}" class="tag"><span class="term">{{ this_word }}</span> <span
+                                    class="count">{{ site.tags[this_word].size }}</span></a></b><br>
+                        {% endunless %}{% endfor %}
+                    </li>
+                </ul>
+
+            </ul>
+            {% endunless %}
+        </article>
+        {% if page.custom_tags %}
+        {% for post in site.posts %}
+        {% if post.tags contains page.custom_tags %}
+        <article class='module color-3'>
+            <header>
+                <h2>
+                    <a href='{{ post.url }}' title='{{ post.title }}'>
+                        {% if post.site_name == "BDMV" %}{{ post.title | prepend: "[BDMV] " }}{% else %}{{ post.title }}{% endif %}
+                    </a>
+                </h2>
+            </header>
+            <div style="text-align: center">
+                <img src='{{ post.image }}' alt="Image" style="width: 50%">
+            </div>
+            <br>
+            <p>{{ post.excerpt | strip_html | truncate: 250 }}</p>
+            {% capture categ %}
+            {% for t in post.tags %}
+            <a href="/release/tags/{{ t }}">{{ t }}</a>{% if post.tags.last != t %},{% endif %}
+            {% endfor %}
+            {% endcapture %}
+            <span class='categories'>{{ categ }}</span>
+        </article>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </div>
+
+    {% include scripts.html %}
+
+</body>
+
+</html>

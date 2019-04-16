@@ -15,8 +15,7 @@
             <a href='/'>Home</a>
             <a href='/blog'>blog</a>
             <a href='https://github.com/noaione'>GitHub</a>
-            <a
-                href="/{% if page.linkto != 'release' %}{{ 'release/' | append: page.linkto }}{% else %}{{ page.linkto }}{% endif %}">{{ page.linkto }}</a>
+            <a href="/{% if page.linkto != 'release' %}{{ 'release/' | append: page.linkto }}{% else %}{{ page.linkto }}{% endif %}">{{ page.linkto }}</a>
             <a href='/feed.xml'>RSS</a>
         </nav>
 		
