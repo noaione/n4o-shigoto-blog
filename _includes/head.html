@@ -26,7 +26,15 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/ico/favicon-16x16.png">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet">
-    <!-- Google Tag Manager -->
+    <!-- Google Tag Manager & Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90117853-5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-90117853-5');
+    </script>
     <script>
         (function (w, d, s, l, i) {
             w[l] = w[l] || [];
@@ -42,6 +50,4 @@
                 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-WLX865J');
-
     </script>
-    <!-- End Google Tag Manager -->
