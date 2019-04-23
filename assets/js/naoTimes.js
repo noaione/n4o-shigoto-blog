@@ -16,7 +16,33 @@ function naoTimesProcess(disID) {
 	.then(nT_resolve_status)
 	.then(nT_json_data)
 	.then(function(nT_data) {
-		var div_data = document.getElementById("naoprogress");
+		var now = new Date();
+		var formatDate = function formatDate(airdate) {
+			var seconds = ((airdate * 1000) - now) / 1000;
+			var minutes = Math.floor(seconds / 60);
+			var hours = Math.floor(seconds / 60 / 60);
+			var days = Math.floor(seconds / 60 / 60 / 24);
+
+			if (seconds < 0) {
+				return false;
+			}
+	
+			switch (days) {
+				case 0:
+					if (hours > 1) {
+						return 'Airs in ' + hours + ' hours';
+					} else if (minutes > 1) {
+						return 'Airs in ' + minutes + ' minutes';
+					} else {
+						return 'Airs in ' + seconds + ' seconds';
+					}
+				case 1:
+					return 'Airs tomorrow';
+				default:
+					return 'Airs in ' + days + ' days';
+			}
+		};
+		var div_data = document.getElementById("naotimes");
 		var loading_elem = document.getElementById('naotimes-loading');
 		var json_data = JSON.parse(nT_data)
 		console.log('Parsing naoTimes data');
@@ -76,7 +102,10 @@ function naoTimesProcess(disID) {
 			if (textRes == '') {
 				continue;
 			} else {
-				console.log('Spitting naoTimes result');
+				get_time = formatDate(dis_data['anime'][available_anime[ava]]['status'][current_episode]['airing_time']);
+				if (get_time != false) {
+					textRes = get_time;
+				}
 				var h2_node = document.createElement("h2");
 				h2_node.classList.add("naotimes-animetitle")
 				var h2_textNode = document.createTextNode(available_anime[ava]);

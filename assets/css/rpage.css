@@ -286,11 +286,11 @@ p {
 }
 
 /* naoTimes */
-#naoprogress {
+#naotimes {
     text-align: center;
 }
 
-#naoprogress > br {
+#naotimes > br {
     line-height: 50%;
 }
 
