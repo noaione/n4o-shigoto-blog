@@ -47,62 +47,39 @@ function naoTimesProcess(disID) {
 		var json_data = JSON.parse(nT_data)
 		console.log('Parsing naoTimes data');
 		var dis_data = json_data[disID];
-		var available_anime = [];
+        var available_anime = [];
+        var word_replace = {"ENC": "Encode", "ED": "Edit", "TM": "Timing"};
 
 		for (a in dis_data['anime']) {
 			available_anime.push(a);
 		}
 
 		for (ava in available_anime) {
-			var textRes = '';
-			var current_episode = '';
-			for (stat in dis_data['anime'][available_anime[ava]]['status']) {
-				if (dis_data['anime'][available_anime[ava]]['status'][stat]['status'] != 'released') {
-					current_episode += stat;
-					if (dis_data['anime'][available_anime[ava]]['status'][stat]['staff_status']['TL'] == 'y') {
-						textRes += '';
-					} else {
-						textRes += 'TL ';
-					}
-					if (dis_data['anime'][available_anime[ava]]['status'][stat]['staff_status']['TLC'] == 'y') {
-						textRes += '';
-					} else {
-						textRes += 'TLC ';
-					}
-					if (dis_data['anime'][available_anime[ava]]['status'][stat]['staff_status']['ENC'] == 'y') {
-						textRes += '';
-					} else {
-						textRes += 'Encode ';
-					}
-					if (dis_data['anime'][available_anime[ava]]['status'][stat]['staff_status']['ED'] == 'y') {
-						textRes += '';
-					} else {
-						textRes += 'Edit ';
-					}
-					if (dis_data['anime'][available_anime[ava]]['status'][stat]['staff_status']['TM'] == 'y') {
-						textRes += '';
-					} else {
-						textRes += 'Timing ';
-					}
-					if (dis_data['anime'][available_anime[ava]]['status'][stat]['staff_status']['TS'] == 'y') {
-						textRes += '';
-					} else {
-						textRes += 'TS ';
-					}
-					if (dis_data['anime'][available_anime[ava]]['status'][stat]['staff_status']['QC'] == 'y') {
-						textRes += '';
-					} else {
-						textRes += 'QC';
-					}
+            var textRes = [];
+            var current_episode = '';
+            var status_list = dis_data['anime'][available_anime[ava]]['status'];
+			for (stat in status_list) {
+				if (status_list[stat]['status'] != 'released') {
+                    current_episode += stat;
+                    var ep_status = status_list[stat]['staff_status'];
+                    for (key in ep_status) {
+                        if (ep_status[key] == 'x') {
+                            textRes.push(key);
+                        }
+                    }
 					break;
 				} else {
 					continue;
 				}
 			}
-			if (textRes == '') {
+			if (textRes == []) {
 				continue;
 			} else {
-				get_time = formatDate(dis_data['anime'][available_anime[ava]]['status'][current_episode]['airing_time']);
+                textRes = textRes.join(" ");
+                for (word in word_replace) {
+                    textRes = textRes.replace(word, word_replace[word]);
+                }
+				get_time = formatDate(status_list[current_episode]['airing_time']);
 				if (get_time != false) {
 					textRes = get_time;
 				}
