@@ -16,30 +16,31 @@ function naoTimesProcess(disID) {
 	.then(nT_resolve_status)
 	.then(nT_json_data)
 	.then(function(nT_data) {
-		var now = new Date();
-		var formatDate = function formatDate(airdate) {
-			var seconds = ((airdate * 1000) - now) / 1000;
-			var minutes = Math.floor(seconds / 60);
-			var hours = Math.floor(seconds / 60 / 60);
-			var days = Math.floor(seconds / 60 / 60 / 24);
+    console.log();
+		var n = new Date();
+		var formatDate = function formatDate(a) {
+			var s = ((a * 1000) - n) / 1000;
+			var m = Math.floor(s / 60);
+			var h = Math.floor(s / 60 / 60);
+			var d = Math.floor(s / 60 / 60 / 24);
 
-			if (seconds < 0) {
+			if (s < 0) {
 				return false;
 			}
 	
-			switch (days) {
+			switch (d) {
 				case 0:
-					if (hours > 1) {
-						return 'Airs in ' + hours + ' hours';
-					} else if (minutes > 1) {
-						return 'Airs in ' + minutes + ' minutes';
+					if (h > 1) {
+						return 'Tayang dalam ' + h + ' jam';
+					} else if (m > 1) {
+						return 'Tayang dalam ' + m + ' menit';
 					} else {
-						return 'Airs in ' + seconds + ' seconds';
+						return 'Tayang dalam ' + s + ' detik';
 					}
 				case 1:
-					return 'Airs tomorrow';
+					return 'Tayang besok';
 				default:
-					return 'Airs in ' + days + ' days';
+					return 'Tayang dalam ' + d + ' hari';
 			}
 		};
 		var div_data = document.getElementById("naotimes");
@@ -51,22 +52,23 @@ function naoTimesProcess(disID) {
         var word_replace = {"ENC": "Encode", "ED": "Edit", "TM": "Timing"};
 
 		for (a in dis_data['anime']) {
+			if (a == "alias") {continue};
 			available_anime.push(a);
 		}
 
 		for (ava in available_anime) {
-            var textRes = [];
-            var current_episode = '';
-            var status_list = dis_data['anime'][available_anime[ava]]['status'];
+			var textRes = [];
+			var current_episode = '';
+			var status_list = dis_data['anime'][available_anime[ava]]['status'];
 			for (stat in status_list) {
 				if (status_list[stat]['status'] != 'released') {
-                    current_episode += stat;
-                    var ep_status = status_list[stat]['staff_status'];
-                    for (key in ep_status) {
-                        if (ep_status[key] == 'x') {
-                            textRes.push(key);
-                        }
-                    }
+					current_episode += stat;
+					var ep_status = status_list[stat]['staff_status'];
+					for (key in ep_status) {
+						if (ep_status[key] == 'x') {
+							textRes.push(key);
+						}
+					}
 					break;
 				} else {
 					continue;
@@ -75,10 +77,10 @@ function naoTimesProcess(disID) {
 			if (textRes == []) {
 				continue;
 			} else {
-                textRes = textRes.join(" ");
-                for (word in word_replace) {
-                    textRes = textRes.replace(word, word_replace[word]);
-                }
+				textRes = textRes.join(" ");
+				for (word in word_replace) {
+					textRes = textRes.replace(word, word_replace[word]);
+				}
 				get_time = formatDate(status_list[current_episode]['airing_time']);
 				if (get_time != false) {
 					textRes = get_time;
