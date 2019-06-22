@@ -46,7 +46,6 @@ function naoTimesProcess(disID) {
 		var div_data = document.getElementById("naotimes");
 		var loading_elem = document.getElementById('naotimes-loading');
 		var json_data = JSON.parse(nT_data)
-		console.log('Parsing naoTimes data');
 		var dis_data = json_data[disID];
         var available_anime = [];
         var word_replace = {"ENC": "Encode", "ED": "Edit", "TM": "Timing"};
@@ -55,7 +54,8 @@ function naoTimesProcess(disID) {
 			if (a == "alias") {continue};
 			available_anime.push(a);
 		}
-
+		console.log(available_anime);
+		console.log('Parsing naoTimes data');
 		for (ava in available_anime) {
 			var textRes = [];
 			var current_episode = '';
@@ -74,7 +74,7 @@ function naoTimesProcess(disID) {
 					continue;
 				}
 			}
-			if (textRes == []) {
+			if (!Array.isArray(textRes) || !textRes.length) {
 				continue;
 			} else {
 				textRes = textRes.join(" ");
