@@ -1,0 +1,290 @@
+body.light {
+    --float1: #2b2b2b;
+    --float2: #d2d2d2;
+}
+
+body.dark {
+    --float1: #d2d2d2;
+    --float2: #2b2b2b;
+}
+
+$font_family: 'Open Sans', 'Raleway', Helvetica, arial, sans-serif;
+
+html {
+	padding-top: 50px;
+	font-family: $font_family;
+	text-align: center;
+	* {
+		box-sizing: border-box;
+		transition: 0.5s ease-in-out;
+		&:before {
+			box-sizing: border-box;
+			transition: 0.5s ease-in-out;
+		}
+		&:after {
+			box-sizing: border-box;
+			transition: 0.5s ease-in-out;
+		}
+	}
+	i {
+		transition: none;
+	}
+	em {
+		transition: none;
+	}
+	b {
+		transition: none;
+	}
+	strong {
+		transition: none;
+	}
+	span {
+		transition: none;
+	}
+}
+#img_holder {
+	border-radius: 50%;
+	width: 250px;
+	height: 250px;
+	position: relative;
+	margin-bottom: 1em;
+}
+* {
+	&:before {
+		z-index: -1;
+	}
+	&:after {
+		z-index: -1;
+	}
+}
+h1 {
+	font-family: $font_family;
+	margin: 0;
+	line-height: 1;
+}
+h4 {
+	font-family: $font_family;
+	margin: 0;
+	line-height: 1;
+}
+a {
+	text-decoration: none;
+	line-height: 80px;
+}
+.centerer {
+	width: 100%;
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 0 1rem;
+}
+[class^="btn-"] {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	width: 100%;
+	height: 80px;
+	max-width: 250px;
+	margin: 1rem auto;
+	text-transform: uppercase;
+	border: 1px solid currentColor;
+}
+.btn-h-l {
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 0;
+		transition: 0.4s ease-in-out;
+	}
+	&:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 0;
+		transition: 0.4s ease-in-out;
+		top: auto;
+		bottom: 0;
+	}
+	span {
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 0;
+			transition: 0.4s ease-in-out;
+			top: auto;
+			bottom: 0;
+			transition-delay: 0.4s;
+		}
+		&:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 0;
+			transition: 0.4s ease-in-out;
+			transition-delay: 0.4s;
+		}
+	}
+	&:hover {
+		&:before {
+			height: 80px;
+		}
+		&:after {
+			height: 80px;
+		}
+		span {
+			&:before {
+				height: 80px;
+			}
+			&:after {
+				height: 80px;
+			}
+		}
+	}
+}
+.btn-v-l {
+	color: #515cb0;
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 0;
+		height: 80px;
+		background-color: rgba(30, 38, 97, 0.25);
+		transition: 0.4s;
+	}
+	&:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 0;
+		height: 80px;
+		background-color: rgba(30, 38, 97, 0.25);
+		transition: 0.4s;
+		left: auto;
+		right: 0;
+	}
+	span {
+		&:before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 0;
+			height: 80px;
+			background-color: rgba(30, 38, 97, 0.25);
+			transition: 0.4s;
+			left: auto;
+			right: 0;
+			transition-delay: 0.4s;
+		}
+		&:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 0;
+			height: 80px;
+			background-color: rgba(30, 38, 97, 0.25);
+			transition: 0.4s;
+			transition-delay: 0.4s;
+		}
+	}
+	&:hover {
+		color: #cccfe8;
+		&:before {
+			width: 250px;
+		}
+		&:after {
+			width: 250px;
+		}
+		span {
+			&:before {
+				width: 250px;
+			}
+			&:after {
+				width: 250px;
+			}
+		}
+	}
+	&:active {
+		background-color: #323fa2;
+	}
+}
+
+@media (min-width: 600px) {
+	.wrap {
+		width: 50%;
+		float: left;
+	}
+}
+
+@import 'floating';
+
+body.light {
+	background-color: #eeeeee;
+	.btn-h-l {
+		color: #a27263;
+		&:hover {
+			color: #e4d6d1;
+		}
+		&:active {
+			background-color: #e4d6d1;
+		}
+		&:before, &:after {
+			background-color: rgba(87, 53, 43, 0.25);
+		}
+		span {
+			&:before, &:after {
+				background-color: rgba(87, 53, 43, 0.25);
+			}
+		}
+	}
+	#img_holder {
+		box-shadow: 0px 0px 20px 2px  #545454;
+	}
+	.float {
+		background-color: #2b2b2b;
+		color: #fff;
+	}
+}
+body.dark {
+    background-color: #3a3a3a;
+	.btn-h-l {
+		color: #a27263;
+		&:hover {
+			color: #b7a29a;
+		}
+		&:active {
+			background-color: #ec9373;
+		}
+		&:before, &:after {
+			background-color: rgba(150, 83, 64, 0.25);
+		}
+		span {
+			&:before, &:after {
+				background-color: rgba(150, 83, 64, 0.25);
+			}
+		}
+	}
+	h1, h2 {
+		color: #adadad;
+	}
+	#img_holder {
+		box-shadow: 0px 0px 20px 2px #adadad;
+	}
+	.float {
+		background-color: #d2d2d2;
+		color: #2b2b2b;
+	}
+}

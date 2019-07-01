@@ -1,0 +1,39 @@
+.float {
+	position: fixed !important;
+	width: 60px !important;
+	height: 60px !important;
+	bottom: 40px !important;
+	right: 40px !important;
+	border-radius: 50px !important;
+	text-align: center !important;
+	background-color: var(--float1) !important;
+	color: var(--float2) !important;
+}
+
+.my-float {
+	font-size: 40px !important;
+	margin: 10px !important;
+}
+
+.tooltip {
+	border-bottom: 1px dotted var(--float1);
+	.tooltiptext {
+		visibility: hidden;
+		width: 120px;
+		text-align: center;
+		border-radius: 6px;
+		padding: 5px 0;
+		position: absolute;
+		z-index: 1;
+		bottom: 100%;
+		left: 50%;
+		margin-left: -60px;
+		background-color: var(--float1);
+		color: var(--float2);
+	}
+	&:hover {
+		.tooltiptext {
+			visibility: visible;
+		}
+	}
+}

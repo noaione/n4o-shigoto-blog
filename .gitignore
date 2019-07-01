@@ -2,6 +2,7 @@ _template
 _site
 _drafts
 _example
+.sass-cache
 
 *.bat
 *.lock

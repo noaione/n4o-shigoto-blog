@@ -1,17 +1,15 @@
-<html xmlns:og="https://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml" class=" scriptsOn">
+<html xmlns:og="https://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml" class=" scriptsOn" data-theme="light">
 <head>
     {% include head.html %}
     <link rel="stylesheet" href="/assets/css/releasev2.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet">
 </head>
-<body>
-    {% include gtag.html %}
+<body id="body" class="light">
     <header id='top' class='main-header'>
         <div class='module title color-2'>
             <h1 style="color: #f2f2f2;">{{ site.title }}</h1>
             <span style="color: #f2f2f2;">Simple guy doing fansubbing works</span>
         </div>
-
         <nav class='module main-menu color-4'>
             <a href='/'>Home</a>
             <a href='/blog'>blog</a>
@@ -20,13 +18,21 @@
 			<a href="https://discord.gg/d49CfCb">Discord</a>
             <a href='/feed.xml'>RSS</a>
         </nav>
-		
         <div class='module naotimes color-3'>
             {% include naoTimes.html %}
         </div>
-
     </header>
 
     {{ content }}
+    {% include theme_toggler.html %}
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90117853-5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-90117853-5');
+    </script>
 </body>
 </html>

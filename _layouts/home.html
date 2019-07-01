@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:og="https://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml" class="scriptsOn">
+<html xmlns:og="https://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml" class="scriptsOn" data-theme="light">
 <head>
     {% include head.html %}
     <link rel="stylesheet" href="/assets/css/home.css">
 </head>
-<body>
-    {% include gtag.html %}
+<body id="body" class="light">
     <img id="img_holder" src="{{ site.avatar }}" alt="Website Author">
     <!-- Modal -->
     <div class="centerer">
@@ -20,5 +19,15 @@
             <a class="btn-h-l" href="https://github.com/noaione/noaione.github.io"><span>Manage</span></a>
         </div>
     </div>
+    {% include theme_toggler.html %}
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90117853-5"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-90117853-5');
+    </script>
 </body>
 </html>

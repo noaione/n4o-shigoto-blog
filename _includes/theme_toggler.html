@@ -1,0 +1,30 @@
+<a id="toogleswitch" onclick="toggleDarkLight()" class="float"><i class="fa fa-lightbulb-o my-float" aria-hidden="true"></i></a>
+<script>
+    const toggleSwitch = document.getElementById('toogleswitch');
+    const body = document.getElementById("body");
+    const currentTheme = localStorage.getItem('n4otheme')
+
+    if (currentTheme) {
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            body.className = 'dark';
+        } else {
+            body.className = 'light';
+        }
+    } else {
+        localStorage.setItem('n4otheme', 'light');
+    }
+
+    function toggleDarkLight() {
+        var currentClass = body.className;
+        if (currentClass == "light") {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            body.className = 'dark';
+            localStorage.setItem('n4otheme', 'dark');
+        } else {        
+            document.documentElement.setAttribute('data-theme', 'light');
+            body.className = 'light';
+            localStorage.setItem('n4otheme', 'light');
+        }    
+    }
+</script>
