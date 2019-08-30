@@ -1,6 +1,5 @@
 <a id="toogleswitch" onclick="toggleDarkLight()" class="float"><i class="fa fa-lightbulb-o my-float" aria-hidden="true"></i></a>
 <script>
-    const toggleSwitch = document.getElementById('toogleswitch');
     const body = document.getElementById("body");
     const currentTheme = localStorage.getItem('n4otheme')
 
@@ -14,7 +13,6 @@
     } else {
         localStorage.setItem('n4otheme', 'light');
     }
-
     function toggleDarkLight() {
         var currentClass = body.className;
         if (currentClass == "light") {
