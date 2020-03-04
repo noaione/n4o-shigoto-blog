@@ -12,10 +12,11 @@ function nT_json_data(response) {
 
 function naoTimesProcess(disID) {
 	console.log('Fetching naoTimes data');
-	fetch(`https://s.ihateani.me/api/v2/utang/${disID}?pretty=1`)
+	fetch('https://gist.githubusercontent.com/noaione/1dff370f9802d2ee13ae8412a8026d7b/raw/nao_showtimes.json')
 	.then(nT_resolve_status)
 	.then(nT_json_data)
 	.then(function(nT_data) {
+    console.log();
 		var n = new Date();
 		var formatDate = function formatDate(a) {
 			var s = ((a * 1000) - n) / 1000;
@@ -44,40 +45,53 @@ function naoTimesProcess(disID) {
 		};
 		var div_data = document.getElementById("naotimes");
 		var loading_elem = document.getElementById('naotimes-loading');
-		var json_data = JSON.parse(nT_data);
-		if (json_data.length == 0) {
-			var h2_node = document.createElement("h2");
-			h2_node.classList.add("naotimes-animetitle")
-			var h2_textNode = document.createTextNode("Tidak ada data utang");
-			h2_node.appendChild(h2_textNode);
-			loading_elem.parentNode.removeChild(loading_elem);
-			return 0;
-		}
-		console.log('Parsing naoTimes data');
+		var json_data = JSON.parse(nT_data)
+		var dis_data = json_data[disID];
+        var available_anime = [];
+        var word_replace = {"ENC": "Encode", "ED": "Edit", "TM": "Timing"};
 
-		for (anime in json_data) {
-			var statuses = anime['status'];
-			var current_stat = [];
-			for (stat in statuses) {
-				if (!statuses[stat]) {
-					current_stat.push(stat);
+		for (a in dis_data['anime']) {
+			if (a == "alias") {continue};
+			available_anime.push(a);
+		}
+		console.log(available_anime);
+		console.log('Parsing naoTimes data');
+		for (ava in available_anime) {
+			var textRes = [];
+			var current_episode = '';
+			var status_list = dis_data['anime'][available_anime[ava]]['status'];
+			for (stat in status_list) {
+				if (status_list[stat]['status'] != 'released') {
+					current_episode += stat;
+					var ep_status = status_list[stat]['staff_status'];
+					for (key in ep_status) {
+						if (ep_status[key] == 'x') {
+							textRes.push(key);
+						}
+					}
+					break;
+				} else {
+					continue;
 				}
 			}
-			if (Array.isArray(current_stat) && current_stat.length) {
-				current_stat = current_stat.join(" ");
-				get_time = formatDate(anime['airing_time']);
-				if (get_time) {
-					current_stat = get_time;
+			if (Array.isArray(textRes) && textRes.length) {
+				textRes = textRes.join(" ");
+				for (word in word_replace) {
+					textRes = textRes.replace(word, word_replace[word]);
+				}
+				get_time = formatDate(status_list[current_episode]['airing_time']);
+				if (get_time != false) {
+					textRes = get_time;
 				}
 				var h2_node = document.createElement("h2");
 				h2_node.classList.add("naotimes-animetitle")
-				var h2_textNode = document.createTextNode(anime);
+				var h2_textNode = document.createTextNode(available_anime[ava]);
 				var stat_node = document.createElement("ul");
 				stat_node.classList.add("naotimes-animeprogress")
 				if (current_episode.length < 2) { // pad number
 					var current_episode = '0' + current_episode;
 				}
-				var final_text = current_episode + ' @ ' + current_stat;
+				var final_text = current_episode + ' @ ' + textRes;
 				var stat_textNode = document.createTextNode(final_text);
 				h2_node.appendChild(h2_textNode);
 				stat_node.appendChild(stat_textNode);
