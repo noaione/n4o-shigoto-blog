@@ -44,7 +44,15 @@ function naoTimesProcess(disID) {
 		};
 		var div_data = document.getElementById("naotimes");
 		var loading_elem = document.getElementById('naotimes-loading');
-		var json_data = JSON.parse(nT_data)
+		var json_data = JSON.parse(nT_data);
+		if (json_data.length == 0) {
+			var h2_node = document.createElement("h2");
+			h2_node.classList.add("naotimes-animetitle")
+			var h2_textNode = document.createTextNode("Tidak ada data utang");
+			h2_node.appendChild(h2_textNode);
+			loading_elem.parentNode.removeChild(loading_elem);
+			return 0;
+		}
 		console.log('Parsing naoTimes data');
 
 		for (anime in json_data) {
