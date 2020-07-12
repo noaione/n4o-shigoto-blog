@@ -21,9 +21,9 @@
     <meta content="#bd1934" name="theme-color" />
     <link href="https://blog.n4o.xyz/holoism/track10" rel="canonical" />
     <meta content="https://blog.n4o.xyz/assets/img/holoism_cover.jpg" property="og:image" />
-    <meta property="og:image:width" content="1600" />
-    <meta property="og:image:height" content="1600" />
-    <meta property="og:image:alt" content="#GensokyoHoloism" />
+    <meta content="1600" property="og:image:width" />
+    <meta content="1600" property="og:image:height" />
+    <meta content="#GensokyoHoloism" property="og:image:alt" />
 
     <!-- Favicons -->
     <link href="/assets/ico/favicon.png" rel="shortcut icon" type="image/png" />
@@ -50,9 +50,11 @@
     <script crossorigin="anonymous" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
+    </script>
     <script crossorigin="anonymous" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
+    </script>
     <style>
         table.lyrics-box {
             table-layout: fixed;
@@ -102,19 +104,20 @@
             margin-left: 0.5rem;
             margin-top: 10px;
         }
+
     </style>
 </head>
 
-<body class="p-2">
-    <div class="container py-3 my-2">
+<body>
+    <div class="container my-4">
         <h1 class="pb-3">Over the Border Lyrics</h1>
-        <hr>
-        <nav class="text-center">
-            <a href="/holoism/track09" class="mx-3"><i class="fa fa-chevron-left" aria-hidden="true"></i> Previous</a>
-            <a href="/holoism" class="mx-3"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-            <a href="/holoism/track11" class="mx-3">Next <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+        <hr />
+        <nav class="text-center" id="song-nav">
+            <a class="mx-3" href="/holoism/track9"><i aria-hidden="true" class="fa fa-chevron-left"></i> Previous</a>
+            <a class="mx-3" href="/holoism"><i aria-hidden="true" class="fa fa-home"></i> Home</a>
+            <a class="mx-3" href="/holoism/track11">Next <i aria-hidden="true" class="fa fa-chevron-right"></i></a>
         </nav>
-        <hr>
+        <hr />
         <div class="card mr-auto" id="info-box" style="width: 24rem;">
             <img alt="Cover art" class="card-img-top"
                 src="https://img.dlsite.jp/modpub/images2/work/doujin/RJ292000/RJ291344_img_main.jpg" />
@@ -123,9 +126,10 @@
                 <h6 class="card-subtitle mb-2 text-muted">Houshou Marine ft. Shiranui Flare</h6>
                 <p class="card-text">
                     <b>Singer</b>: Houshou Marine ft. Shiranui Flare<br />
-                    <b>Lyrics</b>: 七条レタス (IOSYS)<br />
+                    <b>Lyrics</b>: Lettuce Shichijou (IOSYS)<br />
                     <b>Arrangement</b>: D.watt (IOSYS)<br />
-                    <b>Original</b>: 少女綺想曲　～ Dream Battle, 恋色マスタースパーク, ロファンタジア<br />
+                    <b>Original Song</b>: <br />- Maiden's Capriccio ~ Dream Battle<br />- Love-colored Master
+                    Spark<br />- Necrofantasia<br />
                     <b>Source</b>: <a href="https://en.touhouwiki.net/wiki/Imperishable_Night">Touhou 08: Imperishable
                         Night</a>, <a href="https://en.touhouwiki.net/wiki/Perfect_Cherry_Blossom">Touhou 07: Perfect
                         Cherry Blossom</a>
@@ -145,6 +149,16 @@
         </div>
         <hr />
         <p class="text-center lead">Lyrics</p>
+        <div id="disclaimer-box" class="alert alert-warning" role="alert">
+            <h4 class="alert-heading text-center">Disclaimer</h4>
+            <p>
+                Some of the part are translated poorly.<br>
+                And most of them are MTLed with <a href="https://www.deepl.com/translator#ja/en/"
+                    class="alert-link">DeepL</a>
+            </p>
+            <hr>
+            <p class="mb-0">You can help me improve it by contacting me at Discord: <b>N4O#8868</b></p>
+        </div>
         <table class="table lyrics-box" id="lyrics" rules="none">
             <thead class="thead-dark text-center">
                 <tr>
@@ -168,7 +182,10 @@
                         </p>
                     </td>
                     <td>
-                        <p><i>To be added.</i></p>
+                        <p>
+                            I didn't know how to get away from it all.<br />
+                            I picked it up on a whim.<br />
+                        </p>
                     </td>
                 </tr>
                 <tr>
@@ -182,6 +199,12 @@
                         <p>
                             touku chikaku te maneku koe ga suru tonde oide to<br />
                             sou ano hi mite ita genso no naka e<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Far away, and nearby, a voice beckons you to come flying.<br />
+                            Yeah, I was in a fantasy that I saw that day.<br />
                         </p>
                     </td>
                 </tr>
@@ -200,8 +223,17 @@
                             shitteruyo<br />
                             donna sekai mo meippai no ai de deki teru<br />
                             shitai hanashi wa mugen ni afure dashite kurunda dakara<br />
-                            Over the Border koete kou, ano kyōkai wo<br />
+                            Over the Border koete kou, ano kyoukai wo<br />
                             Akai ribbon de tsunagattanara hora, oikaze ga fuite kuru<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            I know what it is.<br />
+                            Every world is made up of people who are full of love.<br />
+                            I've got an endless supply of things to talk about.<br />
+                            Over the Border beyond the boundary.<br />
+                            If you're connected by a red ribbon, you know, you got a tailwind.<br />
                         </p>
                     </td>
                 </tr>
@@ -222,6 +254,14 @@
                             kimitachi wo matteru<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            No one's turning down a job.<br />
+                            A perpetual idle utopia.<br />
+                            I'll always stay at the end of the sky.<br />
+                            I'm waiting for you.<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -234,6 +274,12 @@
                         <p>
                             dare mo kimi mo daiji ni shimatteru omoide to issho ni<br />
                             sonohi te ni shita genso no kake-ra<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            No one, and you've been treasuring it too, along with the memories.<br />
+                            The piece of fantasy I had that day.<br />
                         </p>
                     </td>
                 </tr>
@@ -256,6 +302,15 @@
                             chiketto mo pasupōto mo iranai mokutekichi wa me no zen-sa<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            Time to go.<br />
+                            When we set sail, I'll see them waving their hands.<br />
+                            I'm back and it's nice to meet you, and I'm just filled with a lot of smiles.<br />
+                            Over the Border A blessing on this journey.<br />
+                            No tickets, no passports. Your destination is right there.<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -270,6 +325,12 @@
                             kimitachi wo matteru<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            No one's turning down a job.<br />
+                            I'm waiting for you.<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -282,6 +343,12 @@
                         <p>
                             Over the Border koete kou, ano kyoukai wo<br />
                             akai ribbon de tsunagattanara hora, oikaze ga fuite kuru<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Over the Border beyond the boundary.<br />
+                            If you're connected by a red ribbon, you know, you got a tailwind.<br />
                         </p>
                     </td>
                 </tr>
@@ -417,6 +484,7 @@
         function getPosition(el) {
             return el.getBoundingClientRect().left;
         }
+
     </script>
 
 

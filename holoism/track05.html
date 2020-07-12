@@ -14,16 +14,16 @@
     <meta content="Python 3.6.8 | BeautifulSoup4 4.8.0 html5lib 1.0.1" name="generator" />
     <meta content="Shiawase Usagi - Holoism Lyrics" property="og:title" />
     <meta content="en_US" property="og:locale" />
-    <meta content="Lyrics for Shiawase Usagi by Houshou Marine ft. Holoism Fantasy" name="description" />
+    <meta content="Lyrics for Shiawase Usagi by PekoMiko and Marine" name="description" />
     <meta content="N4O" name="author" />
-    <meta content="Lyrics for Shiawase Usagi by Houshou Marine ft. Holoism Fantasy" property="og:description" />
+    <meta content="Lyrics for Shiawase Usagi by PekoMiko and Marine" property="og:description" />
     <meta content="N4O" property="og:site_name" />
     <meta content="#bd1934" name="theme-color" />
     <link href="https://blog.n4o.xyz/holoism/track05" rel="canonical" />
     <meta content="https://blog.n4o.xyz/assets/img/holoism_cover.jpg" property="og:image" />
-    <meta property="og:image:width" content="1600" />
-    <meta property="og:image:height" content="1600" />
-    <meta property="og:image:alt" content="#GensokyoHoloism" />
+    <meta content="1600" property="og:image:width" />
+    <meta content="1600" property="og:image:height" />
+    <meta content="#GensokyoHoloism" property="og:image:alt" />
 
     <!-- Favicons -->
     <link href="/assets/ico/favicon.png" rel="shortcut icon" type="image/png" />
@@ -50,9 +50,11 @@
     <script crossorigin="anonymous" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
+    </script>
     <script crossorigin="anonymous" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
+    </script>
     <style>
         table.lyrics-box {
             table-layout: fixed;
@@ -102,34 +104,38 @@
             margin-left: 0.5rem;
             margin-top: 10px;
         }
+
     </style>
 </head>
 
-<body class="p-2">
-    <div class="container py-3 my-2">
+<body>
+    <div class="container my-4">
         <h1 class="pb-3">Shiawase Usagi Lyrics</h1>
-        <hr>
-        <nav class="text-center">
-            <a href="/holoism/track04" class="mx-3"><i class="fa fa-chevron-left" aria-hidden="true"></i> Previous</a>
-            <a href="/holoism" class="mx-3"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-            <a href="/holoism/track06" class="mx-3">Next <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+        <hr />
+        <nav class="text-center" id="song-nav">
+            <a class="mx-3" href="/holoism/track04"><i aria-hidden="true" class="fa fa-chevron-left"></i> Previous</a>
+            <a class="mx-3" href="/holoism"><i aria-hidden="true" class="fa fa-home"></i> Home</a>
+            <a class="mx-3" href="/holoism/track06">Next <i aria-hidden="true" class="fa fa-chevron-right"></i></a>
         </nav>
-        <hr>
+        <hr />
         <div class="card mr-auto" id="info-box" style="width: 24rem;">
             <img alt="Cover art" class="card-img-top"
                 src="https://img.dlsite.jp/modpub/images2/work/doujin/RJ292000/RJ291344_img_main.jpg" />
             <div class="card-body">
                 <h5 class="card-title">Shiawase Usagi</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Houshou Marine ft. Holoism Fantasy</h6>
+                <h6 class="card-subtitle mb-2 text-muted">PekoMiko and Marine</h6>
                 <p class="card-text">
                     <b>Singer</b>: Usada Pekora, Sakura Miko, Houshou Marine<br />
                     <b>Lyrics</b>: Beat Mario, Amane<br />
                     <b>Arrangement</b>: myu314<br />
-                    <b>Mix</b>: ハム<br />
-                    <b>Original</b>: - お宇佐さまの素い幡 <a
-                        href="https://en.touhouwiki.net/wiki/Phantasmagoria_of_Flower_View">(Touhou 09: Phantasmagoria
-                        of Flower View)</a><br />- シンデレラケージ ～ Kagome-Kagome <a
-                        href="https://en.touhouwiki.net/wiki/Imperishable_Night">(Touhou 08: Imperishable Night)</a>
+                    <b>Mix</b>: hamu<br />
+                    <b>Original Cover</b>: <a
+                        href="https://en.touhouwiki.net/wiki/Lyrics:_%E3%82%B7%E3%82%A2%E3%83%AF%E3%82%BB%E3%81%86%E3%81%95%E3%81%8E">Shiawase
+                        Usagi (COOL&amp;CREATE)</a><br />
+                    <b>Original Song</b>: White Flag of Usa Shrine, Cinderella Cage ~ Kagome-Kagome<br />
+                    <b>Source</b>: <a href="https://en.touhouwiki.net/wiki/Phantasmagoria_of_Flower_View">Touhou 09:
+                        Phantasmagoria of Flower View</a>, <a
+                        href="https://en.touhouwiki.net/wiki/Imperishable_Night">Touhou 08: Imperishable Night</a>
                 </p>
                 <audio id="music" preload="true">
                     <source src="https://docs.google.com/uc?export=download&amp;id=1PuNAaDFQvM9jy1JrKVrcCaTcXqhgFUtc" />
@@ -146,6 +152,19 @@
         </div>
         <hr />
         <p class="text-center lead">Lyrics</p>
+        <div id="disclaimer-box" class="alert alert-warning" role="alert">
+            <h4 class="alert-heading text-center">Disclaimer</h4>
+            <p>
+                Translation taken from <a
+                    href="https://en.touhouwiki.net/wiki/Lyrics:_%E3%82%B7%E3%82%A2%E3%83%AF%E3%82%BB%E3%81%86%E3%81%95%E3%81%8E"
+                    class="alert-link">Touhou Wiki</a>
+                with modification.<br>
+                Some of the part are MTLed with <a href="https://www.deepl.com/translator#ja/en/"
+                    class="alert-link">DeepL</a>
+            </p>
+            <hr>
+            <p class="mb-0">You can help me improve it by contacting me at Discord: <b>N4O#8868</b></p>
+        </div>
         <table class="table lyrics-box" id="lyrics" rules="none">
             <thead class="thead-dark text-center">
                 <tr>
@@ -160,7 +179,7 @@
                         <p>
                             あなたのあかい瞳が わたしを (素直に)<br />
                             捕らえて離さないのは 内緒よ (自分を)<br />
-                            ドオシテ ドオシテ フシギ ハジメテ(みつめて)<br />
+                            ドオシテ ドオシテ フシギ ハジメテ (みつめて)<br />
                             こんなに胸が苦しくなるなんて<br />
                         </p>
                     </td>
@@ -173,7 +192,12 @@
                         </p>
                     </td>
                     <td>
-                        <p><i>To be added.</i></p>
+                        <p>
+                            Your red eyes have entranced me (Honestly,)<br />
+                            And I keep on staring. It's a secret why. (I end up)<br />
+                            I really wonder why. (staring.)<br />
+                            This is the first time my heart's been in such pain.<br />
+                        </p>
                     </td>
                 </tr>
                 <tr>
@@ -182,7 +206,7 @@
                             遊びに誘っても生返事<br />
                             今日もうわの空なの どうして<br />
                             不安な気持ちを 吐き出せばいい 大丈夫さ<br />
-                            わたしをひとりにさせないで(ひとりにさせないぜ)<br />
+                            わたしをひとりにさせないで (ひとりにさせないぜ)<br />
                         </p>
                     </td>
                     <td>
@@ -191,6 +215,14 @@
                             kyou mo uwanosorana no doushite<br />
                             fuan na kimochi wo hakidaseba ii daijoubu sa<br />
                             watashi wo hitori ni sasenai de (hitori ni sa senai ze)<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            When I ask you to play with me, you give me no real answer.<br />
+                            I ponder the reason upon the sky today.<br />
+                            You can just release all of your nervous feelings.<br />
+                            It'll be alright; (I won't leave you alone) Please don't leave me alone.<br />
                         </p>
                     </td>
                 </tr>
@@ -205,6 +237,12 @@
                         <p>
                             itazura ni wa itsumo aiwokomete<br />
                             kono me wo zutto mite ite houshiikara<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            My pranks are always filled with love<br />
+                            Since I (always) want you to look at these eyes.<br />
                         </p>
                     </td>
                 </tr>
@@ -225,13 +263,21 @@
                             kotoba ni shinaikedo wakatte<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            I want to give you happiness, but, (Honestly,)<br />
+                            I provoke you instead. Why is that? (I end up)<br />
+                            This love-hate feeling (staring.)<br />
+                            Isn't something I can put to words, but I understand.<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
                         <p>
                             あなたが困ると知っているけど (このまま)<br />
                             意地悪したくなるのはなんでだろ？ (気ままに)<br />
-                            ドオシテ ドオシテ フシギ ハジメテ(遠くへ)<br />
+                            ドオシテ ドオシテ フシギ ハジメテ (遠くへ)<br />
                             こんなに胸が苦しくなるなんて<br />
                         </p>
                     </td>
@@ -239,8 +285,16 @@
                         <p>
                             anata ga komaru to shitte irukedo (kono mama)<br />
                             ijiwaru shitaku naru no wa nandedaro? (Kimamani)<br />
-                            doushite doushite fushigi hajimete (tōku e)<br />
+                            doushite doushite fushigi hajimete (touku e)<br />
                             kon nani mune ga kurushiku naru nante<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            I know that you're feeling down, but (Selfishly)<br />
+                            I wonder why I end up wanting to tease you? (being far away)<br />
+                            I really wonder why (like this.)<br />
+                            This is the first time my heart's been in such pain.<br />
                         </p>
                     </td>
                 </tr>
@@ -261,6 +315,14 @@
                             Zashikirou ni buchikoma reru tanoshimini shite oite kudasai! iidesu ne!<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            "We finally met Inaba Tewi, but this guy is a liar!"<br />
+                            "Fraud, destruction of property, and of course you know why."<br />
+                            "Because you're fooling everyone in Land of Fantasy!"<br />
+                            "You can look forward to being thrown in the dungeon! Great!"<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -268,7 +330,7 @@
                             なにか話そうとはするけれど<br />
                             あなたの姿を見て隠れて<br />
                             素直な気持ちを ぶつければいい 大丈夫さ<br />
-                            もとどおり 仲直りできるかな？(仲直りできるから)<br />
+                            もとどおり 仲直りできるかな？ (仲直りできるから)<br />
                         </p>
                     </td>
                     <td>
@@ -277,6 +339,14 @@
                             anata no sugata wo mite kakurete<br />
                             sunaona kimochi wo butsukereba ii<br />
                             daijoubu sa moto douri nakanaori dekiru ka na? (Nakanaori dekirukara)<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            I try to start talking to you, but<br />
+                            I immediately hide when I see you.<br />
+                            You can just push out your honest feelings.<br />
+                            It'll be alright, (since you can make up) I wonder if we can ever make up?<br />
                         </p>
                     </td>
                 </tr>
@@ -291,6 +361,12 @@
                         <p>
                             kono kimochi wo wakatte moraitai to<br />
                             omou dakenara warukuwanai yo ne<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            I want you to understand these feelings,<br />
+                            But it's the thought that counts, right?<br />
                         </p>
                     </td>
                 </tr>
@@ -311,6 +387,14 @@
                             kon nani mune ga sukkiri―shiawase!<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            I will give someone happiness.<br />
+                            I will give you a ton of happiness.<br />
+                            Happiness, cheerfulness, and love;<br />
+                            Everything in my heart is clearly ― happiness!<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -327,6 +411,14 @@
                             ijiwaru shitaku narukara shi chaou (futari wa)<br />
                             wagamama kimamana sonna watashi to (ashita mo)<br />
                             korekara mo nakayoku shite kureru yo ne<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            I know that you're feeling down, but (Just like this,)<br />
+                            I really want to tease you, should I? (the two of us;)<br />
+                            I end up feeling selfish like that. (Even tomorrow,)<br />
+                            You'll be friends with me from now on, right?<br />
                         </p>
                     </td>
                 </tr>
@@ -462,6 +554,7 @@
         function getPosition(el) {
             return el.getBoundingClientRect().left;
         }
+
     </script>
 
 

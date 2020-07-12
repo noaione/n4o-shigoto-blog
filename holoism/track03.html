@@ -21,9 +21,9 @@
     <meta content="#bd1934" name="theme-color" />
     <link href="https://blog.n4o.xyz/holoism/track03" rel="canonical" />
     <meta content="https://blog.n4o.xyz/assets/img/holoism_cover.jpg" property="og:image" />
-    <meta property="og:image:width" content="1600" />
-    <meta property="og:image:height" content="1600" />
-    <meta property="og:image:alt" content="#GensokyoHoloism" />
+    <meta content="1600" property="og:image:width" />
+    <meta content="1600" property="og:image:height" />
+    <meta content="#GensokyoHoloism" property="og:image:alt" />
 
     <!-- Favicons -->
     <link href="/assets/ico/favicon.png" rel="shortcut icon" type="image/png" />
@@ -50,9 +50,11 @@
     <script crossorigin="anonymous" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
+    </script>
     <script crossorigin="anonymous" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
+    </script>
     <style>
         table.lyrics-box {
             table-layout: fixed;
@@ -102,19 +104,20 @@
             margin-left: 0.5rem;
             margin-top: 10px;
         }
+
     </style>
 </head>
 
-<body class="p-2">
-    <div class="container py-3 my-2">
+<body>
+    <div class="container my-4">
         <h1 class="pb-3">Captain Marine no Ketsu Anchor Lyrics</h1>
-        <hr>
-        <nav class="text-center">
-            <a href="/holoism/track02" class="mx-3"><i class="fa fa-chevron-left" aria-hidden="true"></i> Previous</a>
-            <a href="/holoism" class="mx-3"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-            <a href="/holoism/track04" class="mx-3">Next <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+        <hr />
+        <nav class="text-center" id="song-nav">
+            <a class="mx-3" href="/holoism/track02"><i aria-hidden="true" class="fa fa-chevron-left"></i> Previous</a>
+            <a class="mx-3" href="/holoism"><i aria-hidden="true" class="fa fa-home"></i> Home</a>
+            <a class="mx-3" href="/holoism/track04">Next <i aria-hidden="true" class="fa fa-chevron-right"></i></a>
         </nav>
-        <hr>
+        <hr />
         <div class="card mr-auto" id="info-box" style="width: 24rem;">
             <img alt="Cover art" class="card-img-top"
                 src="https://img.dlsite.jp/modpub/images2/work/doujin/RJ292000/RJ291344_img_main.jpg" />
@@ -123,14 +126,14 @@
                 <h6 class="card-subtitle mb-2 text-muted">Houshou Marine</h6>
                 <p class="card-text">
                     <b>Singer</b>: Houshou Marine<br />
-                    <b>Lyrics</b>: 夕野ヨシミ (IOSYS)<br />
+                    <b>Lyrics</b>: Yoshimi Youno (IOSYS)<br />
                     <b>Arrangement</b>: ARM (IOSYS)<br />
                     <b>Original Cover</b>: <a
                         href="https://en.touhouwiki.net/wiki/Lyrics:_%E3%82%AD%E3%83%A3%E3%83%97%E3%83%86%E3%83%B3%E3%83%BB%E3%83%A0%E3%83%A9%E3%82%B5%E3%81%AE%E3%82%B1%E3%83%84%E3%82%A2%E3%83%B3%E3%82%AB%E3%83%BC">Captain
                         Murasa no Ketsu Anchor (IOSYS)</a><br />
-                    <b>Original</b>: キャプテン・ムラサ <a
-                        href="https://en.touhouwiki.net/wiki/Undefined_Fantastic_Object">(Touhou 12: Undefined Fantastic
-                        Object)</a>
+                    <b>Original Song</b>: Captain Murasa<br />
+                    <b>Source</b>: <a href="https://en.touhouwiki.net/wiki/Undefined_Fantastic_Object">Touhou 12:
+                        Undefined Fantastic Object</a>
                 </p>
                 <audio id="music" preload="true">
                     <source src="https://docs.google.com/uc?export=download&amp;id=10EFuxJJ5blq7KysmqwoIug5fartyFFoQ" />
@@ -147,6 +150,20 @@
         </div>
         <hr />
         <p class="text-center lead">Lyrics</p>
+        <div id="disclaimer-box" class="alert alert-warning" role="alert">
+            <h4 class="alert-heading text-center">Disclaimer</h4>
+            <p>
+                Translation taken from <a
+                    href="https://en.touhouwiki.net/wiki/Lyrics:_%E3%82%AD%E3%83%A3%E3%83%97%E3%83%86%E3%83%B3%E3%83%BB%E3%83%A0%E3%83%A9%E3%82%B5%E3%81%AE%E3%82%B1%E3%83%84%E3%82%A2%E3%83%B3%E3%82%AB%E3%83%BC"
+                    class="alert-link">Touhou Wiki</a>
+                with modification.<br>
+                Some of the part are translated poorly.<br>
+                And some of them are MTLed with <a href="https://www.deepl.com/translator#ja/en/"
+                    class="alert-link">DeepL</a>
+            </p>
+            <hr>
+            <p class="mb-0">You can help me improve it by contacting me at Discord: <b>N4O#8868</b></p>
+        </div>
         <table class="table lyrics-box" id="lyrics" rules="none">
             <thead class="thead-dark text-center">
                 <tr>
@@ -170,7 +187,10 @@
                         </p>
                     </td>
                     <td>
-                        <p><i>To be added.</i></p>
+                        <p>
+                            Ahoy! Captain of the Houshou Pirates, Houshou Marine here!~<br />
+                            You guys! Today we're going smashing again with my ass anchor!<br />
+                        </p>
                     </td>
                 </tr>
                 <tr>
@@ -185,9 +205,17 @@
                     <td>
                         <p>
                             Anchor Anchoor Ketsu hoi Anchor!<br />
-                            Anchor Anchoor Ketsu Anchor! Aah!<br />
+                            Anchor Anchoor Ketsu Anchor! Ahh!<br />
                             Anchor Anchoor Ketsu hoi Anchor!<br />
-                            Captain Marine no Ketsu Anchor! Aah!<br />
+                            Captain Marine no Ketsu Anchor! Ahh!<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Anchor! Anchor! Ass anchor!<br />
+                            Anchor! Anchor! Ass anchor! (Aah!)<br />
+                            Anchor! Anchor! Ass anchor!<br />
+                            Captain Marine ass anchor! (Aah!)<br />
                         </p>
                     </td>
                 </tr>
@@ -203,9 +231,17 @@
                     <td>
                         <p>
                             Mizu no trouble wa uchi ni makasero<br />
-                            donna jōtai demo sugu ni kaiketsu da ze<br />
+                            donna joutai demo sugu ni kaiketsu da ze<br />
                             Tsumari mizumore no moto no gen'in<br />
                             sukkari torinozoite funsai nekosogi<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Leave any troubles with water to me!<br />
+                            I'll get to the "bottom" of any situation in a snap!<br />
+                            In other words, I'll completely remove<br />
+                            The source of the leak, smash it at the roots!<br />
                         </p>
                     </td>
                 </tr>
@@ -221,9 +257,17 @@
                     <td>
                         <p>
                             Senchou! Toire ga! Tsumatte unko ga nagaremasen!<br />
-                            Souka! Korosu! Anchor wo yokose! Aah!<br />
+                            Souka! Korosu! Anchor wo yokose! Ahh!<br />
                             Senchou! O-furo ga! Yuge de onnayu nozokemasen!<br />
-                            Souka! Korosu! Anchor wo yokose! Aah!<br />
+                            Souka! Korosu! Anchor wo yokose! Ahh!<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Captain! The toilet! It's all blocked up and the poop won't flow!<br />
+                            Is that so? I'll kill ya! Give me my anchor!<br />
+                            Captain! The baths! We can't peek in the women's 'cause of the steam!<br />
+                            Oh, really? I'll kill ya! Hand me my anchor!<br />
                         </p>
                     </td>
                 </tr>
@@ -241,7 +285,15 @@
                             Anchor Anchor michizure Anchor! Chinbotsu gekichin Anchor da!<br />
                             Anchor Anchor michizure Anchor! Chin-chin-chinbotsu Anchor desu ne?!<br />
                             Chigau! Kimitachi! Kou yatte bukkome!<br />
-                            Captain Marine no Ketsu Anchor! Aah!<br />
+                            Captain Marine no Ketsu Anchor! Ahh!<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Anchor! Anchor! Dragging anchor! This anchor sinks ships to the bottom of the sea!<br />
+                            Anchor! Anchor! Dragging anchor! This anchor s-s-s-sinks 'em, right?<br />
+                            Wrong! You guys! Shove it in like this!<br />
+                            Captain Marine ass anchor!<br />
                         </p>
                     </td>
                 </tr>
@@ -260,6 +312,13 @@
                             Anchor<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            Land! Sea! Heaven! Demon World! We'll go anywhere!<br />
+                            Aboard our ship, we've got an ass anchor!<br />
+                            Anchor!<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -273,9 +332,17 @@
                     <td>
                         <p>
                             Anchor Anchoor Ketsu hoi Anchor!<br />
-                            Anchor Anchoor Ketsu Anchor! Aah!<br />
+                            Anchor Anchoor Ketsu Anchor! Ahh!<br />
                             Anchor Anchoor Ketsu hoi Anchor!<br />
-                            Captain Marine no Ketsu Anchor! Aah!<br />
+                            Captain Marine no Ketsu Anchor! Ahh!<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Anchor! Anchor! Ass anchor!<br />
+                            Anchor! Anchor! Ass anchor! (Aah!)<br />
+                            Anchor! Anchor! Ass anchor!<br />
+                            Captain Marine ass anchor! (Aah!)<br />
                         </p>
                     </td>
                 </tr>
@@ -296,6 +363,14 @@
                             Buttoi abarenbou zen'in michizure<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            Once I shove it in, any straight guy<br />
+                            Will soon be sunk by its tough appeal!<br />
+                            I wedge it all the way in, and all<br />
+                            The fat, hard-struggling punks get dragged along!<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -312,6 +387,14 @@
                             Sou ka! Shikei da! Anchor wo yokose! Aah!<br />
                             Senchou! Puuru ga! Kondete youjo ga miemaseeen!<br />
                             Sou ka! Shikei da! Anchor wo yokose! Aah!<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Captain! The faucet! It's broken and the water won't stooop!<br />
+                            Is that so? Death for you! Hand me my anchor!<br />
+                            Captain! The pool! It's too crowded for us to see the little girrrrls!<br />
+                            Is that so? Death for you! Hand me my anchor!<br />
                         </p>
                     </td>
                 </tr>
@@ -332,6 +415,14 @@
                             Captain Marine no ketsu Anchor!<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            Dragging anchor! Ship sinking anchor! This anchor goes to the bottom of the sea!<br />
+                            Dragging that s-s-sinks 'em and r-r-r-r-really hurts em', right!<br />
+                            No! You horny little kids! I am going to re-educate you!<br />
+                            Captain Marine Ass Anchor! (Aah!)<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -345,6 +436,13 @@
                         <p>
                             Riku kai kuu makai doko demo susunde yuku<br />
                             Saikyou soubi no ketsu anchor<br />
+                            Anchor!<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Land! Sea! Heaven! Demon World! We'll go anywhere!<br />
+                            Aboard our ship, we've got an ass anchor!<br />
                             Anchor!<br />
                         </p>
                     </td>
@@ -366,6 +464,14 @@
                             Yukute ni manaita koshiraeta<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            Holy saint promote our ocean sail<br />
+                            into the darkness of the Hololive.<br />
+                            There appeared Rushia,<br />
+                            I've got a chopping board lined up on the way.<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -376,6 +482,11 @@
                     <td>
                         <p>
                             Houshou kaizokudan yo! Eien nare!<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            The Houshou Pirates! Live forever!<br />
                         </p>
                     </td>
                 </tr>
@@ -394,6 +505,13 @@
                             Anchor<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            Land! Sea! Heaven! Demon World! We'll go anywhere!<br />
+                            Aboard our ship, we've got an ass anchor!<br />
+                            Anchor!<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -407,9 +525,17 @@
                     <td>
                         <p>
                             Anchor Anchoor Ketsu hoi Anchor!<br />
-                            Anchor Anchoor Ketsu Anchor! Aah!<br />
+                            Anchor Anchoor Ketsu Anchor! Ahh!<br />
                             Anchor Anchoor Ketsu hoi Anchor!<br />
-                            Captain Marine no Ketsu Anchor! Aah!<br />
+                            Captain Marine no Ketsu Anchor! Ahh!<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Anchor! Anchor! Ass anchor!<br />
+                            Anchor! Anchor! Ass anchor! (Aah!)<br />
+                            Anchor! Anchor! Ass anchor!<br />
+                            Captain Marine ass anchor! (Aah!)<br />
                         </p>
                     </td>
                 </tr>
@@ -545,6 +671,7 @@
         function getPosition(el) {
             return el.getBoundingClientRect().left;
         }
+
     </script>
 
 

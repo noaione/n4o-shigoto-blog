@@ -21,9 +21,9 @@
     <meta content="#bd1934" name="theme-color" />
     <link href="https://blog.n4o.xyz/holoism/track02" rel="canonical" />
     <meta content="https://blog.n4o.xyz/assets/img/holoism_cover.jpg" property="og:image" />
-    <meta property="og:image:width" content="1600" />
-    <meta property="og:image:height" content="1600" />
-    <meta property="og:image:alt" content="#GensokyoHoloism" />
+    <meta content="1600" property="og:image:width" />
+    <meta content="1600" property="og:image:height" />
+    <meta content="#GensokyoHoloism" property="og:image:alt" />
 
     <!-- Favicons -->
     <link href="/assets/ico/favicon.png" rel="shortcut icon" type="image/png" />
@@ -50,9 +50,11 @@
     <script crossorigin="anonymous" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
     <script crossorigin="anonymous" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js">
+    </script>
     <script crossorigin="anonymous" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js">
+    </script>
     <style>
         table.lyrics-box {
             table-layout: fixed;
@@ -102,19 +104,20 @@
             margin-left: 0.5rem;
             margin-top: 10px;
         }
+
     </style>
 </head>
 
-<body class="p-2">
-    <div class="container py-3 my-2">
+<body>
+    <div class="container my-4">
         <h1 class="pb-3">Hoihoi☆Gensoholoism Lyrics</h1>
-        <hr>
-        <nav class="text-center">
-            <a href="/holoism/track01" class="mx-3"><i class="fa fa-chevron-left" aria-hidden="true"></i> Previous</a>
-            <a href="/holoism" class="mx-3"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-            <a href="/holoism/track03" class="mx-3">Next <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+        <hr />
+        <nav class="text-center" id="song-nav">
+            <a class="mx-3" href="/holoism/track01"><i aria-hidden="true" class="fa fa-chevron-left"></i> Previous</a>
+            <a class="mx-3" href="/holoism"><i aria-hidden="true" class="fa fa-home"></i> Home</a>
+            <a class="mx-3" href="/holoism/track03">Next <i aria-hidden="true" class="fa fa-chevron-right"></i></a>
         </nav>
-        <hr>
+        <hr />
         <div class="card mr-auto" id="info-box" style="width: 24rem;">
             <img alt="Cover art" class="card-img-top"
                 src="https://img.dlsite.jp/modpub/images2/work/doujin/RJ292000/RJ291344_img_main.jpg" />
@@ -123,11 +126,12 @@
                 <h6 class="card-subtitle mb-2 text-muted">Houshou Marine ft. Holoism Fantasy</h6>
                 <p class="card-text">
                     <b>Singer</b>: Houshou Marine<br />
-                    <b>Supporting Voices</b>: Usada Pekora, Uruha Rushia, Shiranui Flare, Shirogane Noel<br />
+                    <b>Supporting Vocals</b>: Usada Pekora, Uruha Rushia, Shiranui Flare, Shirogane Noel<br />
                     <b>Lyrics and Arrangement</b>: Beat Mario, Maron (IOSYS)<br />
                     <b>Track Maker</b>: Maron (IOSYS)<br />
-                    <b>Original</b>: 神々が恋した幻想郷 <a href="https://en.touhouwiki.net/wiki/Mountain_of_Faith">(Touhou 10:
-                        Mountain of Faith)</a>
+                    <b>Original</b>: The Gensokyo The Gods Loved<br />
+                    <b>Source</b>: <a href="https://en.touhouwiki.net/wiki/Mountain_of_Faith">Touhou 10: Mountain of
+                        Faith</a>
                 </p>
                 <audio id="music" preload="true">
                     <source src="https://docs.google.com/uc?export=download&amp;id=1ExDjc-dKDpyFS4H7H5I3aZfCO61f1xcK" />
@@ -144,6 +148,17 @@
         </div>
         <hr />
         <p class="text-center lead">Lyrics</p>
+        <div id="disclaimer-box" class="alert alert-warning" role="alert">
+            <h4 class="alert-heading text-center">Disclaimer</h4>
+            <p>
+                Some part of the song is not translated.<br>
+                Some of the part are translated poorly.<br>
+                And some of them are MTLed with <a href="https://www.deepl.com/translator#ja/en/"
+                    class="alert-link">DeepL</a>
+            </p>
+            <hr>
+            <p class="mb-0">You can help me improve it by contacting me at Discord: <b>N4O#8868</b></p>
+        </div>
         <table class="table lyrics-box" id="lyrics" rules="none">
             <thead class="thead-dark text-center">
                 <tr>
@@ -171,7 +186,12 @@
                         </p>
                     </td>
                     <td>
-                        <p><i>To be added.</i></p>
+                        <p>
+                            We'll start our journey here.<br />
+                            We're headed to Land of Fantasy.<br />
+                            Affection, or love, or whatever.<br />
+                            Searching for a Grand Voyage<br />
+                        </p>
                     </td>
                 </tr>
                 <tr>
@@ -181,6 +201,14 @@
                             ホイホイ☆アホイ ホイホイ☆アホーイ<br />
                             ホイホイ☆アホイ ホイホイ☆アホーイ<br />
                             ホイホイ☆アホイ ホホイのホイ<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Hoihoi☆Ahoy Hoihoi☆Ahoy<br />
+                            hoihoi☆Ahoy hoihoi☆Ahoy<br />
+                            Hoihoi☆Ahoy Hoihoi☆Ahoy<br />
+                            Hoihoi☆Ahoy Hohoinohoi<br />
                         </p>
                     </td>
                     <td>
@@ -209,6 +237,14 @@
                             Negai tsudzukete sekai wa hirogatta…!<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            The land of fantasy I saw that day<br />
+                            I've always had to admire it alone.<br />
+                            Even though it's impossible.<br />
+                            I kept wishing and the world opened up...!<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -223,6 +259,13 @@
                             Kaihou shiyou arinomama umi e (Taihen! Taihenda!)<br />
                             Dai koukai matta-nashi no (Senchou! Ikouyo senchou!)<br />
                             Shukkouda! (Yousouro!)<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Let's release them into the sea just the way they are. (Oh, no! Oh, my God!)<br />
+                            We can't wait for the big voyage. (Captain! Let's go, Captain.)<br />
+                            Set sail! (Roger it!)<br />
                         </p>
                     </td>
                 </tr>
@@ -245,6 +288,15 @@
                             Kimitachi tonara doko made mo! (Doko made mo)<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            Gather round! Let's sing and make a noise! (Ahoy!)<br />
+                            We're headed to Land of (Hoihoi☆Hohoi!)<br />
+                            If you want to. (Hoihoi!)<br />
+                            Now is the time. (Hoihoi!)<br />
+                            How far we can go with you guys! (Anywhere you go!)<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -265,6 +317,15 @@
                             Touhou no sekai e<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            I had a dream that day. (Ahoy!)<br />
+                            We'll get there one day. (Hoihoi☆Hohoi!)<br />
+                            Come on, let's go. (Go! Go!)<br />
+                            Come on, let's go. (Go! Go!)<br />
+                            Into the World of Touhou.<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -273,6 +334,14 @@
                             ホイホイ☆アホイ ホイホイ☆アホーイ<br />
                             ホイホイ☆アホイ ホイホイ☆アホーイ<br />
                             ホイホイ☆アホイ ホホイのホイ<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Hoihoi☆Ahoy Hoihoi☆Ahoy<br />
+                            hoihoi☆Ahoy hoihoi☆Ahoy<br />
+                            Hoihoi☆Ahoy Hoihoi☆Ahoy<br />
+                            Hoihoi☆Ahoy Hohoinohoi<br />
                         </p>
                     </td>
                     <td>
@@ -301,6 +370,14 @@
                             Yume ni made ni mita sekai to tsunagatta…!<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            Ah! I'm charmed by it and I get lost.<br />
+                            Where is this place? I could recognize your voice.<br />
+                            Wading through the rough waters<br />
+                            I've reached the world I dreamed of...!<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -315,6 +392,13 @@
                             Haishin shite hai, shinda. Mazai!? (Oioi! Mindo mindo~!)<br />
                             Genso-iri matta-nashi no (Senchou! Ikouyo senchou!)<br />
                             Shukkouda! (Yousouro!)<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            配信して はい、死んだ。魔剤！？ (Oi Oi! Moral Standard!)<br />
+                            I've been waiting for this to happen. (Captain! Let's go, Captain.)<br />
+                            Set sail! (Roger it!)<br />
                         </p>
                     </td>
                 </tr>
@@ -337,6 +421,15 @@
                             Onaji Ahoy!! Nara odorimasho (odorimasho)<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            Sing till morning, and make some noise. (Ahoy!)<br />
+                            A feast! Land of Fantasy (Hoihoi☆Hohoi!)<br />
+                            Newcomers too. (Hoihoi!)<br />
+                            Old-timers too. (Hoihoi!)<br />
+                            The same old Ahoy!! Well, then, let's dance. (Let's dance)<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -355,6 +448,15 @@
                             Oideyo (Go go)<br />
                             Oideyo (Go go)<br />
                             Touhou no sekai e<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            I've always admired it. (Ahoy!)<br />
+                            Times will come and go again. (Hoihoi☆Hohoi!)<br />
+                            Come on, let's go. (Go! Go!)<br />
+                            Come on, let's go. (Go! Go!)<br />
+                            Into the World of Touhou.<br />
                         </p>
                     </td>
                 </tr>
@@ -377,6 +479,15 @@
                             Shukkouda! (Yousouro!)<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            Let's go ahead and share some of our dark history. (Captain! I love you!)<br />
+                            You won't regret it, I promise. (Captain! I'm in love!)<br />
+                            If you loved it, yell "I like it!" (Captain! You're cute!)<br />
+                            The great voyage is waiting. (Captain! Let's go, Captain.)<br />
+                            Set sail! (Roger it!)<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -395,6 +506,15 @@
                             Yarunara (Hoihoi!)<br />
                             Yaraneba (Hoihoi!)<br />
                             Ikeru toko made ikimashou (ikimashou)<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            A memory comes into motion. (アホーイ)<br />
+                            My Land of Illusion (ホイホイ☆ホホイ)<br />
+                            If you want it.<br />
+                            I got to do it.<br />
+                            We'll go as far as we can. (いきましょう)<br />
                         </p>
                     </td>
                 </tr>
@@ -419,6 +539,16 @@
                             Miko datte majo datte minna koishita no sa<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            My wishes come true. (Come true)<br />
+                            That is the World of Touhou! (Touhou)<br />
+                            Dear Sir. (Dear Sir.)<br />
+                            Dear God. (ZUN! ZUN!)<br />
+                            A hologram of fantasy, dream or reality<br />
+                            Even the priestesses and witches fell in love with each other.<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -429,6 +559,11 @@
                     <td>
                         <p>
                             Gensokyo<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Land of Fantasy!<br />
                         </p>
                     </td>
                 </tr>
@@ -449,6 +584,14 @@
                             Hoihoi☆Ahoy mou ikkai<br />
                         </p>
                     </td>
+                    <td>
+                        <p>
+                            Hoihoi☆Ahoy Hoihoi☆Ahoy<br />
+                            hoihoi☆Ahoy hoihoi☆Ahoy<br />
+                            Hoihoi☆Ahoy Hoihoi☆Ahoy<br />
+                            Hoihoi☆Ahoy One more time!<br />
+                        </p>
+                    </td>
                 </tr>
                 <tr>
                     <td lang="ja" scope="row">
@@ -457,6 +600,14 @@
                             ホイホイ☆アホイ ホイホイ☆アホーイ<br />
                             ホイホイ☆アホイ ホイホイ☆アホーイ<br />
                             ホイホイ☆アホイ ホホイのホイ<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Hoihoi☆Ahoy Hoihoi☆Ahoy<br />
+                            hoihoi☆Ahoy hoihoi☆Ahoy<br />
+                            Hoihoi☆Ahoy Hoihoi☆Ahoy<br />
+                            Hoihoi☆Ahoy Hohoinohoi<br />
                         </p>
                     </td>
                     <td>
@@ -477,6 +628,11 @@
                     <td>
                         <p>
                             Gensoholoism<br />
+                        </p>
+                    </td>
+                    <td>
+                        <p>
+                            Holoism Fantasy<br />
                         </p>
                     </td>
                 </tr>
@@ -612,6 +768,7 @@
         function getPosition(el) {
             return el.getBoundingClientRect().left;
         }
+
     </script>
 
 
