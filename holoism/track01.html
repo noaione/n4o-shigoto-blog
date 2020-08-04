@@ -21,9 +21,9 @@
     <meta content="#bd1934" name="theme-color" />
     <link href="https://blog.n4o.xyz/holoism/track01" rel="canonical" />
     <meta content="https://blog.n4o.xyz/assets/img/holoism_cover.jpg" property="og:image" />
-    <meta property="og:image:width" content="1600" />
-    <meta property="og:image:height" content="1600" />
-    <meta property="og:image:alt" content="#GensokyoHoloism" />
+    <meta content="1600" property="og:image:width" />
+    <meta content="1600" property="og:image:height" />
+    <meta content="#GensokyoHoloism" property="og:image:alt" />
 
     <!-- Favicons -->
     <link href="/assets/ico/favicon.png" rel="shortcut icon" type="image/png" />
@@ -103,43 +103,93 @@
             margin-top: 10px;
         }
 
+        .sp-marine {
+            color: #b91111;
+        }
     </style>
 </head>
 
 <body class="p-2">
     <div class="container py-3 my-2">
         <h1 class="pb-3">Episode 00 - Drama CD</h1>
-        <hr>
-        <nav class="text-center">
+        <hr />
+        <nav class="text-center" id="song-nav">
             <span class="mx-3"><i class="fa fa-chevron-left" aria-hidden="true"></i> Previous</span>
-            <a href="/holoism" class="mx-3"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-            <a href="/holoism/track02" class="mx-3">Next <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+            <a class="mx-3" href="/holoism"><i aria-hidden="true" class="fa fa-home"></i> Home</a>
+            <a class="mx-3" href="/holoism/track02">Next <i aria-hidden="true" class="fa fa-chevron-right"></i></a>
         </nav>
-        <hr>
+        <hr />
         <div class="card mr-auto" id="info-box" style="width: 24rem;">
             <img alt="Cover art" class="card-img-top"
                 src="https://img.dlsite.jp/modpub/images2/work/doujin/RJ292000/RJ291344_img_main.jpg" />
             <div class="card-body mr-auto">
-                <h5 class="card-title">Roujin-kai Hitchou Inishie no Touhou Arenji Shibari
-                    Utawaku
-                </h5>
-                <h6 class="card-subtitle mb-2 text-muted">A must-listen for the seniors - Old Touhou songs karaoke
-                    stream
-                </h6>
+                <h5 class="card-title">Roujin-kai Hitchou Inishie no Touhou Arenji Shibari Utawaku</h5>
+                <h6 class="card-subtitle mb-2 text-muted">For the Old-timers - Singing Old Touhou Arrangements</h6>
                 <p class="card-text">
                     <b>Houshou Marine</b> (CV. Houshou Marine)
                 </p>
                 <a class="card-link" href="http://cool-create.cc/cd/cccd60/">Buy</a>
             </div>
         </div>
-        <div class="mt-3">
+        <div class="mt-3" id="synopsis">
             <h4>Synopsis</h4>
-            <hr>
-            <p>ある夜、気がつくとマリンは得体の知れない竹林にいた。<br>
-                鬱蒼と続く竹、歩けど変わらない景色、さらには近づいてくる何かの気配と、謎の物音。<br>
-                疲労と恐怖に囚われたマリンは落ち着こうにも思考すらまとまらず、途方に暮れる。</p>
+            <hr />
+            <p id="jp-synopsis">
+                ある夜、気がつくとマリンは得体の知れない竹林にいた。<br />
+                鬱蒼と続く竹、歩けど変わらない景色、さらには近づいてくる何かの気配と、謎の物音。<br />
+                疲労と恐怖に囚われたマリンは落ち着こうにも思考すらまとまらず、途方に暮れる。
+            </p>
+            <hr />
+            <p id="en-synopsis">
+                One evening, Marine wakes up in an enigmatic bamboo forest.<br />
+                The dense, unending bamboo, the scenery that doesn't change no matter how far she walks...<br />
+                Overcome by exhaustion and fear, Marine finds herself at her wit's end, with no respite in sight.
+            </p>
+        </div>
+        <div class="mt-3" id="tl-transcript">
+            <h4>Translation</h4>
+            <hr />
+            <div class="alert alert-warning" id="disclaimer-box" role="alert">
+                <h4 class="alert-heading text-center">Disclaimer</h4>
+                <p class="text-center">
+                    Translation are transcribed from <a
+                        href="https://www.dlsite.com/eng/work/=/product_id/RE295773.html">DLsite</a> English version
+                    video.<br />
+                    If there's any mistype, I'm sorry in advance since I'm manually writing the subtitle from the
+                    video.<br />
+                    There might be some slight difference, but 99% of the text here are transcribed from the
+                    video.<br />
+                    Lastly, anything that starts with a <code>`-` (dash)</code>, means multiple speakers are talking
+                    together.
+                </p>
+            </div>
+            <p id="transcript">
+                <b class="sp-marine">Marine</b>: I'm exhausted... I can't walk anymore.<br />
+                <b class="sp-marine">Marine</b>: Ah! What is this place?<br />
+                <b class="sp-marine">Marine</b>: Time for a rest.<br />
+                <b class="sp-marine">Marine</b>: It's been hours, but no matter how far I walk, all I see is bamboo.<br />
+                <b class="sp-marine">Marine</b>: Everywhere looks the same.<br />
+                <b class="sp-marine">Marine</b>: I feel like I'm walking in circles.<br />
+                <b class="sp-marine">Marine</b>: Plus it's gloomy and creepy. Why is it so...<br />
+                <br />
+                <b class="sp-marine">Marine</b>: Wha- wha- what was that?<br />
+                <b class="sp-marine">Marine</b>: A person? An animal?<br />
+                <b class="sp-marine">Marine</b>: I'm so thirsty... and hungry.<br />
+                <b class="sp-marine">Marine</b>: How did things turn out like this?<br />
+                <b class="sp-marine">Marine</b>: Tonight is... the live stream and... That's right! The song!<br />
+                <b class="sp-marine">Marine</b>: Yes, I started singing some Touhou, and just after...<br />
+                <br />
+                <b class="sp-marine">Marine</b>: Ouch...<br />
+                <b class="sp-marine">Marine</b>: Darnit! All I did was stream from home!<br />
+                <b class="sp-marine">Marine</b>: Why did things have to turn out this way!?<br />
+                <br />
+                <span class="text-center"><i>End of Chapter 00</i></span>
+            </p>
         </div>
     </div>
+
+
+
 
 </body>
 
