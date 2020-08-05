@@ -19,11 +19,11 @@
     <meta content="Arigatou Gensokyo" property="og:description" />
     <meta content="N4O" property="og:site_name" />
     <meta content="#bd1934" name="theme-color" />
-    <link href="https://blog.n4o.xyz/holoism/track09" rel="canonical" />
+    <link href="https://blog.n4o.xyz/holoism/track11" rel="canonical" />
     <meta content="https://blog.n4o.xyz/assets/img/holoism_cover.jpg" property="og:image" />
-    <meta property="og:image:width" content="1600" />
-    <meta property="og:image:height" content="1600" />
-    <meta property="og:image:alt" content="#GensokyoHoloism" />
+    <meta content="1600" property="og:image:width" />
+    <meta content="1600" property="og:image:height" />
+    <meta content="#GensokyoHoloism" property="og:image:alt" />
 
     <!-- Favicons -->
     <link href="/assets/ico/favicon.png" rel="shortcut icon" type="image/png" />
@@ -103,19 +103,22 @@
             margin-top: 10px;
         }
 
+        .sp-marine {
+            color: #b91111;
+        }
     </style>
 </head>
 
 <body class="p-2">
     <div class="container py-3 my-2">
         <h1 class="pb-3">Episode 05 - Drama CD</h1>
-        <hr>
-        <nav class="text-center">
-            <a href="/holoism/track10" class="mx-3"><i class="fa fa-chevron-left" aria-hidden="true"></i> Previous</a>
-            <a href="/holoism" class="mx-3"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-            <a href="/holoism/track12" class="mx-3">Next <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+        <hr />
+        <nav class="text-center" id="song-nav">
+            <a class="mx-3" href="/holoism/track10"><i aria-hidden="true" class="fa fa-chevron-left"></i> Previous</a>
+            <a class="mx-3" href="/holoism"><i aria-hidden="true" class="fa fa-home"></i> Home</a>
+            <a class="mx-3" href="/holoism/track12">Next <i aria-hidden="true" class="fa fa-chevron-right"></i></a>
         </nav>
-        <hr>
+        <hr />
         <div class="card mr-auto" id="info-box" style="width: 24rem;">
             <img alt="Cover art" class="card-img-top"
                 src="https://img.dlsite.jp/modpub/images2/work/doujin/RJ292000/RJ291344_img_main.jpg" />
@@ -128,12 +131,48 @@
                 <a class="card-link" href="http://cool-create.cc/cd/cccd60/">Buy</a>
             </div>
         </div>
-        <div class="mt-3">
-            <h4>Synopsis</h4>
-            <hr>
-            <p>-</p>
+        <div class="mt-3" id="tl-transcript">
+            <h4>Translation</h4>
+            <hr />
+            <div class="alert alert-warning" id="disclaimer-box" role="alert">
+                <h4 class="alert-heading text-center">Disclaimer</h4>
+                <p class="text-center">
+                    Translation are transcribed from <a
+                        href="https://www.dlsite.com/eng/work/=/product_id/RE295773.html">DLsite</a> English version
+                    video.<br />
+                    If there's any mistype, I'm sorry in advance since I'm manually writing the subtitle from the
+                    video.<br />
+                    There might be some slight difference, but 99% of the text here are transcribed from the
+                    video.<br />
+                    Lastly, anything that starts with a <code>`-` (dash)</code>, means multiple speakers are talking
+                    together.
+                </p>
+            </div>
+            <p id="transcript">
+                <b class="sp-marine">Marine</b>: Uhh... Ahh... Ow...<br />
+                <b class="sp-marine">Marine</b>: Huh? It doesn't hurt.<br />
+                <b class="sp-marine">Marine</b>: My body seems fine.<br />
+                <b class="sp-marine">Marine</b>: My stream has stopped on the ending screen.<br />
+                <b class="sp-marine">Marine</b>: When is it?<br />
+                <b class="sp-marine">Marine</b>: After I got hit by the truck?<br />
+                <b class="sp-marine">Marine</b>: But there's not a scratch on me...<br />
+                <b class="sp-marine">Marine</b>: Uh... What was that?<br />
+                <b class="sp-marine">Marine</b>: A dream? Really?<br />
+                <b class="sp-marine">Marine</b>: I don't know... I just don't know!<br />
+                <b class="sp-marine">Marine</b>: Uh...? This is... clover?<br />
+                <b class="sp-marine">Marine</b>: What is this weed doing here?<br />
+                <b class="sp-marine">Marine</b>: Huh? A weed? That amazing clover from the bamboo forest!<br />
+                <b class="sp-marine">Marine</b>: All the leaves have fallen off.<br />
+                <b class="sp-marine">Marine</b>: The power to grant luck...<br />
+                <b class="sp-marine">Marine</b>: Does this mean I used it all up?<br />
+                <b class="sp-marine">Marine</b>: Huuuuuh!?<br />
+                <br />
+                <i>End of Episode 05 and Drama CD.</i>
+            </p>
         </div>
     </div>
+
+
 
 </body>
 

@@ -21,9 +21,9 @@
     <meta content="#bd1934" name="theme-color" />
     <link href="https://blog.n4o.xyz/holoism/track06" rel="canonical" />
     <meta content="https://blog.n4o.xyz/assets/img/holoism_cover.jpg" property="og:image" />
-    <meta property="og:image:width" content="1600" />
-    <meta property="og:image:height" content="1600" />
-    <meta property="og:image:alt" content="#GensokyoHoloism" />
+    <meta content="1600" property="og:image:width" />
+    <meta content="1600" property="og:image:height" />
+    <meta content="#GensokyoHoloism" property="og:image:alt" />
 
     <!-- Favicons -->
     <link href="/assets/ico/favicon.png" rel="shortcut icon" type="image/png" />
@@ -103,44 +103,239 @@
             margin-top: 10px;
         }
 
+        .sp-marine {
+            color: #b91111;
+        }
+
+        .sp-tewi {
+            color: #75adfb;
+        }
+
+        .sp-udonge {
+            color: #944488;
+        }
+
+        .sp-alice {
+            color: #CF7BFD;
+        }
+
+        .sp-patchouli {
+            color: #378883;
+        }
+
+        .sp-marisa {
+            color: #828282;
+        }
     </style>
 </head>
 
 <body class="p-2">
     <div class="container py-3 my-2">
         <h1 class="pb-3">Episode 02 - Drama CD</h1>
-        <hr>
-        <nav class="text-center">
-            <a href="/holoism/track05" class="mx-3"><i class="fa fa-chevron-left" aria-hidden="true"></i> Previous</a>
-            <a href="/holoism" class="mx-3"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-            <a href="/holoism/track07" class="mx-3">Next <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+        <hr />
+        <nav class="text-center" id="song-nav">
+            <a class="mx-3" href="/holoism/track05"><i aria-hidden="true" class="fa fa-chevron-left"></i> Previous</a>
+            <a class="mx-3" href="/holoism"><i aria-hidden="true" class="fa fa-home"></i> Home</a>
+            <a class="mx-3" href="/holoism/track07">Next <i aria-hidden="true" class="fa fa-chevron-right"></i></a>
         </nav>
-        <hr>
+        <hr />
         <div class="card mr-auto" id="info-box" style="width: 24rem;">
             <img alt="Cover art" class="card-img-top"
                 src="https://img.dlsite.jp/modpub/images2/work/doujin/RJ292000/RJ291344_img_main.jpg" />
             <div class="card-body mr-auto">
                 <h5 class="card-title">San Majouteirei Meeting Kaijou wa Kochira</h5>
-                <h6 class="card-subtitle mb-2 text-muted">The usual meeting place of the 3 magicians is here</h6>
+                <h6 class="card-subtitle mb-2 text-muted">This Way to the Regular Three-Witch Meeting</h6>
                 <p class="card-text">
-                    <b>Houshou Marine</b> (CV. Houshou Marine)<br>
-                    <b>Reisen Udongein Inaba</b> (CV. Sakura Miko)<br>
-                    <b>Alice Margatroid</b> (CV. Murasaki Shion)<br>
-                    <b>Kirisame Marisa</b> (CV. Shirakami Fubuki)<br>
+                    <b>Houshou Marine</b> (CV. Houshou Marine)<br />
+                    <b>Reisen Udongein Inaba</b> (CV. Sakura Miko)<br />
+                    <b>Alice Margatroid</b> (CV. Murasaki Shion)<br />
+                    <b>Kirisame Marisa</b> (CV. Shirakami Fubuki)<br />
                     <b>Patchouli Knowledge</b> (CV. Uruha Rushia)
                 </p>
                 <a class="card-link" href="http://cool-create.cc/cd/cccd60/">Buy</a>
             </div>
         </div>
-        <div class="mt-3">
+        <div class="mt-3" id="synopsis">
             <h4>Synopsis</h4>
-            <hr>
-            <p>人里へ案内してもらったマリンは、人間に理解のあるアリスに一旦預けられた。<br>
-                寄る辺のないマリンを置いておくなら人間のもとがいいと、霧雨魔法店に向かう二人。<br>
+            <hr />
+            <p id="jp-synopsis">
+                人里へ案内してもらったマリンは、人間に理解のあるアリスに一旦預けられた。<br />
+                寄る辺のないマリンを置いておくなら人間のもとがいいと、霧雨魔法店に向かう二人。<br />
                 たまたま訪れていたパチェを含む三魔女が一堂に会す所に遭遇し、ぶち上がるマリンだった。
+            </p>
+            <hr />
+            <p id="en-synopsis">
+                Marine, having been guided to the Human Village, is handed over to the care of Alice, who has some
+                understanding of humans.<br />
+                As Marine has nowhere to go, Alice, thinking leaving her with a human is for the best, takes her to
+                Kirisame Magic Shop.<br />
+                With Patche visiting at the time, Marine happens to be there for a meeting of three witches.
+            </p>
+        </div>
+        <div class="mt-3" id="tl-transcript">
+            <h4>Translation</h4>
+            <hr />
+            <div class="alert alert-warning" id="disclaimer-box" role="alert">
+                <h4 class="alert-heading text-center">Disclaimer</h4>
+                <p class="text-center">
+                    Translation are transcribed from <a
+                        href="https://www.dlsite.com/eng/work/=/product_id/RE295773.html">DLsite</a> English version
+                    video.<br />
+                    If there's any mistype, I'm sorry in advance since I'm manually writing the subtitle from the
+                    video.<br />
+                    There might be some slight difference, but 99% of the text here are transcribed from the
+                    video.<br />
+                    Lastly, anything that starts with a <code>`-` (dash)</code>, means multiple speakers are talking
+                    together.
+                </p>
+            </div>
+            <p id="transcript">
+                <b class="sp-marine">Marine</b>: So this is Gensokyo's Human Village!<br />
+                <b class="sp-marine">Marine</b>: This place shows up all the time in doujinshi. It's pretty
+                bustling!<br />
+                <b class="sp-udonge">Udonge</b>: How does the Human Village here compare to your world?<br />
+                <b class="sp-marine">Marine</b>: A lot of people live in my world.<br />
+                <b class="sp-marine">Marine</b>: Science and technology are pretty advanced, too.<br />
+                <b class="sp-marine">Marine</b>: But the architecture here is so retro. It's totally my thing.<br />
+                <b class="sp-udonge">Udonge</b>: Well, I'm glad you like it...<br />
+                <b class="sp-udonge">Udonge</b>: Okay, here we are.<br />
+                <b class="sp-marine">Marine</b>: Gensokyo... Cafe?<br />
+                <b class="sp-marine">Marine</b>: Huh? We were headed here? Are we here to have tea?<br />
+                <b class="sp-udonge">Udonge</b>: ... Not exactly. Ah good, she's here!<br />
+                <b class="sp-udonge">Udonge</b>: Hey!<br />
+                <b class="sp-marine">Marine</b>: That lady... Can it be!?<br />
+                <b class="sp-marine">Marine</b>: Alice Margatroid!<br />
+                <b class="sp-alice">Alice</b>: Hmm? Me?<br />
+                <br />
+                <i>Chapter 02</i><br />
+                <i>- This Way to the Regular Three-Witch Meeting -</i><br />
+                <br />
+                <b class="sp-marine">Marine</b>: Yeah, I didn't know what I was gonna do for a while there, but if Alice
+                is here, then I can relax.<br />
+                <b class="sp-alice">Alice</b>: Really? I'm so glad.<br />
+                <b class="sp-alice">Alice</b>: Well, I certainly never expected to pick up a burden like this at
+                afternoon tea time.<br />
+                <b class="sp-marine">Marine</b>: Please don't call me a burden.<br />
+                <b class="sp-marine">Marine</b>: But you really helped me out by picking me up.<br />
+                <b class="sp-marine">Marine</b>: Are you always at that cafe? So you're a city girl, really?<br />
+                <b class="sp-alice">Alice</b>: That kind of information made it through to your world?<br />
+                <b class="sp-marine">Marine</b>: Of course, we know it all!<br />
+                <b class="sp-marine">Marine</b>: I got into Touhou with Perfect Cherry Blossom...<br />
+                <b class="sp-alice">Alice</b>: What... are you talking about?<br />
+                <b class="sp-marine">Marine</b>: Ah, so the titles mean nothing to you...<br />
+                <b class="sp-marine">Marine</b>: Um... Never mind, I just love everyone from Gensokyo!<br />
+                <b class="sp-marine">Marine</b>: So no worries on that front. Yup.<br />
+                <b class="sp-alice">Alice</b>: Oh, really? Well, okay...<br />
+                <b class="sp-alice">Alice</b>: Okay, we're here.<br />
+                <b class="sp-marine">Marine</b>: Huh? This is...<br />
+                <br />
+                <b class="sp-alice">Alice</b>: Marisa? I'm coming in.<br />
+                <b class="sp-marisa">Marisa</b>: Alright!<br />
+                <b class="sp-marisa">Marisa</b>: Welcome! Oh, it's you, Alice. Well, take your time and...<br />
+                <b class="sp-patchouli">Patchouli</b>: Oh. How unexpected.<br />
+                <b class="sp-alice">Alice</b>: Patchouli? I could say the same for you.<br />
+                <b class="sp-alice">Alice</b>: Meeting in a dusty place like this...<br />
+                <b class="sp-patchouli">Patchouli</b>: I can't deny it.<br />
+                <b class="sp-patchouli">Patchouli</b>: I only come here when I have...<br />
+                <b class="sp-marisa">Marisa</b>: Honestly, squabbling right after meeting. Are you guys friends or
+                not?<br />
+                <b class="sp-alice">Alice</b>, <b class="sp-patchouli">Patchouli</b>: Huh? Friends?<br />
+                <b class="sp-marisa">Marisa</b>: By the way, who is that girl behind you? A human?<br />
+                <b class="sp-marisa">Marisa</b>: She sure is dressed weird.<br />
+                <b class="sp-marine">Marine</b>: Can I have this?<br />
+                <b class="sp-marisa">Marisa</b>: Hey, hey. I don't know who you are, but only thieves carry off other
+                people's stuff without permission.<br />
+                <b class="sp-alice">Alice</b>, <b class="sp-patchouli">Patchouli</b>: She's one to talk.<br />
+                <br />
+                <b class="sp-marine">Marine</b>: Ahoy! Hololive 3rd Generation, Captain of the Houshou Pirates, Houshou
+                Marine here!<br />
+                <b class="sp-alice">Alice</b>: Or, to get to the point, it seems she's kind of a weird castaway.<br />
+                <b class="sp-marisa">Marisa</b>: Huh, that's interesting!<br />
+                <b class="sp-marisa">Marisa</b>: So you took charge of her from Udonge, and brought her here?<br />
+                <b class="sp-alice">Alice</b>: This kind of special problem is sort of your territory, right?<br />
+                <b class="sp-marisa">Marisa</b>: Hmm. There's certainly truth to that.<br />
+                <b class="sp-marine">Marine</b>: When I first came to, I was in a bamboo forest, and I was so worried at
+                first, but Udonge and Alice have been so kind, and on top of that I got to meet the three witches, and I
+                just feel so moved. I'm so grateful.<br />
+                <b class="sp-marine">Marine</b>: Plus we have similar names. It's so nice to meet you.<br />
+                <b class="sp-marisa">Marisa</b>: Hmm... Being known before I even introduce myself makes mee feel a
+                little embarrassed.<br />
+                <b class="sp-marisa">Marisa</b>: Well whatever. Nice to meet you!<br />
+                <b class="sp-marine">Marine</b>: I'm so glad you're friendly!<br />
+                <b class="sp-patchouli">Patchouli</b>: Say, how much do you know about Gensokyo?<br />
+                <b class="sp-marine">Marine</b>: How much? Hmm...<br />
+                <b class="sp-marine">Marine</b>: Well, rather than Gensokyo, if we're talking about Touhou...<br />
+                <b class="sp-marine">Marine</b>: Let's see... The songs, the characters, the bullet hell games, the
+                spell cards...<br />
+                <b class="sp-marine">Marine</b>: There's just so much!<br />
+                <b class="sp-marisa">Marisa</b>: Songs? What's that about?<br />
+                <b class="sp-patchouli">Patchouli</b>: Bullet hell games and spell cards... Oh-ho...<br />
+                <b class="sp-alice">Alice</b>: By characters, do you mean personalities?<br />
+                <b class="sp-alice">Alice</b>: Everyone around mee is a pain in the ass.<br />
+                <b class="sp-marisa">Marisa</b>: It's not personality thing, but... Do you know this?<br />
+                <b class="sp-marisa">Marisa</b>: Despite Alice's appearance, she often oversleeps...<br />
+                <b class="sp-alice">Alice</b>: Could you not bring that up? I already apologized...<br />
+                <b class="sp-marisa">Marisa</b>: Such important business, and you show up 2 hours late...<br />
+                <b class="sp-alice">Alice</b>: Lalala~! I can't hear you~!<br />
+                <b class="sp-patchouli">Patchouli</b>: <i>(Hmm. Those two aren't thinking it through, but this is
+                    interesting. But more than that...)</i><br />
+                <b class="sp-patchouli">Patchouli</b>: By the way. What are you planning to do now?<br />
+                <b class="sp-patchouli">Patchouli</b>: If you came from outside, you have no family here.<br />
+                <b class="sp-marine">Marine</b>: Oh, you're right! I got so excited to meet you all, but... is there a
+                way for me to return to my own world?<br />
+                <b class="sp-marisa">Marisa</b>: That's the main issue, isn't it.<br />
+                <b class="sp-patchouli">Patchouli</b>: For this kind of thing... Reimu or Yukari would be the best
+                people to ask.<br />
+                <b class="sp-marisa">Marisa</b>: For the moment, shall we let Reimu take care of it? It shouldn't be
+                dangerous.<br />
+                <b class="sp-marine">Marine</b>: Reimu!? I get to meet Reimu!? Reimu's really here?<br />
+                <b class="sp-marisa">Marisa</b>: Well, she's here in this world.<br />
+                <b class="sp-marisa">Marisa</b>: But the shrine would be far to go on foot, so how about I go get
+                her?<br />
+                <b class="sp-marisa">Marisa</b>: Until then. Hmm... Where should we...<br />
+                <b class="sp-alice">Alice</b>: We could use my house. But even if she's protected by magic, I would feel
+                awkward leaving her so long in a magical forest.<br />
+                <b class="sp-alice">Alice</b>: Hmm...<br />
+                <b class="sp-patchouli">Patchouli</b>: In that case, I'll take her.<br />
+                <b class="sp-patchouli">Patchouli</b>: I'll get permission.<br />
+                <b class="sp-alice">Alice</b>, <b class="sp-marisa">Marisa</b>: Huh?<br />
+                <b class="sp-marine">Marine</b>: You mean... Scarlet Devil Mansion!?<br />
+                <b class="sp-patchouli">Patchouli</b>: Yes. You know it, right?<br />
+                <b class="sp-marine">Marine</b>: O-o-o-of course! I met you so many times on the extra stage of Scarlet
+                Devil Mansion! That bit where...<br />
+                <b class="sp-alice">Alice</b>: Is this okay? She won't get nabbed and eaten?<br />
+                <b class="sp-marisa">Marisa</b>: <b>-</b> That's possible...<br />
+                <b class="sp-marine">Marine</b>: <b>-</b> I'm scared! I don't want to lose a life!<br />
+                <b class="sp-patchouli">Patchouli</b>: We wouldn't do anything so conspicuous.<br />
+                <b class="sp-patchouli">Patchouli</b>: Don't treat us like a low-level youkai.<br />
+                <b class="sp-alice">Alice</b>: I suppose you're right. Then, I guess we can leave it to you?<br />
+                <b class="sp-patchouli">Patchouli</b>: Of course.<br />
+                <b class="sp-patchouli">Patchouli</b>: Well then, my dear. How about we have a nice long chat back at my
+                place?<br />
+                <b class="sp-marine">Marine</b>: Huh!? "My dear"!?<br />
+                <b class="sp-marine">Marine</b>: For a moment, Patchouli became my wife...<br />
+                <b class="sp-patchouli">Patchouli</b>: Are you okay?<br />
+                <b class="sp-marine">Marine</b>: I don't know!<br />
+                <b class="sp-marisa">Marisa</b>: Then everything's sorted!<br />
+                <b class="sp-marisa">Marisa</b>: I'll go to the shrine. Alice will go... somewhere.<br />
+                <b class="sp-marisa">Marisa</b>: PatchouMari will go sightseeing.<br />
+                <b class="sp-marine">Marine</b>: Sightseeing! Yes! I really want to do some Gensokyo sightseeing!<br />
+                <b class="sp-alice">Alice</b>: She seems to be enjoying herself.<br />
+                <b class="sp-alice">Alice</b>: Well, I won't stop her if she's happy.<br />
+                <b class="sp-marisa">Marisa</b>: Marine, you'll be shocked when you see the real thing.<br />
+                <b class="sp-marisa">Marisa</b>: It looks so out of place. It's one of Gensokyo's disappointing tourist
+                spots!<br />
+                <b class="sp-marine">Marine</b>: I wanna see it more and more! I can't wait!<br />
+                <b class="sp-patchouli">Patchouli</b>: What a way to speak about someone's home.<br />
+                <b class="sp-marine">Marine</b>: Okay! If that's settled, time to set sail for some Gensokyo
+                sightseeing!<br />
+                <br />
+                <i>End of Chapter 02</i>
             </p>
         </div>
     </div>
+
+
 
 </body>
 
