@@ -21,9 +21,9 @@
     <meta content="#bd1934" name="theme-color" />
     <link href="https://blog.n4o.xyz/holoism/track08" rel="canonical" />
     <meta content="https://blog.n4o.xyz/assets/img/holoism_cover.jpg" property="og:image" />
-    <meta property="og:image:width" content="1600" />
-    <meta property="og:image:height" content="1600" />
-    <meta property="og:image:alt" content="#GensokyoHoloism" />
+    <meta content="1600" property="og:image:width" />
+    <meta content="1600" property="og:image:height" />
+    <meta content="#GensokyoHoloism" property="og:image:alt" />
 
     <!-- Favicons -->
     <link href="/assets/ico/favicon.png" rel="shortcut icon" type="image/png" />
@@ -103,45 +103,279 @@
             margin-top: 10px;
         }
 
+        .sp-marine {
+            color: #b91111;
+        }
+
+        .sp-tewi {
+            color: #75adfb;
+        }
+
+        .sp-udonge {
+            color: #944488;
+        }
+
+        .sp-alice {
+            color: #CF7BFD;
+        }
+
+        .sp-patchouli {
+            color: #378883;
+        }
+
+        .sp-marisa {
+            color: #828282;
+        }
+
+        .sp-cirno {
+            color: #62C1FE;
+        }
+
+        .sp-remilia {
+            color: #A981CE;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #3a3a3a;
+                color: #e8e8e8;
+            }
+
+            hr {
+                border-color: rgb(255 255 255 / 10%);
+            }
+
+            .text-muted {
+                color: #93999e !important;
+            }
+
+            .alert-warning {
+                color: #483809;
+                background-color: #d6c282;
+                border-color: #736741;
+            }
+
+            .card {
+                background-color: #212121;
+            }
+        }
     </style>
 </head>
 
 <body class="p-2">
     <div class="container py-3 my-2">
         <h1 class="pb-3">Episode 03 - Drama CD</h1>
-        <hr>
-        <nav class="text-center">
-            <a href="/holoism/track07" class="mx-3"><i class="fa fa-chevron-left" aria-hidden="true"></i> Previous</a>
-            <a href="/holoism" class="mx-3"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-            <a href="/holoism/track09" class="mx-3">Next <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+        <hr />
+        <nav class="text-center" id="song-nav">
+            <a class="mx-3" href="/holoism/track07"><i aria-hidden="true" class="fa fa-chevron-left"></i> Previous</a>
+            <a class="mx-3" href="/holoism"><i aria-hidden="true" class="fa fa-home"></i> Home</a>
+            <a class="mx-3" href="/holoism/track9">Next <i aria-hidden="true" class="fa fa-chevron-right"></i></a>
         </nav>
-        <hr>
+        <hr />
         <div class="card mr-auto" id="info-box" style="width: 24rem;">
             <img alt="Cover art" class="card-img-top"
                 src="https://img.dlsite.jp/modpub/images2/work/doujin/RJ292000/RJ291344_img_main.jpg" />
             <div class="card-body mr-auto">
                 <h5 class="card-title">Gensokyo Gakkari Meisho Kankou!!</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Gensokyo's disappointing sightseeing spot!!</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Gensokyo's Disappointing Tourist Spots!!</h6>
                 <p class="card-text">
-                    <b>Houshou Marine</b> (CV. Houshou Marine)<br>
-                    <b>Cirno</b> (CV. Natsuiro Matsuri)<br>
-                    <b>Patchouli Knowledge</b> (CV. Uruha Rushia)<br>
-                    <b>Remilia Scarlet</b> (CV. Minato Aqua)<br>
+                    <b>Houshou Marine</b> (CV. Houshou Marine)<br />
+                    <b>Cirno</b> (CV. Natsuiro Matsuri)<br />
+                    <b>Patchouli Knowledge</b> (CV. Uruha Rushia)<br />
+                    <b>Remilia Scarlet</b> (CV. Minato Aqua)<br />
                     <b>Kirisame Marisa</b> (CV. Shirakami Fubuki)
                 </p>
                 <a class="card-link" href="http://cool-create.cc/cd/cccd60/">Buy</a>
             </div>
         </div>
-        <div class="mt-3">
+        <div class="mt-3" id="synopsis">
             <h4>Synopsis</h4>
-            <hr>
-            <p>外の世界に戻ろうにも手段がないし、せっかくだから観光に行きたい！と言い出したマリン。<br>
-                湖を根城にするチルノに観光ガイド役を務めてもらうのだが、<br>
-                地味ぃ～な様子の湖や、赤いだけで見かけはそんなに大きくない紅魔館と、幻想郷ガッカリ名所にガッカリするマリン。<br>
+            <hr />
+            <p id="jp-synopsis">
+                外の世界に戻ろうにも手段がないし、せっかくだから観光に行きたい！と言い出したマリン。<br />
+                湖を根城にするチルノに観光ガイド役を務めてもらうのだが、<br />
+                地味ぃ～な様子の湖や、赤いだけで見かけはそんなに大きくない紅魔館と、幻想郷ガッカリ名所にガッカリするマリン。<br />
                 だが、そこでついにレミリアと対面。またもやぶち上がるマリンだったが…。
+            </p>
+            <hr />
+            <p id="en-synopsis">
+                With no leads on how to get back to her own world, Marine decides she wants to go sightseeing.<br />
+                Cirno, who lives by a lake, acts as her tour guide, but the dull lake and the just plain red<br />
+                Scarlet Devil Mansion turn out to be overhyped and ultimately disappointing tourist spots.<br />
+                However, she happens to meet Remilia and starts to get carried away again...
+            </p>
+        </div>
+        <div class="mt-3" id="tl-transcript">
+            <h4>Translation</h4>
+            <hr />
+            <div class="alert alert-warning" id="disclaimer-box" role="alert">
+                <h4 class="alert-heading text-center">Disclaimer</h4>
+                <p class="text-center">
+                    Translation are transcribed from <a
+                        href="https://www.dlsite.com/eng/work/=/product_id/RE295773.html">DLsite</a> English version
+                    video.<br />
+                    If there's any mistype, I'm sorry in advance since I'm manually writing the subtitle from the
+                    video.<br />
+                    There might be some slight difference, but 99% of the text here are transcribed from the
+                    video.<br />
+                    Lastly, anything that starts with a <code>`-` (dash)</code>, means multiple speakers are talking
+                    together.
+                </p>
+            </div>
+            <p id="transcript">
+                <b class="sp-cirno">Cirno</b>: That's right! I'm Gensokyo's most powerful fairy, Cirno!<br />
+                <b class="sp-marine">Marine</b>: Ammazing! To think I would one day get to meet the famous Cirno on the
+                roadside!<br />
+                <b class="sp-marine">Marine</b>: You never know what to expect when you're a captain!<br />
+                <b class="sp-patchouli">Patchouli</b>: Is this fairy really that popular in your world?<br />
+                <b class="sp-marine">Marine</b>: Cirno's a super popular character! Even kids know about her! Idiot!
+                Idiot!<br />
+                <b class="sp-cirno">Cirno</b>: Idiot? Are you calling me an Idiot?<br />
+                <b class="sp-marine">Marine</b>: Ah, no, not at all. I was singing!<br />
+                <b class="sp-marine">Marine</b>: <i>♫ A sparkling diamonds! ♫</i><br />
+                <b class="sp-cirno">Cirno</b>: She said I was sparkling! Like an Idol!<br />
+                <b class="sp-patchouli">Patchouli</b>: Indeed. Well I'm glad it was you we bumped into.<br />
+                <b class="sp-patchouli">Patchouli</b>: Hey, fairy. This human is a guest of Scarlet Devil Mansion.<br />
+                <b class="sp-patchouli">Patchouli</b>: She says she wants to do some sightseeeing.<br />
+                <b class="sp-cirno">Cirno</b>: You mean she wants to have fun around here? The Misty Lake?<br />
+                <b class="sp-patchouli">Patchouli</b>: Yes, and to be her guide, a local like you would be the best
+                choice, right?<br />
+                <b class="sp-cirno">Cirno</b>: Of course! I'm the best!<br />
+                <b class="sp-marine">Marine</b>: Huh? What about you, Patche? You're not coming?<br />
+                <b class="sp-marine">Marine</b>: You're neglecting me? Is this neglect play?<br />
+                <b class="sp-patchouli">Patchouli</b>: I'll come back later.<br />
+                <b class="sp-patchouli">Patchouli</b>: So, go and play like a good girl.<br />
+                <b class="sp-marine">Marine</b>: Yes, mommy!<br />
+                <br />
+                <i>Chapter 03</i><br />
+                <i>- Gensokyo's Disappointing Tourist Spots -</i><br />
+                <br />
+                <b class="sp-cirno">Cirno</b>: Tada! This is Misty Lake's hottest spot!<br />
+                <b class="sp-cirno">Cirno</b>: This is... the snow hut where I live!<br />
+                <b class="sp-marine">Marine</b>: Snow huts are nice and all, but is there somewhere to rest like a
+                bench, or...<br />
+                <b class="sp-cirno">Cirno</b>: A bench?<br />
+                <b class="sp-cirno">Cirno</b>: What's up with you? Are you tired? If you want to sit, then just
+                sit!<br />
+                <b class="sp-marine">Marine</b>: But the ground here hasn't been leveled or anything. It's just rough
+                terrain.<br />
+                <b class="sp-marine">Marine</b>: It's hard just getting about. Talk about disappointing tourist
+                spots...<br />
+                <b class="sp-cirno">Cirno</b>: Hey! Are you dissatisfied in some way with my perfect tourist
+                ambassadorship?<br />
+                <b class="sp-marine">Marine</b>: Dissatisfied? Well... There's also this mist which makes it hard to see
+                anything.<br />
+                <b class="sp-cirno">Cirno</b>: It's the Misty Lake. What were you expecting?<br />
+                <b class="sp-cirno">Cirno</b>: Are you an idiot? An idiot?<br />
+                <b class="sp-marine">Marine</b>: To be called an idiot by Cirno of all people...<br />
+                <b class="sp-marine">Marine</b>: I think I'll take a look around to cheer up.<br />
+                <b class="sp-cirno">Cirno</b>: Hehe! It's too early to get tired!<br />
+                <b class="sp-cirno">Cirno</b>: Our next hot spot is that crag you can see over there! You see...<br />
+                <b class="sp-marine">Marine</b>: Yes?<br />
+                <b class="sp-cirno">Cirno</b>: Before, there was a huge frog there!<br />
+                <b class="sp-marine">Marine</b>: Oh... Oh... How rural.<br />
+                <b class="sp-cirno">Cirno</b>: He's here today too! Look, over there!<br />
+                <b class="sp-marine">Marine</b>: This is kinda like having to follow your little cousin around as he
+                shows you his favorite spots near his house.<br />
+                <b class="sp-cirno">Cirno</b>: Huh? What? I don't get it.<br />
+                <b class="sp-cirno">Cirno</b>: Alright! Next is this way!<br />
+                <b class="sp-marine">Marine</b>: She really doesn't get it...<br />
+                <b class="sp-cirno">Cirno</b>: Huh? Look! The frail one is back!<br />
+                <b class="sp-marine">Marine</b>: Ah! Patche! I'm so glad you're back!<br />
+                <b class="sp-patchouli">Patchouli</b>: Sorry for the delay. Making progress with your
+                sightseeeing?<br />
+                <b class="sp-cirno">Cirno</b>: Of course!<br />
+                <b class="sp-marine">Marine</b>: Um... Somewhat.<br />
+                <b class="sp-patchouli">Patchouli</b>: Well. I have a tourist spot waiting in reserve for any
+                tourists.<br />
+                <b class="sp-marine">Marine</b>: A tourist spot... in reserve?<br />
+                <b class="sp-patchouli">Patchouli</b>: I spoke to Remi. She's waiting for you at the mansion.<br />
+                <br />
+                <br />
+                <b class="sp-remilia">Remilia</b>: I've been waiting for you, Houshou Marine, Captain of the Houshou
+                Pirates.<br />
+                <b class="sp-remilia">Remilia</b>: I am the mistress of the mansion, Remilia Scarlet.<br />
+                <b class="sp-marine">Marine</b>: Oh! Mistress Remilia!? It really is Mistress Remilia! How
+                wonderful!<br />
+                <b class="sp-marine">Marine</b>: I'm really so very glad that I could meet...<br />
+                <b class="sp-cirno">Cirno</b>: I'm Gensokyo's Tourism Ambassador, Cirno!<br />
+                <b class="sp-remilia">Remilia</b>: I don't remember inviting you. Why are you here?<br />
+                <b class="sp-cirno">Cirno</b>: I was showing her around first! She's my prey!<br />
+                <b class="sp-remilia">Remilia</b>: She's not a prey. She's a guest of Scarlet Devil Mansion. Got
+                that?<br />
+                <b class="sp-cirno">Cirno</b>: If we're guests, then at least bring us some tea. I'm thirsty!<br />
+                <b class="sp-remilia">Remilia</b>: Do I look like a maid to you?<br />
+                <b class="sp-marine">Marine</b>: Um... Well, no reason to get so heated.<br />
+                <b class="sp-remilia">Remilia</b>: Ahh... Anyway I heard your story from Patche.<br />
+                <b class="sp-remilia">Remilia</b>: To speak painly, you are of deep interest of me.<br />
+                <b class="sp-marine">Marine</b>: Okay! Uh... Deep interest? You mean...<br />
+                <b class="sp-marine">Marine</b>: Mistress Remilia, are you the type who watches my streams?<br />
+                <b class="sp-remilia">Remilia</b>: Streams? Hmm... Some kind of culture from the outside world?<br />
+                <b class="sp-marine">Marine</b>: Of course... There's no YouTube in Gensokyo...<br />
+                <b class="sp-marine">Marine</b>: Well, to explain streaming...<br />
+                <b class="sp-remilia">Remilia</b>: Yes, it's interesting... Despite you living out there, you know about
+                the people and goings-on of Gensokyo to this extent.<br />
+                <b class="sp-marine">Marine</b>: Yes, that's right! I mean, I love Touhou!<br />
+                <b class="sp-marine">Marine</b>: I even streamed Embodiment of Scarlet Devil!<br />
+                <b class="sp-marine">Marine</b>: I beat Flan, too!<br />
+                <b class="sp-remilia">Remilia</b>: Huh? Flan...?<br />
+                <b class="sp-marine">Marine</b>: Ah, sorry! I'm talking about a game. I prefer the original games.<br />
+                <b class="sp-cirno">Cirno</b>: What is she talking about? I don't get it at all.<br />
+                <b class="sp-marine">Marine</b>: I was just talking about how I know so much about Gensokyo.<br />
+                <b class="sp-marine">Marine</b>: As far as Embodiment— or rather, the mansion is concerned, I like
+                Sakuya and Flan, and I like Futo from "Ten Desires", and I've played all the games.<br />
+                <b class="sp-marine">Marine</b>: I know everything there is to know about Touhou!<br />
+                <b class="sp-remilia">Remilia</b>: Yes, you are well informed about Flan and things outside of the
+                mansion.<br />
+                <b class="sp-remilia">Remilia</b>: Even in Gensokyo, the number of humans who know that much about us is
+                rather limited.<br />
+                <b class="sp-marine">Marine</b>: Ah... I'm acting like an online stalker again...<br />
+                <b class="sp-marine">Marine</b>: Sorry. I'm really not a weirdo or anything.<br />
+                <b class="sp-remilia">Remilia</b>: Yes, just as I thought. This is deeply unsettling.<br />
+                <b class="sp-marine">Marine</b>: Huh? N-no... Really, I'm not creepy at all...<br />
+                <b class="sp-patchouli">Patchouli</b>: Dear me. And I was looking forward to hearing your thoughts,
+                Remi.<br />
+                <b class="sp-patchouli">Patchouli</b>: There aren't many research specimens like this one. Please don't
+                break it.<br />
+                <b class="sp-remilia">Remilia</b>: Heh, who do you think you're talking to?<br />
+                <b class="sp-marine">Marine</b>: C-Can it be, that you did this to capture me...!?<br />
+                <b class="sp-marine">Marine</b>: Cirno, please speak up for me!<br />
+                <b class="sp-cirno">Cirno</b>: Y-Y-You were a creep all this time!?<br />
+                <b class="sp-marine">Marine</b>: Idiot! I just said I wasn't!<br />
+                <b class="sp-cirno">Cirno</b>: What are you going to do, Remilia? Capture her?<br />
+                <b class="sp-marine">Marine</b>: You're not going to help me!? Why did you even come?<br />
+                <b class="sp-remilia">Remilia</b>: Good idea. A creep with that kind of knowledge can't be allowed to
+                roam free near the mansion.<br />
+                <b class="sp-patchouli">Patchouli</b>: Now, now. No violence, okay?<br />
+                <b class="sp-marine">Marine</b>: Heeey! Ah, well... I need to go back home to stream, so it's about time
+                I set sail...<br />
+                <b class="sp-remilia">Remilia</b>: Your departure is cancelled.<br />
+                <b class="sp-remilia">Remilia</b>: I won't feel calm until you've spilled your guts on everything you
+                know.<br />
+                <b class="sp-marine">Marine</b>: I'm done for! Help me!<br />
+                <br />
+                <b class="sp-remilia">Remilia</b>: Wh-What!? That's... Marisa!?<br />
+                <b class="sp-marine">Marine</b>: Aha! Marisa! Hey! Oof!<br />
+                <b class="sp-marisa">Marisa</b>: Sorry to barge in on your scheming! I'm borrowing this human for a
+                bit.<br />
+                <b class="sp-remilia">Remilia</b>: This human thief—! Wait!<br />
+                <b class="sp-marisa">Marisa</b>: I'm glad I anticipated this eventuality and interrupted. Alright! We're
+                escaping!<br />
+                <b class="sp-marine">Marine</b>: Marisa! I should've known I could only rely on the protagonist
+                team.<br />
+                <b class="sp-marine">Marine</b>: <b>-</b> Next time, I'll be sure to play as you, too!<br />
+                <b class="sp-marisa">Marisa</b>: <b>-</b> Be quiet before you bite your tongue!<br />
+                <b class="sp-marisa">Marisa</b>: I'm going to zip you to the shrine.<br />
+                <b class="sp-marine">Marine</b>: Huh? The shrine?<br />
+                <b class="sp-marisa">Marisa</b>: Things are bad. For you, and for Reimu.<br />
+                <b class="sp-marine">Marine</b>: Reimu?<br />
+                <br />
+                <i>End of Chapter 03</i>
             </p>
         </div>
     </div>
+
+
 
 </body>
 

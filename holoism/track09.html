@@ -21,9 +21,9 @@
     <meta content="#bd1934" name="theme-color" />
     <link href="https://blog.n4o.xyz/holoism/track09" rel="canonical" />
     <meta content="https://blog.n4o.xyz/assets/img/holoism_cover.jpg" property="og:image" />
-    <meta property="og:image:width" content="1600" />
-    <meta property="og:image:height" content="1600" />
-    <meta property="og:image:alt" content="#GensokyoHoloism" />
+    <meta content="1600" property="og:image:width" />
+    <meta content="1600" property="og:image:height" />
+    <meta content="#GensokyoHoloism" property="og:image:alt" />
 
     <!-- Favicons -->
     <link href="/assets/ico/favicon.png" rel="shortcut icon" type="image/png" />
@@ -103,48 +103,354 @@
             margin-top: 10px;
         }
 
+        .sp-marine {
+            color: #b91111;
+        }
+
+        .sp-tewi {
+            color: #75adfb;
+        }
+
+        .sp-udonge {
+            color: #944488;
+        }
+
+        .sp-alice {
+            color: #CF7BFD;
+        }
+
+        .sp-patchouli {
+            color: #378883;
+        }
+
+        .sp-marisa {
+            color: #828282;
+        }
+
+        .sp-cirno {
+            color: #62C1FE;
+        }
+
+        .sp-remilia {
+            color: #A981CE;
+        }
+
+        .sp-yukari {
+            color: #E5AE3D;
+        }
+
+        .sp-yuyuko {
+            color: #ABB3CC;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #3a3a3a;
+                color: #e8e8e8;
+            }
+
+            hr {
+                border-color: rgb(255 255 255 / 10%);
+            }
+
+            .text-muted {
+                color: #93999e !important;
+            }
+
+            .alert-warning {
+                color: #483809;
+                background-color: #d6c282;
+                border-color: #736741;
+            }
+
+            .card {
+                background-color: #212121;
+            }
+        }
     </style>
 </head>
 
 <body class="p-2">
     <div class="container py-3 my-2">
         <h1 class="pb-3">Episode 04 - Drama CD</h1>
-        <hr>
-        <nav class="text-center">
-            <a href="/holoism/track08" class="mx-3"><i class="fa fa-chevron-left" aria-hidden="true"></i> Previous</a>
-            <a href="/holoism" class="mx-3"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
-            <a href="/holoism/track10" class="mx-3">Next <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+        <hr />
+        <nav class="text-center" id="song-nav">
+            <a class="mx-3" href="/holoism/track08"><i aria-hidden="true" class="fa fa-chevron-left"></i> Previous</a>
+            <a class="mx-3" href="/holoism"><i aria-hidden="true" class="fa fa-home"></i> Home</a>
+            <a class="mx-3" href="/holoism/track10">Next <i aria-hidden="true" class="fa fa-chevron-right"></i></a>
         </nav>
-        <hr>
+        <hr />
         <div class="card mr-auto" id="info-box" style="width: 24rem;">
             <img alt="Cover art" class="card-img-top"
                 src="https://img.dlsite.jp/modpub/images2/work/doujin/RJ292000/RJ291344_img_main.jpg" />
             <div class="card-body mr-auto">
                 <h5 class="card-title">Shuku, Gensokyo Tokusetsu Haishin Room Yori Hatsu Haishin!</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Celebration. First livestream from Gensokyo's special
-                    streaming studio!</h6>
+                <h6 class="card-subtitle mb-2 text-muted">Celebration! First Broadcast from Gensokyo's New Streaming
+                    Room!</h6>
                 <p class="card-text">
-                    <b>Houshou Marine</b> (CV. Houshou Marine)<br>
-                    <b>Saigyouji Yuyuko</b> (CV. Shirogane Noel)<br>
-                    <b>Yakumo Yukari</b> (CV. Shiranui Flare)<br>
-                    <b>Yakumo Ran</b> (CV. Shirakami Fubuki)<br>
+                    <b>Houshou Marine</b> (CV. Houshou Marine)<br />
+                    <b>Saigyouji Yuyuko</b> (CV. Shirogane Noel)<br />
+                    <b>Yakumo Yukari</b> (CV. Shiranui Flare)<br />
+                    <b>Yakumo Ran</b> (CV. Shirakami Fubuki)<br />
                     <b>Kirisame Marisa</b> (CV. Shirakami Fubuki)
                 </p>
                 <a class="card-link" href="http://cool-create.cc/cd/cccd60/">Buy</a>
             </div>
         </div>
-        <div class="mt-3">
+        <div class="mt-3" id="synopsis">
             <h4>Synopsis</h4>
-            <hr>
-            <p>魔理沙に連れられ、博麗神社に向かうマリン。そこには幻想郷の異常を察知した紫と幽々子がいた。<br>
-                紫によれば、マリンの転移は超えてはならない境界を超える、ごくイレギュラーなもので、<br>
-                幻想郷にとって非常に危険なものだという。<br>
-                <br>
-                事態の正常化のため、紫が捻りだした方策は「来た時と同じ状況を作り、再現させる」こと。<br>
+            <hr />
+            <p id="jp-synopsis">
+                魔理沙に連れられ、博麗神社に向かうマリン。そこには幻想郷の異常を察知した紫と幽々子がいた。<br />
+                紫によれば、マリンの転移は超えてはならない境界を超える、ごくイレギュラーなもので、<br />
+                幻想郷にとって非常に危険なものだという。<br />
+                <br />
+                事態の正常化のため、紫が捻りだした方策は「来た時と同じ状況を作り、再現させる」こと。<br />
                 すなわち、幻想郷で「マリンが配信をしていたらトラックにはねられた」という状況を作ることだった。
+            </p>
+            <hr />
+            <p id="en-synopsis">
+                Taken to Hakurei Shrine by Marisa, Marisa encounters Yuyuko, who has sensed a disturbance in
+                Gensokyo.<br />
+                According to Yukari, Marine's transportation to Gensokyo involved the crossing of boundaries that should
+                never<br />
+                be crossed - a highly irregular occurence.<br />
+                It seems this spells grave danger for Gensokyo.<br />
+                <br />
+                To put things right, Yukari's plan it replicate the circumstances of Marine's transportation.<br />
+                In other words, she wants Marine to get hit by a truck while live streaming in Gensokyo.
+            </p>
+        </div>
+        <div class="mt-3" id="tl-transcript">
+            <h4>Translation</h4>
+            <hr />
+            <div class="alert alert-warning" id="disclaimer-box" role="alert">
+                <h4 class="alert-heading text-center">Disclaimer</h4>
+                <p class="text-center">
+                    Translation are transcribed from <a
+                        href="https://www.dlsite.com/eng/work/=/product_id/RE295773.html">DLsite</a> English version
+                    video.<br />
+                    If there's any mistype, I'm sorry in advance since I'm manually writing the subtitle from the
+                    video.<br />
+                    There might be some slight difference, but 99% of the text here are transcribed from the
+                    video.<br />
+                    Lastly, anything that starts with a <code>`-` (dash)</code>, means multiple speakers are talking
+                    together.
+                </p>
+            </div>
+            <p id="transcript">
+                <b class="sp-marine">Marine</b>: Ah... This is...<br />
+                <b class="sp-marine">Marine</b>: Suddenly I'm in a Japanese-style room.<br />
+                <b class="sp-marine">Marine</b>: What is this? I was at Scarlet Devil Mansion a minute ago.<br />
+                <b>???</b>: Ah, you're awake?<br />
+                <b>???</b>: This is Hakurei Shrine.<br />
+                <b class="sp-marine">Marine</b>: Was I drugged? Oh, wait...<br />
+                <b>???</b>: Yes, you came here with Marisa.<br />
+                <b>???</b>: It seems you were rather tired.<br />
+                <b>???</b>: Ah, I made tea, so please...<br />
+                <b class="sp-marine">Marine</b>: Ah, thank you so much.<br />
+                <br />
+                <b class="sp-marine">Marine</b>: Ah, it's so good.... Huh? This must be some top-notch tea.<br />
+                <b>???</b>: You can tell? The Yakumo family is very particular about tea.<br />
+                <b class="sp-marine">Marine</b>: The Yakumo family?<br />
+                <b class="sp-marine">Marine</b>: Ah, I see. I get it now.<br />
+                <b class="sp-marine">Marine</b>: Those fluffy cat ears.<br />
+                <b>???</b>: Not cat! Fox!!<br />
+                <b class="sp-marine">Marine</b>: Ah, that's right. You're Ran, aren't you?<br />
+                <b class="sp-marine">Marine</b>: Sorry, I was half asleep. I know who you are.<br />
+                <b class="sp-yuyuko">Yuyuko</b>: Oh, you're awake?<br />
+                <b class="sp-marine">Marine</b>: Ah! That pink bob hairstyle... Can it be...<br />
+                <b class="sp-yuyuko">Yuyuko</b>: Yes, I'm Saigyouji Yuyuko.<br />
+                <b class="sp-yuyuko">Yuyuko</b>: Just as Yukari said, you catch on quick. It's helpful.<br />
+                <b class="sp-marine">Marine</b>: Ahh... You're just as pretty in person.<br />
+                <b class="sp-marine">Marine</b>: Ah, no. This isn't the time to be fangirling.<br />
+                <b class="sp-marine">Marine</b>: Um... I think...<br />
+                <b class="sp-yuyuko">Yuyuko</b>: We've been waiting for you. Let's go together.<br />
+                <br />
+                <i>Chapter 04</i><br />
+                <i>- Celebration! First Broadcast from Gensokyo's New Streaming Room! -</i><br />
+                <br />
+                <b class="sp-yukari">Yukari</b>: Nice to meet you, Houshou Marine.<br />
+                <b class="sp-yukari">Yukari</b>: I wonder how you're finding Gensokyo.<br />
+                <b class="sp-marine">Marine</b>: Ahh! Mistress Yukari! Mistress Yukari!!<br />
+                <b class="sp-yukari">Yukari</b>: Um, are you okay?<br />
+                <b class="sp-marine">Marine</b>: Yes! Uh, sorry! Mistress Yukari is just so beautiful...<br />
+                <b class="sp-yuyuko">Yuyuko</b>: Hmm... It seems you're popular.<br />
+                <b class="sp-yukari">Yukari</b>: Let's move on.<br />
+                <b class="sp-yukari">Yukari</b>: As you know, I'm Yakumo Yukari. I manage the boundaries of
+                Gensokyo.<br />
+                <b class="sp-yukari">Yukari</b>: Through Marisa, I've heard about what has befallen you.<br />
+                <b class="sp-yukari">Yukari</b>: Such misfortune... I offer my sympathies.<br />
+                <b class="sp-marine">Marine</b>: Ah, no, really— I mean, I...<br />
+                <b class="sp-yukari">Yukari</b>: Your desire now is, perhaps, to find a way back to your world, am I
+                right?<br />
+                <b class="sp-marine">Marine</b>: Yes, it is! I...<br />
+                <b class="sp-yukari">Yukari</b>: Yes?<br />
+                <b class="sp-marine">Marine</b>: The thing is, now it's night, and dark outside.<br />
+                <b class="sp-marine">Marine</b>: I suddenly think about live streaming.<br />
+                <b class="sp-marine">Marine</b>: Gensokyo does seems like fun, if I don't get back, I think everyone
+                back home will be worried.<br />
+                <b class="sp-yuyuko">Yuyuko</b>: Indeed.<br />
+                <br />
+                <b class="sp-yukari">Yukari</b>: To skip to the conclusion, A method of returning you to your world is
+                beyond me.<br />
+                <b class="sp-marine">Marine</b>: Huh!?<br />
+                <b class="sp-yukari">Yukari</b>: From what I've heard from Marisa, what you call your own world is
+                different to what we in Gensokyo often refer to as the "Outside World".<br />
+                <b class="sp-yukari">Yukari</b>: That is my guess, at any rate.<br />
+                <b class="sp-marine">Marine</b>: Um... What does that mean?<br />
+                <b class="sp-yuyuko">Yuyuko</b>: This assumption is based on your knowledge of Gensokyo.<br />
+                <b class="sp-yuyuko">Yuyuko</b>: People from the Outside World are unable to look into Gensokyo as you
+                are.<br />
+                <b class="sp-yukari">Yukari</b>: Castaways and invaders from outside are not that uncommon in
+                Gensokyo.<br />
+                <b class="sp-yukari">Yukari</b>: But your case... To be frank, this matter involves interfering with
+                borders that shouldn't be messed with.<br />
+                <b class="sp-marine">Marine</b>: Uh... uhh...<br />
+                <b class="sp-yukari">Yukari</b>: I don't even know the cause.<br />
+                <b class="sp-yukari">Yukari</b>: One possibility is that your longing for Gensokyo was so extreme, your
+                will somehow affect reality.<br />
+                <b class="sp-yukari">Yukari</b>: Of course, that kind of thing is usually impossible.<br />
+                <b class="sp-marine">Marine</b>: Wh-What!?<br />
+                <b class="sp-marine">Marine</b>: You mean I can't go home!?<br />
+                <b class="sp-marine">Marine</b>: No! Gensokyo is nice and all, but this is awful!<br />
+                <b class="sp-yuyuko">Yuyuko</b>: Calm down, Marine.<br />
+                <b class="sp-yuyuko">Yuyuko</b>: In any case, it's necessary for Gensokyo too, that we try to return you
+                to your own world.<br />
+                <b class="sp-yukari">Yukari</b>: That's right. The truth is, strange things are happening noww in
+                Gensokyo.<br />
+                <b class="sp-marine">Marine</b>: Strange things? You mean like an accident?<br />
+                <b class="sp-yukari">Yukari</b>: Since you arrived in Gensokyo this morning, all sign of Reimu
+                disappeared from Gensokyo.<br />
+                <b class="sp-yukari">Yukari</b>: It's almost as if you swapped places...<br />
+                <b class="sp-yuyuko">Yuyuko</b>: The loss of the shrine maiden will have a major impact on Gensokyo's
+                survival.<br />
+                <b class="sp-yuyuko">Yuyuko</b>: This incident requires urgent attention.<br />
+                <b class="sp-marine">Marine</b>: E-Exactly! Huh? You mean...<br />
+                <b class="sp-yukari">Yukari</b>: As far as we know, you are the only one who has a potential causal
+                relationship to this incident.<br />
+                <b class="sp-yukari">Yukari</b>: I would like to explain in detail just what you were doing in your own
+                world.<br />
+                <b class="sp-marine">Marine</b>: Um... How do you mean?<br />
+                <b class="sp-yukari">Yukari</b>: This is my thinking: If we can replicate the circumstances that led you
+                here, you can return to your own world, and that which Gensokyo has lost, will be returned here.<br />
+                <b class="sp-yukari">Yukari</b>: Which means...<br />
+                <b class="sp-yuyuko">Yuyuko</b>: We want you to get hit by a truck while streaming from your room.<br />
+                <b class="sp-marine">Marine</b>: Huh!?<br />
+                <br />
+                <b class="sp-yuyuko">Yuyuko</b>: Does this look okay for your room, Marine?<br />
+                <b class="sp-yuyuko">Yuyuko</b>: I tried to make it as close to your description as possible,
+                but...<br />
+                <b class="sp-marine">Marine</b>: Wait wait wait...<br />
+                <b class="sp-marine">Marine</b>: This isn't so much a room as it is half a room, like a movie set.<br />
+                <b class="sp-marine">Marine</b>: The computer is just an empty box that's the same size.<br />
+                <b class="sp-yuyuko">Yuyuko</b>: It was a rush job, sorry.<br />
+                <b class="sp-yuyuko">Yuyuko</b>: And there's not much furniture.<br />
+                <b class="sp-marine">Marine</b>: That's not my point! Listen to me!<br />
+                <b class="sp-yukari">Yukari</b>: Marine, please look this way and try speaking.<br />
+                <b class="sp-marine">Marine</b>: Ehh... Ah~ Ah~<br />
+                <b class="sp-marine">Marine</b>: What is this? My voice is echoing. Is this a mic?<br />
+                <b class="sp-yukari">Yukari</b>: This is a spell that delivers your voice to every corner of
+                Gensokyo.<br />
+                <b class="sp-marine">Marine</b>: What are you doing!? You're really going to make me stream here?<br />
+                <b class="sp-yukari">Yukari</b>: I want to closely recreate the circumstances.<br />
+                <b class="sp-yukari">Yukari</b>: I'm counting on you.<br />
+                <b class="sp-marine">Marine</b>: Don't act like you know everything!<br />
+                <br />
+                <b class="sp-marisa">Marisa</b>: Hey, Marine! Sorry for the wait! I've got the truck ready!<br />
+                <b class="sp-marine">Marine</b>: For goodness sake...! This is the thing I was least waiting for.<br />
+                <b class="sp-marine">Marine</b>: How is this the only real thing here?<br />
+                <b class="sp-yukari">Yukari</b>: This is tonight's top prize.<br />
+                <b class="sp-yukari">Yukari</b>: We stole one from the Outside World.<br />
+                <b class="sp-marine">Marine</b>: Why did you do that!?<br />
+                <b class="sp-marine">Marine</b>: Uh, how do you plan to drive it!?<br />
+                <b class="sp-marisa">Marisa</b>: The truck will move through my magic.<br />
+                <b class="sp-marisa">Marisa</b>: After all, the engine is...<br />
+                <b class="sp-marine">Marine</b>: You're going to say "the engine is all about firepower", right?<br />
+                <b class="sp-marisa">Marisa</b>: Uh... Well...<br />
+                <b class="sp-marine">Marine</b>: Don't look like I stole your thunder! At least finish saying it!<br />
+                <b class="sp-yuyuko">Yuyuko</b>: Phew, Marine. With this, preparations are complete.<br />
+                <b class="sp-yuyuko">Yuyuko</b>: You are now free to stream.<br />
+                <b class="sp-yukari">Yukari</b>: We can't do it precisely, but it looks like we can start at about the
+                same time.<br />
+                <b class="sp-yukari">Yukari</b>: For now... Let's roll the dice on this chance.<br />
+                <b class="sp-marine">Marine</b>: Wait a second!!<br />
+                <b class="sp-marine">Marine</b>: Um... You see...<br />
+                <b class="sp-marine">Marine</b>: It's true that I said I was streaming at home, when a truck suddenly
+                crashed into me, and when I woke up I was in Gensokyo. But...<br />
+                <b class="sp-marine">Marine</b>: But if we re-enact that, have me stream from my room, then hit me with
+                a truck will I really be able to get back to my own world!?<br />
+                <b class="sp-marine">Marine</b>: Will Reimu really come back!?<br />
+                <b class="sp-marine">Marine</b>: Are you taking this seriously!?<br />
+                <b class="sp-yukari">Yukari</b>: It's a ridiculous set-up, I'll grant you.<br />
+                <b class="sp-marine">Marine</b>: So you agree!?<br />
+                <b class="sp-yukari">Yukari</b>: Unfortunately, there's not a lot we can try.<br />
+                <b class="sp-yukari">Yukari</b>: The truth behind this incident is rather unclear.<br />
+                <b class="sp-marine">Marine</b>: Ugh... I'm being pressured by that seductive androgynous voice.<br />
+                <b class="sp-yukari">Yukari</b>: We must bet on your luck and on destiny.<br />
+                <b class="sp-marine">Marine</b>: Ah...<br />
+                <b class="sp-yukari">Yukari</b>: Well?<br />
+                <b class="sp-marine">Marine</b>: O-Okay... I'll do my best.<br />
+                <b class="sp-yuyuko">Yuyuko</b>: Alright, it's about time to start. Please stand back. Alright.<br />
+                <b class="sp-marine">Marine</b>: One last thing... I don't really want to think about it, but if this
+                fails, what happens?<br />
+                <b class="sp-yukari">Yukari</b>: Then, of course, it would be Yuyuko's turn.<br />
+                <b class="sp-yuyuko">Yuyuko</b>: I'll take care of you once you're dead, okay?<br />
+                <b class="sp-yuyuko">Yuyuko</b>: I'll put in a good word for you on the other side.<br />
+                <b class="sp-marine">Marine</b>: No! This is too far removed from common sense! This is crazy!<br />
+                <br />
+                <b class="sp-marisa">Marisa</b>: Come now, there's no need to cry.<br />
+                <b class="sp-marine">Marine</b>: Huh?<br />
+                <b class="sp-marisa">Marisa</b>: In your world, your pirates are waiting for you, right?<br />
+                <b class="sp-marisa">Marisa</b>: This is a place where the forgotten wash up.<br />
+                <b class="sp-marisa">Marisa</b>: A popular girl like you with fans waiting for you can't stay here in
+                Gensokyo for long.<br />
+                <b class="sp-marine">Marine</b>: Marisa...<br />
+                <b class="sp-marisa">Marisa</b>: Besides, if you're lucky, you can come back some time!<br />
+                <b class="sp-marisa">Marisa</b>: So for now, it's time to go home, right?<br />
+                <b class="sp-marine">Marine</b>: You're right, okay...<br />
+                <b class="sp-marine">Marine</b>: Yes. Thank you.<br />
+                <b class="sp-marine">Marine</b>: If we succeed, Reimu might come back, too.<br />
+                <b class="sp-marine">Marine</b>: The future of Gensokyo depends on this live stream.<br />
+                <b class="sp-marine">Marine</b>: My beloved world of Touhou!<br />
+                <b class="sp-marine">Marine</b>: Got it! Let's do this!<br />
+                <br />
+                <b class="sp-yukari">Yukari</b>: It's time.<br />
+                <b class="sp-yukari">Yukari</b>: Right. Please begin.<br />
+                <b class="sp-marine">Marine</b>: Ah, okay.<br />
+                <b class="sp-marine">Marine</b>: Nothing else for it...<br />
+                <b class="sp-marine">Marine</b>: Alright... Time to put it all on the line.<br />
+                <br />
+                <b class="sp-marine">Marine</b>: <i>Testing... Can you hear me? Ahoy!</i><br />
+                <b class="sp-marine">Marine</b>: <i>This is Houshou Marine of the Houshou Pirates!</i><br />
+                <b class="sp-marine">Marine</b>: <i>Today, if you can believe it, I'm broadcasting from here in
+                    Gensokyo.</i><br />
+                <b class="sp-marine">Marine</b>: <i>Unfortunately, in a bit, I have to get hit by a truck.</i><br />
+                <b class="sp-marine">Marine</b>: <i>It's been crazy.</i><br />
+                <b class="sp-marine">Marine</b>: <i>Well... Yeah, today, seriously so much crazy stuff's
+                    happened.</i><br />
+                <b class="sp-marine">Marine</b>: <i>Well, even by saying I came to Gensokyo some people will think I'm
+                    lying.</i><br />
+                <b class="sp-marine">Marine</b>: <i>But it's true! It's for real!</i><br />
+                <b class="sp-marine">Marine</b>: <i>I got to meet my favorite Touhou characters for real...</i><br />
+                <b class="sp-marisa">Marisa</b>: Hahaha! She sounds like she's enjoying chatting.<br />
+                <b class="sp-yuyuko">Yuyuko</b>: A world where people can celebrate the things they love...<br />
+                <b class="sp-yuyuko">Yuyuko</b>: It might be that girl comes from such a world as that.<br />
+                <b class="sp-yukari">Yukari</b>: For Gensokyo to open a gateway for her, it must be a good place.<br />
+                <b class="sp-yukari">Yukari</b>: Well then. Marisa! Now's the time!<br />
+                <br />
+                <b class="sp-marisa">Marisa</b>: The Hakkero engine is in good shape!<br />
+                <b class="sp-marisa">Marisa</b>: Alright! Here I go!<br />
+                <b class="sp-marisa">Marisa</b>: Master Truck!<br />
+                <br />
+                <i>*Explosion*</i><br />
+                <br />
+                <i>End of Chapter 04</i>
             </p>
         </div>
     </div>
+
+
 
 </body>
 
