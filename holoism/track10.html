@@ -113,6 +113,55 @@
             color: #ef8a5a;
         }
 
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #3a3a3a;
+                color: #e8e8e8;
+            }
+
+            hr {
+                border-color: rgb(255 255 255 / 10%);
+            }
+
+            .text-muted {
+                color: #93999e!important;
+            }
+
+            .alert-warning {
+                color: #483809;
+                background-color: #d6c282;
+                border-color: #736741;
+            }
+
+            .alert-info {
+                color: #0b2e33;
+                background-color: #5ba3b1;
+                border-color: #1a7482;
+            }
+
+            .card {
+                background-color: #212121;
+            }
+
+            .table .thead-dark th {
+                color: #fff;
+                background-color: #474d54;
+                border-color: #5f5f5f;
+            }
+
+            .table td, .table th {
+                color: gainsboro;
+            }
+
+            #timeline {
+                background: rgb(255 255 255 / 30%);
+            }
+
+            #playhead {
+                background: white;
+            }
+        }
+
     </style>
 </head>
 
@@ -121,7 +170,7 @@
         <h1 class="pb-3">Over the Border Lyrics</h1>
         <hr />
         <nav class="text-center" id="song-nav">
-            <a class="mx-3" href="/holoism/track9"><i aria-hidden="true" class="fa fa-chevron-left"></i> Previous</a>
+            <a class="mx-3" href="/holoism/track09"><i aria-hidden="true" class="fa fa-chevron-left"></i> Previous</a>
             <a class="mx-3" href="/holoism"><i aria-hidden="true" class="fa fa-home"></i> Home</a>
             <a class="mx-3" href="/holoism/track11">Next <i aria-hidden="true" class="fa fa-chevron-right"></i></a>
         </nav>
@@ -141,7 +190,7 @@
                     <b>Source</b>: <a href="https://en.touhouwiki.net/wiki/Imperishable_Night">Touhou 08: Imperishable
                         Night</a>, <a href="https://en.touhouwiki.net/wiki/Perfect_Cherry_Blossom">Touhou 07: Perfect
                         Cherry Blossom</a>
-                    </br></br></br></p>
+                    </p>
                 <audio id="music" preload="true">
                     <source src="https://docs.google.com/uc?export=download&amp;id=1cLa7xG6PFYlietS9v5GdtFDIMBUknxER" />
                 </audio>

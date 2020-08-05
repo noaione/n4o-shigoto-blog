@@ -120,6 +120,59 @@
         .song-pekomiko {
             color: #ac94cc;
         }
+
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #3a3a3a;
+                color: #e8e8e8;
+            }
+
+            hr {
+                border-color: rgb(255 255 255 / 10%);
+            }
+
+            .text-muted {
+                color: #93999e!important;
+            }
+
+            .alert-warning {
+                color: #483809;
+                background-color: #d6c282;
+                border-color: #736741;
+            }
+
+            .alert-info {
+                color: #0b2e33;
+                background-color: #5ba3b1;
+                border-color: #1a7482;
+            }
+
+            .card {
+                background-color: #212121;
+            }
+
+            .table .thead-dark th {
+                color: #fff;
+                background-color: #474d54;
+                border-color: #5f5f5f;
+            }
+
+            .table td, .table th {
+                color: gainsboro;
+            }
+
+            #timeline {
+                background: rgb(255 255 255 / 30%);
+            }
+
+            #playhead {
+                background: white;
+            }
+
+            #song-ident {
+                background-color: #ffffffb8;
+            }
+        }
     </style>
 </head>
 
@@ -172,7 +225,7 @@
             <p class="text-center">
                 Old translation has been replaced with translation from <a href="https://www.dlsite.com/eng/work/=/product_id/RE295773.html">DLsite.</a>
             </p>
-            <p class="text-center">
+            <p class="text-center" id="song-ident">
                 <span class="song-marine">Marine</span>, <span class="song-peko">Pekora</span>, <span
                     class="song-miko">Miko</span>, <span class="song-pekomiko">Pekora & Miko</span>, All of them
             </p>
