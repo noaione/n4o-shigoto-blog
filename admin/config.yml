@@ -1,0 +1,139 @@
+# config.yml
+
+backend:
+  name: test-repo
+  branch: master # Branch to update (optional; defaults to master)
+media_folder: 'assets/uploads'
+collections:
+  - name: 'releasepost'
+    label: 'Release Post'
+    folder: '_posts/'
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - label: Layout
+        name: layout
+        widget: hidden
+        default: releasepost
+      - label: SiteName
+        name: site_name
+        widget: hidden
+        default: Release
+      - label: Title
+        name: title
+        widget: string
+      - label: Excerpt
+        name: excerpt
+        widget: string
+        required: false
+      - label: Image
+        name: image
+        widget: image
+        required: false
+      - label: "Publishing Date"
+        name: date
+        widget: datetime
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+      - label: Enable Comments
+        name: comments
+        widget: boolean
+        default: true
+      - label: "Staff List"
+        name: staff_list
+        widget: object
+        collapsed: true
+        required: false
+        fields:
+          - label: "Worked on"
+            name: work
+            widget: string
+            required: false
+          - label: "Staff Name"
+            name: name
+            widget: string
+            required: false
+      - label: "URLs"
+        name: urls
+        widget: object
+        collapsed: true
+        required: false
+        fields:
+          - label: "Link Name"
+            name: text
+            widget: string
+          - label: "Link URL"
+            name: link
+            widget: string
+            required: false
+      - label: "Body"
+        name: body
+        widget: markdown
+        required: false
+  - name: 'releasebdmv'
+    label: 'Release BDMV'
+    folder: '_posts/'
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - label: Layout
+        name: layout
+        widget: hidden
+        default: releasebdmv
+      - label: SiteName
+        name: site_name
+        widget: hidden
+        default: BDMV
+      - label: Title
+        name: title
+        widget: string
+      - label: Excerpt
+        name: excerpt
+        widget: string
+        required: false
+      - label: Image
+        name: image
+        widget: image
+        required: false
+      - label: "Publishing Date"
+        name: date
+        widget: datetime
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
+      - label: Enable Comments
+        name: comments
+        widget: boolean
+        default: true
+      - label: BDMV Credit
+        name: credit
+        widget: string
+        required: false
+      - label: Total Size
+        name: totalsize
+        widget: string
+        required: false
+      - label: "URLs"
+        name: urls
+        widget: object
+        collapsed: true
+        required: false
+        fields:
+          - label: "Link Name"
+            name: text
+            widget: string
+          - label: "Link URL"
+            name: link
+            widget: string
+            required: false
+      - label: "Body"
+        name: body
+        widget: markdown
+        required: false
