@@ -1,1 +1,4 @@
 /blog/* https://n4oblog.netlify.app/blog/:splat 200
+
+# Redirect Netlify own thing
+/blog/.netlify/* https://n4oblog.netlify.app/.netlify/:splat 200
