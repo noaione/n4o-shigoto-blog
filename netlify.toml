@@ -1,15 +1,17 @@
 [[redirects]]
+    from = "/blog"
+    to = "https://blog.n4o.xyz/"
+    status = 301
+    force = true
+
+[[redirects]]
     from = "/blog/*"
-    to = "https://n4oblog.netlify.app/blog/:splat"
-    status = 200
-    force = false
+    to = "https://blog.n4o.xyz/posts/:splat"
+    status = 301
+    force = true
 
 [[redirects]]
-    from = "/api/identity/*"
-    to = "https://n4oblog.netlify.app/.netlify/identity/:splat"
-    status = 200
-
-[[redirects]]
-    from = "/api/gateway/*"
-    to = "https://n4oblog.netlify.app/.netlify/identity/:splat"
-    status = 200
+    from = "/blog/posts"
+    to = "https://n4oblog.netlify.app/posts"
+    status = 301
+    force = true
