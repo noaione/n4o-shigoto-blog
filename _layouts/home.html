@@ -3,6 +3,38 @@
 <head>
     {% include head.html %}
     <link rel="stylesheet" href="/assets/css/home.css">
+    <script>
+        let preferWhat = localStorage.getItem("n4otheme");
+        let darkMatch = window.matchMedia("(prefers-color-scheme: dark)");
+        if (preferWhat !== null) {
+            if (preferWhat === "dark") {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        } else {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                localStorage.setItem("n4otheme", "dark");
+            }
+            preferWhat = localStorage.getItem("n4otheme");
+            if (preferWhat === "dark") {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        }
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener("change", function (event) {
+                if (event.matches) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem("n4otheme", "dark");
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    localStorage.setItem("n4otheme", "light");
+                }
+            })
+        }
+    </script>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body id="body" class="light">

@@ -7,12 +7,22 @@
     linear-gradient(-45deg, transparent 75px, transparent 76px, #a4a4a4 76px, #a4a4a4 77px, transparent 78px, transparent 109px),
     #fff;
     --bg-color: #eeeeee;
+    --text-col: #000;
+    --float1: #2b2b2b;
+    --float2: #d2d2d2;
+}
+
+[data-theme="dark"] {
+    --bg-color: #5f5f5f;
+    --bg-color2: #333333;
+    --float1: #d2d2d2;
+    --float2: #2b2b2b;
+    --text-col: #fff;
 }
 
 body {
     font-family: 'Open Sans', sans-serif;
     overflow-x: hidden;
-    background: var(--background-radial);
     background-size: 109px 109px, 109px 109px, 100% 6px, 109px 109px, 109px 109px;
     background-position: 54px 55px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
     background-color: var(--bg-color);
@@ -23,9 +33,10 @@ body {
     width: 50%;
     box-shadow: 0 0 5px 2px #777777;
     padding: 10px;
-    background-color: white;
+    background-color: var(--bg-color2);
     animation: fadein 2s;
     overflow-x: hidden;
+    color: var(--text-col);
 }
 
 body,
@@ -362,3 +373,9 @@ p {
         opacity: 1;
     }
 }
+
+/* ------------------------------------------------------------------------
+-   N4O Floating button
+-------------------------------------------------------------------------*/
+
+@import 'floating';

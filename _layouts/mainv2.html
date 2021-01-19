@@ -3,6 +3,38 @@
     {% include head.html %}
     <link rel="stylesheet" href="/assets/css/releasev2.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet">
+    <script>
+        let preferWhat = localStorage.getItem("n4otheme");
+        let darkMatch = window.matchMedia("(prefers-color-scheme: dark)");
+        if (preferWhat !== null) {
+            if (preferWhat === "dark") {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        } else {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                localStorage.setItem("n4otheme", "dark");
+            }
+            preferWhat = localStorage.getItem("n4otheme");
+            if (preferWhat === "dark") {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        }
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener("change", function (event) {
+                if (event.matches) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem("n4otheme", "dark");
+                } else {
+                    document.documentElement.setAttribute('data-theme', 'light');
+                    localStorage.setItem("n4otheme", "light");
+                }
+            })
+        }
+    </script>
 </head>
 <body id="body" class="light">
     <header id='top' class='main-header'>
@@ -12,7 +44,7 @@
         </div>
         <nav class='module main-menu color-4'>
             <a href='/'>Home</a>
-            <a href='/blog'>blog</a>
+            <a href='https://blog.n4o.xyz/'>blog</a>
             <a href='https://github.com/noaione'>GitHub</a>
             <a href="/{% if page.linkto != 'release' %}{{ 'release/' | append: page.linkto }}{% else %}{{ page.linkto }}{% endif %}">{{ page.linkto }}</a>
 			<a href="https://discord.gg/d49CfCb">Discord</a>
