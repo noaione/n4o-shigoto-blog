@@ -5,6 +5,7 @@ excerpt: "AR Grils"
 image: "https://puu.sh/CzQ7t/cb636831dc.jpg"
 site_name: "BDMV"
 comments: true
+date: 2018-05-31
 credit: "UCCUSS@U2"
 totalsize: "63.278 GiB"
 tags: ["bdmv"]

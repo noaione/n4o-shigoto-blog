@@ -5,6 +5,7 @@ excerpt: '"Kehidupan SMAmu tak semesra ini" versi BD'
 image: "https://puu.sh/CzRUH/6b999a1354.png"
 site_name: "Release"
 comments: true
+date: 2018-11-27
 tags: ["bd", "tsurezure", "serial"]
 staff_list:
   - 

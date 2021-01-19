@@ -5,6 +5,7 @@ excerpt: "Just see the fireworks whicever side you want tbh"
 image: "https://puu.sh/CzQ4x/95828b1ff7.jpg"
 site_name: "BDMV"
 comments: true
+date: 2018-04-20
 credit: "UnperceivedExistence@U2"
 totalsize: "112.034 GiB"
 tags: ["bdmv"]

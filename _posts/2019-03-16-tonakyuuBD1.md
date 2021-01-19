@@ -5,6 +5,7 @@ image: "https://puu.sh/D0HHh/6e38812506.png"
 site_name: "Release"
 lang: "id_ID"
 tags: ["tonakyuu", 'bd', "serial"]
+date: 2019-03-16
 comments: true
 staff_list:
   - 

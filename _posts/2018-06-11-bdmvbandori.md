@@ -5,6 +5,7 @@ excerpt: "BanG the Girls in your Dream"
 image: "https://puu.sh/D0Jms/0369ae78c9.png"
 site_name: "BDMV"
 comments: true
+date: 2018-06-11
 credit: "U3-Project & UnperceivedExistence@U2"
 totalsize: "172.32 GiB"
 tags: ["bdmv"]

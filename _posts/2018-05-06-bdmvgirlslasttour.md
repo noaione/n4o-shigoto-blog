@@ -5,6 +5,7 @@ excerpt: "Philosophy moe blob anime"
 image: "https://puu.sh/CUrxR/bc02ca10f0.jpg"
 site_name: "BDMV"
 comments: true
+date: 2018-05-06
 credit: "UnperceivedExistence@U2"
 totalsize: "100.629 GiB"
 tags: ["bdmv"]

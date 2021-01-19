@@ -5,6 +5,7 @@ excerpt: "No Game No Life Prologue Story BDMV"
 image: "https://puu.sh/CzQm6/d172bc0d7e.jpg"
 site_name: "BDMV"
 comments: true
+date: 2018-02-25
 credit: "RinZ&kimisecond"
 totalsize: "41.537 GiB"
 tags: ["bdmv"]

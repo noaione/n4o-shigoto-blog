@@ -5,6 +5,7 @@ excerpt: "Why are my cute band dying?"
 image: "https://p.n4o.xyz/i/u2vb4lmv.jpg"
 site_name: "Release"
 comments: true
+date: 2018-12-25
 tags: ["tv", "garupapico", "bangdream", "serial"]
 staff_list:
   - 

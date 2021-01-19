@@ -5,6 +5,7 @@ excerpt: '"How to not fuck up your camping" tutorial'
 image: "https://puu.sh/D2JEH/36d4d42f65.jpg"
 site_name: "Release"
 comments: true
+date: 2018-06-12
 tags: ['live', "yurucamp"]
 staff_list:
   - 
