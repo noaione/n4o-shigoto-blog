@@ -6,3 +6,5 @@ _example
 
 *.bat
 *.lock
+# Local Netlify folder
+.netlify

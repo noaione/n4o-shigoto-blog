@@ -1,8 +1,0 @@
-# Redirect Netlify own thing
-/blog/.netlifyblog/* https://n4oblog.netlify.app/.netlify/:splat 200
-/.netlifyblog/* https://n4oblog.netlify.app/.netlify/:splat 200
-/.netlifyblog/identity/* https://n4oblog.netlify.app/.netlify/identity/:splat
-/.netlifyblog/git/* https://n4oblog.netlify.app/.netlify/git/:splat
-
-# Redirect blog
-/blog/* https://n4oblog.netlify.app/blog/:splat 200

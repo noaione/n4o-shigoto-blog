@@ -1,0 +1,15 @@
+[[redirects]]
+    from = "/blog/*"
+    to = "https://n4oblog.netlify.app/blog/:splat"
+    status = 200
+    force = false
+
+[[redirects]]
+    from = "/api/identity/*"
+    to = "https://n4oblog.netlify.app/.netlify/identity/:splat"
+    status = 200
+
+[[redirects]]
+    from = "/api/gateway/*"
+    to = "https://n4oblog.netlify.app/.netlify/identity/:splat"
+    status = 200
