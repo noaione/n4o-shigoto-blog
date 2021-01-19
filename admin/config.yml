@@ -6,7 +6,7 @@ backend:
   branch: master # Branch to update (optional; defaults to master)
 media_folder: 'assets/uploads'
 publish_mode: editorial_workflow
-site_url: https://blog.n4o.xyz
+site_url: https://shigoto.n4o.xyz
 collections:
   - name: 'releasepost'
     label: 'Release Post'
