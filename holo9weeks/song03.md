@@ -1,0 +1,21 @@
+---
+layout: holo9song
+title: "Shijoshugi Ad Truck"
+songno: 3
+thumbfile: "03_adtruck"
+
+streamlink: "https://hip.streamlink.to/SHIJOSHUGIADTRUCK"
+nyaaid: "https://nyaa.si/view/1323777"
+yt_playlistid: "OLAK5uy_npi29mR3J9z5AQjPb954ZTwNQgDoGKi50"
+
+info:
+    title: "Shijoshugi Ad Truck"
+    othertitle: "至上主義アドトラック"
+    singer: "Ookami Mio, Shiranui Flare, Natsuiro Matsuri"
+    lyrics: "Haru (はる)"
+    composer: "如月結愛"
+    arranger: "如月結愛"
+    extras:
+        - role: "Guitar & Bass"
+          name: "如月結愛"
+---

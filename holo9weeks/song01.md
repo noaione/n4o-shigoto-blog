@@ -1,0 +1,17 @@
+---
+layout: holo9song
+title: "BLUE CLAPPER"
+songno: 1
+thumbfile: "01_blueclapper"
+
+streamlink: "https://hip.fanlink.to/bc"
+nyaaid: "https://nyaa.si/view/1318930"
+yt_playlistid: "OLAK5uy_kw1gECyWNJjKs0p-jvWTup-W9upbAfcTc"
+
+info:
+    title: "BLUE CLAPPER"
+    singer: "Shishiro Botan, Yukihana Lamy, Omaru Polka, Momosuzu Nene"
+    lyrics: "PandaBoy"
+    composer: "PandaBoy"
+    arranger: "PandaBoy"
+---
