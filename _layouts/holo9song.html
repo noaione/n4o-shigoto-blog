@@ -95,15 +95,15 @@
         <hr class="bg-white">
         <nav class="text-center text-white" id="song-nav">
             {% if page.songno <= 1 %}
-            <span class="mx-3"><i class="naoicon">arrow_back</i></i> Previous</span>
+            <span class="mx-3 text-white"><i class="naoicon fw-bolder me-1">arrow_back</i></i> Previous</span>
             {% else %}
-            <a class="mx-3" href="/holo9weeks/song0{{ page.songno | minus: 1 }}"><i class="naoicon">arrow_back</i></i> Previous</a>
+            <a class="mx-3" href="/holo9weeks/song0{{ page.songno | minus: 1 }}"><i class="naoicon fw-bolder me-1">arrow_back</i></i> Previous</a>
             {% endif %}
-            <a class="mx-3" href="/holo9weeks"><i class="naoicon">home</i></i> Home</a>
+            <a class="mx-3" href="/holo9weeks"><i class="naoicon me-1">home</i></i> Home</a>
             {% if page.songno >= 9 %}
-            <span class="mx-3">Next <i class="naoicon">arrow_forward</i></i></span>
+            <span class="mx-3">Next <i class="naoicon fw-bolder ms-1">arrow_forward</i></i></span>
             {% else %}
-            <a class="mx-3" href="/holo9weeks/song0{{ page.songno | plus: 1 }}">Next <i class="naoicon">arrow_forward</i></a>
+            <a class="mx-3" href="/holo9weeks/song0{{ page.songno | plus: 1 }}">Next <i class="naoicon fw-bolder ms-1">arrow_forward</i></a>
             {% endif %}
         </nav>
         <hr class="bg-white">
@@ -123,8 +123,8 @@
                     <b>{{ item.role }}</b>: {{ item.name }} <br />
                     {% endfor %}
                 </p>
-                <a class="card-link text-success" href="{{ page.streamlink }}">Buy</a>
-                <a class="card-link" href="{{ page.nyaaid }}"><i class="naoicon">download</i> Download (Torrent)</a>
+                <a class="card-link" href="{{ page.streamlink }}">Buy</a>
+                <a class="card-link" href="{{ page.nyaaid }}">Download (Torrent)</a>
             </div>
         </div>
         <hr />
