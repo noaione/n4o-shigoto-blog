@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:og="https://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml" class="scriptsOn">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="HandheldFriendly" content="True">
+    <title>{{ page.title }} - Holo9thWeeks</title>
+    <meta name="description" content="Song 0{{ page.songno }} of the Hololive IDOL PROJECT's 9 Weeks of Original Songs">
+    <link rel="canonical" href="https://shigoto.n4o.xyz/holo9weeks/song0{{ page.songno }}">
+
+    <!-- OpenGraph -->
+    <meta property="og:title" content="{{ page.title }} - Holo9thWeeks">
+    <meta property="og:description" content="Song 0{{ page.songno }} of the Hololive IDOL PROJECT's 9 Weeks of Original Songs">
+    <meta property="og:locale" content="en_US">
+    <meta content="N4O" name="author">
+    <meta content="N4O" property="og:site_name">
+    <meta content="#bd1934" name="theme-color">
+    <meta property="og:image" content="/assets/img/holo9w/{{ page.thumbfile }}.jpg">
+    <meta property="og:image:width" content="2000">
+    <meta property="og:image:height" content="2000">
+    <meta property="og:image:alt" content="{{ page.title }} Cover Art">
+
+    <!-- Favicons -->
+    <link href="/assets/ico/favicon.png" rel="shortcut icon" type="image/png">
+    <link href="/favicon.ico" rel="shortcut icon">
+    <link href="/assets/ico/apple-icon-57x57.png" rel="apple-touch-icon" sizes="57x57">
+    <link href="/assets/ico/apple-icon-60x60.png" rel="apple-touch-icon" sizes="60x60">
+    <link href="/assets/ico/apple-icon-72x72.png" rel="apple-touch-icon" sizes="72x72">
+    <link href="/assets/ico/apple-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
+    <link href="/assets/ico/apple-icon-114x114.png" rel="apple-touch-icon" sizes="114x114">
+    <link href="/assets/ico/apple-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
+    <link href="/assets/ico/apple-icon-144x144.png" rel="apple-touch-icon" sizes="144x144">
+    <link href="/assets/ico/apple-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
+    <link href="/assets/ico/apple-icon-180x180.png" rel="apple-touch-icon" sizes="180x180">
+    <link href="/assets/ico/android-icon-192x192.png" rel="icon" sizes="192x192" type="image/png">
+    <link href="/assets/ico/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+    <link href="/assets/ico/favicon-96x96.png" rel="icon" sizes="96x96" type="image/png">
+    <link href="/assets/ico/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+
+    <!-- JS & CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="/assets/css/naoIcon.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+    </script>
+
+    <style>
+        :root {
+            --song-01: #0091ffbf;
+            --song-02: #613745bf;
+            --song-03: #50638bbf;
+            --song-04: #ff7bacbf;
+            --song-05: #fec2cabf;
+            --song-06: #ff006abf;
+            --song-07: #253859bf;
+            --song-08: #9af4ffbf;
+            --song-09: #cdcafdbf;
+        }
+
+        .bg-darkgrey {
+            background-color: #313233 !important;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+        }
+
+        .video-container iframe,
+        .video-container object,
+        .video-container embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+
+<body class="bg-darkgrey">
+    <div class="container py-3 my-2">
+        <h1 class="pb-3 text-white">#0{{ page.songno }} - {{ page.title }}</h1>
+        <hr class="bg-white">
+        <nav class="text-center text-white" id="song-nav">
+            {% if page.songno <= 1 %}
+            <span class="mx-3"><i class="naoicon">arrow_back</i></i> Previous</span>
+            {% else %}
+            <a class="mx-3" href="/holo9weeks/song0{{ page.songno | minus: 1 }}"><i class="naoicon">arrow_back</i></i> Previous</a>
+            {% endif %}
+            <a class="mx-3" href="/holo9weeks"><i class="naoicon">home</i></i> Home</a>
+            {% if page.songno >= 9 %}
+            <span class="mx-3">Next <i class="naoicon">arrow_forward</i></i></span>
+            {% else %}
+            <a class="mx-3" href="/holo9weeks/song0{{ page.songno | plus: 1 }}">Next <i class="naoicon">arrow_forward</i></a>
+            {% endif %}
+        </nav>
+        <hr class="bg-white">
+        <div class="card text-white bg-dark mb-3" style="width: 24rem;">
+            <img alt="Cover art" class="card-img-top" src="/assets/img/holo9w/{{ page.thumbfile }}.jpg" />
+            <div class="card-body mr-auto">
+                <h5 class="card-title">{{ page.info.title }}</h5>
+                {% if page.info.othertitle %}
+                <h6 class="card-subtitle mb-2 text-muted">{{ page.info.othertitle }}</h6>
+                {% endif %}
+                <p class="card-text">
+                    <b>Singer</b>: {{ page.info.singer }}<br />
+                    <b>Lyrics</b>: {{ page.info.lyrics }} <br />
+                    <b>Composition</b>: {{ page.info.composer }} <br />
+                    <b>Arrangement</b>: {{ page.info.arranger }} <br />
+                    {% for item in page.info.extras %}
+                    <b>{{ item.role }}</b>: {{ item.name }} <br />
+                    {% endfor %}
+                </p>
+                <a class="card-link text-success" href="{{ page.streamlink }}">Buy</a>
+                <a class="card-link" href="{{ page.nyaaid }}"><i class="naoicon">download</i> Download (Torrent)</a>
+            </div>
+        </div>
+        <hr />
+        <h4 class="text-white">Listen</h4>
+        <hr class="bg-white">
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/videoseries?list={{ page.yt_playlistid }}"
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+    </div>
+</body>
+</html>
