@@ -5,12 +5,12 @@
 
     function toggleDarkLight() {
         var currentClass = body.className;
-        if (currentClass == "light") {
-            document.documentElement.setAttribute('data-theme', 'dark');
+        if (currentClass === "light") {
+            document.documentElement.setAttribute('data-theme', "dark");
             body.className = 'dark';
             localStorage.setItem('n4otheme', 'dark');
         } else {        
-            document.documentElement.setAttribute('data-theme', 'light');
+            document.documentElement.setAttribute('data-theme', "light");
             body.className = 'light';
             localStorage.setItem('n4otheme', 'light');
         }    

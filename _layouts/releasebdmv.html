@@ -8,8 +8,10 @@
         if (preferWhat !== null) {
             if (preferWhat === "dark") {
                 document.documentElement.setAttribute('data-theme', 'dark');
+                document.documentElement.classList.add("dark");
             } else {
                 document.documentElement.setAttribute('data-theme', 'light');
+                document.documentElement.classList.remove("dark");
             }
         } else {
             if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -18,8 +20,10 @@
             preferWhat = localStorage.getItem("n4otheme");
             if (preferWhat === "dark") {
                 document.documentElement.setAttribute('data-theme', 'dark');
+                document.documentElement.classList.add("dark");
             } else {
                 document.documentElement.setAttribute('data-theme', 'light');
+                document.documentElement.classList.remove("dark");
             }
         }
         if (window.matchMedia) {
@@ -27,9 +31,11 @@
                 if (event.matches) {
                     document.documentElement.setAttribute('data-theme', 'dark');
                     localStorage.setItem("n4otheme", "dark");
+                    document.documentElement.classList.add("dark");
                 } else {
                     document.documentElement.setAttribute('data-theme', 'light');
                     localStorage.setItem("n4otheme", "light");
+                    document.documentElement.classList.remove("dark");
                 }
             })
         }
