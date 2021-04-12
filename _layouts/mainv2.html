@@ -45,7 +45,6 @@
     .frame {
         display: block;
         width: 100vw;
-        height: 100vh;
         max-width: 100%;
         margin: 0;
         padding: 0;
@@ -69,7 +68,31 @@
             <a href='/feed.xml'>RSS</a>
         </nav>
         <div class="module color-3">
-            <iframe id="naotimes" src="https://panel.naoti.me/embed?id=472705451117641729" class="frame" scrollable="no" frameborder="0"></iframe>
+            <script>
+                /**
+                * Resize iframe naoTimes ketika sudah load.
+                */
+                console.info("Waiting for message!")
+                window.addEventListener("message", function (event) {
+                    // Periksa apakah pesan dari embed naotimes apa tidak
+                    if (!event.origin.startsWith("https://panel.naoti.me") && !event.origin.startsWith("http://127.0.0.1:5000")) {
+                        return;
+                    }
+        
+                    // Parse data yang dikirim oleh Embed
+                    const data = JSON.parse(event.data);
+                    // Ambil element iframe via `id`
+                    const iframe = document.getElementById("naotimes-project");
+                    if (data.action === "resize") {
+                        iframe.height = data.height;
+                        iframe.scrolling = "no";
+                        iframe.style.opacity = "1";
+                        // Hilangkan scrollbar
+                        iframe.style.overflowY = "hidden";
+                    }
+                }, false);
+            </script>
+            <iframe id="naotimes-project" src="http://127.0.0.1:5000/embed?id=443040953087950858&accent=red&lang=en" class="frame" scrolling="no"></iframe>
         </div>
     </header>
 
@@ -79,7 +102,7 @@
         const callback = function (mutationsList, observer) {
             var dataTheme = document.documentElement.getAttribute("data-theme");
             var isDark = dataTheme === "dark";
-            var iFrame = document.querySelector("iframe#naotimes");
+            var iFrame = document.querySelector("iframe#naotimes-project");
             var currentUrl = iFrame.getAttribute("src");
             if (isDark) {
                 currentUrl += "&dark=true";
