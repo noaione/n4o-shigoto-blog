@@ -72,10 +72,11 @@
                 /**
                 * Resize iframe naoTimes ketika sudah load.
                 */
-                console.info("Waiting for message!")
+                console.info("Waiting for message!");
+                var validOriginNaoTimes = ["https://nao-times-ui-noaione.vercel.app", "https://panel.naoti.me", "https://nao-times-ui.vercel.app"];
                 window.addEventListener("message", function (event) {
                     // Periksa apakah pesan dari embed naotimes apa tidak
-                    if (!event.origin.startsWith("https://panel.naoti.me") && !event.origin.startsWith("http://127.0.0.1:5000")) {
+                    if (validOriginNaoTimes.indexOf(event.origin) === -1) {
                         return;
                     }
         
@@ -92,28 +93,26 @@
                     }
                 }, false);
             </script>
-            <iframe id="naotimes-project" src="http://127.0.0.1:5000/embed?id=443040953087950858&accent=red&lang=en" class="frame" scrolling="no"></iframe>
+            <iframe id="naotimes-project" src="https://nao-times-ui.vercel.app/embed?id=472705451117641729&accent=red&lang=en" class="frame" scrolling="no"></iframe>
         </div>
     </header>
 
     {{ content }}
     {% include theme_toggler.html %}
     <script>
-        const callback = function (mutationsList, observer) {
+        const themeIFrameCallback = function (mutationsList, observer) {
             var dataTheme = document.documentElement.getAttribute("data-theme");
             var isDark = dataTheme === "dark";
             var iFrame = document.querySelector("iframe#naotimes-project");
-            var currentUrl = iFrame.getAttribute("src");
-            if (isDark) {
-                currentUrl += "&dark=true";
-            } else {
-                currentUrl = currentUrl.replace(/\&dark\=true/g, "");
-            };
-            iFrame.setAttribute("src", currentUrl);
+            var iFrameWindow = (iFrame.contentWindow || iFrame.contentDocument);
+            iFrame.contentWindow.postMessage(JSON.stringify({"action": "setDark", "target": isDark ? "true" : "false"}), "*");
         }
-        callback(null, null);
-        const observer = new MutationObserver(callback);
+        themeIFrameCallback(null, null);
+        const observer = new MutationObserver(themeIFrameCallback);
         observer.observe(document.documentElement, {attributes: true});
+        document.getElementById("naotimes-project").onload = function () {
+            themeIFrameCallback(null, null);
+        }
     </script>
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90117853-5"></script>
