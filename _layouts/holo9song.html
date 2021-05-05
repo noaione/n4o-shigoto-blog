@@ -91,19 +91,27 @@
 
 <body class="bg-darkgrey">
     <div class="container py-3 my-2">
+        {% if page.songno %}
         <h1 class="pb-3 text-white">#0{{ page.songno }} - {{ page.title }}</h1>
+        {% else %}
+        <h1 class="pb-3 text-white">{{ page.title }}</h1>
+        {% endif %}
         <hr class="bg-white">
         <nav class="text-center text-white" id="song-nav">
+            {% if page.songno %}
             {% if page.songno <= 1 %}
             <span class="mx-3 text-white"><i class="naoicon fw-bolder me-1">arrow_back</i></i> Previous</span>
             {% else %}
             <a class="mx-3" href="/holo9weeks/song0{{ page.songno | minus: 1 }}"><i class="naoicon fw-bolder me-1">arrow_back</i></i> Previous</a>
             {% endif %}
+            {% endif %}
             <a class="mx-3" href="/holo9weeks"><i class="naoicon me-1">home</i></i> Home</a>
+            {% if page.songno %}
             {% if page.songno >= 9 %}
             <span class="mx-3">Next <i class="naoicon fw-bolder ms-1">arrow_forward</i></i></span>
             {% else %}
             <a class="mx-3" href="/holo9weeks/song0{{ page.songno | plus: 1 }}">Next <i class="naoicon fw-bolder ms-1">arrow_forward</i></a>
+            {% endif %}
             {% endif %}
         </nav>
         <hr class="bg-white">
@@ -115,14 +123,22 @@
                 <h6 class="card-subtitle mb-2 text-muted">{{ page.info.othertitle }}</h6>
                 {% endif %}
                 <p class="card-text">
-                    <b>Singer</b>: {{ page.info.singer }}<br />
-                    <b>Lyrics</b>: {{ page.info.lyrics }} <br />
-                    <b>Composition</b>: {{ page.info.composer }} <br />
-                    <b>Arrangement</b>: {{ page.info.arranger }} <br />
+                    {% if page.info.singer %} <b>Singer</b>: {{ page.info.singer }}<br />{% endif %}
+                    {% if page.info.lyrics %} <b>Lyrics</b>: {{ page.info.lyrics }} <br />{% endif %}
+                    {% if page.info.composer %} <b>Composition</b>: {{ page.info.composer }} <br />{% endif %}
+                    {% if page.info.arranger %} <b>Arrangement</b>: {{ page.info.arranger }} <br />{% endif %}
                     {% for item in page.info.extras %}
                     <b>{{ item.role }}</b>: {{ item.name }} <br />
                     {% endfor %}
                 </p>
+                {% if page.tracklist %}
+                <h6 class="card-title">Track List</h6>
+                <p class="card-text">
+                    {% for item in page.tracklist %}
+                    <b>{{ forloop.index }}</b>. {{ item }}<br/>
+                    {% endfor %}
+                </p>
+                {% endif %}
                 <a class="card-link" href="{{ page.streamlink }}">Buy</a>
                 <a class="card-link" href="{{ page.nyaaid }}">Download (Torrent)</a>
             </div>
