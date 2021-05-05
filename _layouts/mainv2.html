@@ -73,10 +73,9 @@
                 * Resize iframe naoTimes ketika sudah load.
                 */
                 console.info("Waiting for message!");
-                var validOriginNaoTimes = ["https://nao-times-ui-noaione.vercel.app", "https://panel.naoti.me", "https://nao-times-ui.vercel.app"];
                 window.addEventListener("message", function (event) {
                     // Periksa apakah pesan dari embed naotimes apa tidak
-                    if (validOriginNaoTimes.indexOf(event.origin) === -1) {
+                    if (event.origin !== "https://panel.naoti.me") {
                         return;
                     }
         
@@ -85,6 +84,7 @@
                     // Ambil element iframe via `id`
                     const iframe = document.getElementById("naotimes-project");
                     if (data.action === "resize") {
+                        console.info("Received resize action", data);
                         iframe.height = data.height;
                         iframe.scrolling = "no";
                         iframe.style.opacity = "1";
@@ -93,7 +93,7 @@
                     }
                 }, false);
             </script>
-            <iframe id="naotimes-project" src="https://nao-times-ui.vercel.app/embed?id=472705451117641729&accent=red&lang=en" class="frame" scrolling="no"></iframe>
+            <iframe id="naotimes-project" src="https://panel.naoti.me/embed?id=472705451117641729&accent=red&lang=en" class="frame" scrolling="no"></iframe>
         </div>
     </header>
 
