@@ -15,4 +15,8 @@ info:
     lyrics: "松井洋平"
     composer: "本多友紀 (Arte Refact)"
     arranger: "酒井拓也 (Arte Refact)"
+
+tracklist:
+    - Daily Diary
+    - Daily Diary (Instrumental)
 ---

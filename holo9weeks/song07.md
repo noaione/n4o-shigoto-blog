@@ -14,4 +14,8 @@ info:
     lyrics: "ricono"
     composer: "酒井拓也 (Arte Refact)"
     arranger: "酒井拓也 (Arte Refact)"
+
+tracklist:
+    - STARDUST SONG
+    - STARDUST SONG (Instrumental)
 ---

@@ -14,4 +14,8 @@ info:
     lyrics: "本多友紀 (Arte Refact)"
     composer: "本多友紀 (Arte Refact), 酒井拓也 (Arte Refact)"
     arranger: "本多友紀 (Arte Refact), 酒井拓也 (Arte Refact)"
+
+tracklist:
+    - Dreaming Days
+    - Dreaming Days (Instrumental)
 ---

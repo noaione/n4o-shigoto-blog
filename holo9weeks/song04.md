@@ -14,4 +14,8 @@ info:
     lyrics: "高瀬愛虹"
     composer: "Devin Kinoshita"
     arranger: "河合泰志 (Arte Refact)"
+
+tracklist:
+    - Candy-Go-Round
+    - Candy-Go-Round (Instrumental)
 ---

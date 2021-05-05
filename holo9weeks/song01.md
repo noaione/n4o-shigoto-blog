@@ -14,4 +14,8 @@ info:
     lyrics: "PandaBoy"
     composer: "PandaBoy"
     arranger: "PandaBoy"
+
+tracklist:
+    - BLUE CLAPPER
+    - BLUE CLAPPER (Instrumental)
 ---

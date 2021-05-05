@@ -18,4 +18,8 @@ info:
     extras:
         - role: "Guitar & Bass"
           name: "如月結愛"
+
+tracklist:
+    - Shijoshugi Ad Truck
+    - Shijoshugi Ad Truck (Instrumental)
 ---

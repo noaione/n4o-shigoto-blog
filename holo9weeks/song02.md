@@ -15,4 +15,8 @@ info:
     lyrics: "武田将弥 (Dream Monster)"
     composer: "武田将弥 (Dream Monster)"
     arranger: "高木龍一 (Dream Monster), 武田将弥 (Dream Monster)"
+
+tracklist:
+    - Hyakka Ryoran Hanafubuki
+    - Hyakka Ryoran Hanafubuki (Instrumental)
 ---

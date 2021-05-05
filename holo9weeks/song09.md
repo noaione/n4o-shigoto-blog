@@ -15,4 +15,8 @@ info:
     lyrics: "森本練"
     composer: "森本練"
     arranger: "脇眞富 (Arte Refact)"
+
+tracklist:
+    - Asuiro Clear Sky
+    - Asuiro Clear Sky (Instrumental)
 ---

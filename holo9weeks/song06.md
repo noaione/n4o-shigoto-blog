@@ -14,4 +14,8 @@ info:
     lyrics: "Kyota."
     composer: "Kyota."
     arranger: "Kyota."
+
+tracklist:
+    - Suspect
+    - Suspect (Instrumental)
 ---
