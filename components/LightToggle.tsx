@@ -71,11 +71,11 @@ export default class LightToggle extends React.Component<{}, LightState> {
         return (
             <>
                 <div className="flex items-end justify-end fixed bottom-0 right-0 mb-6 mr-6 z-10">
-                    <div className="bg-gray-700 dark:bg-gray-300 border-4 border-gray-700 dark:border-gray-300 hover:border-gray-500 dark:hover:border-gray-500 transition duration-300 p-4 flex flex-col justify-center items-center rounded-full">
-                        <button
-                            className="focus:outline-none items-center m-auto"
-                            onClick={this.toggleDarkMode}
-                        >
+                    <div
+                        className="bg-gray-700 dark:bg-gray-300 border-4 border-gray-700 dark:border-gray-300 hover:border-gray-500 dark:hover:border-gray-500 transition duration-300 p-4 flex flex-col justify-center items-center rounded-full cursor-pointer"
+                        onClick={this.toggleDarkMode}
+                    >
+                        <button className="focus:outline-none items-center m-auto">
                             {this.state.isDark ? (
                                 <LightBulbOff className="h-6 w-6 text-black" />
                             ) : (
