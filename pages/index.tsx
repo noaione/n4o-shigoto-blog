@@ -26,14 +26,43 @@ export default function Home() {
                                 Home
                             </a>
                         </Link>
+                        <Link href="https://blog.n4o.xyz" passHref>
+                            <a className="bg-none border-2 border-purple-400 rounded-md p-4 hover:bg-purple-500 hover:bg-opacity-50 hover:border-white transition">
+                                Blog
+                            </a>
+                        </Link>
+                    </div>
+                    <div className="flex flex-row items-center space-x-2">
                         <Link href="/release" passHref>
                             <a className="bg-none border-2 border-orange-400 rounded-md p-4 hover:bg-orange-500 hover:bg-opacity-50 hover:border-white transition">
                                 Release
                             </a>
                         </Link>
-                        <Link href="https://blog.n4o.xyz" passHref>
-                            <a className="bg-none border-2 border-purple-400 rounded-md p-4 hover:bg-purple-500 hover:bg-opacity-50 hover:border-white transition">
-                                Blog
+                        <Link href="/manga" passHref>
+                            <a className="bg-none border-2 border-emerald-400 rounded-md p-4 hover:bg-emerald-500 hover:bg-opacity-50 hover:border-white transition">
+                                Manga
+                            </a>
+                        </Link>
+                    </div>
+                    <div className="flex flex-row items-center space-x-1 pt-3">
+                        <Link href="/holoism" passHref>
+                            <a>
+                                <img
+                                    width={50}
+                                    height={50}
+                                    alt="Ahoy!"
+                                    src="https://cdn.discordapp.com/emojis/643678659298983957.png"
+                                />
+                            </a>
+                        </Link>
+                        <Link href="/holo9weeks" passHref>
+                            <a>
+                                <img
+                                    width={50}
+                                    height={50}
+                                    alt="Hololive"
+                                    src="https://cdn.discordapp.com/emojis/663796277137506333.png"
+                                />
                             </a>
                         </Link>
                     </div>
