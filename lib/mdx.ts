@@ -4,7 +4,7 @@ import path from "path";
 import { bundleMDX } from "mdx-bundler";
 import glob from "tiny-glob/sync";
 import matter from "gray-matter";
-import { Nullable } from "./utils";
+import { Nullable, pickFirstLine } from "./utils";
 
 const root = process.cwd();
 
@@ -69,7 +69,7 @@ function tryToSplitPath(paths: string) {
     return splitForward;
 }
 
-export type PostDataType = "holo9w" | "holoism" | "posts";
+export type PostDataType = "holo9w" | "holoism" | "manga" | "posts";
 interface IRemapFile {
     file: string;
     slug: Nullable<string>;
@@ -152,7 +152,7 @@ const VALID_FRONTMATTER = [
     "draft",
 ];
 
-type FrontMatterExtended = FrontMatterData & {
+export type FrontMatterExtended = FrontMatterData & {
     file: string;
 };
 
@@ -160,6 +160,13 @@ export interface RawBlogContent {
     mdxSource: string;
     frontMatter: FrontMatterData;
     extraData: { [key: string]: any };
+}
+
+function validString(data?: string) {
+    if (typeof data !== "string") {
+        return false;
+    }
+    return data.trim().length > 0;
 }
 
 export async function getFileBySlug(postData: FrontMatterExtended): Promise<RawBlogContent> {
@@ -210,6 +217,12 @@ export async function getFileBySlug(postData: FrontMatterExtended): Promise<RawB
         } else {
             extraData[key] = value;
         }
+    }
+    if (data.hasOwnProperty("excerpt") && !validString(frontmatterActual.summary)) {
+        frontmatterActual.summary = data.excerpt;
+    }
+    if (!validString(frontmatterActual.summary)) {
+        frontmatterActual.summary = pickFirstLine(realContent);
     }
     if (!frontmatterActual.hasOwnProperty("layout")) {
         frontmatterActual.layout = "post";
