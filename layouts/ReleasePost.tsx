@@ -1,4 +1,5 @@
 import MDXRenderer from "@/components/MDXRenderer";
+import MetadataHead from "@/components/MetadataHead";
 import { RawBlogContent } from "@/lib/mdx";
 import { isNone, Nullable } from "@/lib/utils";
 import Head from "next/head";
@@ -127,6 +128,14 @@ export default function LayoutReleasePost(props: RawBlogContent) {
     return (
         <>
             <Head>
+                <title>{frontMatter.title} :: N4O Shigoto</title>
+                <MetadataHead.SEO
+                    title={frontMatter.title}
+                    description={frontMatter.summary}
+                    image={firstImage}
+                    urlPath={`/r/${frontMatter.slug}`}
+                />
+                <MetadataHead.Prefetch />
                 <style>{ExtraStyling}</style>
             </Head>
             <div id="outer-post" className="flex justify-center py-4">
