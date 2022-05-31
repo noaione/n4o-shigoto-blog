@@ -2,6 +2,7 @@ import HeaderNav from "@/components/HeaderNav";
 import MagnifyingGlassOutline from "@/components/Icons/MagnifyingGlassOutline";
 import MetadataHead from "@/components/MetadataHead";
 import NaoTimesEmbed from "@/components/NaoTimesEmbed";
+import PaginationBar from "@/components/PaginationBar";
 import { FrontMatterExtended } from "@/lib/mdx";
 import { Nullable } from "@/lib/utils";
 import Head from "next/head";
@@ -107,7 +108,7 @@ export default function ShigotoIndexPage({ posts, pagination }: ShigotoIndexProp
                                                 aria-placeholder="Search..."
                                                 aria-label="Search"
                                             />
-                                            <MagnifyingGlassOutline className="absolute w-5 h-5 text-gray-400 right-3 top-3 dark:text-gray-300" />
+                                            <MagnifyingGlassOutline className="absolute w-5 h-5 text-gray-400 right-3 top-4 dark:text-gray-300" />
                                         </div>
                                     </div>
                                     <hr className="block xl:hidden border-gray-200 dark:border-gray-700" />
@@ -132,7 +133,7 @@ export default function ShigotoIndexPage({ posts, pagination }: ShigotoIndexProp
                                                     ))}
                                                 </ul>
                                             </div>
-                                            {/* pagination */}
+                                            <PaginationBar {...pagination} isPosts />
                                         </div>
                                         <footer>
                                             <div
