@@ -1,8 +1,6 @@
-import type { FrontMatterData, RawBlogContent } from "@/lib/mdx";
-import LayoutReleasePost from "@/layouts/ReleasePost";
+import type { RawBlogContent } from "@/lib/mdx";
+import getLayout, { Layouts } from "@/layouts/index";
 
-import { useEffect, useState } from "react";
-// import { useRouter } from 'next/router'
 import { GetStaticPropsContext } from "next";
 
 export async function getStaticPaths() {
@@ -38,20 +36,14 @@ interface BlogsPosts {
     post: RawBlogContent;
 }
 
-const LayoutLoader = {
-    post: LayoutReleasePost,
-};
-
-// get all keys typing
-type LayoutKeys = keyof typeof LayoutLoader;
-
 export default function ShigotoPost(props: BlogsPosts) {
     const {
         post: {
             frontMatter: { layout },
         },
     } = props;
-    const LayoutRender = LayoutLoader[layout as LayoutKeys] || LayoutReleasePost;
+    const LayoutRender = getLayout(layout as Layouts);
 
+    // @ts-ignore
     return <LayoutRender {...props.post} />;
 }
