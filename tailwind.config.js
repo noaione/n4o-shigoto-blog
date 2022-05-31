@@ -8,6 +8,7 @@ module.exports = {
         "./lib/**/*.{js,ts,tsx,jsx}",
         "./public/**/*.{js,ts,tsx,jsx}",
         "./styles/**/*.{js,ts,tsx,jsx}",
+        "./data/**/*.{md,mdx}",
     ],
     darkMode: "class",
     theme: {

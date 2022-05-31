@@ -14,3 +14,36 @@
 .prose code:after {
     content: "";
 }
+
+.alert {
+    @apply relative py-3 px-5 mb-4 border-[1px] border-transparent rounded-md;
+}
+
+.alert-warning {
+    @apply bg-yellow-100 text-yellow-700 border-yellow-100;
+}
+
+.alert-info {
+    @apply bg-blue-100 text-blue-700 border-blue-100;
+}
+
+.lyrics-table {
+    @apply w-full max-w-full mb-4 bg-transparent;
+}
+
+.lyrics-table td,
+.lyrics-table th {
+    @apply p-3 align-top border-t-[1px] border-t-gray-200 dark:border-t-gray-500;
+}
+
+.lyrics-table td > p {
+    line-height: 0.25rem;
+}
+
+.lyrics-table p > p {
+    line-height: 1.5rem;
+}
+
+.lyrics-table p > span {
+    line-height: 1.5rem;
+}

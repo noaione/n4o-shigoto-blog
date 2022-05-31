@@ -1,3 +1,4 @@
+import MDXRenderer from "@/components/MDXRenderer";
 import MetadataHead from "@/components/MetadataHead";
 import { RawBlogContent } from "@/lib/mdx";
 import { isNone, Nullable } from "@/lib/utils";
@@ -7,11 +8,7 @@ import React from "react";
 
 interface ITrackMetadata {
     title: string;
-    othertitle?: string;
-    singer?: string;
-    lyrics?: string;
-    composer?: string;
-    arranger?: string;
+    altTitle?: string;
     extras?: {
         role: string;
         name: string;
@@ -19,32 +16,20 @@ interface ITrackMetadata {
 }
 
 interface IPostExtra {
-    trackNumber?: number;
+    trackNumber: number;
+    actualTitle?: string;
     thumbfile: string;
-    streamlink: string;
-    nyaaid: string;
-    yt_playlistid: string;
     info: ITrackMetadata;
-    tracklist: string[];
-}
-
-function createDesc(trackNo?: number) {
-    if (isNone(trackNo)) {
-        return "Album of the Hololive IDOL PROJECT's 9 Weeks of Original Songs";
-    }
-    return `Song ${trackNo
-        .toString()
-        .padStart(2, "0")} of the Hololive IDOL PROJECT's 9 Weeks of Original Songs`;
 }
 
 function createPageTitle(trackNo?: number, title?: string) {
     if (isNone(trackNo)) {
-        return `${title} (Album)`;
+        return `${title}`;
     }
     return `#${trackNo.toString().padStart(2, "0")} - ${title}`;
 }
 
-interface Holo9WeeksProps {
+interface HoloismProps {
     post: RawBlogContent;
     hasPrev: boolean;
     hasNext: boolean;
@@ -55,17 +40,17 @@ function buildPrevLink(trackNo?: number, hasPrev?: boolean) {
         return undefined;
     }
     let prev = trackNo - 1;
-    if (prev === 0) {
-        return "/holo9weeks/album";
+    if (prev < 1) {
+        return undefined;
     }
-    return `/holo9weeks/song${prev.toString().padStart(2, "0")}`;
+    return `/holoism/track${prev.toString().padStart(2, "0")}`;
 }
 
 function buildNextLink(trackNo?: number, hasNext?: boolean) {
     if (isNone(trackNo) || !hasNext) {
         return undefined;
     }
-    return `/holo9weeks/song${(trackNo + 1).toString().padStart(2, "0")}`;
+    return `/holoism/track${(trackNo + 1).toString().padStart(2, "0")}`;
 }
 
 function NavigationLink(props: { target?: string; children: React.ReactNode }) {
@@ -86,29 +71,121 @@ function NavigationLink(props: { target?: string; children: React.ReactNode }) {
     );
 }
 
-export default function LayoutHolo9Weeks(props: Holo9WeeksProps) {
+const ExtraStyling = `
+table.lyrics-box {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.lyrics-box td {
+    width: 50%;
+    padding: 10px;
+    border-top: 0px;
+}
+
+.sp-marine {
+    color: #b91111;
+}
+
+.sp-tewi {
+    color: #75adfb;
+}
+
+.sp-udonge {
+    color: #944488;
+}
+
+.sp-alice {
+    color: #CF7BFD;
+}
+
+.sp-patchouli {
+    color: #378883;
+}
+
+.sp-marisa {
+    color: #828282;
+}
+
+.sp-marisa {
+    color: #828282;
+}
+
+.sp-cirno {
+    color: #62C1FE;
+}
+
+.sp-remilia {
+    color: #A981CE;
+}
+
+.sp-yukari {
+    color: #E5AE3D;
+}
+
+.sp-yuyuko {
+    color: #ABB3CC;
+}
+
+.song-marine {
+    color: #a53c3c;
+}
+
+.song-peko {
+    color: #87bed8;
+}
+
+.song-miko {
+    color: #eca2c0;
+}
+
+.song-pekomiko {
+    color: #ac94cc;
+}
+
+.song-flare {
+    color: #ef8a5a;
+}
+
+.song-all {
+    color: #000
+}
+
+`;
+
+export default function LayoutHoloism(props: HoloismProps) {
     const {
-        post: { frontMatter },
+        post: { frontMatter, mdxSource },
         hasNext,
         hasPrev,
     } = props;
     const extraData = props.post.extraData as IPostExtra;
     const { info } = extraData;
 
-    const actualImage = `/assets/img/holo9w/${extraData.thumbfile}.jpg`;
+    const actualImage = `/assets/img/holoism_cover.jpg`;
+
+    let actualDesc = info.title;
+    if (!frontMatter.title.startsWith("Episode")) {
+        actualDesc = `Lyrics for ${info.title} by ${info.altTitle}`;
+    }
 
     return (
         <>
             <Head>
-                <title>{info.title} :: Holo 9 Weeks</title>
+                <title>{frontMatter.title} :: Holoism</title>
                 <MetadataHead.SEO
-                    title={info.title}
-                    description={createDesc(extraData.trackNumber)}
+                    title={frontMatter.title}
+                    description={actualDesc}
                     image={actualImage}
-                    urlPath={`/holo9weeks/${frontMatter.slug}`}
+                    urlPath={`/holoism/${frontMatter.slug}`}
+                    smallImage
                 />
-                <MetadataHead.Prefetch extras={["https://i.ytimg.com", "https://youtube.com"]} />
+                <MetadataHead.Prefetch
+                    extras={["https://i.ytimg.com", "https://youtube.com", "https://img.dlsite.jp"]}
+                />
                 <link href="/assets/css/naoIcon.css" rel="stylesheet" />
+                <style>{ExtraStyling}</style>
             </Head>
             <main className="container mx-auto py-8 px-4">
                 <h1 className="pb-3 text-2xl font-semibold">
@@ -125,7 +202,7 @@ export default function LayoutHolo9Weeks(props: Holo9WeeksProps) {
                     <div className="flex flex-col items-center">
                         <a
                             className="flex flex-row items-center gap-1 mx-3 hover:underline hover:text-blue-500 transition"
-                            href="/holo9weeks"
+                            href="/holoism"
                         >
                             <i className="naoicon">home</i>
                             <span> Home</span>
@@ -142,44 +219,16 @@ export default function LayoutHolo9Weeks(props: Holo9WeeksProps) {
                 <div className="flex flex-col relative min-w-0 break-words bg-clip-border w-96">
                     <img className="w-full rounded-t-md" alt="Cover" src={actualImage} />
                     <div className="flex flex-col w-full p-4 mr-auto bg-gray-300 dark:bg-gray-900 rounded-b-md">
-                        <h5 className="mb-2 text-xl font-medium">{info.title}</h5>
-                        {info.othertitle && <h6 className="-mt-1 mb-2 text-gray-500">{info.othertitle}</h6>}
+                        <h5 className="mb-2 text-xl font-medium">{frontMatter.title}</h5>
+                        {info.altTitle && <h6 className="-mt-1 mb-2 text-gray-500">{info.altTitle}</h6>}
                         <p className="leading-6 mb-4">
-                            {info.singer && (
-                                <>
-                                    <b>Singer</b>
-                                    {`: ${info.singer}`}
-                                    <br />
-                                </>
-                            )}
-                            {info.lyrics && (
-                                <>
-                                    <b>Lyrics</b>
-                                    {`: ${info.lyrics}`}
-                                    <br />
-                                </>
-                            )}
-                            {info.composer && (
-                                <>
-                                    <b>Composition</b>
-                                    {`: ${info.composer}`}
-                                    <br />
-                                </>
-                            )}
-                            {info.arranger && (
-                                <>
-                                    <b>Arrangement</b>
-                                    {`: ${info.arranger}`}
-                                    <br />
-                                </>
-                            )}
                             {info.extras && (
                                 <>
                                     {info.extras.map((extra, index) => {
                                         return (
                                             <React.Fragment key={`extra-${extra.role}_${index}`}>
                                                 <b>{extra.role}</b>
-                                                {` ${extra.name}`}
+                                                {`: ${extra.name}`}
                                                 <br />
                                             </React.Fragment>
                                         );
@@ -187,41 +236,18 @@ export default function LayoutHolo9Weeks(props: Holo9WeeksProps) {
                                 </>
                             )}
                         </p>
-                        <h6 className="mb-2 text-base font-medium leading-5">Track List</h6>
-                        <p className="leading-6 mb-4">
-                            {extraData.tracklist.map((track, index) => {
-                                return (
-                                    <React.Fragment key={`album-${info.title}-track-${index}`}>
-                                        <b>{index + 1}</b>
-                                        {`. ${track}`}
-                                        <br />
-                                    </React.Fragment>
-                                );
-                            })}
-                        </p>
+
                         <div className="flex flex-row gap-2 mb-2">
-                            <Link href={extraData.streamlink} passHref>
+                            <Link href="http://cool-create.cc/cd/cccd60/" passHref>
                                 <a className="hover:underline font-medium text-blue-700 dark:text-blue-500 hover:text-blue-500 hover:dark:text-blue-400 transition">
                                     Buy
-                                </a>
-                            </Link>
-                            <Link href={extraData.nyaaid} passHref>
-                                <a className="hover:underline font-medium text-blue-700 dark:text-blue-500 hover:text-blue-500 hover:dark:text-blue-400 transition">
-                                    Download (Torrent)
                                 </a>
                             </Link>
                         </div>
                     </div>
                 </div>
-                <h4 className="mt-6 mb-4 text-xl font-medium">Listen</h4>
-                <hr className="border-black dark:border-gray-500 my-3 w-full" />
-                <div className="relative pb-[56.25%] h-0 overflow-hidden max-w-full">
-                    <iframe
-                        className="absolute top-0 left-0 w-full h-full"
-                        src={`https://www.youtube.com/embed/videoseries?list=${extraData.yt_playlistid}`}
-                        allow="autoplay; encrypted-media"
-                        allowFullScreen
-                    />
+                <div id="complex-section">
+                    <MDXRenderer mdxSource={mdxSource} />
                 </div>
             </main>
         </>
