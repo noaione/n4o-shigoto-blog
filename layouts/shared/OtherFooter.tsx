@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 
 export default function OtherFooterRender(props: { lang?: string }) {
-    const lang = props.lang || "id";
+    const lang = props.lang || "en";
     return (
         <div id="info-other">
             <p className="my-2 text-center font-bold text-md">{lang === "id" ? "Hal Lain" : "Other Stuff"}</p>

@@ -26,7 +26,11 @@ function StaffRender(props: IStaffList) {
     return (
         <p className="my-[0.20rem] text-center text-base">
             <strong>{props.position}:</strong>
-            {isNone(props.link) ? ` ${sanitizeHtml(props.name)}` : <a href={props.link}> {props.name}</a>}
+            {isNone(props.link) ? (
+                <span className="ml-1" dangerouslySetInnerHTML={{ __html: sanitizeHtml(props.name) }}></span>
+            ) : (
+                <a href={props.link}> {props.name}</a>
+            )}
         </p>
     );
 }
@@ -42,7 +46,7 @@ function StaffListRender(props: { staffs?: IStaffList[]; lang?: string }) {
     if (staffs.length < 1) {
         return null;
     }
-    const lang = props.lang || "id";
+    const lang = props.lang || "en";
 
     return (
         <div id="info-staff-content">
@@ -109,7 +113,7 @@ export default function LayoutReleasePost(props: RawBlogContent) {
                     )}
                     <div
                         id="post-content"
-                        className="mt-2 prose prose-p:my-1 prose-li:m-0 text-gray-600 dark:text-gray-100"
+                        className="mt-2 prose dark:prose-invert prose-p:my-3 prose-li:m-0 text-gray-600 dark:text-gray-100"
                     >
                         <MDXRenderer mdxSource={mdxSource} />
                     </div>

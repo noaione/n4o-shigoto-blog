@@ -40,7 +40,7 @@ export default function HyperlinkListRender(props: { urls?: IHyperlink[]; lang?:
     if (urls.length < 1) {
         return null;
     }
-    const lang = props.lang || "id";
+    const lang = props.lang || "en";
 
     return (
         <div id="info-download-content">
