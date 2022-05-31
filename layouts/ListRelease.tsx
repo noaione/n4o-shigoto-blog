@@ -29,7 +29,7 @@ function PostViewer(props: FrontMatterExtended) {
     return (
         <div>
             {firstImage && (
-                <div className="prose">
+                <div>
                     <img className="max-w-full mb-2" src={firstImage} alt={props.title + " Thumbnail"} />
                 </div>
             )}
@@ -40,7 +40,7 @@ function PostViewer(props: FrontMatterExtended) {
                     </a>
                 </Link>
             </h3>
-            <div className="prose text-lg mt-4 text-gray-500 max-w-none dark:text-gray-400">
+            <div className="text-lg mt-4 text-gray-500 max-w-none dark:text-gray-400">
                 <p>{summary}</p>
             </div>
             <div className="mt-2">
@@ -95,7 +95,7 @@ export default function ListReleaseLayout({ posts, pagination }: ListLayoutProps
                                             gridArea: "1 / 2 / 2 / 4",
                                         }}
                                     >
-                                        <div className="pt-10 pb-8 prose dark:prose-dark max-w-none">
+                                        <div className="pt-10 pb-8 max-w-none">
                                             <ul className="divide-y divide-gray-200 dark:divide-gray-700">
                                                 {posts.map((post) => (
                                                     <li key={post.slug} className="py-4">

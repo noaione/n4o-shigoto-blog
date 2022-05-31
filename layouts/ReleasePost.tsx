@@ -5,6 +5,7 @@ import { RawBlogContent } from "@/lib/mdx";
 import { isNone, Nullable } from "@/lib/utils";
 import Head from "next/head";
 import React from "react";
+import sanitizeHtml from "sanitize-html";
 import HyperlinkListRender, { IHyperlink } from "./shared/HyperlinkList";
 import OtherFooterRender from "./shared/OtherFooter";
 
@@ -25,7 +26,7 @@ function StaffRender(props: IStaffList) {
     return (
         <p className="my-[0.20rem] text-center text-base">
             <strong>{props.position}:</strong>
-            {isNone(props.link) ? ` ${props.name}` : <a href={props.link}> {props.name}</a>}
+            {isNone(props.link) ? ` ${sanitizeHtml(props.name)}` : <a href={props.link}> {props.name}</a>}
         </p>
     );
 }
@@ -106,7 +107,10 @@ export default function LayoutReleasePost(props: RawBlogContent) {
                             alt="Post Image"
                         />
                     )}
-                    <div id="post-content" className="mt-2">
+                    <div
+                        id="post-content"
+                        className="mt-2 prose prose-p:my-1 prose-li:m-0 text-gray-600 dark:text-gray-100"
+                    >
                         <MDXRenderer mdxSource={mdxSource} />
                     </div>
                     <div id="post-info" className="mt-6 mb-2 text-center">

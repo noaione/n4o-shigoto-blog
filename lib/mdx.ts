@@ -6,6 +6,8 @@ import glob from "tiny-glob/sync";
 import matter from "gray-matter";
 import { Nullable, pickFirstLine } from "./utils";
 
+import remarkGFM from "remark-gfm";
+
 const root = process.cwd();
 
 function findFirstLine(textData: string): string {
@@ -196,6 +198,10 @@ export async function getFileBySlug(postData: FrontMatterExtended): Promise<RawB
 
     const { code } = await bundleMDX({
         source: realContent,
+        mdxOptions(options, frontMatter) {
+            options.remarkPlugins = [...(options.remarkPlugins ?? []), remarkGFM];
+            return options;
+        },
         esbuildOptions: (options) => {
             options.loader = {
                 ...options.loader,
