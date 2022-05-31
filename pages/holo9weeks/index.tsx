@@ -111,6 +111,13 @@ export default function Holo9WeeksIndexPage({ posts }: StaticPropsData) {
                     type="text/css"
                     href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
                 />
+                <title>Hololive 9th Weeks of Original Songs :: N4O Shigoto</title>
+                <MetadataHead.SEO
+                    title="Hololive 9th Weeks of Original Songs"
+                    description="9 Weeks of Hololive IDOL PROJECT's Original Songs"
+                    image="/assets/img/holo9w/thumb.png"
+                />
+                <MetadataHead.Prefetch />
             </Head>
             <main className="py-8">
                 <div className="text-center mb-4">
