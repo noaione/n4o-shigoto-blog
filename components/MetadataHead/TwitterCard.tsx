@@ -5,6 +5,7 @@ interface TwitterCardProps {
     image?: string;
     title: string;
     description: string;
+    smallImage?: boolean;
 }
 
 class TwitterCardsMeta extends React.Component<TwitterCardProps> {
@@ -13,14 +14,14 @@ class TwitterCardsMeta extends React.Component<TwitterCardProps> {
     }
 
     render() {
-        const { title, description, image } = this.props;
+        const { title, description, image, smallImage } = this.props;
 
         const realTitle = title || "N4O Shigoto";
         const realImage = image || "/assets/img/social-card.png";
 
         return (
             <>
-                <meta name="twitter:card" content="summary_large_image" />
+                {!smallImage && <meta name="twitter:card" content="summary_large_image" />}
                 <meta name="twitter:creator" content="@nao0809_" />
                 <meta name="twitter:title" content={realTitle} />
                 {description && <meta property="twitter:description" content={pickFirstLine(description)} />}

@@ -13,7 +13,9 @@ export interface SEOMetaProps {
     description?: string;
     image?: Nullable<string>;
     urlPath?: string;
+    smallImage?: boolean;
 }
+const FALLBACKIMAGE = "/assets/img/nao250px.png";
 
 class SEOMetaTags extends React.Component<SEOMetaProps> {
     constructor(props: SEOMetaProps) {
@@ -22,10 +24,11 @@ class SEOMetaTags extends React.Component<SEOMetaProps> {
 
     render() {
         const { title, description, image, urlPath } = this.props;
+        let { smallImage } = this.props;
 
         let realTitle = "Home";
-        let realDescription = "Fansubber, Encoder, and “programmer”";
-        let realImage = "https://shigoto.n4o.xyz/assets/img/social-card.png";
+        let realDescription = "A developer and someone that loves Japanese media";
+        let realImage = FALLBACKIMAGE;
         let realUrl = null;
         if (isString(title)) {
             realTitle = title;
@@ -49,12 +52,21 @@ class SEOMetaTags extends React.Component<SEOMetaProps> {
             }
         }
 
+        if (realImage === FALLBACKIMAGE) {
+            smallImage = true;
+        }
+
         return (
             <>
                 {realDescription && <meta name="description" content={pickFirstLine(realDescription)} />}
                 <link rel="canonical" href={url} />
                 <OpenGraphMeta title={realTitle} description={realDescription} url={url} image={realImage} />
-                <TwitterCardsMeta title={realTitle} description={realDescription} image={realImage} />
+                <TwitterCardsMeta
+                    title={realTitle}
+                    description={realDescription}
+                    image={realImage}
+                    smallImage={smallImage}
+                />
             </>
         );
     }
