@@ -22,7 +22,7 @@ function HyperlinkRender({ link, text, status }: IHyperlink) {
     return (
         <a
             href={link}
-            className="bg-slate-500 visited:bg-slate-600 !text-white hover:!text-white rounded-md p-3 text-center font-bold text-sm my-1 mx-0.5 inline-block hover:rounded-xl no-underline hover:no-underline transition-all"
+            className="bg-slate-500 visited:bg-slate-600 !text-white hover:!text-white visited:!text-gray-200 rounded-md p-3 text-center font-bold text-sm my-1 mx-0.5 inline-block hover:rounded-xl no-underline hover:no-underline transition-all"
         >
             {text}
         </a>

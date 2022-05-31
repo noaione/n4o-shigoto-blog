@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.prose code {
+    word-break: break-all;
+    font-weight: 500;
+}
+
+.prose code:before {
+    content: "";
+}
+
+.prose code:after {
+    content: "";
+}
