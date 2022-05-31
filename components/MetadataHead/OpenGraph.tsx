@@ -6,6 +6,7 @@ interface OpenGraphProps {
     url: string;
     description: string;
 }
+const FALLBACKIMAGE = "/assets/img/nao250px.png";
 
 class OpenGraphMeta extends React.Component<OpenGraphProps> {
     constructor(props: OpenGraphProps) {
@@ -16,10 +17,12 @@ class OpenGraphMeta extends React.Component<OpenGraphProps> {
         const { title, description, url, image } = this.props;
 
         const realUrl = url || "https://shigoto.n4o.xyz/";
-        const realImage = image || "/assets/img/social-card.png";
+        const realImage = image || FALLBACKIMAGE;
 
         return (
             <>
+                <meta name="theme-color" content="#F4E5B1" />
+                <meta name="msapplication-TileColor" content="#F4E5B1" />
                 {title && <meta property="og:title" content={title} />}
                 {description && <meta property="og:description" content={description} />}
                 {realImage && <meta property="og:image" content={realImage} />}
