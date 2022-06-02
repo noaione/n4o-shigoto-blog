@@ -15,6 +15,7 @@ interface PaginationProps {
 interface ListLayoutProps {
     posts: FrontMatterExtended[];
     pagination: PaginationProps;
+    pageTitle?: string;
 }
 
 function PostViewer(props: FrontMatterExtended) {
@@ -58,7 +59,8 @@ function PostViewer(props: FrontMatterExtended) {
     );
 }
 
-export default function ListReleaseLayout({ posts, pagination }: ListLayoutProps) {
+export default function ListReleaseLayout({ posts, pagination, pageTitle }: ListLayoutProps) {
+    const headerTitle = pageTitle || "Releases";
     return (
         <div className="max-w-3xl px-4 mx-auto sm:px-6 xl:max-w-5xl xl:px-0">
             <div className="flex flex-col justify-between h-screen">
@@ -69,7 +71,7 @@ export default function ListReleaseLayout({ posts, pagination }: ListLayoutProps
                             <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
                                 <div className="pt-6 pb-8 space-y-2 md:space-y-5">
                                     <h1 className="text-4xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:leading-10 md:leading-14 ">
-                                        Releases
+                                        {headerTitle}
                                     </h1>
                                     <div className="relative max-w-lg pt-2">
                                         <input

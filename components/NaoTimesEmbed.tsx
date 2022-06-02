@@ -1,4 +1,4 @@
-import { isNone, Nullable } from "@/lib/utils";
+import { isNone } from "@/lib/utils";
 import React from "react";
 
 const EMBED_URL = "https://panel.naoti.me/embed";
@@ -12,12 +12,6 @@ interface IEmbedProps {
 interface IEmbedState {
     ready: boolean;
     initialDarkMode: boolean;
-}
-
-async function waitUntilVariableNotNull(variable: Nullable<any>, interval: number) {
-    while (isNone(variable)) {
-        await new Promise((resolve) => setTimeout(resolve, interval));
-    }
 }
 
 export default class NaoTimesEmbed extends React.Component<IEmbedProps, IEmbedState> {
