@@ -72,6 +72,7 @@ export default class ShigotoDocument extends Document {
                     <link rel="icon" type="image/png" sizes="32x32" href="/assets/ico/favicon-32x32.png" />
                     <link rel="icon" type="image/png" sizes="96x96" href="/assets/ico/favicon-96x96.png" />
                     <link rel="icon" type="image/png" sizes="16x16" href="/assets/ico/favicon-16x16.png" />
+                    <script defer async data-domain="shigoto.n4o.xyz" src="/js/kryptonite.js" />
                 </Head>
                 <body className="bg-white text-black dark:bg-gray-800 dark:text-gray-100">
                     <Main />
