@@ -12,6 +12,10 @@ module.exports = {
                     source: "/js/kryptonite.js",
                     destination: "https://tr.n4o.xyz/js/plausible.js",
                 },
+                {
+                    source: "/api/event",
+                    destination: "https://tr.n4o.xyz/api/event",
+                },
             ],
         };
     },
