@@ -8,7 +8,7 @@ function isS(s: string | unknown): s is string {
 
 interface CustomLinkProps
     extends DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement> {
-    locale: string;
+    locale?: string;
 }
 
 const CustomLink = ({ href, locale, ...rest }: CustomLinkProps) => {

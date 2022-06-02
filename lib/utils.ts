@@ -6,6 +6,18 @@ export function isNone(value: any): value is NoneType {
     return value === null || value === undefined;
 }
 
+export function kebabCase(str: string) {
+    if (!str) {
+        return str;
+    }
+
+    const match = str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g);
+    if (!match) {
+        return str;
+    }
+    return match.map((x) => x.toLowerCase()).join("-");
+}
+
 export function pickFirstLine(textdata: string, ignoreSpace = true): string {
     if (typeof textdata !== "string") {
         return textdata;

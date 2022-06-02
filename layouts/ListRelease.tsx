@@ -3,7 +3,7 @@ import MagnifyingGlassOutline from "@/components/Icons/MagnifyingGlassOutline";
 import NaoTimesEmbed from "@/components/NaoTimesEmbed";
 import PaginationBar from "@/components/PaginationBar";
 import type { FrontMatterExtended } from "@/lib/mdx";
-import { Nullable } from "@/lib/utils";
+import { Nullable, kebabCase } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 
@@ -16,6 +16,7 @@ interface ListLayoutProps {
     posts: FrontMatterExtended[];
     pagination: PaginationProps;
     pageTitle?: string;
+    isTags?: boolean;
 }
 
 function PostViewer(props: FrontMatterExtended) {
@@ -48,7 +49,11 @@ function PostViewer(props: FrontMatterExtended) {
                 {props.tags && props.tags.length > 0 && (
                     <div className="flex flex-row gap-1">
                         {props.tags.map((tag: string) => (
-                            <Link key={`tagar-${props.slug}-${tag}`} href={`/release/tags/${tag}`} passHref>
+                            <Link
+                                key={`tagar-${props.slug}-${tag}`}
+                                href={`/release/tags/${kebabCase(tag)}`}
+                                passHref
+                            >
                                 <a className="text-blue-500 hover:opacity-70 transition">{"#" + tag}</a>
                             </Link>
                         ))}
@@ -59,12 +64,12 @@ function PostViewer(props: FrontMatterExtended) {
     );
 }
 
-export default function ListReleaseLayout({ posts, pagination, pageTitle }: ListLayoutProps) {
+export default function ListReleaseLayout({ posts, pagination, pageTitle, isTags }: ListLayoutProps) {
     const headerTitle = pageTitle || "Releases";
     return (
         <div className="max-w-3xl px-4 mx-auto sm:px-6 xl:max-w-5xl xl:px-0">
             <div className="flex flex-col justify-between h-screen">
-                <HeaderNav />
+                <HeaderNav isTags={isTags} />
                 <main className="mb-auto">
                     <div className="max-w-3xl px-4 mx-auto sm:px-6 xl:max-w-5xl xl:px-0">
                         <article>
@@ -106,7 +111,7 @@ export default function ListReleaseLayout({ posts, pagination, pageTitle }: List
                                                 ))}
                                             </ul>
                                         </div>
-                                        <PaginationBar {...pagination} isPosts />
+                                        <PaginationBar {...pagination} isPosts={!isTags} />
                                     </div>
                                     <footer>
                                         <div
