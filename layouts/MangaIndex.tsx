@@ -88,7 +88,11 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                         // yen press
                         "https://yenpress.com",
                         // yen press cdn
-                        "https://yenpress-us.imgix.net/",
+                        "https://yenpress-us.imgix.net",
+                        // comikey
+                        "https://comikey.com",
+                        // wp media resizer
+                        "https://i1.wp.com",
                     ]}
                 />
             </Head>
