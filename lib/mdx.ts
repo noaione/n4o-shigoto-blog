@@ -251,7 +251,7 @@ export async function getFileBySlug(postData: FrontMatterExtended): Promise<RawB
 
 export async function getAllPostsFrontMatter(
     type: PostDataType,
-    sortBy: "date" | "slug" = "date",
+    sortBy: "date" | "slug" | "title" = "date",
     sortDirection: "asc" | "desc" = "desc"
 ): Promise<FrontMatterExtended[]> {
     const files = await getAllPosts(type);
@@ -301,6 +301,8 @@ export async function getAllPostsFrontMatter(
     });
     if (sortBy === "slug") {
         return allFrontMatter.sort((a, b) => stringSorter(a.slug, b.slug, sortDirection));
+    } else if (sortBy === "title") {
+        return allFrontMatter.sort((a, b) => stringSorter(a.title, b.title, sortDirection));
     } else {
         return allFrontMatter.sort((a, b) => stringSorter(a.date, b.date, sortDirection));
     }

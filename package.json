@@ -45,6 +45,7 @@
         "eslint-plugin-react": "^7.29.4",
         "postcss": "^8.4.12",
         "prettier": "^2.6.2",
+        "remark-breaks": "^3.0.2",
         "remark-html": "^15.0.1",
         "remark-parse": "^10.0.1",
         "tailwindcss": "^3.0.24",
