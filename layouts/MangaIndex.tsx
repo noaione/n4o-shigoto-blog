@@ -56,7 +56,6 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
     } = props;
 
     const extraData = props.post.extraData as ExtraData;
-    console.info(extraData);
 
     let firstImage: Nullable<string> = null;
     if (Array.isArray(frontMatter.images) && frontMatter.images.length > 0) {
