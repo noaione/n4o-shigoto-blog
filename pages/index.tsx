@@ -54,7 +54,7 @@ export default function Home() {
                         </div>
                         <div className="flex flex-row items-center space-x-1 pt-3">
                             <Link href="/holoism" passHref>
-                                <a>
+                                <a className="opacity-100 hover:opacity-80 duration-200">
                                     <img
                                         width={50}
                                         height={50}
@@ -64,7 +64,7 @@ export default function Home() {
                                 </a>
                             </Link>
                             <Link href="/holo9weeks" passHref>
-                                <a>
+                                <a className="opacity-100 hover:opacity-80 duration-200">
                                     <img
                                         width={50}
                                         height={50}
