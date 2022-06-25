@@ -1,8 +1,10 @@
 import React from "react";
-import { Nullable, pickFirstLine } from "../../lib/utils";
+import { Nullable, pickFirstLine } from "@/lib/utils";
 
 import OpenGraphMeta from "./OpenGraph";
 import TwitterCardsMeta from "./TwitterCard";
+
+import siteMetadata from "../../data/siteMetadata.json";
 
 function isString(data: any): data is string {
     return typeof data === "string";
@@ -27,7 +29,7 @@ class SEOMetaTags extends React.Component<SEOMetaProps> {
         let { smallImage } = this.props;
 
         let realTitle = "Home";
-        let realDescription = "A developer and someone that loves Japanese media";
+        let realDescription = siteMetadata.description;
         let realImage = FALLBACKIMAGE;
         let realUrl = null;
         if (isString(title)) {
@@ -43,7 +45,12 @@ class SEOMetaTags extends React.Component<SEOMetaProps> {
             realUrl = urlPath;
         }
 
-        let url = "https://shigoto.n4o.xyz";
+        let baseUrl = siteMetadata.baseUrl;
+        if (baseUrl.endsWith("/")) {
+            baseUrl = baseUrl.slice(0, -1);
+        }
+
+        let url = baseUrl;
         if (isString(urlPath)) {
             if (urlPath.startsWith("/")) {
                 url += realUrl;
