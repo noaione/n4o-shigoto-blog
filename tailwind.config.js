@@ -1,4 +1,5 @@
 const colors = require("tailwindcss/colors");
+const defaultTheme = require("tailwindcss/defaultTheme");
 
 module.exports = {
     content: [
@@ -12,6 +13,10 @@ module.exports = {
     ],
     darkMode: "class",
     theme: {
+        screens: {
+            xs: "475px",
+            ...defaultTheme.screens,
+        },
         extend: {
             colors: {
                 gray: colors.neutral,
