@@ -119,9 +119,9 @@ export function formatSlug(slug: string) {
     return slug.replace(/\.(mdx|md)/, "");
 }
 
-export function dateSortDesc(a: string, b: string) {
-    if (a > b) return -1;
-    if (a < b) return 1;
+export function stringSorter(a: string, b: string, dir: "asc" | "desc" = "desc") {
+    if (a > b) return dir === "desc" ? -1 : 1;
+    if (a < b) return dir === "desc" ? 1 : -1;
     return 0;
 }
 
@@ -249,7 +249,11 @@ export async function getFileBySlug(postData: FrontMatterExtended): Promise<RawB
     };
 }
 
-export async function getAllPostsFrontMatter(type: PostDataType): Promise<FrontMatterExtended[]> {
+export async function getAllPostsFrontMatter(
+    type: PostDataType,
+    sortBy: "date" | "slug" = "date",
+    sortDirection: "asc" | "desc" = "desc"
+): Promise<FrontMatterExtended[]> {
     const files = await getAllPosts(type);
     const allFrontMatter: FrontMatterExtended[] = [];
     files.forEach((file) => {
@@ -295,5 +299,9 @@ export async function getAllPostsFrontMatter(type: PostDataType): Promise<FrontM
             file: file.file,
         });
     });
-    return allFrontMatter.sort((a, b) => dateSortDesc(a.date, b.date));
+    if (sortBy === "slug") {
+        return allFrontMatter.sort((a, b) => stringSorter(a.slug, b.slug, sortDirection));
+    } else {
+        return allFrontMatter.sort((a, b) => stringSorter(a.date, b.date, sortDirection));
+    }
 }

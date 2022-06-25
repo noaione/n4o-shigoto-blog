@@ -21,7 +21,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }: GetStaticPropsContext) {
     const { getFileBySlug, getAllPostsFrontMatter } = await import("@/lib/mdx");
-    const allPosts = await getAllPostsFrontMatter("holoism");
+    const allPosts = await getAllPostsFrontMatter("holoism", "slug", "asc");
     const postIndex = allPosts.findIndex((post) => post.slug === params?.slug);
     if (postIndex < 0) {
         return {
