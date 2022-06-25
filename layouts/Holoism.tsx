@@ -216,7 +216,7 @@ export default function LayoutHoloism(props: HoloismProps) {
                     </div>
                 </div>
                 <hr className="border-black dark:border-gray-500 my-3" />
-                <div className="flex flex-col relative min-w-0 break-words bg-clip-border w-96">
+                <div className="flex flex-col relative min-w-0 break-words bg-clip-border xs:w-64 md:w-72 lg:w-96">
                     <img className="w-full rounded-t-md" alt="Cover" src={actualImage} />
                     <div className="flex flex-col w-full p-4 mr-auto bg-gray-300 dark:bg-gray-900 rounded-b-md">
                         <h5 className="mb-2 text-xl font-medium">{frontMatter.title}</h5>

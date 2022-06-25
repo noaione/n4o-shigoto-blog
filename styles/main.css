@@ -40,10 +40,9 @@
     line-height: 0.25rem;
 }
 
-.lyrics-table p > p {
-    line-height: 1.5rem;
-}
-
+.lyrics-table p > p,
+.lyrics-table p > em,
+.lyrics-table p > b,
 .lyrics-table p > span {
     line-height: 1.5rem;
 }
