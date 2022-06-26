@@ -48,7 +48,7 @@ function LinkIconRender(props: HotlinkProps) {
             icon: (
                 <img
                     alt="Yen Press Icon"
-                    className="beside-link-icon"
+                    className="beside-link-icon !rounded-full"
                     src="https://dhjhkxawhe8q4.cloudfront.net/yenpress-wp/wp-content/uploads/2018/12/11131202/android-icon-192x192.png"
                 />
             ),
@@ -98,15 +98,38 @@ function LinkIconRender(props: HotlinkProps) {
             icon: (
                 <img
                     alt="Mega Icon"
-                    className="beside-link-icon"
+                    className="beside-link-icon !rounded-full"
                     src="https://mega.nz/android-chrome-192x192.png"
                 />
             ),
-            title: "Mega",
+            title: "MEGA",
+        },
+        "mangaupdates.com": {
+            icon: (
+                <img
+                    alt="MangaUpdates Icon"
+                    className="beside-link-icon"
+                    src="https://www.mangaupdates.com/images/manga-updates.svg"
+                />
+            ),
+            title: "MangaUpdates",
+        },
+        "mangadex.org": {
+            icon: (
+                <img
+                    alt="MangaDex Icon"
+                    className="beside-link-icon !rounded-full"
+                    src="https://mangadex.org/icon-192.png"
+                />
+            ),
+            title: "MangaDex",
         },
     };
 
-    const urlDomain = url.split("//")[1].split("/")[0];
+    let urlDomain = url.split("//")[1].split("/")[0];
+    if (urlDomain.startsWith("www.")) {
+        urlDomain = urlDomain.substring(4);
+    }
     const IconData = iconDataset[urlDomain as keyof typeof iconDataset];
     if (isNone(IconData)) {
         return <a href={url}>{titleTop || "Unknown Link"}</a>;
@@ -141,6 +164,13 @@ function ProjectStatusRender(props: { status: ProjectStatus }) {
     return <span className={`${statusInfo.color} text-sm font-semibold`}>{statusInfo.key}</span>;
 }
 
+function isDigit(str: string | number): boolean {
+    if (typeof str === "number") {
+        return true;
+    }
+    return /^\d+$/.test(str);
+}
+
 interface AuthorProps {
     role: string;
     name: string;
@@ -166,11 +196,18 @@ function AuthorRender(props: { author: AuthorProps | string }) {
     );
 }
 
+interface MangaInfoLink {
+    mu?: string;
+    mangadex?: string;
+    official?: string;
+    raw?: string;
+}
+
 interface ExtraData {
     synopsis?: string;
     authors: (AuthorProps | string)[];
-    officialLink?: string;
     otherTitles?: string[];
+    infolinks?: MangaInfoLink;
     hotlinks?: (HotlinkProps | string)[];
     status?: ProjectStatus;
 }
@@ -194,8 +231,13 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
     const synopsis = extraData?.synopsis || "*No synopsis*";
     const synopsisForDesc = extraData?.synopsis || `Manga releases of ${frontMatter.title}`;
 
-    const { hotlinks, officialLink, otherTitles } = extraData;
+    const { hotlinks, otherTitles, infolinks } = extraData;
     const projectStatus = extraData?.status || "ongoing";
+
+    let hasAnyInfoLinks = false;
+    if (!isNone(infolinks) && (infolinks.mu || infolinks.mangadex || infolinks.official)) {
+        hasAnyInfoLinks = true;
+    }
 
     return (
         <>
@@ -262,8 +304,11 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                 {Array.isArray(otherTitles) && otherTitles.length > 0 && (
                     <div className="flex flex-col items-center md:items-start mt-4 mx-4 max-w-[65ch]">
                         <h3 className="mb-2 font-semibold">Also Known As</h3>
-                        {otherTitles.map((title) => (
-                            <p className="whitespace-pre-wrap text-gray-700 dark:text-gray-300 text-sm leading-6 md:before:content-['-_']">
+                        {otherTitles.map((title, idx) => (
+                            <p
+                                key={`othertitle-${idx}`}
+                                className="whitespace-pre-wrap text-gray-700 dark:text-gray-300 text-sm leading-6 md:before:content-['-_']"
+                            >
                                 {title}
                             </p>
                         ))}
@@ -298,16 +343,36 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                     />
                 </div>
 
-                {officialLink && (
-                    <div id="official-link" className="flex flex-col items-center md:items-start mt-4 mx-4">
-                        <h3 className="mb-2 font-semibold">Official Link</h3>
-                        <LinkIconRender key="official-icon" url={officialLink} />
+                {!isNone(infolinks) && hasAnyInfoLinks && (
+                    <div id="info-links" className="flex flex-col items-center md:items-start mt-4 mx-4">
+                        <h3 className="mb-2 font-semibold">Links</h3>
+                        <div className="flex flex-col gap-2">
+                            {infolinks.mu && (
+                                <LinkIconRender
+                                    key="mangaupdates-link"
+                                    url={
+                                        isDigit(infolinks.mu)
+                                            ? `https://www.mangaupdates.com/series.html?id=${infolinks.mu}`
+                                            : `https://www.mangaupdates.com/series/${infolinks.mu}`
+                                    }
+                                />
+                            )}
+                            {infolinks.mangadex && (
+                                <LinkIconRender
+                                    key="mangadex-link"
+                                    url={`https://mangadex.org/title/${infolinks.mangadex}`}
+                                />
+                            )}
+                            {infolinks.official && (
+                                <LinkIconRender key="official-link" url={infolinks.official} />
+                            )}
+                        </div>
                     </div>
                 )}
 
                 {Array.isArray(hotlinks) && hotlinks.length > 0 && (
-                    <div id="hotlinks" className="flex flex-col items-center md:items-start mt-4 mx-4">
-                        <h3 className="mb-2 font-semibold">Links</h3>
+                    <div id="download-links" className="flex flex-col items-center md:items-start mt-4 mx-4">
+                        <h3 className="mb-2 font-semibold">{`Download${hotlinks.length > 1 ? "s" : ""}`}</h3>
                         <div className="flex flex-col gap-2">
                             {hotlinks.map((hotlink, idx) => {
                                 let hotlinkId = `hotlink-${idx}`;
