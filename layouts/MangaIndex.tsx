@@ -156,6 +156,7 @@ interface ExtraData {
     synopsis?: string;
     authors: (AuthorProps | string)[];
     officialLink?: string;
+    otherTitles?: string[];
     hotlinks?: (HotlinkProps | string)[];
 }
 
@@ -178,7 +179,7 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
     const synopsis = extraData?.synopsis || "*No synopsis*";
     const synopsisForDesc = extraData?.synopsis || `Manga releases of ${frontMatter.title}`;
 
-    const { hotlinks, officialLink } = extraData;
+    const { hotlinks, officialLink, otherTitles } = extraData;
 
     return (
         <>
@@ -239,6 +240,18 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                         </div>
                     )}
                 </div>
+
+                {Array.isArray(otherTitles) && otherTitles.length > 0 && (
+                    <div className="flex flex-col items-center md:items-start mt-4 mx-4">
+                        <h3 className="mb-2 font-semibold">Also Known As</h3>
+                        {otherTitles.map((title) => (
+                            <p className="whitespace-pre-wrap text-gray-700 dark:text-gray-300 text-sm leading-5">
+                                {title}
+                            </p>
+                        ))}
+                    </div>
+                )}
+
                 <div
                     id="author-info"
                     className="flex flex-row flex-wrap gap-3 md:gap-4 justify-center md:justify-start mt-4 mx-4 max-w-[65ch]"
