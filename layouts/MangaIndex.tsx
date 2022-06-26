@@ -178,6 +178,8 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
     const synopsis = extraData?.synopsis || "*No synopsis*";
     const synopsisForDesc = extraData?.synopsis || `Manga releases of ${frontMatter.title}`;
 
+    const { hotlinks, officialLink } = extraData;
+
     return (
         <>
             <Head>
@@ -226,14 +228,21 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                         {frontMatter.title}
                     </div>
                 </div>
-                <div className="flex flex-row mt-4 mx-4 justify-center md:justify-start">
+                <div id="cover-img" className="flex flex-row mt-4 mx-4 justify-center md:justify-start">
                     {firstImage && (
                         <div className="xs:w-64 md:w-72 lg:w-96">
-                            <img className="w-full rounded-md" alt="Cover" src={firstImage} />
+                            <img
+                                className="w-full rounded-md md:hover:-translate-y-1 md:transition-transform"
+                                alt="Cover"
+                                src={firstImage}
+                            />
                         </div>
                     )}
                 </div>
-                <div className="flex flex-row flex-wrap gap-3 md:gap-4 justify-center md:justify-start mt-4 mx-4 max-w-[65ch]">
+                <div
+                    id="author-info"
+                    className="flex flex-row flex-wrap gap-3 md:gap-4 justify-center md:justify-start mt-4 mx-4 max-w-[65ch]"
+                >
                     {extraData.authors.map((author, idx) => {
                         let authorId = `author-${idx}`;
                         if (typeof author === "string") {
@@ -241,22 +250,43 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                         } else {
                             authorId = authorId + "-" + kebabCase(author.role.toLowerCase());
                         }
-                        console.info(authorId);
                         return <AuthorRender key={authorId} author={author} />;
                     })}
                 </div>
 
-                <div className="flex flex-col items-center md:items-start mt-4 mx-4">
+                <div id="synopsis" className="flex flex-col items-center md:items-start mt-4 mx-4">
                     <div
+                        key="synopsis-render"
                         className="text-center md:text-left prose dark:prose-invert"
                         dangerouslySetInnerHTML={{ __html: renderMarkdown(synopsis) }}
                     />
                 </div>
 
-                {extraData.officialLink && (
-                    <div className="flex flex-col items-center md:items-start mt-4 mx-4">
+                {officialLink && (
+                    <div id="official-link" className="flex flex-col items-center md:items-start mt-4 mx-4">
                         <h3 className="mb-2 font-semibold">Official Link</h3>
-                        <LinkIconRender key="official-icon" url={extraData.officialLink} />
+                        <LinkIconRender key="official-icon" url={officialLink} />
+                    </div>
+                )}
+
+                {Array.isArray(hotlinks) && hotlinks.length > 0 && (
+                    <div id="hotlinks" className="flex flex-col items-center md:items-start mt-4 mx-4">
+                        <h3 className="mb-2 font-semibold">Links</h3>
+                        {hotlinks.map((hotlink, idx) => {
+                            let hotlinkId = `hotlink-${idx}`;
+                            let actualUrl: string;
+                            let actualTitle = undefined;
+                            if (typeof hotlink === "string") {
+                                actualUrl = hotlink;
+                                hotlinkId = hotlinkId + "-" + kebabCase(hotlink.toLowerCase());
+                            } else {
+                                const useThis = hotlink.title || hotlink.url;
+                                actualUrl = hotlink.url;
+                                actualTitle = hotlink.title;
+                                hotlinkId = hotlinkId + "-" + kebabCase(useThis.toLowerCase());
+                            }
+                            return <LinkIconRender key={hotlinkId} url={actualUrl} title={actualTitle} />;
+                        })}
                     </div>
                 )}
             </main>
