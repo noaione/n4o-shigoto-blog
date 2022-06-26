@@ -127,6 +127,20 @@ function LinkIconRender(props: HotlinkProps) {
     );
 }
 
+type ProjectStatus = "ongoing" | "dropped" | "finished" | "paused";
+
+function ProjectStatusRender(props: { status: ProjectStatus }) {
+    const { status } = props;
+    const statusMap = {
+        ongoing: { key: "Ongoing", color: "text-gray-600 dark:text-gray-400" },
+        dropped: { key: "Dropped", color: "text-red-600 dark:text-red-400" },
+        finished: { key: "Finished", color: "text-green-600 dark:text-green-400" },
+        paused: { key: "On Hold", color: "text-orange-600 dark:text-orange-400" },
+    };
+    const statusInfo = statusMap[status] || statusMap.ongoing;
+    return <span className={`${statusInfo.color} text-sm font-semibold`}>{statusInfo.key}</span>;
+}
+
 interface AuthorProps {
     role: string;
     name: string;
@@ -158,6 +172,7 @@ interface ExtraData {
     officialLink?: string;
     otherTitles?: string[];
     hotlinks?: (HotlinkProps | string)[];
+    status?: ProjectStatus;
 }
 
 interface MangaLayoutProps {
@@ -180,6 +195,7 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
     const synopsisForDesc = extraData?.synopsis || `Manga releases of ${frontMatter.title}`;
 
     const { hotlinks, officialLink, otherTitles } = extraData;
+    const projectStatus = extraData?.status || "ongoing";
 
     return (
         <>
@@ -265,6 +281,11 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                         }
                         return <AuthorRender key={authorId} author={author} />;
                     })}
+                </div>
+
+                <div id="project-status" className="flex flex-col items-center md:items-start mt-4 mx-4">
+                    <h3 className="mb-1 font-semibold">Status</h3>
+                    <ProjectStatusRender key="project-status" status={projectStatus} />
                 </div>
 
                 <div id="synopsis" className="flex flex-col items-center md:items-start mt-4 mx-4">
