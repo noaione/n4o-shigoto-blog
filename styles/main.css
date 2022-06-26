@@ -46,3 +46,7 @@
 .lyrics-table p > span {
     line-height: 1.5rem;
 }
+
+.beside-link-icon {
+    @apply w-8 rounded-md object-cover hover:-translate-y-1 transition;
+}

@@ -1,6 +1,6 @@
 import MetadataHead from "@/components/MetadataHead";
 import type { RawBlogContent } from "@/lib/mdx";
-import { kebabCase, Nullable } from "@/lib/utils";
+import { isNone, kebabCase, Nullable } from "@/lib/utils";
 import Head from "next/head";
 import Link from "next/link";
 import React from "react";
@@ -14,6 +14,117 @@ import remarkHtml from "remark-html";
 function renderMarkdown(md: string) {
     const result = unified().use(remarkParse).use(remarkGfm).use(remarkHtml).processSync(md);
     return result.toString();
+}
+
+interface HotlinkProps {
+    url: string;
+    title?: string;
+}
+
+function LinkIconRender(props: HotlinkProps) {
+    const { url, title: titleTop } = props;
+    const iconDataset = {
+        "sevenseasentertainment.com": {
+            icon: (
+                <img
+                    alt="Seven Seas Icon"
+                    className="beside-link-icon"
+                    src="https://sevenseasentertainment.com/wp-content/uploads/2017/04/cropped-SS-1-192x192.jpg"
+                />
+            ),
+            title: "Seven Seas Entertainment",
+        },
+        "kodansha.us": {
+            icon: (
+                <img
+                    alt="Kodansha Icon"
+                    className="beside-link-icon"
+                    src="https://kodansha.us/apple-touch-icon.png"
+                />
+            ),
+            title: "Kodansha",
+        },
+        "yenpress.com": {
+            icon: (
+                <img
+                    alt="Yen Press Icon"
+                    className="beside-link-icon"
+                    src="https://dhjhkxawhe8q4.cloudfront.net/yenpress-wp/wp-content/uploads/2018/12/11131202/android-icon-192x192.png"
+                />
+            ),
+            title: "Yen Press",
+        },
+        "comikey.com": {
+            icon: (
+                <img
+                    alt="Comikey Icon"
+                    className="beside-link-icon"
+                    src="https://comikey.com/static/images/favicons/favicon.png"
+                />
+            ),
+            title: "Comikey",
+        },
+        "j-novel.club": {
+            icon: (
+                <img
+                    alt="J-Novel Club Icon"
+                    className="beside-link-icon"
+                    src="https://j-novel.club/apple-touch-icon.png"
+                />
+            ),
+            title: "J-Novel Club",
+        },
+        "nyaa.si": {
+            icon: (
+                <img
+                    alt="Nyaa.si Icon"
+                    className="beside-link-icon"
+                    src="https://nyaa.si/static/img/avatar/default.png"
+                />
+            ),
+            title: "Nyaa",
+        },
+        "perpusindo.info": {
+            icon: (
+                <img
+                    alt="PerpusIndo Icon"
+                    className="beside-link-icon"
+                    src="https://www.perpusindo.info/apple-touch-icon.png"
+                />
+            ),
+            title: "PerpusIndo",
+        },
+        "mega.nz": {
+            icon: (
+                <img
+                    alt="Mega Icon"
+                    className="beside-link-icon"
+                    src="https://mega.nz/android-chrome-192x192.png"
+                />
+            ),
+            title: "Mega",
+        },
+    };
+
+    const urlDomain = url.split("//")[1].split("/")[0];
+    const IconData = iconDataset[urlDomain as keyof typeof iconDataset];
+    if (isNone(IconData)) {
+        return <a href={url}>{titleTop || "Unknown Link"}</a>;
+    }
+    const { icon, title } = IconData;
+    return (
+        <div className="flex flex-row items-center">
+            {icon}
+            <a
+                className="mr-1 ml-2 text-[15px] font-medium text-gray-700 dark:text-gray-300 leading-6 transition hover:text-emerald-600 dark:hover:text-emerald-500"
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                {titleTop || title}
+            </a>
+        </div>
+    );
 }
 
 interface AuthorProps {
@@ -44,6 +155,8 @@ function AuthorRender(props: { author: AuthorProps | string }) {
 interface ExtraData {
     synopsis?: string;
     authors: (AuthorProps | string)[];
+    officialLink?: string;
+    hotlinks?: (HotlinkProps | string)[];
 }
 
 interface MangaLayoutProps {
@@ -63,6 +176,7 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
     }
 
     const synopsis = extraData?.synopsis || "*No synopsis*";
+    const synopsisForDesc = extraData?.synopsis || `Manga releases of ${frontMatter.title}`;
 
     return (
         <>
@@ -70,9 +184,11 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                 <title>{frontMatter.title} :: Manga Index - Shigoto</title>
                 <MetadataHead.SEO
                     title={frontMatter.title}
-                    description={frontMatter.title}
+                    description={synopsisForDesc}
+                    htmlDescription={`Manga releases of ${frontMatter.title}`}
                     image={firstImage}
                     urlPath={`/manga/${frontMatter.slug}`}
+                    siteName="nao Manga"
                     smallImage
                 />
                 <MetadataHead.Prefetch
@@ -121,10 +237,11 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                     {extraData.authors.map((author, idx) => {
                         let authorId = `author-${idx}`;
                         if (typeof author === "string") {
-                            authorId = author + "-" + kebabCase(author.toLowerCase());
+                            authorId = authorId + "-" + kebabCase(author.toLowerCase());
                         } else {
-                            authorId = author + "-" + kebabCase(author.role.toLowerCase());
+                            authorId = authorId + "-" + kebabCase(author.role.toLowerCase());
                         }
+                        console.info(authorId);
                         return <AuthorRender key={authorId} author={author} />;
                     })}
                 </div>
@@ -135,6 +252,13 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                         dangerouslySetInnerHTML={{ __html: renderMarkdown(synopsis) }}
                     />
                 </div>
+
+                {extraData.officialLink && (
+                    <div className="flex flex-col items-center md:items-start mt-4 mx-4">
+                        <h3 className="mb-2 font-semibold">Official Link</h3>
+                        <LinkIconRender key="official-icon" url={extraData.officialLink} />
+                    </div>
+                )}
             </main>
         </>
     );
