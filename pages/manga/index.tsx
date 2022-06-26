@@ -199,7 +199,7 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                         <>
                             {Object.keys(thisMonthRelease).map((date) => {
                                 const monthManga = thisMonthRelease[date];
-                                const parsedDt = DateTime.fromFormat(date, "yyyy-MM-dd");
+                                const parsedDt = DateTime.fromFormat(date, "yyyy-MM-dd", { zone: "UTC" });
                                 return (
                                     <div key={`monthly-${date}`} className="flex flex-col">
                                         <h3 className="font-medium">{parsedDt.toFormat("dd MMMM yyyy")}</h3>
