@@ -254,8 +254,6 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                 />
                 <MetadataHead.Prefetch
                     extras={[
-                        // jnc cdn
-                        "https://d2dq7ifhe7bu0f.cloudfront.net",
                         // jnc
                         "https://j-novel.club",
                         // 7seas
@@ -272,6 +270,9 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                         "https://i1.wp.com",
                         // play books cdn
                         "https://books.google.com",
+                        // cloudfront cdn (jnc/yp)
+                        "https://d2dq7ifhe7bu0f.cloudfront.net",
+                        "https://dhjhkxawhe8q4.cloudfront.net",
                     ]}
                 />
             </Head>
