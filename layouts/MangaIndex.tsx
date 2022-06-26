@@ -196,6 +196,15 @@ function AuthorRender(props: { author: AuthorProps | string }) {
     );
 }
 
+function processDescription(synopsis: string): string {
+    // strip markdown?
+    // remove single newline, replace double newline with single one
+    let lines = synopsis.replace(/\n\n/g, "\\DOUBLENEWLINE");
+    lines = lines.replace(/\n/g, " ");
+    lines = lines.replace(/\\DOUBLENEWLINE/g, "\n");
+    return lines;
+}
+
 interface MangaInfoLink {
     mu?: string;
     mangadex?: string;
@@ -245,7 +254,7 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                 <title>{frontMatter.title} :: Manga Index - Shigoto</title>
                 <MetadataHead.SEO
                     title={frontMatter.title}
-                    description={synopsisForDesc}
+                    description={processDescription(synopsisForDesc)}
                     htmlDescription={`Manga releases of ${frontMatter.title}`}
                     image={firstImage}
                     urlPath={`/manga/${frontMatter.slug}`}
