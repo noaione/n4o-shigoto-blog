@@ -242,10 +242,10 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                 </div>
 
                 {Array.isArray(otherTitles) && otherTitles.length > 0 && (
-                    <div className="flex flex-col items-center md:items-start mt-4 mx-4">
+                    <div className="flex flex-col items-center md:items-start mt-4 mx-4 max-w-[65ch]">
                         <h3 className="mb-2 font-semibold">Also Known As</h3>
                         {otherTitles.map((title) => (
-                            <p className="whitespace-pre-wrap text-gray-700 dark:text-gray-300 text-sm leading-5">
+                            <p className="whitespace-pre-wrap text-gray-700 dark:text-gray-300 text-sm leading-6 md:before:content-['-_']">
                                 {title}
                             </p>
                         ))}
