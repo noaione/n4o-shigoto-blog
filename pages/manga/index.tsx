@@ -34,12 +34,16 @@ interface HotlinksReleasing {
     extra?: string;
 }
 
-function filterMonthHotlinks(mangas: FrontMatterManga[]) {
-    const filteredReleases: {
-        [date: number]: {
-            [title: string]: HotlinksReleasing[];
-        };
-    } = {};
+type InnerUpcomingReleases = { [title: string]: HotlinksReleasing[] };
+type UpcomingReleases = { [dateData: string]: InnerUpcomingReleases };
+
+function getUpcomingReleaseAtMonth(
+    mangas: FrontMatterManga[],
+    year: number,
+    month: number,
+    ignoreDay = false
+) {
+    const filteredReleases: UpcomingReleases = {};
     const currentTime = DateTime.utc();
     mangas.forEach((manga) => {
         const { hotlinks } = manga;
@@ -77,19 +81,26 @@ function filterMonthHotlinks(mangas: FrontMatterManga[]) {
                 return;
             }
 
-            const parsedDate = DateTime.fromFormat(date, "dd MMMM yyyy", { zone: "UTC" });
+            const parsedDate = DateTime.fromFormat(date, "d MMMM yyyy", { zone: "UTC" });
+            if (!parsedDate.isValid) {
+                return;
+            }
+            if (parsedDate.year !== year) {
+                return;
+            }
             // check if it's in current month
-            if (parsedDate.month !== currentTime.month) {
+            if (parsedDate.month !== month) {
                 return;
             }
             // check if current date is larger than parsed date
-            if (currentTime.day > parsedDate.day) {
+            if (!ignoreDay && currentTime.day > parsedDate.day) {
                 return;
             }
+            const dateFmt = parsedDate.toFormat("yyyy-MM-dd");
             const mangaTitle = manga.title.trim();
-            filteredReleases[parsedDate.day] = filteredReleases[parsedDate.day] || {};
-            filteredReleases[parsedDate.day][mangaTitle] = filteredReleases[parsedDate.day][mangaTitle] || [];
-            filteredReleases[parsedDate.day][mangaTitle].push({
+            filteredReleases[dateFmt] = filteredReleases[dateFmt] || {};
+            filteredReleases[dateFmt][mangaTitle] = filteredReleases[dateFmt][mangaTitle] || [];
+            filteredReleases[dateFmt][mangaTitle].push({
                 date: parsedDate,
                 title: mangaTitle,
                 slug: manga.slug,
@@ -98,11 +109,30 @@ function filterMonthHotlinks(mangas: FrontMatterManga[]) {
             });
         });
     });
+    return filteredReleases;
+}
+
+function filterMonthHotlinks(mangas: FrontMatterManga[]) {
+    const currentTime = DateTime.utc();
+    const currentMonthData = getUpcomingReleaseAtMonth(mangas, currentTime.year, currentTime.month);
+    // determine if we should get next month release
+    // only get if it's the final week of the month
+    let filteredReleases: UpcomingReleases = { ...currentMonthData };
+    if (currentTime.day >= 26) {
+        let nextMonth = currentTime.month + 1;
+        let targetYear = currentTime.year;
+        if (nextMonth > 12) {
+            nextMonth = 1;
+            targetYear += 1;
+        }
+        const nextMonthData = getUpcomingReleaseAtMonth(mangas, targetYear, nextMonth, true);
+        filteredReleases = { ...currentMonthData, ...nextMonthData };
+    }
 
     const temporarySortedData = Object.keys(filteredReleases)
         .sort()
         .map((month) => {
-            const selected = filteredReleases[month as unknown as number];
+            const selected = filteredReleases[month];
             const rlsSortedByTitles = Object.keys(selected)
                 .sort()
                 .map((title) => {
@@ -113,18 +143,18 @@ function filterMonthHotlinks(mangas: FrontMatterManga[]) {
                     finalSortedVolume[title] = sortedVolumes;
                     return finalSortedVolume;
                 });
-            const finalSortedMonth: { [key1: number]: { [key2: string]: HotlinksReleasing[] } } = {};
-            const temporaryMonthData: { [key2: string]: HotlinksReleasing[] } = {};
+            const finalSortedMonth: UpcomingReleases = {};
+            const temporaryMonthData: InnerUpcomingReleases = {};
             rlsSortedByTitles.forEach((rls) => {
                 const firstKey = Object.keys(rls)[0];
                 temporaryMonthData[firstKey] = rls[firstKey];
             });
-            finalSortedMonth[month as unknown as number] = temporaryMonthData;
+            finalSortedMonth[month] = temporaryMonthData;
             return finalSortedMonth;
         });
-    const sortedReleases: { [key1: number]: { [key2: string]: HotlinksReleasing[] } } = {};
+    const sortedReleases: UpcomingReleases = {};
     temporarySortedData.forEach((month) => {
-        const firstKey = Object.keys(month)[0] as unknown as number;
+        const firstKey = Object.keys(month)[0];
         sortedReleases[firstKey] = month[firstKey];
     });
 
@@ -139,7 +169,6 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
     const rippedMangaRelease = posts.filter((e) => e?.type === "rip");
     const scanMangaRelease = posts.filter((e) => e?.type === "scanlation");
     const thisMonthRelease = filterMonthHotlinks(rippedMangaRelease);
-    const currentMonth = DateTime.utc().toFormat("MMMM");
 
     return (
         <>
@@ -169,12 +198,11 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                     {Object.keys(thisMonthRelease).length > 0 ? (
                         <>
                             {Object.keys(thisMonthRelease).map((date) => {
-                                const monthManga = thisMonthRelease[date as unknown as number];
+                                const monthManga = thisMonthRelease[date];
+                                const parsedDt = DateTime.fromFormat(date, "yyyy-MM-dd");
                                 return (
                                     <div key={`monthly-${date}`} className="flex flex-col">
-                                        <h3 className="font-medium">
-                                            {date} {currentMonth}
-                                        </h3>
+                                        <h3 className="font-medium">{parsedDt.toFormat("dd MMMM yyyy")}</h3>
                                         <div className="flex flex-col flex-wrap justify-center">
                                             {Object.keys(monthManga).map((title) => (
                                                 <div
