@@ -228,6 +228,8 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                         "https://comikey.com",
                         // wp media resizer
                         "https://i1.wp.com",
+                        // play books cdn
+                        "https://books.google.com",
                     ]}
                 />
             </Head>
