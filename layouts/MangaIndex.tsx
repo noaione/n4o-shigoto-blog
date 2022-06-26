@@ -217,7 +217,7 @@ interface ExtraData {
     authors: (AuthorProps | string)[];
     otherTitles?: string[];
     infolinks?: MangaInfoLink;
-    hotlinks?: (HotlinkProps | string)[];
+    hotlinks?: (Partial<HotlinkProps> | string)[];
     status?: ProjectStatus;
 }
 
@@ -386,18 +386,48 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                         <div className="flex flex-col gap-2">
                             {hotlinks.map((hotlink, idx) => {
                                 let hotlinkId = `hotlink-${idx}`;
-                                let actualUrl: string;
-                                let actualTitle = undefined;
                                 if (typeof hotlink === "string") {
-                                    actualUrl = hotlink;
                                     hotlinkId = hotlinkId + "-" + kebabCase(hotlink.toLowerCase());
+                                    return <LinkIconRender key={hotlinkId} url={hotlink} />;
                                 } else {
-                                    const useThis = hotlink.title || hotlink.url;
-                                    actualUrl = hotlink.url;
-                                    actualTitle = hotlink.title;
-                                    hotlinkId = hotlinkId + "-" + kebabCase(useThis.toLowerCase());
+                                    const actualUrl = hotlink.url;
+                                    const actualTitle = hotlink.title;
+                                    if (isNone(actualUrl) && isNone(actualTitle)) {
+                                        return null;
+                                    }
+                                    if (!isNone(actualTitle) && isNone(actualUrl)) {
+                                        return (
+                                            <div className="flex flex-row items-center">
+                                                <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    className="beside-link-icon !rounded-full"
+                                                    viewBox="0 0 20 20"
+                                                    fill="currentColor"
+                                                >
+                                                    <path
+                                                        fillRule="evenodd"
+                                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                                                        clipRule="evenodd"
+                                                    />
+                                                </svg>
+                                                <p className="ml-2 mr-1 text-[15px] select-none font-medium text-gray-700 dark:text-gray-300 leading-6 transition cursor-not-allowed">
+                                                    {actualTitle}
+                                                </p>
+                                            </div>
+                                        );
+                                    } else if (!isNone(actualUrl)) {
+                                        const useThis = actualUrl || actualTitle;
+                                        hotlinkId =
+                                            hotlinkId + "-" + kebabCase((useThis as string).toLowerCase());
+                                        return (
+                                            <LinkIconRender
+                                                key={hotlinkId}
+                                                url={actualUrl}
+                                                title={actualTitle}
+                                            />
+                                        );
+                                    }
                                 }
-                                return <LinkIconRender key={hotlinkId} url={actualUrl} title={actualTitle} />;
                             })}
                         </div>
                     </div>
