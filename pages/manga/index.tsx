@@ -29,11 +29,17 @@ interface FrontMatterManga extends FrontMatterExtended {
 interface HotlinksReleasing {
     date: DateTime;
     title: string;
+    volume: number;
     slug: string;
+    extra?: string;
 }
 
 function filterMonthHotlinks(mangas: FrontMatterManga[]) {
-    const finalDataset: HotlinksReleasing[] = [];
+    const filteredReleases: {
+        [date: number]: {
+            [title: string]: HotlinksReleasing[];
+        };
+    } = {};
     const currentTime = DateTime.utc();
     mangas.forEach((manga) => {
         const { hotlinks } = manga;
@@ -80,14 +86,41 @@ function filterMonthHotlinks(mangas: FrontMatterManga[]) {
             if (currentTime.day > parsedDate.day) {
                 return;
             }
-            finalDataset.push({
+            const mangaTitle = manga.title.trim();
+            filteredReleases[parsedDate.day] = filteredReleases[parsedDate.day] || {};
+            filteredReleases[parsedDate.day][mangaTitle] = filteredReleases[parsedDate.day][mangaTitle] || [];
+            filteredReleases[parsedDate.day][mangaTitle].push({
                 date: parsedDate,
-                title: manga.title.trim(),
+                title: mangaTitle,
                 slug: manga.slug,
+                volume: Number(match.groups.vol),
+                extra: match.groups.ex,
             });
         });
     });
-    return finalDataset;
+
+    const sortedReleases = Object.keys(filteredReleases)
+        .sort()
+        .map((month) => {
+            const selected = filteredReleases[month as unknown as number];
+            const rlsSortedByTitles = Object.keys(selected)
+                .sort()
+                .map((title) => {
+                    const selectedTitle = selected[title];
+                    // sort by volume
+                    const sortedVolumes = selectedTitle.sort((a, b) => a.volume - b.volume);
+                    const finalSortedVolume: { [key: string]: HotlinksReleasing[] } = {};
+                    finalSortedVolume[title] = sortedVolumes;
+                    return finalSortedVolume;
+                })[0];
+            const finalSortedMonth: { [key1: number]: { [key2: string]: HotlinksReleasing[] } } = {};
+            finalSortedMonth[month as unknown as number] = rlsSortedByTitles;
+            return finalSortedMonth;
+        })[0];
+
+    // sort titles
+
+    return sortedReleases;
 }
 
 interface StaticPropsData {
@@ -98,16 +131,6 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
     const rippedMangaRelease = posts.filter((e) => e?.type === "rip");
     const scanMangaRelease = posts.filter((e) => e?.type === "scanlation");
     const thisMonthRelease = filterMonthHotlinks(rippedMangaRelease);
-
-    // group by day
-    const groupedByDay = thisMonthRelease.reduce<{ [date: string]: HotlinksReleasing[] }>((acc, cur) => {
-        const date = cur.date.toFormat("dd");
-        if (!acc[date]) {
-            acc[date] = [];
-        }
-        acc[date].push(cur);
-        return acc;
-    }, {});
     const currentMonth = DateTime.utc().toFormat("MMMM");
 
     return (
@@ -135,26 +158,36 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                 </Link>
                 <div className="flex flex-col mt-2 mx-auto px-4">
                     <h2 className="text-lg font-medium">Upcoming Releases</h2>
-                    {Object.keys(groupedByDay).length > 0 ? (
+                    {Object.keys(thisMonthRelease).length > 0 ? (
                         <>
-                            {Object.keys(groupedByDay).map((date) => {
-                                const monthManga = groupedByDay[date];
+                            {Object.keys(thisMonthRelease).map((date) => {
+                                const monthManga = thisMonthRelease[date as unknown as number];
                                 return (
                                     <div key={`monthly-${date}`} className="flex flex-col">
                                         <h3 className="font-medium">
                                             {date} {currentMonth}
                                         </h3>
                                         <div className="flex flex-col flex-wrap justify-center">
-                                            {monthManga.map((e) => (
+                                            {Object.keys(monthManga).map((title) => (
                                                 <div
-                                                    className="flex"
-                                                    key={"rls-month-" + e.date.toString() + "-" + e.title}
+                                                    className="flex flex-col"
+                                                    key={"rls-month-" + date + "-" + title}
                                                 >
-                                                    <Link href={`/manga/${e.slug}`} passHref>
-                                                        <a className="transition text-gray-700 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-500">
-                                                            • {e.title}
-                                                        </a>
-                                                    </Link>
+                                                    <h4 className="text-gray-700 dark:text-gray-300">
+                                                        {title}
+                                                    </h4>
+                                                    <ul className="flex flex-col flex-wrap justify-center">
+                                                        {monthManga[title].map((rls) => (
+                                                            <li className="pl-2 text-gray-700 dark:text-gray-300 before:content-['•_']">
+                                                                <Link href={`/manga/${rls.slug}`} passHref>
+                                                                    <a className="transition text-gray-700 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-500">
+                                                                        Volume {rls.volume.toLocaleString()}
+                                                                        {rls.extra && ` ${rls.extra}`}
+                                                                    </a>
+                                                                </Link>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
                                                 </div>
                                             ))}
                                         </div>
