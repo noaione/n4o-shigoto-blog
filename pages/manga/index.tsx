@@ -35,7 +35,7 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                 />
             </Head>
             <main className="pt-2 pb-8">
-                <div className="flex flex-row text-center justify-center text-2xl mt-4">
+                <div className="flex flex-row text-center justify-center text-2xl my-4">
                     <span className="font-light rounded-full border-2 border-emerald-500 select-none text-emerald-400 mx-1 justify-center items-center px-1">
                         立
                     </span>
