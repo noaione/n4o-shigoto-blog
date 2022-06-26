@@ -338,7 +338,7 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                 <div id="synopsis" className="flex flex-col items-center md:items-start mt-4 mx-4">
                     <div
                         key="synopsis-render"
-                        className="text-center md:text-left prose dark:prose-invert"
+                        className="text-center md:text-left prose-manga-synopsis"
                         dangerouslySetInnerHTML={{ __html: renderMarkdown(synopsis) }}
                     />
                 </div>

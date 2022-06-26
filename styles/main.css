@@ -50,3 +50,9 @@
 .beside-link-icon {
     @apply w-8 rounded-md object-cover hover:-translate-y-1 transition;
 }
+
+.prose-manga-synopsis {
+    @apply prose dark:prose-invert;
+    @apply prose-ul:-mt-4 prose-li:my-1 prose-ul:pl-0 prose-li:pl-0 md:prose-ul:pl-1 md:prose-li:pl-5;
+    @apply prose-ul:list-none md:prose-li:before:content-['•_'] md:prose-li:before:-ml-2 md:prose-li:before:mr-1;
+}
