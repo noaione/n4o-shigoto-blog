@@ -201,7 +201,7 @@ function processDescription(synopsis: string): string {
     // remove single newline, replace double newline with single one
     let lines = synopsis.replace(/\n\n/g, "\\DOUBLENEWLINE");
     lines = lines.replace(/\n/g, " ");
-    lines = lines.replace(/\\DOUBLENEWLINE/g, "\n");
+    lines = lines.replace(/\\DOUBLENEWLINE/g, "\n\n");
     return lines;
 }
 
