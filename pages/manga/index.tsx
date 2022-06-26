@@ -14,7 +14,7 @@ export async function getStaticProps() {
     return { props: { posts } };
 }
 
-const VolumeWaitRe = /Volume (?<vol>[\d]{1,2}) (?<ex>\[Final\] )?\((?<date>[\d]{1,2} [\w]+ [\d]{4})\)/;
+const VolumeWaitRe = /Volume (?<vol>[\d]{1,2}) (?<ex>\[Final\] )?\((?<date>[\d]{1,2} [\w]+ [\d]{4})\)/g;
 
 interface SimpleHotlinks {
     url?: string;
@@ -99,7 +99,7 @@ function filterMonthHotlinks(mangas: FrontMatterManga[]) {
         });
     });
 
-    const sortedReleases = Object.keys(filteredReleases)
+    const temporarySortedData = Object.keys(filteredReleases)
         .sort()
         .map((month) => {
             const selected = filteredReleases[month as unknown as number];
@@ -112,13 +112,21 @@ function filterMonthHotlinks(mangas: FrontMatterManga[]) {
                     const finalSortedVolume: { [key: string]: HotlinksReleasing[] } = {};
                     finalSortedVolume[title] = sortedVolumes;
                     return finalSortedVolume;
-                })[0];
+                });
             const finalSortedMonth: { [key1: number]: { [key2: string]: HotlinksReleasing[] } } = {};
-            finalSortedMonth[month as unknown as number] = rlsSortedByTitles;
+            const temporaryMonthData: { [key2: string]: HotlinksReleasing[] } = {};
+            rlsSortedByTitles.forEach((rls) => {
+                const firstKey = Object.keys(rls)[0];
+                temporaryMonthData[firstKey] = rls[firstKey];
+            });
+            finalSortedMonth[month as unknown as number] = temporaryMonthData;
             return finalSortedMonth;
-        })[0];
-
-    // sort titles
+        });
+    const sortedReleases: { [key1: number]: { [key2: string]: HotlinksReleasing[] } } = {};
+    temporarySortedData.forEach((month) => {
+        const firstKey = Object.keys(month)[0] as unknown as number;
+        sortedReleases[firstKey] = month[firstKey];
+    });
 
     return sortedReleases;
 }
@@ -178,7 +186,10 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                                                     </h4>
                                                     <ul className="flex flex-col flex-wrap justify-center">
                                                         {monthManga[title].map((rls) => (
-                                                            <li className="pl-2 text-gray-700 dark:text-gray-300 before:content-['•_']">
+                                                            <li
+                                                                key={`rls-month-${date}-${title}-v${rls.volume}`}
+                                                                className="pl-2 text-gray-700 dark:text-gray-300 before:content-['•_']"
+                                                            >
                                                                 <Link href={`/manga/${rls.slug}`} passHref>
                                                                     <a className="transition text-gray-700 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-500">
                                                                         Volume {rls.volume.toLocaleString()}
