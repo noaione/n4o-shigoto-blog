@@ -285,21 +285,23 @@ export default function LayoutMangaIndex(props: MangaLayoutProps) {
                 {Array.isArray(hotlinks) && hotlinks.length > 0 && (
                     <div id="hotlinks" className="flex flex-col items-center md:items-start mt-4 mx-4">
                         <h3 className="mb-2 font-semibold">Links</h3>
-                        {hotlinks.map((hotlink, idx) => {
-                            let hotlinkId = `hotlink-${idx}`;
-                            let actualUrl: string;
-                            let actualTitle = undefined;
-                            if (typeof hotlink === "string") {
-                                actualUrl = hotlink;
-                                hotlinkId = hotlinkId + "-" + kebabCase(hotlink.toLowerCase());
-                            } else {
-                                const useThis = hotlink.title || hotlink.url;
-                                actualUrl = hotlink.url;
-                                actualTitle = hotlink.title;
-                                hotlinkId = hotlinkId + "-" + kebabCase(useThis.toLowerCase());
-                            }
-                            return <LinkIconRender key={hotlinkId} url={actualUrl} title={actualTitle} />;
-                        })}
+                        <div className="flex flex-col gap-2">
+                            {hotlinks.map((hotlink, idx) => {
+                                let hotlinkId = `hotlink-${idx}`;
+                                let actualUrl: string;
+                                let actualTitle = undefined;
+                                if (typeof hotlink === "string") {
+                                    actualUrl = hotlink;
+                                    hotlinkId = hotlinkId + "-" + kebabCase(hotlink.toLowerCase());
+                                } else {
+                                    const useThis = hotlink.title || hotlink.url;
+                                    actualUrl = hotlink.url;
+                                    actualTitle = hotlink.title;
+                                    hotlinkId = hotlinkId + "-" + kebabCase(useThis.toLowerCase());
+                                }
+                                return <LinkIconRender key={hotlinkId} url={actualUrl} title={actualTitle} />;
+                            })}
+                        </div>
                     </div>
                 )}
             </main>
