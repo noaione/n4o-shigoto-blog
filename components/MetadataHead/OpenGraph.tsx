@@ -1,10 +1,12 @@
 import React from "react";
+import siteMetadata from "@/data/siteMetadata.json";
 
 interface OpenGraphProps {
     image?: string;
     title: string;
     url: string;
     description: string;
+    siteName?: string;
 }
 const FALLBACKIMAGE = "/assets/img/nao250px.png";
 
@@ -14,10 +16,11 @@ class OpenGraphMeta extends React.Component<OpenGraphProps> {
     }
 
     render() {
-        const { title, description, url, image } = this.props;
+        const { title, description, url, image, siteName } = this.props;
 
         const realUrl = url || "https://shigoto.n4o.xyz/";
         const realImage = image || FALLBACKIMAGE;
+        const realSiteName = siteName || siteMetadata.title;
 
         return (
             <>
@@ -27,7 +30,7 @@ class OpenGraphMeta extends React.Component<OpenGraphProps> {
                 {description && <meta property="og:description" content={description} />}
                 {realImage && <meta property="og:image" content={realImage} />}
                 <meta property="og:url" content={realUrl} />
-                <meta property="og:site_name" content="N4O Shigoto" />
+                <meta property="og:site_name" content={realSiteName} />
                 <meta property="og:type" content="website" />
             </>
         );

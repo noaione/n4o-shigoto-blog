@@ -13,9 +13,11 @@ function isString(data: any): data is string {
 export interface SEOMetaProps {
     title?: string;
     description?: string;
+    htmlDescription?: string;
     image?: Nullable<string>;
     urlPath?: string;
     smallImage?: boolean;
+    siteName?: string;
 }
 const FALLBACKIMAGE = "/assets/img/nao250px.png";
 
@@ -25,7 +27,7 @@ class SEOMetaTags extends React.Component<SEOMetaProps> {
     }
 
     render() {
-        const { title, description, image, urlPath } = this.props;
+        const { title, description, image, urlPath, siteName } = this.props;
         let { smallImage } = this.props;
 
         let realTitle = "Home";
@@ -63,11 +65,19 @@ class SEOMetaTags extends React.Component<SEOMetaProps> {
             smallImage = true;
         }
 
+        const htmlDescription = this.props.htmlDescription || realDescription;
+
         return (
             <>
-                {realDescription && <meta name="description" content={pickFirstLine(realDescription)} />}
+                {realDescription && <meta name="description" content={pickFirstLine(htmlDescription)} />}
                 <link rel="canonical" href={url} />
-                <OpenGraphMeta title={realTitle} description={realDescription} url={url} image={realImage} />
+                <OpenGraphMeta
+                    title={realTitle}
+                    description={realDescription}
+                    url={url}
+                    image={realImage}
+                    siteName={siteName}
+                />
                 <TwitterCardsMeta
                     title={realTitle}
                     description={realDescription}
