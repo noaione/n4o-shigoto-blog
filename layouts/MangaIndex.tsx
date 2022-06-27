@@ -11,6 +11,9 @@ import remarkParse from "remark-parse";
 import remarkGfm from "remark-gfm";
 import remarkHtml from "remark-html";
 
+import * as ExternalIcons from "@/components/Icons/External";
+import imagePlaceholder from "../public/assets/img/cover-placeholder.png";
+
 function renderMarkdown(md: string) {
     const result = unified().use(remarkParse).use(remarkGfm).use(remarkHtml).processSync(md);
     return result.toString();
@@ -29,18 +32,14 @@ function LinkIconRender(props: HotlinkProps) {
                 <img
                     alt="Seven Seas Icon"
                     className="beside-link-icon"
-                    src="https://sevenseasentertainment.com/wp-content/uploads/2017/04/cropped-SS-1-192x192.jpg"
+                    src={ExternalIcons.IconSevenSeas.src}
                 />
             ),
             title: "Seven Seas Entertainment",
         },
         "kodansha.us": {
             icon: (
-                <img
-                    alt="Kodansha Icon"
-                    className="beside-link-icon"
-                    src="https://kodansha.us/apple-touch-icon.png"
-                />
+                <img alt="Kodansha Icon" className="beside-link-icon" src={ExternalIcons.IconKodansha.src} />
             ),
             title: "Kodansha",
         },
@@ -49,19 +48,13 @@ function LinkIconRender(props: HotlinkProps) {
                 <img
                     alt="Yen Press Icon"
                     className="beside-link-icon !rounded-full"
-                    src="https://dhjhkxawhe8q4.cloudfront.net/yenpress-wp/wp-content/uploads/2018/12/11131202/android-icon-192x192.png"
+                    src={ExternalIcons.IconYenPress.src}
                 />
             ),
             title: "Yen Press",
         },
         "comikey.com": {
-            icon: (
-                <img
-                    alt="Comikey Icon"
-                    className="beside-link-icon"
-                    src="https://comikey.com/static/images/favicons/favicon.png"
-                />
-            ),
+            icon: <img alt="Comikey Icon" className="beside-link-icon" src={ExternalIcons.IconComikey.src} />,
             title: "Comikey",
         },
         "j-novel.club": {
@@ -69,19 +62,13 @@ function LinkIconRender(props: HotlinkProps) {
                 <img
                     alt="J-Novel Club Icon"
                     className="beside-link-icon"
-                    src="https://j-novel.club/apple-touch-icon.png"
+                    src={ExternalIcons.IconJNovelClub.src}
                 />
             ),
             title: "J-Novel Club",
         },
         "nyaa.si": {
-            icon: (
-                <img
-                    alt="Nyaa.si Icon"
-                    className="beside-link-icon"
-                    src="https://nyaa.si/static/img/avatar/default.png"
-                />
-            ),
+            icon: <img alt="Nyaa.si Icon" className="beside-link-icon" src={ExternalIcons.IconNyaa.src} />,
             title: "Nyaa",
         },
         "perpusindo.info": {
@@ -89,7 +76,7 @@ function LinkIconRender(props: HotlinkProps) {
                 <img
                     alt="PerpusIndo Icon"
                     className="beside-link-icon"
-                    src="https://www.perpusindo.info/apple-touch-icon.png"
+                    src={ExternalIcons.IconPerpusIndo.src}
                 />
             ),
             title: "PerpusIndo",
@@ -97,9 +84,9 @@ function LinkIconRender(props: HotlinkProps) {
         "mega.nz": {
             icon: (
                 <img
-                    alt="Mega Icon"
+                    alt="Mega.nz Icon"
                     className="beside-link-icon !rounded-full"
-                    src="https://mega.nz/android-chrome-192x192.png"
+                    src={ExternalIcons.IconMegaNZ.src}
                 />
             ),
             title: "MEGA",
@@ -109,7 +96,7 @@ function LinkIconRender(props: HotlinkProps) {
                 <img
                     alt="MangaUpdates Icon"
                     className="beside-link-icon"
-                    src="https://www.mangaupdates.com/images/manga-updates.svg"
+                    src={ExternalIcons.IconMangaUpdates.src}
                 />
             ),
             title: "MangaUpdates",
@@ -119,7 +106,7 @@ function LinkIconRender(props: HotlinkProps) {
                 <img
                     alt="MangaDex Icon"
                     className="beside-link-icon !rounded-full"
-                    src="https://mangadex.org/icon-192.png"
+                    src={ExternalIcons.IconMangaDex.src}
                 />
             ),
             title: "MangaDex",
@@ -225,214 +212,278 @@ interface MangaLayoutProps {
     post: RawBlogContent;
 }
 
-export default function LayoutMangaIndex(props: MangaLayoutProps) {
-    const {
-        post: { frontMatter, mdxSource },
-    } = props;
-
-    const extraData = props.post.extraData as ExtraData;
-
-    let firstImage: Nullable<string> = null;
-    if (Array.isArray(frontMatter.images) && frontMatter.images.length > 0) {
-        firstImage = frontMatter.images[0];
+export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> {
+    constructor(props: MangaLayoutProps) {
+        super(props);
     }
 
-    const synopsis = extraData?.synopsis || "*No synopsis*";
-    const synopsisForDesc = extraData?.synopsis || `Manga releases of ${frontMatter.title}`;
+    componentDidMount() {
+        // get all img element with data-src attribute
+        const imgs = document.querySelectorAll("img[data-src]");
+        // map imgs and check if data-loaded is false
+        const imgList = Array.from(imgs)
+            .map((img) => {
+                if (img.getAttribute("data-loaded") === "true") {
+                    return null;
+                }
+                return img;
+            })
+            .filter((img) => !isNone(img)) as HTMLImageElement[];
+        if (imgList.length === 0) {
+            return;
+        }
+        // load image data and turn it into a blob and attach it as src
+        const imgBlobs = imgList.map((img) => {
+            const src = img.getAttribute("data-src");
+            if (isNone(src)) {
+                return null;
+            }
+            return fetch(src)
+                .then((res) => res.blob())
+                .catch(() => null);
+        });
+        // execute promise
+        Promise.all(imgBlobs).then((blobs) => {
+            // map blobs and attach them to img element
+            blobs.forEach((blob, index) => {
+                const img = imgList[index];
+                if (isNone(img)) {
+                    return;
+                }
+                if (isNone(blob)) {
+                    img.src = imagePlaceholder.src;
+                    img.setAttribute("data-loaded", "failed");
+                    return;
+                }
 
-    const { hotlinks, otherTitles, infolinks } = extraData;
-    const projectStatus = extraData?.status || "ongoing";
-
-    let hasAnyInfoLinks = false;
-    if (!isNone(infolinks) && (infolinks.mu || infolinks.mangadex || infolinks.official)) {
-        hasAnyInfoLinks = true;
+                img.src = URL.createObjectURL(blob);
+                img.setAttribute("data-loaded", "true");
+            });
+        });
     }
 
-    return (
-        <>
-            <Head>
-                <title>{frontMatter.title} :: Manga Index - Shigoto</title>
-                <MetadataHead.SEO
-                    title={frontMatter.title}
-                    description={processDescription(synopsisForDesc)}
-                    htmlDescription={`Manga releases of ${frontMatter.title}`}
-                    image={firstImage}
-                    urlPath={`/manga/${frontMatter.slug}`}
-                    siteName="nao Manga"
-                    smallImage
-                />
-                <MetadataHead.Prefetch
-                    extras={[
-                        // jnc
-                        "https://j-novel.club",
-                        // 7seas
-                        "https://sevenseasentertainment.com",
-                        // kodansha
-                        "https://kodansha.us",
-                        // yen press
-                        "https://yenpress.com",
-                        // yen press cdn
-                        "https://yenpress-us.imgix.net",
-                        // comikey
-                        "https://comikey.com",
-                        // wp media resizer
-                        "https://i1.wp.com",
-                        // play books cdn
-                        "https://books.google.com",
-                        // cloudfront cdn (jnc/yp)
-                        "https://d2dq7ifhe7bu0f.cloudfront.net",
-                        "https://dhjhkxawhe8q4.cloudfront.net",
-                    ]}
-                />
-            </Head>
-            <main className="pt-2 pb-8">
-                <div className="flex flex-col justify-center md:justify-start md:flex-row mt-4 mx-4 align-middle">
-                    <div className="flex justify-center">
-                        <Link href="/manga" passHref>
-                            <a className="text-2xl font-light w-fit rounded-full border-2 border-emerald-600 select-none text-emerald-500 dark:border-emerald-500 dark:text-emerald-400 mx-1 items-center px-1 hover:opacity-80 transition-opacity">
-                                立
-                            </a>
-                        </Link>
+    render(): React.ReactNode {
+        const {
+            post: { frontMatter, mdxSource },
+        } = this.props;
+
+        const extraData = this.props.post.extraData as ExtraData;
+
+        let firstImage: Nullable<string> = null;
+        if (Array.isArray(frontMatter.images) && frontMatter.images.length > 0) {
+            firstImage = frontMatter.images[0];
+        }
+
+        const synopsis = extraData?.synopsis || "*No synopsis*";
+        const synopsisForDesc = extraData?.synopsis || `Manga releases of ${frontMatter.title}`;
+
+        const { hotlinks, otherTitles, infolinks } = extraData;
+        const projectStatus = extraData?.status || "ongoing";
+
+        let hasAnyInfoLinks = false;
+        if (!isNone(infolinks) && (infolinks.mu || infolinks.mangadex || infolinks.official)) {
+            hasAnyInfoLinks = true;
+        }
+
+        return (
+            <>
+                <Head>
+                    <title>{frontMatter.title} :: Manga Index - Shigoto</title>
+                    <MetadataHead.SEO
+                        title={frontMatter.title}
+                        description={processDescription(synopsisForDesc)}
+                        htmlDescription={`Manga releases of ${frontMatter.title}`}
+                        image={firstImage}
+                        urlPath={`/manga/${frontMatter.slug}`}
+                        siteName="nao Manga"
+                        smallImage
+                    />
+                    <MetadataHead.Prefetch
+                        extras={[
+                            // jnc
+                            "https://j-novel.club",
+                            // 7seas
+                            "https://sevenseasentertainment.com",
+                            // kodansha
+                            "https://kodansha.us",
+                            // yen press
+                            "https://yenpress.com",
+                            // yen press cdn
+                            "https://yenpress-us.imgix.net",
+                            // comikey
+                            "https://comikey.com",
+                            // wp media resizer
+                            "https://i1.wp.com",
+                            // play books cdn
+                            "https://books.google.com",
+                            // cloudfront cdn (jnc/yp)
+                            "https://d2dq7ifhe7bu0f.cloudfront.net",
+                            "https://dhjhkxawhe8q4.cloudfront.net",
+                        ]}
+                    />
+                </Head>
+                <main className="pt-2 pb-8">
+                    <div className="flex flex-col justify-center md:justify-start md:flex-row mt-4 mx-4 align-middle">
+                        <div className="flex justify-center">
+                            <Link href="/manga" passHref>
+                                <a className="text-2xl font-light w-fit rounded-full border-2 border-emerald-600 select-none text-emerald-500 dark:border-emerald-500 dark:text-emerald-400 mx-1 items-center px-1 hover:opacity-80 transition-opacity">
+                                    立
+                                </a>
+                            </Link>
+                        </div>
+
+                        <div className="text-xl text-center font-semibold select-none mt-2 md:mt-1 md:mx-2">
+                            {frontMatter.title}
+                        </div>
+                    </div>
+                    <div id="cover-img" className="flex flex-row mt-4 mx-4 justify-center md:justify-start">
+                        {firstImage && (
+                            <div className="xs:w-64 md:w-72 lg:w-96">
+                                <img
+                                    className="w-full rounded-md md:hover:-translate-y-1 md:transition-transform"
+                                    alt="Cover"
+                                    src={imagePlaceholder.src}
+                                    loading="lazy"
+                                    onError={(e) => {
+                                        e.currentTarget.src = "/images/cover-placeholder.png";
+                                    }}
+                                    data-src={firstImage}
+                                    data-loaded="false"
+                                />
+                            </div>
+                        )}
                     </div>
 
-                    <div className="text-xl text-center font-semibold select-none mt-2 md:mt-1 md:mx-2">
-                        {frontMatter.title}
-                    </div>
-                </div>
-                <div id="cover-img" className="flex flex-row mt-4 mx-4 justify-center md:justify-start">
-                    {firstImage && (
-                        <div className="xs:w-64 md:w-72 lg:w-96">
-                            <img
-                                className="w-full rounded-md md:hover:-translate-y-1 md:transition-transform"
-                                alt="Cover"
-                                src={firstImage}
-                            />
+                    {Array.isArray(otherTitles) && otherTitles.length > 0 && (
+                        <div className="flex flex-col items-center md:items-start mt-4 mx-4 max-w-[65ch]">
+                            <h3 className="mb-2 font-semibold">Also Known As</h3>
+                            {otherTitles.map((title, idx) => (
+                                <p
+                                    key={`othertitle-${idx}`}
+                                    className="whitespace-pre-wrap text-gray-700 dark:text-gray-300 text-sm leading-6 md:before:content-['-_']"
+                                >
+                                    {title}
+                                </p>
+                            ))}
                         </div>
                     )}
-                </div>
 
-                {Array.isArray(otherTitles) && otherTitles.length > 0 && (
-                    <div className="flex flex-col items-center md:items-start mt-4 mx-4 max-w-[65ch]">
-                        <h3 className="mb-2 font-semibold">Also Known As</h3>
-                        {otherTitles.map((title, idx) => (
-                            <p
-                                key={`othertitle-${idx}`}
-                                className="whitespace-pre-wrap text-gray-700 dark:text-gray-300 text-sm leading-6 md:before:content-['-_']"
-                            >
-                                {title}
-                            </p>
-                        ))}
-                    </div>
-                )}
-
-                <div
-                    id="author-info"
-                    className="flex flex-row flex-wrap gap-3 md:gap-4 justify-center md:justify-start mt-4 mx-4 max-w-[65ch]"
-                >
-                    {extraData.authors.map((author, idx) => {
-                        let authorId = `author-${idx}`;
-                        if (typeof author === "string") {
-                            authorId = authorId + "-" + kebabCase(author.toLowerCase());
-                        } else {
-                            authorId = authorId + "-" + kebabCase(author.role.toLowerCase());
-                        }
-                        return <AuthorRender key={authorId} author={author} />;
-                    })}
-                </div>
-
-                <div id="project-status" className="flex flex-col items-center md:items-start mt-4 mx-4">
-                    <h3 className="mb-1 font-semibold">Status</h3>
-                    <ProjectStatusRender key="project-status" status={projectStatus} />
-                </div>
-
-                <div id="synopsis" className="flex flex-col items-center md:items-start mt-4 mx-4">
                     <div
-                        key="synopsis-render"
-                        className="text-center md:text-left prose-manga-synopsis"
-                        dangerouslySetInnerHTML={{ __html: renderMarkdown(synopsis) }}
-                    />
-                </div>
-
-                {!isNone(infolinks) && hasAnyInfoLinks && (
-                    <div id="info-links" className="flex flex-col items-center md:items-start mt-4 mx-4">
-                        <h3 className="mb-2 font-semibold">Links</h3>
-                        <div className="flex flex-col gap-2">
-                            {infolinks.mu && (
-                                <LinkIconRender
-                                    key="mangaupdates-link"
-                                    url={
-                                        isDigit(infolinks.mu)
-                                            ? `https://www.mangaupdates.com/series.html?id=${infolinks.mu}`
-                                            : `https://www.mangaupdates.com/series/${infolinks.mu}`
-                                    }
-                                />
-                            )}
-                            {infolinks.mangadex && (
-                                <LinkIconRender
-                                    key="mangadex-link"
-                                    url={`https://mangadex.org/title/${infolinks.mangadex}`}
-                                />
-                            )}
-                            {infolinks.official && (
-                                <LinkIconRender key="official-link" url={infolinks.official} />
-                            )}
-                        </div>
+                        id="author-info"
+                        className="flex flex-row flex-wrap gap-3 md:gap-4 justify-center md:justify-start mt-4 mx-4 max-w-[65ch]"
+                    >
+                        {extraData.authors.map((author, idx) => {
+                            let authorId = `author-${idx}`;
+                            if (typeof author === "string") {
+                                authorId = authorId + "-" + kebabCase(author.toLowerCase());
+                            } else {
+                                authorId = authorId + "-" + kebabCase(author.role.toLowerCase());
+                            }
+                            return <AuthorRender key={authorId} author={author} />;
+                        })}
                     </div>
-                )}
 
-                {Array.isArray(hotlinks) && hotlinks.length > 0 && (
-                    <div id="download-links" className="flex flex-col items-center md:items-start mt-4 mx-4">
-                        <h3 className="mb-2 font-semibold">{`Download${hotlinks.length > 1 ? "s" : ""}`}</h3>
-                        <div className="flex flex-col gap-2">
-                            {hotlinks.map((hotlink, idx) => {
-                                let hotlinkId = `hotlink-${idx}`;
-                                if (typeof hotlink === "string") {
-                                    hotlinkId = hotlinkId + "-" + kebabCase(hotlink.toLowerCase());
-                                    return <LinkIconRender key={hotlinkId} url={hotlink} />;
-                                } else {
-                                    const actualUrl = hotlink.url;
-                                    const actualTitle = hotlink.title;
-                                    if (isNone(actualUrl) && isNone(actualTitle)) {
-                                        return null;
-                                    }
-                                    if (!isNone(actualTitle) && isNone(actualUrl)) {
-                                        return (
-                                            <div className="flex flex-row items-center">
-                                                <svg
-                                                    xmlns="http://www.w3.org/2000/svg"
-                                                    className="beside-link-icon !rounded-full"
-                                                    viewBox="0 0 20 20"
-                                                    fill="currentColor"
-                                                >
-                                                    <path
-                                                        fillRule="evenodd"
-                                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                                                        clipRule="evenodd"
-                                                    />
-                                                </svg>
-                                                <p className="ml-2 mr-1 text-[15px] select-none font-medium text-gray-700 dark:text-gray-300 leading-6 transition cursor-not-allowed">
-                                                    {actualTitle}
-                                                </p>
-                                            </div>
-                                        );
-                                    } else if (!isNone(actualUrl)) {
-                                        const useThis = actualUrl || actualTitle;
-                                        hotlinkId =
-                                            hotlinkId + "-" + kebabCase((useThis as string).toLowerCase());
-                                        return (
-                                            <LinkIconRender
-                                                key={hotlinkId}
-                                                url={actualUrl}
-                                                title={actualTitle}
-                                            />
-                                        );
-                                    }
-                                }
-                            })}
-                        </div>
+                    <div id="project-status" className="flex flex-col items-center md:items-start mt-4 mx-4">
+                        <h3 className="mb-1 font-semibold">Status</h3>
+                        <ProjectStatusRender key="project-status" status={projectStatus} />
                     </div>
-                )}
-            </main>
-        </>
-    );
+
+                    <div id="synopsis" className="flex flex-col items-center md:items-start mt-4 mx-4">
+                        <div
+                            key="synopsis-render"
+                            className="text-center md:text-left prose-manga-synopsis"
+                            dangerouslySetInnerHTML={{ __html: renderMarkdown(synopsis) }}
+                        />
+                    </div>
+
+                    {!isNone(infolinks) && hasAnyInfoLinks && (
+                        <div id="info-links" className="flex flex-col items-center md:items-start mt-4 mx-4">
+                            <h3 className="mb-2 font-semibold">Links</h3>
+                            <div className="flex flex-col gap-2">
+                                {infolinks.mu && (
+                                    <LinkIconRender
+                                        key="mangaupdates-link"
+                                        url={
+                                            isDigit(infolinks.mu)
+                                                ? `https://www.mangaupdates.com/series.html?id=${infolinks.mu}`
+                                                : `https://www.mangaupdates.com/series/${infolinks.mu}`
+                                        }
+                                    />
+                                )}
+                                {infolinks.mangadex && (
+                                    <LinkIconRender
+                                        key="mangadex-link"
+                                        url={`https://mangadex.org/title/${infolinks.mangadex}`}
+                                    />
+                                )}
+                                {infolinks.official && (
+                                    <LinkIconRender key="official-link" url={infolinks.official} />
+                                )}
+                            </div>
+                        </div>
+                    )}
+
+                    {Array.isArray(hotlinks) && hotlinks.length > 0 && (
+                        <div
+                            id="download-links"
+                            className="flex flex-col items-center md:items-start mt-4 mx-4"
+                        >
+                            <h3 className="mb-2 font-semibold">{`Download${
+                                hotlinks.length > 1 ? "s" : ""
+                            }`}</h3>
+                            <div className="flex flex-col gap-2">
+                                {hotlinks.map((hotlink, idx) => {
+                                    let hotlinkId = `hotlink-${idx}`;
+                                    if (typeof hotlink === "string") {
+                                        hotlinkId = hotlinkId + "-" + kebabCase(hotlink.toLowerCase());
+                                        return <LinkIconRender key={hotlinkId} url={hotlink} />;
+                                    } else {
+                                        const actualUrl = hotlink.url;
+                                        const actualTitle = hotlink.title;
+                                        if (isNone(actualUrl) && isNone(actualTitle)) {
+                                            return null;
+                                        }
+                                        if (!isNone(actualTitle) && isNone(actualUrl)) {
+                                            return (
+                                                <div className="flex flex-row items-center">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        className="beside-link-icon !rounded-full"
+                                                        viewBox="0 0 20 20"
+                                                        fill="currentColor"
+                                                    >
+                                                        <path
+                                                            fillRule="evenodd"
+                                                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                                                            clipRule="evenodd"
+                                                        />
+                                                    </svg>
+                                                    <p className="ml-2 mr-1 text-[15px] select-none font-medium text-gray-700 dark:text-gray-300 leading-6 transition cursor-not-allowed">
+                                                        {actualTitle}
+                                                    </p>
+                                                </div>
+                                            );
+                                        } else if (!isNone(actualUrl)) {
+                                            const useThis = actualUrl || actualTitle;
+                                            hotlinkId =
+                                                hotlinkId +
+                                                "-" +
+                                                kebabCase((useThis as string).toLowerCase());
+                                            return (
+                                                <LinkIconRender
+                                                    key={hotlinkId}
+                                                    url={actualUrl}
+                                                    title={actualTitle}
+                                                />
+                                            );
+                                        }
+                                    }
+                                })}
+                            </div>
+                        </div>
+                    )}
+                </main>
+            </>
+        );
+    }
 }
