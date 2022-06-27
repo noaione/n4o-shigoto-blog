@@ -288,6 +288,8 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
                             // cloudfront cdn (jnc/yp)
                             "https://d2dq7ifhe7bu0f.cloudfront.net",
                             "https://dhjhkxawhe8q4.cloudfront.net",
+                            // mangadex
+                            "https://mangadex.org",
                         ]}
                     />
                 </Head>

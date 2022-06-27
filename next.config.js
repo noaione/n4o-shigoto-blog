@@ -19,6 +19,7 @@ module.exports = {
             "fyre.cdn.sewest.net",
             "i1.wp.com",
             "books.google.com",
+            "mangadex.com",
             "d2dq7ifhe7bu0f.cloudfront.net",
             "dhjhkxawhe8q4.cloudfront.net",
             "p.ihateani.me",
