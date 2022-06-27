@@ -18,6 +18,7 @@ import IconPerpusIndo from "../../public/assets/ico/remote/perpusindo.png";
 import IconDiscord from "../../public/assets/ico/remote/discord.png";
 import IconDiscordWhite from "../../public/assets/ico/remote/discord-white.png";
 import IconDiscordBlack from "../../public/assets/ico/remote/discord-black.png";
+import IconBaseFavicon from "../../public/assets/ico/favicon.png";
 
 export {
     IconComikey,
@@ -33,4 +34,5 @@ export {
     IconDiscord,
     IconDiscordWhite,
     IconDiscordBlack,
+    IconBaseFavicon,
 };
