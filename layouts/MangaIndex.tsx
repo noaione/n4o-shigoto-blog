@@ -217,51 +217,6 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
         super(props);
     }
 
-    componentDidMount() {
-        // get all img element with data-src attribute
-        const imgs = document.querySelectorAll("img[data-src]");
-        // map imgs and check if data-loaded is false
-        const imgList = Array.from(imgs)
-            .map((img) => {
-                if (img.getAttribute("data-loaded") === "true") {
-                    return null;
-                }
-                return img;
-            })
-            .filter((img) => !isNone(img)) as HTMLImageElement[];
-        if (imgList.length === 0) {
-            return;
-        }
-        // load image data and turn it into a blob and attach it as src
-        const imgBlobs = imgList.map((img) => {
-            const src = img.getAttribute("data-src");
-            if (isNone(src)) {
-                return null;
-            }
-            return fetch(src)
-                .then((res) => res.blob())
-                .catch(() => null);
-        });
-        // execute promise
-        Promise.all(imgBlobs).then((blobs) => {
-            // map blobs and attach them to img element
-            blobs.forEach((blob, index) => {
-                const img = imgList[index];
-                if (isNone(img)) {
-                    return;
-                }
-                if (isNone(blob)) {
-                    img.src = imagePlaceholder.src;
-                    img.setAttribute("data-loaded", "failed");
-                    return;
-                }
-
-                img.src = URL.createObjectURL(blob);
-                img.setAttribute("data-loaded", "true");
-            });
-        });
-    }
-
     render(): React.ReactNode {
         const {
             post: { frontMatter, mdxSource },
@@ -342,13 +297,10 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
                                 <img
                                     className="w-full rounded-md md:hover:-translate-y-1 md:transition-transform"
                                     alt="Cover"
-                                    src={imagePlaceholder.src}
-                                    loading="lazy"
+                                    src={firstImage}
                                     onError={(e) => {
-                                        e.currentTarget.src = "/images/cover-placeholder.png";
+                                        e.currentTarget.src = imagePlaceholder.src;
                                     }}
-                                    data-src={firstImage}
-                                    data-loaded="false"
                                 />
                             </div>
                         )}
