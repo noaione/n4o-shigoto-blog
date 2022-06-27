@@ -67,6 +67,16 @@ function LinkIconRender(props: HotlinkProps) {
             ),
             title: "J-Novel Club",
         },
+        "squareenixmangaandbooks.square-enix-games.com": {
+            icon: (
+                <img
+                    alt="Square Enix Icon"
+                    className="beside-link-icon"
+                    src={ExternalIcons.IconSquareEnix.src}
+                />
+            ),
+            title: "Square Enix Manga",
+        },
         "nyaa.si": {
             icon: <img alt="Nyaa.si Icon" className="beside-link-icon" src={ExternalIcons.IconNyaa.src} />,
             title: "Nyaa",
@@ -137,7 +147,7 @@ function LinkIconRender(props: HotlinkProps) {
     );
 }
 
-type ProjectStatus = "ongoing" | "dropped" | "finished" | "paused";
+type ProjectStatus = "ongoing" | "dropped" | "finished" | "paused" | "planned" | "cancelled";
 
 function ProjectStatusRender(props: { status: ProjectStatus }) {
     const { status } = props;
@@ -146,6 +156,8 @@ function ProjectStatusRender(props: { status: ProjectStatus }) {
         dropped: { key: "Dropped", color: "text-red-600 dark:text-red-400" },
         finished: { key: "Finished", color: "text-green-600 dark:text-green-400" },
         paused: { key: "On Hold", color: "text-orange-600 dark:text-orange-400" },
+        planned: { key: "Planned", color: "text-blue-600 dark:text-blue-400" },
+        cancelled: { key: "Cancelled", color: "text-red-600 dark:text-red-400" },
     };
     const statusInfo = statusMap[status] || statusMap.ongoing;
     return <span className={`${statusInfo.color} text-sm font-semibold`}>{statusInfo.key}</span>;
@@ -267,6 +279,8 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
                             "https://yenpress-us.imgix.net",
                             // comikey
                             "https://comikey.com",
+                            // square enix
+                            "https://fyre.cdn.sewest.net",
                             // wp media resizer
                             "https://i1.wp.com",
                             // play books cdn
@@ -307,7 +321,10 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
                     </div>
 
                     {Array.isArray(otherTitles) && otherTitles.length > 0 && (
-                        <div className="flex flex-col items-center md:items-start mt-4 mx-4 max-w-[65ch]">
+                        <div
+                            id="other-titles"
+                            className="flex flex-col items-center md:items-start mt-4 mx-4 max-w-[65ch]"
+                        >
                             <h3 className="mb-2 font-semibold">Also Known As</h3>
                             {otherTitles.map((title, idx) => (
                                 <p
@@ -397,7 +414,7 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
                                         }
                                         if (!isNone(actualTitle) && isNone(actualUrl)) {
                                             return (
-                                                <div className="flex flex-row items-center">
+                                                <div key={hotlinkId} className="flex flex-row items-center">
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         className="beside-link-icon !rounded-full"

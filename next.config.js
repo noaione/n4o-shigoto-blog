@@ -16,6 +16,7 @@ module.exports = {
             "yenpress.com",
             "yenpress-us.imgix.net",
             "comikey.com",
+            "fyre.cdn.sewest.net",
             "i1.wp.com",
             "books.google.com",
             "d2dq7ifhe7bu0f.cloudfront.net",

@@ -3,6 +3,7 @@ import IconComikey from "../../public/assets/ico/remote/comikey.png";
 import IconJNovelClub from "../../public/assets/ico/remote/j-novel.png";
 import IconKodansha from "../../public/assets/ico/remote/kodansha.png";
 import IconSevenSeas from "../../public/assets/ico/remote/seven-seas.png";
+import IconSquareEnix from "../../public/assets/ico/remote/square-enix.png";
 import IconYenPress from "../../public/assets/ico/remote/yen-press.png";
 
 // reader/tracker
@@ -25,6 +26,7 @@ export {
     IconJNovelClub,
     IconKodansha,
     IconSevenSeas,
+    IconSquareEnix,
     IconYenPress,
     IconMangaDex,
     IconMangaUpdates,
