@@ -123,13 +123,12 @@ export default function LayoutHolo9Weeks(props: Holo9WeeksProps) {
                         </NavigationLink>
                     </div>
                     <div className="flex flex-col items-center">
-                        <a
-                            className="flex flex-row items-center gap-1 mx-3 hover:underline hover:text-blue-500 transition"
-                            href="/holo9weeks"
-                        >
-                            <i className="naoicon">home</i>
-                            <span> Home</span>
-                        </a>
+                        <Link href="/holo9weeks" passHref>
+                            <a className="flex flex-row items-center gap-1 mx-3 hover:underline hover:text-blue-500 transition">
+                                <i className="naoicon">home</i>
+                                <span> Home</span>
+                            </a>
+                        </Link>
                     </div>
                     <div className="flex flex-col items-center">
                         <NavigationLink target={buildNextLink(extraData.trackNumber || 0, hasNext)}>

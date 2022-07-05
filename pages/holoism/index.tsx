@@ -67,7 +67,10 @@ export default function ShigotoHoloismIndex({ posts }: StaticPropsData) {
                         const [tTitle, isEpisode] = createPageTitle(track);
                         return (
                             <li key={`holoism-track${track.trackNumber}`}>
-                                <Link href={`/holoism/track${track.trackNumber.toString().padStart(2, "0")}`}>
+                                <Link
+                                    href={`/holoism/track${track.trackNumber.toString().padStart(2, "0")}`}
+                                    passHref
+                                >
                                     <a className="text-blue-700 dark:text-blue-400 font-semibold hover:opacity-80 transition">
                                         {tTitle}
                                     </a>

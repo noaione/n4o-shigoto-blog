@@ -12,11 +12,13 @@ export default function HeaderNav(props: HeaderProps) {
     return (
         <header className="flex items-center justify-between py-10">
             <div>
-                <a className="break-words" aria-label="Blog Home" href="/release">
-                    <div className="flex items-center justify-between hover:underline">
-                        <div className="hidden h-6 text-2xl font-bold sm:block">N4O Release</div>
-                    </div>
-                </a>
+                <Link href="/" passHref>
+                    <a className="break-words" aria-label="Blog Home">
+                        <div className="flex items-center justify-between hover:underline">
+                            <div className="hidden h-6 text-2xl font-bold sm:block">N4O Release</div>
+                        </div>
+                    </a>
+                </Link>
             </div>
             <div className="flex items-center text-base leading-5">
                 <div className="hidden sm:block">

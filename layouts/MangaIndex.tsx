@@ -129,7 +129,16 @@ function LinkIconRender(props: HotlinkProps) {
     }
     const IconData = iconDataset[urlDomain as keyof typeof iconDataset];
     if (isNone(IconData)) {
-        return <a href={url}>{titleTop || "Unknown Link"}</a>;
+        return (
+            <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mr-1 text-[15px] font-medium text-gray-700 dark:text-gray-300 leading-6 transition hover:text-emerald-600 dark:hover:text-emerald-500"
+            >
+                {titleTop || "Unknown Link"}
+            </a>
+        );
     }
     const { icon, title } = IconData;
     return (
