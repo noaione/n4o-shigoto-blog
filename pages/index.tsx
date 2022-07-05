@@ -5,6 +5,9 @@ import Link from "next/link";
 import Head from "next/head";
 import MetadataHead from "@/components/MetadataHead";
 
+import MarineAhoy from "../public/assets/img/MarineAhoy.png";
+import MarineAhoyPause from "../public/assets/img/MarineAhoyPause.png";
+
 export default function Home() {
     return (
         <>
@@ -59,12 +62,28 @@ export default function Home() {
                                         width={50}
                                         height={50}
                                         alt="Ahoy!"
-                                        src="https://cdn.discordapp.com/emojis/643678659298983957.png"
+                                        src={MarineAhoy.src}
+                                        onMouseEnter={(el) => {
+                                            el.currentTarget.src = MarineAhoyPause.src;
+                                            el.currentTarget.alt = "Ahoy...?";
+                                        }}
+                                        onMouseLeave={(el) => {
+                                            el.currentTarget.src = MarineAhoy.src;
+                                            el.currentTarget.alt = "Ahoy!";
+                                        }}
+                                        onTouchStart={(el) => {
+                                            el.currentTarget.src = MarineAhoyPause.src;
+                                            el.currentTarget.alt = "Ahoy...?";
+                                        }}
+                                        onTouchEnd={(el) => {
+                                            el.currentTarget.src = MarineAhoy.src;
+                                            el.currentTarget.alt = "Ahoy!";
+                                        }}
                                     />
                                 </a>
                             </Link>
                             <Link href="/holo9weeks" passHref>
-                                <a className="opacity-100 hover:opacity-80 duration-200">
+                                <a className="opacity-100 hover:opacity-80 hover:rotate-[360deg] duration-200">
                                     <img
                                         width={50}
                                         height={50}
