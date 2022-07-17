@@ -9,6 +9,7 @@ import IconYenPress from "../../public/assets/ico/remote/yen-press.png";
 // reader/tracker
 import IconMangaDex from "../../public/assets/ico/remote/mangadex.png";
 import IconMangaUpdates from "../../public/assets/ico/remote/manga-updates.svg";
+import IconNovelUpdates from "../../public/assets/ico/remote/novelupdates.png";
 
 // ddl/aggregate
 import IconMegaNZ from "../../public/assets/ico/remote/meganz.png";
@@ -31,6 +32,7 @@ export {
     IconYenPress,
     IconMangaDex,
     IconMangaUpdates,
+    IconNovelUpdates,
     IconMegaNZ,
     IconNyaa,
     IconPerpusIndo,
