@@ -111,6 +111,16 @@ function LinkIconRender(props: HotlinkProps) {
             ),
             title: "MangaUpdates",
         },
+        "novelupdates.com": {
+            icon: (
+                <img
+                    alt="NovelUpdates Icon"
+                    className="beside-link-icon"
+                    src={ExternalIcons.IconNovelUpdates.src}
+                />
+            ),
+            title: "Novel Updates",
+        },
         "mangadex.org": {
             icon: (
                 <img
@@ -120,6 +130,14 @@ function LinkIconRender(props: HotlinkProps) {
                 />
             ),
             title: "MangaDex",
+        },
+        "amazon.com": {
+            icon: <img alt="Amazon Icon" className="beside-link-icon" src={ExternalIcons.IconAmazon.src} />,
+            title: "Amazon",
+        },
+        "amazon.co.jp": {
+            icon: <img alt="Amazon Icon" className="beside-link-icon" src={ExternalIcons.IconAmazon.src} />,
+            title: "Amazon Japan",
         },
     };
 
@@ -218,6 +236,7 @@ interface MangaInfoLink {
     mangadex?: string;
     official?: string;
     raw?: string;
+    nu?: string;
 }
 
 interface ExtraData {
@@ -387,6 +406,16 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
                                             isDigit(infolinks.mu)
                                                 ? `https://www.mangaupdates.com/series.html?id=${infolinks.mu}`
                                                 : `https://www.mangaupdates.com/series/${infolinks.mu}`
+                                        }
+                                    />
+                                )}
+                                {infolinks.nu && (
+                                    <LinkIconRender
+                                        key="novelupdates-link"
+                                        url={
+                                            isDigit(infolinks.nu)
+                                                ? `https://www.novelupdates.com/?p=${infolinks.nu}`
+                                                : `https://www.novelupdates.com/series/${infolinks.nu}`
                                         }
                                     />
                                 )}
