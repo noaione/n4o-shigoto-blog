@@ -16,6 +16,7 @@ import IconNyaa from "../../public/assets/ico/remote/nyaa.png";
 import IconPerpusIndo from "../../public/assets/ico/remote/perpusindo.png";
 
 // other
+import IconAmazon from "../../public/assets/ico/remote/amazon.png";
 import IconDiscord from "../../public/assets/ico/remote/discord.png";
 import IconDiscordWhite from "../../public/assets/ico/remote/discord-white.png";
 import IconDiscordBlack from "../../public/assets/ico/remote/discord-black.png";
@@ -33,6 +34,7 @@ export {
     IconMegaNZ,
     IconNyaa,
     IconPerpusIndo,
+    IconAmazon,
     IconDiscord,
     IconDiscordWhite,
     IconDiscordBlack,
