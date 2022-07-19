@@ -112,13 +112,29 @@ function getUpcomingReleaseAtMonth(
     return filteredReleases;
 }
 
+function getStartOfLastWeekOfMonth() {
+    // new week start on Monday (1)
+    // get current time as reference
+    const currentTime = DateTime.utc();
+    // last day of current month
+    const finalDay = currentTime.endOf("month");
+
+    if (finalDay.weekday === 1) {
+        return finalDay.startOf("day");
+    }
+    // minus to get the first day of the week
+    return finalDay.minus({ days: finalDay.weekday - 1 }).startOf("day");
+}
+
 function filterMonthHotlinks(mangas: FrontMatterManga[]) {
     const currentTime = DateTime.utc();
+    const finalWeekStart = getStartOfLastWeekOfMonth();
     const currentMonthData = getUpcomingReleaseAtMonth(mangas, currentTime.year, currentTime.month);
     // determine if we should get next month release
     // only get if it's the final week of the month
     let filteredReleases: UpcomingReleases = { ...currentMonthData };
-    if (currentTime.day >= 26) {
+    // dynamically check if we should add next month section if we reach the final week of the month
+    if (currentTime.day >= finalWeekStart.day) {
         let nextMonth = currentTime.month + 1;
         let targetYear = currentTime.year;
         if (nextMonth > 12) {
