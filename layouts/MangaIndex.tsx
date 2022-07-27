@@ -182,7 +182,10 @@ function ProjectStatusRender(props: { status: ProjectStatus }) {
         ongoing: { key: "Ongoing", color: "text-gray-600 dark:text-gray-400" },
         dropped: { key: "Dropped", color: "text-red-600 dark:text-red-400" },
         finished: { key: "Finished", color: "text-green-600 dark:text-green-400" },
+        complete: { key: "Completed", color: "text-green-600 dark:text-green-400" },
+        completed: { key: "Completed", color: "text-green-600 dark:text-green-400" },
         paused: { key: "On Hold", color: "text-orange-600 dark:text-orange-400" },
+        hiatus: { key: "On Hiatus", color: "text-orange-600 dark:text-orange-400" },
         planned: { key: "Planned", color: "text-blue-600 dark:text-blue-400" },
         cancelled: { key: "Cancelled", color: "text-red-600 dark:text-red-400" },
     };
@@ -246,6 +249,7 @@ interface ExtraData {
     infolinks?: MangaInfoLink;
     hotlinks?: (Partial<HotlinkProps> | string)[];
     status?: ProjectStatus;
+    publicationStatus?: ProjectStatus;
 }
 
 interface MangaLayoutProps {
@@ -274,6 +278,7 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
 
         const { hotlinks, otherTitles, infolinks } = extraData;
         const projectStatus = extraData?.status || "ongoing";
+        const publicationStatus = extraData?.publicationStatus || "ongoing";
 
         let hasAnyInfoLinks = false;
         if (!isNone(infolinks) && (infolinks.mu || infolinks.mangadex || infolinks.official)) {
@@ -382,9 +387,18 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
                         })}
                     </div>
 
-                    <div id="project-status" className="flex flex-col items-center md:items-start mt-4 mx-4">
-                        <h3 className="mb-1 font-semibold">Status</h3>
-                        <ProjectStatusRender key="project-status" status={projectStatus} />
+                    <div
+                        id="project-status"
+                        className="flex flex-row flex-wrap gap-3 md:gap-4 justify-center md:justify-start mt-4 mx-4 max-w-[65ch]"
+                    >
+                        <div className="text-sm text-center md:text-left">
+                            <h3 className="mb-1 font-semibold text-base">Status</h3>
+                            <ProjectStatusRender key="project-status" status={projectStatus} />
+                        </div>
+                        <div className="text-sm text-center md:text-left">
+                            <h3 className="mb-1 font-semibold text-base">Publication Status</h3>
+                            <ProjectStatusRender key="pub-project-status" status={publicationStatus} />
+                        </div>
                     </div>
 
                     <div id="synopsis" className="flex flex-col items-center md:items-start mt-4 mx-4">
