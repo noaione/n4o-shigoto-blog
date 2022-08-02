@@ -14,7 +14,7 @@ export async function getStaticProps() {
     return { props: { posts } };
 }
 
-const VolumeWaitRe = /Volumes? (?<vol>[\d]{1,2}) (?<ex>\[.*\] )?\((?<date>[\d]{1,2} [\w]+ [\d]{4})\)/g;
+const VolumeWaitRe = /Volumes? (?<vol>[\d]{1,2}) (?<ex>\[.*\] )?\((?<date>[\d]{1,2} [\w]+ [\d]{4})\)/;
 
 interface SimpleHotlinks {
     url?: string;
