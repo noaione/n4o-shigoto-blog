@@ -14,7 +14,7 @@ export async function getStaticProps() {
     return { props: { posts } };
 }
 
-const VolumeWaitRe = /Volume (?<vol>[\d]{1,2}) (?<ex>\[Final\] )?\((?<date>[\d]{1,2} [\w]+ [\d]{4})\)/g;
+const VolumeWaitRe = /Volumes? (?<vol>[\d]{1,2}) (?<ex>\[.*\] )?\((?<date>[\d]{1,2} [\w]+ [\d]{4})\)/g;
 
 interface SimpleHotlinks {
     url?: string;
@@ -105,7 +105,7 @@ function getUpcomingReleaseAtMonth(
                 title: mangaTitle,
                 slug: manga.slug,
                 volume: Number(match.groups.vol),
-                extra: match.groups.ex,
+                extra: match.groups.ex?.trimEnd(),
             });
         });
     });
@@ -236,8 +236,18 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                                                             >
                                                                 <Link href={`/manga/${rls.slug}`} passHref>
                                                                     <a className="transition text-gray-700 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-500">
-                                                                        Volume {rls.volume.toLocaleString()}
-                                                                        {rls.extra && ` ${rls.extra}`}
+                                                                        <span>
+                                                                            Volume{" "}
+                                                                            {rls.volume.toLocaleString()}
+                                                                        </span>
+                                                                        {rls.extra && (
+                                                                            <span className="italic font-semibold">
+                                                                                {" "}
+                                                                                {rls.extra
+                                                                                    .replace("[", "(")
+                                                                                    .replace("]", ")")}
+                                                                            </span>
+                                                                        )}
                                                                     </a>
                                                                 </Link>
                                                             </li>
