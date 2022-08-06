@@ -21,9 +21,12 @@ interface SimpleHotlinks {
     title?: string;
 }
 
+type ProjectStatus = "ongoing" | "dropped" | "finished" | "paused" | "planned" | "cancelled";
+
 interface FrontMatterManga extends FrontMatterExtended {
     type?: "rip" | "scanlation";
     hotlinks?: (SimpleHotlinks | string)[];
+    status?: ProjectStatus;
 }
 
 interface HotlinksReleasing {
@@ -36,6 +39,11 @@ interface HotlinksReleasing {
 
 type InnerUpcomingReleases = { [title: string]: HotlinksReleasing[] };
 type UpcomingReleases = { [dateData: string]: InnerUpcomingReleases };
+
+// @ts-ignore
+String.prototype.capitalize = function () {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+};
 
 function parseMangaReleaseData(
     hotlink: SimpleHotlinks | string,
@@ -86,15 +94,23 @@ function parseMangaReleaseData(
     if (!ignoreDay && !isNone(targetDay) && targetDay > parsedDate.day) {
         return;
     }
+    const mangaStatus = manga.status || "ongoing";
     const dateFmt = parsedDate.toFormat("yyyy-MM-dd");
     const mangaTitle = manga.title.trim();
+    let extraInfo = match.groups.ex?.trimEnd();
+    if (mangaStatus === "planned" || mangaStatus === "paused") {
+        extraInfo = extraInfo || "";
+        // @ts-ignore
+        extraInfo += ` [${mangaStatus.capitalize()}]`;
+        extraInfo = extraInfo.trim();
+    }
     return [
         {
             date: parsedDate,
             title: mangaTitle,
             slug: manga.slug,
             volume: Number(match.groups.vol),
-            extra: match.groups.ex?.trimEnd(),
+            extra: extraInfo,
         },
         dateFmt,
     ];
@@ -304,8 +320,8 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                                                                             <span className="italic font-semibold">
                                                                                 {" "}
                                                                                 {rls.extra
-                                                                                    .replace("[", "(")
-                                                                                    .replace("]", ")")}
+                                                                                    .replace(/\[/, "(")
+                                                                                    .replace(/\]/, ")")}
                                                                             </span>
                                                                         )}
                                                                     </a>
@@ -357,8 +373,8 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                                                                         <span className="italic font-semibold">
                                                                             {" "}
                                                                             {rls.extra
-                                                                                .replace("[", "(")
-                                                                                .replace("]", ")")}
+                                                                                .replace(/\[/, "(")
+                                                                                .replace(/\]/, ")")}
                                                                         </span>
                                                                     )}
                                                                 </a>
