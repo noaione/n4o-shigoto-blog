@@ -240,6 +240,9 @@ interface MangaInfoLink {
     official?: string;
     raw?: string;
     nu?: string;
+    amazon?: string;
+    amazonJP?: string;
+    playbooks?: string;
 }
 
 interface ExtraData {
@@ -441,6 +444,15 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
                                 )}
                                 {infolinks.official && (
                                     <LinkIconRender key="official-link" url={infolinks.official} />
+                                )}
+                                {infolinks.amazon && (
+                                    <LinkIconRender key="amazon-link" url={`https://amazon.com/dp/${infolinks.amazon}`} />
+                                )}
+                                {infolinks.amazonJP && (
+                                    <LinkIconRender key="amazon-jp-link" url={`https://amazon.co.jp/dp/${infolinks.amazonJP}`} />
+                                )}
+                                {infolinks.playbooks && (
+                                    <LinkIconRender key="google-play-books-link" url={`https://play.google.com/store/books/details?id=${infolinks.playbooks}`} />
                                 )}
                             </div>
                         </div>
