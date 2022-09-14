@@ -21,6 +21,7 @@ import IconAmazon from "../../public/assets/ico/remote/amazon.png";
 import IconDiscord from "../../public/assets/ico/remote/discord.png";
 import IconDiscordWhite from "../../public/assets/ico/remote/discord-white.png";
 import IconDiscordBlack from "../../public/assets/ico/remote/discord-black.png";
+import IconPlayBooks from "../../public/assets/ico/remote/play-books.svg";
 import IconBaseFavicon from "../../public/assets/ico/favicon.png";
 
 export {
@@ -40,5 +41,6 @@ export {
     IconDiscord,
     IconDiscordWhite,
     IconDiscordBlack,
+    IconPlayBooks,
     IconBaseFavicon,
 };

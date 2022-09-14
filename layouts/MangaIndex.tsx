@@ -139,6 +139,16 @@ function LinkIconRender(props: HotlinkProps) {
             icon: <img alt="Amazon Icon" className="beside-link-icon" src={ExternalIcons.IconAmazon.src} />,
             title: "Amazon Japan",
         },
+        "play.google.com": {
+            icon: (
+                <img
+                    alt="Play Books Icon"
+                    className="beside-link-icon"
+                    src={ExternalIcons.IconPlayBooks.src}
+                />
+            ),
+            title: "Play Books",
+        },
     };
 
     let urlDomain = url.split("//")[1].split("/")[0];
@@ -446,13 +456,22 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
                                     <LinkIconRender key="official-link" url={infolinks.official} />
                                 )}
                                 {infolinks.amazon && (
-                                    <LinkIconRender key="amazon-link" url={`https://amazon.com/dp/${infolinks.amazon}`} />
+                                    <LinkIconRender
+                                        key="amazon-link"
+                                        url={`https://amazon.com/dp/${infolinks.amazon}`}
+                                    />
                                 )}
                                 {infolinks.amazonJP && (
-                                    <LinkIconRender key="amazon-jp-link" url={`https://amazon.co.jp/dp/${infolinks.amazonJP}`} />
+                                    <LinkIconRender
+                                        key="amazon-jp-link"
+                                        url={`https://amazon.co.jp/dp/${infolinks.amazonJP}`}
+                                    />
                                 )}
                                 {infolinks.playbooks && (
-                                    <LinkIconRender key="google-play-books-link" url={`https://play.google.com/store/books/details?id=${infolinks.playbooks}`} />
+                                    <LinkIconRender
+                                        key="google-play-books-link"
+                                        url={`https://play.google.com/store/books/details?id=${infolinks.playbooks}`}
+                                    />
                                 )}
                             </div>
                         </div>
