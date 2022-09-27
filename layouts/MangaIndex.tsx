@@ -24,6 +24,23 @@ interface HotlinkProps {
     title?: string;
 }
 
+function UnknownIcon() {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="beside-link-icon !rounded-full"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+        >
+            <path
+                fillRule="evenodd"
+                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+                clipRule="evenodd"
+            />
+        </svg>
+    );
+}
+
 function LinkIconRender(props: HotlinkProps) {
     const { url, title: titleTop } = props;
     const iconDataset = {
@@ -149,11 +166,18 @@ function LinkIconRender(props: HotlinkProps) {
             ),
             title: "Play Books",
         },
+        "#": {
+            icon: <UnknownIcon />,
+            title: "Unknown",
+        },
     };
 
-    let urlDomain = url.split("//")[1].split("/")[0];
-    if (urlDomain.startsWith("www.")) {
-        urlDomain = urlDomain.substring(4);
+    let urlDomain = "#";
+    if (url !== "#") {
+        urlDomain = url.split("//")[1].split("/")[0];
+        if (urlDomain.startsWith("www.")) {
+            urlDomain = urlDomain.substring(4);
+        }
     }
     const IconData = iconDataset[urlDomain as keyof typeof iconDataset];
     if (isNone(IconData)) {
@@ -500,18 +524,7 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
                                         if (!isNone(actualTitle) && isNone(actualUrl)) {
                                             return (
                                                 <div key={hotlinkId} className="flex flex-row items-center">
-                                                    <svg
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        className="beside-link-icon !rounded-full"
-                                                        viewBox="0 0 20 20"
-                                                        fill="currentColor"
-                                                    >
-                                                        <path
-                                                            fillRule="evenodd"
-                                                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                                                            clipRule="evenodd"
-                                                        />
-                                                    </svg>
+                                                    <UnknownIcon />
                                                     <p className="ml-2 mr-1 text-[15px] select-none font-medium text-gray-700 dark:text-gray-300 leading-6 transition cursor-not-allowed">
                                                         {actualTitle}
                                                     </p>
