@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { DateTime } from "luxon";
 
 import type { FrontMatterExtended } from "@/lib/mdx";
@@ -230,7 +230,10 @@ function getStartOfLastWeekOfMonth() {
     return finalDay.minus({ days: finalDay.weekday - 1 }).startOf("day");
 }
 
-function filterMonthHotlinks(mangas: FrontMatterManga[]) {
+function filterMonthHotlinks(
+    mangas: FrontMatterManga[],
+    forceNextMonth = false
+): [UpcomingReleases, boolean] {
     const currentTime = DateTime.utc();
     const finalWeekStart = getStartOfLastWeekOfMonth();
     const currentMonthData = getUpcomingReleaseAtMonth(mangas, currentTime.year, currentTime.month);
@@ -238,7 +241,8 @@ function filterMonthHotlinks(mangas: FrontMatterManga[]) {
     // only get if it's the final week of the month
     let filteredReleases: UpcomingReleases = { ...currentMonthData };
     // dynamically check if we should add next month section if we reach the final week of the month
-    if (currentTime.day >= finalWeekStart.day) {
+    const lastWeekAlready = currentTime.day >= finalWeekStart.day;
+    if (lastWeekAlready || forceNextMonth) {
         let nextMonth = currentTime.month + 1;
         let targetYear = currentTime.year;
         if (nextMonth > 12) {
@@ -249,7 +253,7 @@ function filterMonthHotlinks(mangas: FrontMatterManga[]) {
         filteredReleases = { ...currentMonthData, ...nextMonthData };
     }
 
-    return sortUpcomingReleaseData(filteredReleases);
+    return [sortUpcomingReleaseData(filteredReleases), lastWeekAlready];
 }
 
 interface StaticPropsData {
@@ -257,9 +261,10 @@ interface StaticPropsData {
 }
 
 export default function MangaIndexPage({ posts }: StaticPropsData) {
+    const [showNextMonth, setShowNextMonth] = useState(false);
     const rippedMangaRelease = posts.filter((e) => e?.type === "rip");
     const scanMangaRelease = posts.filter((e) => e?.type === "scanlation");
-    const thisMonthRelease = filterMonthHotlinks(rippedMangaRelease);
+    const [thisMonthRelease, isLastWeek] = filterMonthHotlinks(rippedMangaRelease, showNextMonth);
     const backloggedRelease = getBacklogRelease(rippedMangaRelease);
 
     return (
@@ -286,7 +291,10 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                     </a>
                 </Link>
                 <div className="flex flex-col mt-2 mx-auto px-4">
-                    <h2 className="text-lg font-medium">Upcoming Releases</h2>
+                    <div className="flex">
+                        <h2 className="text-lg font-medium">Upcoming Releases</h2>
+                    </div>
+
                     {Object.keys(thisMonthRelease).length > 0 ? (
                         <>
                             {Object.keys(thisMonthRelease).map((date) => {
@@ -342,6 +350,32 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                         </p>
                     )}
                 </div>
+                {!isLastWeek && (
+                    <div className="flex flex-col mt-2 mx-auto px-2">
+                        <button
+                            className="text-sm rounded-md text-emerald-600 dark:text-emerald-400 transition-opacity hover:opacity-80 ml-1 flex flex-row items-center"
+                            onClick={() => {
+                                setShowNextMonth((prev) => !prev);
+                            }}
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                className={`w-5 h-5 ${showNextMonth ? "rotate-180" : "rotate-0"}`}
+                            >
+                                <path
+                                    fillRule="evenodd"
+                                    d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
+                                    clipRule="evenodd"
+                                />
+                            </svg>
+                            <span className="ml-1 font-medium">
+                                {showNextMonth ? "Hide Next Month" : "Show Next Month"}
+                            </span>
+                        </button>
+                    </div>
+                )}
                 {Object.keys(backloggedRelease).length > 0 && (
                     <div className="flex flex-col mt-2 mx-auto px-4">
                         <h2 className="text-lg font-medium">Backlogged Releases</h2>
