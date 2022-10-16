@@ -352,28 +352,30 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                 </div>
                 {!isLastWeek && (
                     <div className="flex flex-col mt-2 mx-auto px-2">
-                        <button
-                            className="text-sm rounded-md text-emerald-600 dark:text-emerald-400 transition-opacity hover:opacity-80 ml-1 flex flex-row items-center"
-                            onClick={() => {
-                                setShowNextMonth((prev) => !prev);
-                            }}
-                        >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                className={`w-5 h-5 ${showNextMonth ? "rotate-180" : "rotate-0"}`}
+                        <p>
+                            <button
+                                className="text-sm rounded-md text-emerald-600 dark:text-emerald-400 transition-opacity hover:opacity-80 ml-1 flex flex-row items-center"
+                                onClick={() => {
+                                    setShowNextMonth((prev) => !prev);
+                                }}
                             >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                            <span className="ml-1 font-medium">
-                                {showNextMonth ? "Hide Next Month" : "Show Next Month"}
-                            </span>
-                        </button>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    className={`w-5 h-5 ${showNextMonth ? "rotate-180" : "rotate-0"}`}
+                                >
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M12.53 16.28a.75.75 0 01-1.06 0l-7.5-7.5a.75.75 0 011.06-1.06L12 14.69l6.97-6.97a.75.75 0 111.06 1.06l-7.5 7.5z"
+                                        clipRule="evenodd"
+                                    />
+                                </svg>
+                                <span className="ml-1 font-medium">
+                                    {showNextMonth ? "Hide Next Month" : "Show Next Month"}
+                                </span>
+                            </button>
+                        </p>
                     </div>
                 )}
                 {Object.keys(backloggedRelease).length > 0 && (
