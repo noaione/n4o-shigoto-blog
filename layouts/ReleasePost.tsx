@@ -113,7 +113,7 @@ export default function LayoutReleasePost(props: RawBlogContent) {
                     )}
                     <div
                         id="post-content"
-                        className="mt-2 prose dark:prose-invert prose-p:my-3 prose-li:m-0 text-gray-600 dark:text-gray-100"
+                        className="mt-2 prose dark:prose-invert prose-p:my-3 prose-li:m-0 text-gray-600 dark:text-gray-100 max-w-full"
                     >
                         <MDXRenderer mdxSource={mdxSource} />
                     </div>

@@ -77,7 +77,7 @@ export default function LayoutReleaseBDMV(props: RawBlogContent) {
                             <strong>Size:</strong> {extraData.totalSize ?? "???"}
                         </p>
                     </div>
-                    <div id="post-content" className="mt-1">
+                    <div id="post-content" className="mt-1 max-w-full">
                         <MDXRenderer mdxSource={mdxSource} />
                     </div>
                     <div id="post-info" className="mt-6 mb-2 text-center">
