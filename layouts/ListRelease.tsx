@@ -27,6 +27,11 @@ function PostViewer(props: FrontMatterExtended) {
 
     // @ts-ignore
     const summary = props.excerpt || props.summary;
+    const parsedDate = new Date(props.date);
+    const buildDate = `${parsedDate.getFullYear()}/${parsedDate
+        .getMonth()
+        .toString()
+        .padStart(2, "0")}/${parsedDate.getDate().toString().padStart(2, "0")}`;
 
     return (
         <div>
@@ -35,6 +40,11 @@ function PostViewer(props: FrontMatterExtended) {
                     <img className="max-w-full mb-2" src={firstImage} alt={props.title + " Thumbnail"} />
                 </div>
             )}
+            <div>
+                <time className="block text-sm font-semibold text-gray-500 dark:text-gray-400">
+                    {buildDate}
+                </time>
+            </div>
             <h3 className="text-2xl font-bold leading-8 tracking-tight">
                 <Link href={`/r/${props.slug}`} passHref>
                     <a className="break-words text-gray-900 dark:text-gray-100 hover:underline">
