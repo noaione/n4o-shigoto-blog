@@ -241,7 +241,8 @@ function filterMonthHotlinks(
     // only get if it's the final week of the month
     let filteredReleases: UpcomingReleases = { ...currentMonthData };
     // dynamically check if we should add next month section if we reach the final week of the month
-    const lastWeekAlready = currentTime.day >= finalWeekStart.day;
+    // also ignore if we're forcing next month, and also if the final week start is Monday.
+    const lastWeekAlready = currentTime.day >= finalWeekStart.day || finalWeekStart.weekday === 1;
     if (lastWeekAlready || forceNextMonth) {
         let nextMonth = currentTime.month + 1;
         let targetYear = currentTime.year;
