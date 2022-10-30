@@ -259,6 +259,13 @@ async function generateRSSXML(validPosts) {
         });
     });
 
+    filteredPosts.sort((a, b) => {
+        const lastMod = new Date(b.lastmod || b.date);
+        const firstMod = new Date(a.lastmod || a.date);
+
+        return lastMod.getTime() - firstMod.getTime();
+    });
+
     const fullPath = path.join(process.cwd(), "public/index.xml");
     const xml = await generateRSSXML(filteredPosts);
     console.info(`Generating RSS feed to ${fullPath}`);
