@@ -15,6 +15,12 @@
     content: "";
 }
 
+/* inline image */
+#post-content p img {
+    display: inline-block;
+    margin: 0 auto;
+}
+
 .alert {
     @apply relative py-3 px-5 mb-4 border-[1px] border-transparent rounded-md;
 }
