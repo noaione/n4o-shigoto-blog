@@ -236,13 +236,17 @@ function filterMonthHotlinks(
 ): [UpcomingReleases, boolean] {
     const currentTime = DateTime.utc();
     const finalWeekStart = getStartOfLastWeekOfMonth();
+    const lastDayOfTheMonth = currentTime.endOf("month");
+    const prevWeekStartDay = finalWeekStart.minus({ days: 1 }).startOf("week");
     const currentMonthData = getUpcomingReleaseAtMonth(mangas, currentTime.year, currentTime.month);
     // determine if we should get next month release
     // only get if it's the final week of the month
     let filteredReleases: UpcomingReleases = { ...currentMonthData };
     // dynamically check if we should add next month section if we reach the final week of the month
     // also ignore if we're forcing next month, and also if the final week start is Monday.
-    const lastWeekAlready = currentTime.day >= finalWeekStart.day || finalWeekStart.weekday === 1;
+    const isPreviousWeekPast = currentTime.day >= prevWeekStartDay.day;
+    const lastWeekAlready =
+        currentTime.day >= finalWeekStart.day || (lastDayOfTheMonth.weekday === 1 && isPreviousWeekPast);
     if (lastWeekAlready || forceNextMonth) {
         let nextMonth = currentTime.month + 1;
         let targetYear = currentTime.year;
