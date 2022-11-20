@@ -28,8 +28,7 @@ function PostViewer(props: FrontMatterExtended) {
     // @ts-ignore
     const summary = props.excerpt || props.summary;
     const parsedDate = new Date(props.date);
-    const buildDate = `${parsedDate.getFullYear()}/${parsedDate
-        .getMonth()
+    const buildDate = `${parsedDate.getFullYear()}/${(parsedDate.getMonth() + 1)
         .toString()
         .padStart(2, "0")}/${parsedDate.getDate().toString().padStart(2, "0")}`;
 
