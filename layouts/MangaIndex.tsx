@@ -215,13 +215,13 @@ function ProjectStatusRender(props: { status: ProjectStatus }) {
     const statusMap = {
         ongoing: { key: "Ongoing", color: "text-gray-600 dark:text-gray-400" },
         dropped: { key: "Dropped", color: "text-red-600 dark:text-red-400" },
-        finished: { key: "Finished", color: "text-green-600 dark:text-green-400" },
-        complete: { key: "Completed", color: "text-green-600 dark:text-green-400" },
-        completed: { key: "Completed", color: "text-green-600 dark:text-green-400" },
+        finished: { key: "Finished", color: "text-teal-600 dark:text-teal-400" },
+        complete: { key: "Completed", color: "text-teal-600 dark:text-teal-400" },
+        completed: { key: "Completed", color: "text-teal-600 dark:text-teal-400" },
         paused: { key: "On Hold", color: "text-orange-600 dark:text-orange-400" },
         hiatus: { key: "On Hiatus", color: "text-orange-600 dark:text-orange-400" },
         planned: { key: "Planned", color: "text-blue-600 dark:text-blue-400" },
-        cancelled: { key: "Cancelled", color: "text-red-600 dark:text-red-400" },
+        cancelled: { key: "Cancelled", color: "text-pink-600 dark:text-pink-400" },
     };
     const statusInfo = statusMap[status] || statusMap.ongoing;
     return <span className={`${statusInfo.color} text-sm font-semibold`}>{statusInfo.key}</span>;
