@@ -22,6 +22,17 @@ interface SimpleHotlinks {
 }
 
 type ProjectStatus = "ongoing" | "dropped" | "finished" | "paused" | "planned" | "cancelled";
+type ExtendedProjectStatus = ProjectStatus | "complete" | "completed" | "hiatus";
+const DEFAULTSTATUS = [
+    "ongoing",
+    "finished",
+    "complete",
+    "completed",
+    "paused",
+    "hiatus",
+    "planned",
+    "cancelled",
+] as ExtendedProjectStatus[];
 
 interface FrontMatterManga extends FrontMatterExtended {
     type?: "rip" | "scanlation";
@@ -35,6 +46,7 @@ interface HotlinksReleasing {
     volume: number;
     slug: string;
     extra?: string;
+    status?: ProjectStatus;
 }
 
 type InnerUpcomingReleases = { [title: string]: HotlinksReleasing[] };
@@ -111,6 +123,7 @@ function parseMangaReleaseData(
             slug: manga.slug,
             volume: Number(match.groups.vol),
             extra: extraInfo,
+            status: manga.status,
         },
         dateFmt,
     ];
@@ -118,6 +131,7 @@ function parseMangaReleaseData(
 
 function getUpcomingReleaseAtMonth(
     mangas: FrontMatterManga[],
+    allowStatus: ExtendedProjectStatus[] = DEFAULTSTATUS,
     year: number,
     month: number,
     ignoreDay = false
@@ -125,11 +139,15 @@ function getUpcomingReleaseAtMonth(
     const filteredReleases: UpcomingReleases = {};
     const currentTime = DateTime.utc();
     mangas.forEach((manga) => {
-        const { hotlinks } = manga;
+        const { hotlinks, status } = manga;
         if (!Array.isArray(hotlinks)) {
             return;
         }
         if (hotlinks.length < 1) {
+            return;
+        }
+        const stat = status || "ongoing";
+        if (allowStatus.indexOf(stat) < 0) {
             return;
         }
 
@@ -181,7 +199,7 @@ function sortUpcomingReleaseData(unsortedData: UpcomingReleases) {
     return sortedReleases;
 }
 
-function getBacklogRelease(mangas: FrontMatterManga[]) {
+function getBacklogRelease(mangas: FrontMatterManga[], allowStatus: ExtendedProjectStatus[] = DEFAULTSTATUS) {
     const currentTime = DateTime.utc();
     // get anything that's older by 7 days
     const backlogStart = currentTime.minus({ days: 7 });
@@ -192,6 +210,10 @@ function getBacklogRelease(mangas: FrontMatterManga[]) {
             return;
         }
         if (hotlinks.length < 1) {
+            return;
+        }
+        const stat = manga.status || "ongoing";
+        if (allowStatus.indexOf(stat) < 0) {
             return;
         }
 
@@ -232,13 +254,19 @@ function getStartOfLastWeekOfMonth() {
 
 function filterMonthHotlinks(
     mangas: FrontMatterManga[],
+    allowStatus: ExtendedProjectStatus[] = DEFAULTSTATUS,
     forceNextMonth = false
 ): [UpcomingReleases, boolean] {
     const currentTime = DateTime.utc();
     const finalWeekStart = getStartOfLastWeekOfMonth();
     const lastDayOfTheMonth = currentTime.endOf("month");
     const prevWeekStartDay = finalWeekStart.minus({ days: 1 }).startOf("week");
-    const currentMonthData = getUpcomingReleaseAtMonth(mangas, currentTime.year, currentTime.month);
+    const currentMonthData = getUpcomingReleaseAtMonth(
+        mangas,
+        allowStatus,
+        currentTime.year,
+        currentTime.month
+    );
     // determine if we should get next month release
     // only get if it's the final week of the month
     let filteredReleases: UpcomingReleases = { ...currentMonthData };
@@ -254,11 +282,185 @@ function filterMonthHotlinks(
             nextMonth = 1;
             targetYear += 1;
         }
-        const nextMonthData = getUpcomingReleaseAtMonth(mangas, targetYear, nextMonth, true);
+        const nextMonthData = getUpcomingReleaseAtMonth(mangas, allowStatus, targetYear, nextMonth, true);
         filteredReleases = { ...currentMonthData, ...nextMonthData };
     }
 
     return [sortUpcomingReleaseData(filteredReleases), lastWeekAlready];
+}
+
+function ProjectStatusInfo(props: { status: ProjectStatus; className?: string }) {
+    const { status, className } = props;
+    const statusMap = {
+        ongoing: { key: "Ongoing", color: "text-green-600 dark:text-green-400" },
+        dropped: { key: "Dropped", color: "text-red-600 dark:text-red-400" },
+        finished: { key: "Finished", color: "text-teal-600 dark:text-teal-400" },
+        complete: { key: "Completed", color: "text-teal-600 dark:text-teal-400" },
+        completed: { key: "Completed", color: "text-teal-600 dark:text-teal-400" },
+        paused: { key: "On Hold", color: "text-orange-600 dark:text-orange-400" },
+        hiatus: { key: "On Hiatus", color: "text-orange-600 dark:text-orange-400" },
+        planned: { key: "Planned", color: "text-blue-600 dark:text-blue-400" },
+        cancelled: { key: "Cancelled", color: "text-pink-600 dark:text-pink-400" },
+    };
+    const statusInfo = statusMap[status] || statusMap.ongoing;
+    const actualClassName = className || "";
+    return (
+        <span
+            className={`select-none font-semibold ${statusInfo.color} ${actualClassName}`}
+            data-status={statusInfo.key}
+        >
+            •
+        </span>
+    );
+}
+
+function StatusPillInfo(props: {
+    status: ProjectStatus;
+    onClick?: (status: ProjectStatus, currentStatus: boolean) => void;
+}) {
+    const [isEnabled, setIsEnabled] = useState(false);
+    const { status, onClick: onPillClick } = props;
+    const statusMap = {
+        ongoing: {
+            key: "Ongoing",
+            color: "border-green-600 dark:border-green-400 hover:bg-green-600 dark:hover:bg-green-400",
+            colorBg: "bg-green-600 dark:bg-green-400",
+        },
+        dropped: {
+            key: "Dropped",
+            color: "border-red-600 dark:border-red-400 hover:bg-red-600 dark:hover:bg-red-400",
+            colorBg: "bg-red-600 dark:bg-red-400",
+        },
+        finished: {
+            key: "Finished",
+            color: "border-teal-600 dark:border-teal-400 hover:bg-teal-600 dark:hover:bg-teal-400",
+            colorBg: "bg-teal-600 dark:bg-teal-400",
+        },
+        complete: {
+            key: "Completed",
+            color: "border-teal-600 dark:border-teal-400 hover:bg-teal-600 dark:hover:bg-teal-400",
+            colorBg: "bg-teal-600 dark:bg-teal-400",
+        },
+        completed: {
+            key: "Completed",
+            color: "border-teal-600 dark:border-teal-400 hover:bg-teal-600 dark:hover:bg-teal-400",
+            colorBg: "bg-teal-600 dark:bg-teal-400",
+        },
+        paused: {
+            key: "On Hold",
+            color: "border-orange-600 dark:border-orange-400 hover:bg-orange-600 dark:hover:bg-orange-400",
+            colorBg: "bg-orange-600 dark:bg-orange-400",
+        },
+        hiatus: {
+            key: "On Hiatus",
+            color: "border-orange-600 dark:border-orange-400 hover:bg-orange-600 dark:hover:bg-orange-400",
+            colorBg: "bg-orange-600 dark:bg-orange-400",
+        },
+        planned: {
+            key: "Planned",
+            color: "border-blue-600 dark:border-blue-400 hover:bg-blue-600 dark:hover:bg-blue-400",
+            colorBg: "bg-blue-600 dark:bg-blue-400",
+        },
+        cancelled: {
+            key: "Cancelled",
+            color: "border-pink-600 dark:border-pink-400 hover:bg-pink-600 dark:hover:bg-pink-400",
+            colorBg: "bg-pink-600 dark:bg-pink-400",
+        },
+    };
+    const statusInfo = statusMap[status] || statusMap.ongoing;
+    return (
+        <button
+            className={`group flex flex-col items-center rounded-xl px-2 py-1 border-[1px] ${
+                statusInfo.color
+            } ${isEnabled ? statusInfo.colorBg : ""} duration-250 transition-colors`}
+            onClick={() => {
+                onPillClick?.(status, isEnabled);
+                setIsEnabled((prev) => !prev);
+            }}
+        >
+            <ProjectStatusInfo
+                status={status}
+                className={`${
+                    isEnabled ? "!text-white dark:!text-black" : ""
+                } group-hover:text-white dark:group-hover:text-black`}
+            />
+            <p
+                className={`text-sm font-semibold uppercase select-none ${
+                    isEnabled ? "text-white dark:text-black" : "text-gray-800 dark:text-gray-200"
+                } tracking-wide group-hover:text-white dark:group-hover:text-black`}
+            >
+                {statusInfo.key}
+            </p>
+        </button>
+    );
+}
+
+function UpcomingReleaseRender(props: { releases: UpcomingReleases; prependKey?: string }) {
+    const { releases, prependKey } = props;
+    const prepKey = prependKey || "upcoming";
+    return Object.keys(releases).length > 0 ? (
+        <>
+            {Object.keys(releases).map((date) => {
+                const monthManga = releases[date];
+                const parsedDt = DateTime.fromFormat(date, "yyyy-MM-dd", { zone: "UTC" });
+                return (
+                    <div key={`${prepKey}-monthly-${date}`} className="flex flex-col">
+                        <h3 className="font-medium">{parsedDt.toFormat("dd MMMM yyyy")}</h3>
+                        <div className="flex flex-col flex-wrap justify-center">
+                            {Object.keys(monthManga).map((title) => (
+                                <div
+                                    className="flex flex-col"
+                                    key={`${prepKey}-rls-monthly-${date}-${title}`}
+                                >
+                                    <h4 className="text-gray-700 dark:text-gray-300">
+                                        {title}
+                                        <ProjectStatusInfo
+                                            status={monthManga[title][0].status || "ongoing"}
+                                            className="ml-1"
+                                        />
+                                    </h4>
+                                    <ul className="flex flex-col flex-wrap justify-center">
+                                        {monthManga[title].map((rls) => (
+                                            <li
+                                                key={`${prepKey}-rls-month-${date}-${title}-v${rls.volume}`}
+                                                className="pl-2 text-gray-700 dark:text-gray-300 before:content-['•_']"
+                                            >
+                                                <Link href={`/manga/${rls.slug}`} passHref>
+                                                    <a className="transition text-gray-700 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-500">
+                                                        <span>Volume {rls.volume.toLocaleString()}</span>
+                                                        {rls.extra && (
+                                                            <span className="italic font-semibold">
+                                                                {" "}
+                                                                {rls.extra
+                                                                    .replace(/\[/, "(")
+                                                                    .replace(/\]/, ")")}
+                                                            </span>
+                                                        )}
+                                                    </a>
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                );
+            })}
+        </>
+    ) : (
+        <p className="text-gray-500 dark:text-gray-400 cursor-not-allowed select-none">
+            No Upcoming Releases
+        </p>
+    );
+}
+
+function filterReleaseByStatus(frontMatter: FrontMatterManga[], statuses: ExtendedProjectStatus[]) {
+    return frontMatter.filter((e) => statuses.includes(e.status || "ongoing"));
+}
+
+function isSameArray<T>(a: T[], b: T[]) {
+    return a.length === b.length && a.every((v, i) => v === b[i]);
 }
 
 interface StaticPropsData {
@@ -267,10 +469,43 @@ interface StaticPropsData {
 
 export default function MangaIndexPage({ posts }: StaticPropsData) {
     const [showNextMonth, setShowNextMonth] = useState(false);
+    const [enabledStatuses, setEnabledStatuses] = useState<ExtendedProjectStatus[]>(DEFAULTSTATUS);
     const rippedMangaRelease = posts.filter((e) => e?.type === "rip");
     const scanMangaRelease = posts.filter((e) => e?.type === "scanlation");
-    const [thisMonthRelease, isLastWeek] = filterMonthHotlinks(rippedMangaRelease, showNextMonth);
-    const backloggedRelease = getBacklogRelease(rippedMangaRelease);
+    const [thisMonthRelease, isLastWeek] = filterMonthHotlinks(
+        rippedMangaRelease,
+        enabledStatuses,
+        showNextMonth
+    );
+    const backloggedRelease = getBacklogRelease(rippedMangaRelease, enabledStatuses);
+    const actualRippedMangaRelease = filterReleaseByStatus(rippedMangaRelease, enabledStatuses);
+    const actualScanMangaRelease = filterReleaseByStatus(scanMangaRelease, enabledStatuses);
+
+    const callbackFilterStatus = (stat: ExtendedProjectStatus, isEnabled: boolean) => {
+        if (isSameArray(enabledStatuses, DEFAULTSTATUS)) {
+            if (!isEnabled) {
+                setEnabledStatuses([stat]);
+            } else {
+                // assume that everything is enabled manually.
+                // so remove this
+                setEnabledStatuses((prev) => prev.filter((e) => e !== stat));
+            }
+        } else {
+            if (isEnabled) {
+                // remove
+                setEnabledStatuses((prev) => {
+                    const newStat = prev.filter((e) => e !== stat);
+                    if (newStat.length === 0) {
+                        return DEFAULTSTATUS;
+                    }
+                    return newStat;
+                });
+            } else {
+                // add
+                setEnabledStatuses([...enabledStatuses, stat]);
+            }
+        }
+    };
 
     return (
         <>
@@ -295,65 +530,19 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                         🏠 Home
                     </a>
                 </Link>
+                <div className="flex flex-row mt-2 px-3 justify-center lg:justify-start gap-2 flex-wrap">
+                    <StatusPillInfo status="ongoing" onClick={callbackFilterStatus} />
+                    <StatusPillInfo status="dropped" onClick={callbackFilterStatus} />
+                    <StatusPillInfo status="finished" onClick={callbackFilterStatus} />
+                    <StatusPillInfo status="paused" onClick={callbackFilterStatus} />
+                    <StatusPillInfo status="planned" onClick={callbackFilterStatus} />
+                    <StatusPillInfo status="cancelled" onClick={callbackFilterStatus} />
+                </div>
                 <div className="flex flex-col mt-2 mx-auto px-4">
                     <div className="flex">
                         <h2 className="text-lg font-medium">Upcoming Releases</h2>
                     </div>
-
-                    {Object.keys(thisMonthRelease).length > 0 ? (
-                        <>
-                            {Object.keys(thisMonthRelease).map((date) => {
-                                const monthManga = thisMonthRelease[date];
-                                const parsedDt = DateTime.fromFormat(date, "yyyy-MM-dd", { zone: "UTC" });
-                                return (
-                                    <div key={`monthly-${date}`} className="flex flex-col">
-                                        <h3 className="font-medium">{parsedDt.toFormat("dd MMMM yyyy")}</h3>
-                                        <div className="flex flex-col flex-wrap justify-center">
-                                            {Object.keys(monthManga).map((title) => (
-                                                <div
-                                                    className="flex flex-col"
-                                                    key={"rls-month-" + date + "-" + title}
-                                                >
-                                                    <h4 className="text-gray-700 dark:text-gray-300">
-                                                        {title}
-                                                    </h4>
-                                                    <ul className="flex flex-col flex-wrap justify-center">
-                                                        {monthManga[title].map((rls) => (
-                                                            <li
-                                                                key={`rls-month-${date}-${title}-v${rls.volume}`}
-                                                                className="pl-2 text-gray-700 dark:text-gray-300 before:content-['•_']"
-                                                            >
-                                                                <Link href={`/manga/${rls.slug}`} passHref>
-                                                                    <a className="transition text-gray-700 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-500">
-                                                                        <span>
-                                                                            Volume{" "}
-                                                                            {rls.volume.toLocaleString()}
-                                                                        </span>
-                                                                        {rls.extra && (
-                                                                            <span className="italic font-semibold">
-                                                                                {" "}
-                                                                                {rls.extra
-                                                                                    .replace(/\[/, "(")
-                                                                                    .replace(/\]/, ")")}
-                                                                            </span>
-                                                                        )}
-                                                                    </a>
-                                                                </Link>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                );
-                            })}
-                        </>
-                    ) : (
-                        <p className="text-gray-500 dark:text-gray-400 cursor-not-allowed select-none">
-                            No Upcoming Releases
-                        </p>
-                    )}
+                    <UpcomingReleaseRender releases={thisMonthRelease} />
                 </div>
                 {!isLastWeek && (
                     <div className="flex flex-col mt-2 mx-auto px-2">
@@ -386,59 +575,19 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                 {Object.keys(backloggedRelease).length > 0 && (
                     <div className="flex flex-col mt-2 mx-auto px-4">
                         <h2 className="text-lg font-medium">Backlogged Releases</h2>
-                        {Object.keys(backloggedRelease).map((date) => {
-                            const monthManga = backloggedRelease[date];
-                            const parsedDt = DateTime.fromFormat(date, "yyyy-MM-dd", { zone: "UTC" });
-                            return (
-                                <div key={`backlog-monthly-${date}`} className="flex flex-col">
-                                    <h3 className="font-medium">{parsedDt.toFormat("dd MMMM yyyy")}</h3>
-                                    <div className="flex flex-col flex-wrap justify-center">
-                                        {Object.keys(monthManga).map((title) => (
-                                            <div
-                                                className="flex flex-col"
-                                                key={"backlog-rls-month-" + date + "-" + title}
-                                            >
-                                                <h4 className="text-gray-700 dark:text-gray-300">{title}</h4>
-                                                <ul className="flex flex-col flex-wrap justify-center">
-                                                    {monthManga[title].map((rls) => (
-                                                        <li
-                                                            key={`backlog-rls-month-${date}-${title}-v${rls.volume}`}
-                                                            className="pl-2 text-gray-700 dark:text-gray-300 before:content-['•_']"
-                                                        >
-                                                            <Link href={`/manga/${rls.slug}`} passHref>
-                                                                <a className="transition text-gray-700 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-500">
-                                                                    <span>
-                                                                        Volume {rls.volume.toLocaleString()}
-                                                                    </span>
-                                                                    {rls.extra && (
-                                                                        <span className="italic font-semibold">
-                                                                            {" "}
-                                                                            {rls.extra
-                                                                                .replace(/\[/, "(")
-                                                                                .replace(/\]/, ")")}
-                                                                        </span>
-                                                                    )}
-                                                                </a>
-                                                            </Link>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            );
-                        })}
+                        <UpcomingReleaseRender releases={backloggedRelease} />
                     </div>
                 )}
                 <div className="flex flex-col mt-2 mx-auto px-4">
                     <h2 className="text-lg font-medium">Ripped Release</h2>
-                    {rippedMangaRelease.length > 0 ? (
-                        rippedMangaRelease.map((r) => {
+                    {actualRippedMangaRelease.length > 0 ? (
+                        actualRippedMangaRelease.map((r) => {
                             return (
-                                <div className="flex" key={"rip-" + r.slug}>
+                                <div className="flex" key={`rip-rls-${r.slug}`}>
                                     <Link href={`/manga/${r.slug}`} passHref>
-                                        <a className="transition hover:text-red-500">• {r.title}</a>
+                                        <a className="transition hover:text-red-500">
+                                            <ProjectStatusInfo status={r.status || "ongoing"} /> {r.title}
+                                        </a>
                                     </Link>
                                 </div>
                             );
@@ -451,13 +600,14 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                 </div>
                 <div className="flex flex-col mt-2 mx-auto px-4">
                     <h2 className="text-lg font-medium">Scanlation Release</h2>
-                    {scanMangaRelease.length > 0 ? (
-                        scanMangaRelease.map((r) => {
+                    {actualScanMangaRelease.length > 0 ? (
+                        actualScanMangaRelease.map((r) => {
                             return (
-                                <div className="flex" key={"scanlation-" + r.slug}>
+                                <div className="flex" key={`scanlation-rls-${r.slug}`}>
                                     <Link href={`/manga/${r.slug}`} passHref>
                                         <a className="transition hover:text-red-500">• {r.title}</a>
                                     </Link>
+                                    <ProjectStatusInfo status={r.status || "ongoing"} />
                                 </div>
                             );
                         })
