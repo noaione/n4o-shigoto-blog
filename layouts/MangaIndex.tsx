@@ -360,6 +360,8 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
                             "https://dhjhkxawhe8q4.cloudfront.net",
                             // mangadex
                             "https://mangadex.org",
+                            // amazon
+                            "https://m.media-amazon.com",
                         ]}
                     />
                 </Head>

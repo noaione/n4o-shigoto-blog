@@ -25,6 +25,7 @@ module.exports = {
             "p.ihateani.me",
             "p.n4o.xyz",
             "puu.sh",
+            "m.media-amazon.com"
         ],
     },
     async rewrites() {
