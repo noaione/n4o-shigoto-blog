@@ -23,15 +23,24 @@ interface SimpleHotlinks {
 
 type ProjectStatus = "ongoing" | "dropped" | "finished" | "paused" | "planned" | "cancelled";
 type ExtendedProjectStatus = ProjectStatus | "complete" | "completed" | "hiatus";
+const FINISHEDSTATUS = ["finished", "complete", "completed"] as ExtendedProjectStatus[];
+const ONHOLDSTATUS = ["paused", "hiatus"] as ExtendedProjectStatus[];
 const DEFAULTSTATUS = [
+    // Ongoing
     "ongoing",
+    // Finished
     "finished",
     "complete",
     "completed",
+    // Paused/On Hold/Hiatus
     "paused",
     "hiatus",
+    // Planned
     "planned",
+    // Cancelled
     "cancelled",
+    // Dropped
+    "dropped",
 ] as ExtendedProjectStatus[];
 
 interface FrontMatterManga extends FrontMatterExtended {
@@ -482,19 +491,27 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
     const actualScanMangaRelease = filterReleaseByStatus(scanMangaRelease, enabledStatuses);
 
     const callbackFilterStatus = (stat: ExtendedProjectStatus, isEnabled: boolean) => {
+        let extendArray = [] as ExtendedProjectStatus[];
+        if (FINISHEDSTATUS.includes(stat)) {
+            extendArray = FINISHEDSTATUS;
+        } else if (ONHOLDSTATUS.includes(stat)) {
+            extendArray = ONHOLDSTATUS;
+        } else {
+            extendArray = [stat];
+        }
         if (isSameArray(enabledStatuses, DEFAULTSTATUS)) {
             if (!isEnabled) {
-                setEnabledStatuses([stat]);
+                setEnabledStatuses(extendArray);
             } else {
                 // assume that everything is enabled manually.
                 // so remove this
-                setEnabledStatuses((prev) => prev.filter((e) => e !== stat));
+                setEnabledStatuses((prev) => prev.filter((e) => !extendArray.includes(e)));
             }
         } else {
             if (isEnabled) {
                 // remove
                 setEnabledStatuses((prev) => {
-                    const newStat = prev.filter((e) => e !== stat);
+                    const newStat = prev.filter((e) => !extendArray.includes(e));
                     if (newStat.length === 0) {
                         return DEFAULTSTATUS;
                     }
@@ -502,7 +519,7 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                 });
             } else {
                 // add
-                setEnabledStatuses([...enabledStatuses, stat]);
+                setEnabledStatuses([...enabledStatuses, ...extendArray]);
             }
         }
     };
