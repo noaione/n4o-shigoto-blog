@@ -1,51 +1,47 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 export interface DisqusThreadProps {
     identifier: string;
 }
 
-interface DisqusThreadState {
-    scriptInject: string;
-}
+export default function DisqusThread(props: DisqusThreadProps) {
+    const { identifier } = props;
+    const [baseUrl, setBaseUrl] = useState<string>();
+    const disqusElement = useRef<HTMLDivElement>(null);
+    const scriptWindow = useRef<HTMLScriptElement>();
 
-const SCRIPTINJECT = `
-let disqus_config = function() {
-    this.page.url = "{{ URL }}";
-    this.page.identifier = "{{ IDENTIFIER }}";
-};
-(function() { // DON'T EDIT BELOW THIS LINE
-    let s = document.createElement("script");
-    s.src = "//n4oblog.disqus.com/embed.js";
-    s.setAttribute("data-timestamp", new Date().getTime().toString());
-    (document.head || document.body).appendChild(s);
-})();
-`;
+    useEffect(() => {
+        console.log("DisqusThread: ", identifier, window.location.href);
 
-export default class DisqusThread extends React.Component<DisqusThreadProps, DisqusThreadState> {
-    constructor(props: DisqusThreadProps) {
-        super(props);
-        this.state = {
-            scriptInject: "",
+        setBaseUrl(window.location.href);
+
+        const tempWindow = window.document.createElement("script");
+
+        tempWindow.async = true;
+        tempWindow.src = "//n4oblog.disqus.com/embed.js";
+        tempWindow.setAttribute("data-timestamp", new Date().getTime().toString());
+
+        window.disqus_config = function () {
+            this.page.url = baseUrl ?? "";
+            this.page.identifier = identifier;
         };
-    }
+        scriptWindow.current = tempWindow;
 
-    async componentDidMount() {
-        const baseUrl = window.location.href;
+        // Attach to head/body
+        (document.head || document.body).appendChild(tempWindow);
 
-        let injectThis = SCRIPTINJECT.replace(/{{ URL }}/g, baseUrl);
-        injectThis = injectThis.replace(/{{ IDENTIFIER }}/g, this.props.identifier);
-        this.setState({ scriptInject: injectThis });
-    }
+        return () => {
+            // Cleanup
+            if (scriptWindow.current) {
+                scriptWindow.current.remove();
 
-    render(): React.ReactNode {
-        return (
-            <>
-                <div id="disqus_thread"></div>
-                <script
-                    id="disqus_script"
-                    dangerouslySetInnerHTML={{ __html: this.state.scriptInject }}
-                ></script>
-            </>
-        );
-    }
+                if (disqusElement.current) {
+                    // eslint-disable-next-line react-hooks/exhaustive-deps
+                    disqusElement.current.innerHTML = "";
+                }
+            }
+        };
+    }, [baseUrl, identifier, scriptWindow]);
+
+    return <div id="disqus_thread" ref={disqusElement}></div>;
 }
