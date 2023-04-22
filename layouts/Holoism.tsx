@@ -164,7 +164,7 @@ export default function LayoutHoloism(props: HoloismProps) {
         hasNext,
         hasPrev,
     } = props;
-    const extraData = props.post.extraData as IPostExtra;
+    const extraData = props.post.extraData as unknown as IPostExtra;
     const { info } = extraData;
 
     let actualDesc = info.title;
@@ -186,7 +186,9 @@ export default function LayoutHoloism(props: HoloismProps) {
                 <MetadataHead.Prefetch
                     extras={["https://i.ytimg.com", "https://youtube.com", "https://img.dlsite.jp"]}
                 />
+                {/* eslint-disable-next-line @next/next/no-css-tags */}
                 <link href="/assets/css/naoIcon.css" rel="stylesheet" />
+                {/* eslint-disable-next-line @next/next/no-css-tags */}
                 <style>{ExtraStyling}</style>
             </Head>
             <main className="container mx-auto py-8 px-4">

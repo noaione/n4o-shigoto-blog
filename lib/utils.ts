@@ -2,7 +2,7 @@ export type NoneType = null | undefined;
 export type Nullable<T> = T | null;
 export type Noneable<T> = T | NoneType;
 
-export function isNone(value: any): value is NoneType {
+export function isNone(value: unknown): value is NoneType {
     return value === null || value === undefined;
 }
 
@@ -40,6 +40,6 @@ export function pickFirstLine(textdata: string, ignoreSpace = true): string {
     return selectLine || textdata;
 }
 
-export function hasKey(obj: any, key: string): boolean {
+export function hasKey(obj: unknown, key: string): boolean {
     return Object.prototype.hasOwnProperty.call(obj, key);
 }

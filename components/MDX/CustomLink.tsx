@@ -1,6 +1,4 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
 import Link, { LinkProps } from "next/link";
-import { AnchorHTMLAttributes, DetailedHTMLProps } from "react";
 
 function isS(s: string | unknown): s is string {
     return typeof s === "string" && s.length > 0;

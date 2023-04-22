@@ -1,6 +1,6 @@
 import MetadataHead from "@/components/MetadataHead";
 import { RawBlogContent } from "@/lib/mdx";
-import { isNone, Nullable } from "@/lib/utils";
+import { isNone } from "@/lib/utils";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -94,7 +94,7 @@ export default function LayoutHolo9Weeks(props: Holo9WeeksProps) {
         hasNext,
         hasPrev,
     } = props;
-    const extraData = props.post.extraData as IPostExtra;
+    const extraData = props.post.extraData as unknown as IPostExtra;
     const { info } = extraData;
 
     const actualImage = `/assets/img/holo9w/${extraData.thumbfile}.jpg`;
@@ -110,6 +110,7 @@ export default function LayoutHolo9Weeks(props: Holo9WeeksProps) {
                     urlPath={`/holo9weeks/${frontMatter.slug}`}
                 />
                 <MetadataHead.Prefetch extras={["https://i.ytimg.com", "https://youtube.com"]} />
+                {/* eslint-disable-next-line @next/next/no-css-tags */}
                 <link href="/assets/css/naoIcon.css" rel="stylesheet" />
             </Head>
             <main className="container mx-auto py-8 px-4">

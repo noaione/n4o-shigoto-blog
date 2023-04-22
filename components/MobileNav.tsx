@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState } from "react";
 
 interface HeaderProps {
@@ -62,49 +63,49 @@ export default function MobileNav(props: HeaderProps) {
                 ></button>
                 <nav className="fixed h-full mt-8">
                     <div className="px-12 py-4">
-                        <a
+                        <Link
                             className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
                             href="/release"
                             onClick={onToggleNav}
                         >
                             N4O Releases
-                        </a>
+                        </Link>
                     </div>
                     <div className="px-12 py-4">
-                        <a
+                        <Link
                             href="/"
                             onClick={onToggleNav}
                             className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
                         >
                             Home
-                        </a>
+                        </Link>
                     </div>
                     <div className="px-12 py-4">
-                        <a
+                        <Link
                             href={isTags ? "/release" : "/release/tags"}
                             onClick={onToggleNav}
                             className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
                         >
                             {isTags ? "Posts" : "Tags"}
-                        </a>
+                        </Link>
                     </div>
                     <div className="px-12 py-4">
-                        <a
+                        <Link
                             href="/feed.xml"
                             onClick={onToggleNav}
                             className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
                         >
                             RSS
-                        </a>
+                        </Link>
                     </div>
                     <div className="px-12 py-4">
-                        <a
+                        <Link
                             href="https://github.com/noaione"
                             onClick={onToggleNav}
                             className="text-2xl font-bold tracking-widest text-gray-900 dark:text-gray-100"
                         >
                             GitHub
-                        </a>
+                        </Link>
                     </div>
                 </nav>
             </div>

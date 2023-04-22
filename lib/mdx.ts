@@ -4,7 +4,7 @@ import path from "path";
 import { bundleMDX } from "mdx-bundler";
 import glob from "tiny-glob/sync";
 import matter from "gray-matter";
-import { Nullable, pickFirstLine } from "./utils";
+import { hasKey, Nullable, pickFirstLine } from "./utils";
 
 import remarkGFM from "remark-gfm";
 
@@ -161,7 +161,7 @@ export type FrontMatterExtended = FrontMatterData & {
 export interface RawBlogContent {
     mdxSource: string;
     frontMatter: FrontMatterData;
-    extraData: { [key: string]: any };
+    extraData: { [key: string]: unknown };
 }
 
 function validString(data?: string) {
@@ -198,7 +198,7 @@ export async function getFileBySlug(postData: FrontMatterExtended): Promise<RawB
 
     const { code } = await bundleMDX({
         source: realContent,
-        mdxOptions(options, frontMatter) {
+        mdxOptions(options) {
             options.remarkPlugins = [...(options.remarkPlugins ?? []), remarkGFM];
             return options;
         },
@@ -213,7 +213,7 @@ export async function getFileBySlug(postData: FrontMatterExtended): Promise<RawB
             return options;
         },
     });
-    const extraData: { [key: string]: any } = {};
+    const extraData: { [key: string]: unknown } = {};
     // @ts-ignore
     const frontmatterActual: FrontMatterData = {};
     for (const [key, value] of Object.entries(data)) {
@@ -224,13 +224,13 @@ export async function getFileBySlug(postData: FrontMatterExtended): Promise<RawB
             extraData[key] = value;
         }
     }
-    if (data.hasOwnProperty("excerpt") && !validString(frontmatterActual.summary)) {
+    if (hasKey(data, "excerpt") && !validString(frontmatterActual.summary)) {
         frontmatterActual.summary = data.excerpt;
     }
     if (!validString(frontmatterActual.summary)) {
         frontmatterActual.summary = pickFirstLine(realContent);
     }
-    if (!frontmatterActual.hasOwnProperty("layout")) {
+    if (!hasKey(data, "layout")) {
         frontmatterActual.layout = "post";
     }
 

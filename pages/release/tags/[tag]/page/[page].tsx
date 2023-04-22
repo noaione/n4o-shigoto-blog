@@ -7,11 +7,18 @@ import Head from "next/head";
 import React from "react";
 import { POSTS_PER_PAGE } from "..";
 
+interface TagPath {
+    params: {
+        tag: string;
+        page: string;
+    };
+}
+
 export async function getStaticPaths() {
     const { getAllTags } = await import("@/lib/tags");
     const tags = await getAllTags("posts");
 
-    let paths: any[] = [];
+    let paths: TagPath[] = [];
     for (const [tagName, tagData] of Object.entries(tags)) {
         const totalPages = Math.ceil(tagData.count / POSTS_PER_PAGE);
         const current = Array.from({ length: totalPages }, (_, i) => {

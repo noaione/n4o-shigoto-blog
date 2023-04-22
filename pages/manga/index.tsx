@@ -72,7 +72,7 @@ function parseMangaReleaseData(
     targetYear: Nullable<number> = null,
     targetMonth: Nullable<number> = null,
     targetDay: Nullable<number> = null,
-    ignoreDay: boolean = false
+    ignoreDay = false
 ): [HotlinksReleasing, string] | NoneType {
     let selectTitle: string | undefined;
     if (typeof hotlink === "string") {

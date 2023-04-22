@@ -8,6 +8,7 @@ const extendedProduction = {
         dirs: ["pages", "components", "lib", "layouts"],
     },
     productionBrowserSourceMaps: true,
+    swcMinify: true,
 };
 
 /**

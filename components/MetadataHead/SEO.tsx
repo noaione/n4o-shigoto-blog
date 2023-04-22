@@ -6,7 +6,7 @@ import TwitterCardsMeta from "./TwitterCard";
 
 import siteMetadata from "../../data/siteMetadata.json";
 
-function isString(data: any): data is string {
+function isString(data: unknown): data is string {
     return typeof data === "string";
 }
 

@@ -31,7 +31,7 @@ export default class NaoTimesEmbed extends React.Component<IEmbedProps, IEmbedSt
         };
     }
 
-    listenHeightChange(ev: MessageEvent<any>) {
+    listenHeightChange(ev: MessageEvent<string>) {
         const frameRef = this.iframeRef;
         // Periksa apakah pesan dari embed naotimes apa tidak
         if (!ev.origin.startsWith("https://panel.naoti.me")) {
@@ -64,7 +64,7 @@ export default class NaoTimesEmbed extends React.Component<IEmbedProps, IEmbedSt
         window.addEventListener("message", this.listenHeightChange);
         const btnToggler = document.getElementById("light-toggler") as HTMLButtonElement | null;
         if (btnToggler) {
-            this.darkObserver = new MutationObserver((mutList, observer) => {
+            this.darkObserver = new MutationObserver((mutList) => {
                 mutList.forEach((mut) => {
                     if (mut.type === "attributes" && mut.attributeName == "dark-mode") {
                         const target = mut.target as HTMLButtonElement;

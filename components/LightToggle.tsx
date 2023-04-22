@@ -3,18 +3,16 @@ import React from "react";
 import LightBulbOff from "./Icons/LightBulbOutline";
 import LightBulbOn from "./Icons/LightBulb";
 
+import { isNone } from "@/lib/utils";
+
 interface LightState {
     isDark?: boolean;
 }
 
-type NullFucked = null | undefined;
+type NoProps = object;
 
-const isNullified = function (data: any): data is NullFucked {
-    return typeof data === "undefined" || data === null;
-};
-
-export default class LightToggle extends React.Component<{}, LightState> {
-    constructor(props: {}) {
+export default class LightToggle extends React.Component<NoProps, LightState> {
+    constructor(props: NoProps) {
         super(props);
         this.toggleDarkMode = this.toggleDarkMode.bind(this);
 
@@ -32,12 +30,14 @@ export default class LightToggle extends React.Component<{}, LightState> {
 
         try {
             const themeStorage = localStorage.getItem("shigoto.theme");
-            if (!isNullified(themeStorage)) {
+            if (!isNone(themeStorage)) {
                 userPreferDark = themeStorage === "dark" ? true : false;
             }
-        } catch (e) {}
+        } catch (err) {
+            console.error(err);
+        }
 
-        if (isNullified(userPreferDark)) {
+        if (isNone(userPreferDark)) {
             if (systemPreferDark) {
                 this.setState({ isDark: true });
             } else {

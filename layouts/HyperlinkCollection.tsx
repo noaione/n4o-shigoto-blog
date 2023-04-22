@@ -63,7 +63,7 @@ function HyperlinkContainer(props: { links: ILink[] | string[]; groupName?: stri
                 <div className="flex flex-col flex-wrap justify-center items-center mt-1">
                     {linksWithNotes.map((link) => {
                         return (
-                            <p>
+                            <p key={link.url + "-notesdata"}>
                                 <span className="font-bold">{link.name}</span> - {link.notes}
                             </p>
                         );
@@ -120,7 +120,7 @@ export default function LayoutHyperlinkCollection(props: ILayoutHyperlinkProps) 
                                 />
                             );
                         })}
-                    {links && <HyperlinkContainer links={links} />}
+                    {links && <HyperlinkContainer key="default-group" links={links} />}
                 </div>
             </div>
         </>

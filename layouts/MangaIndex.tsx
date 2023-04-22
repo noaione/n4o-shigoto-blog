@@ -301,7 +301,7 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
             post: { frontMatter },
         } = this.props;
 
-        const extraData = this.props.post.extraData as ExtraData;
+        const extraData = this.props.post.extraData as unknown as ExtraData;
 
         let firstImage: Nullable<string> = null;
         if (Array.isArray(frontMatter.images) && frontMatter.images.length > 0) {
