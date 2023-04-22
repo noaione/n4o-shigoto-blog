@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 
 export interface DisqusThreadProps {
     identifier: string;
@@ -6,14 +6,11 @@ export interface DisqusThreadProps {
 
 export default function DisqusThread(props: DisqusThreadProps) {
     const { identifier } = props;
-    const [baseUrl, setBaseUrl] = useState<string>();
     const disqusElement = useRef<HTMLDivElement>(null);
     const scriptWindow = useRef<HTMLScriptElement>();
 
     useEffect(() => {
-        console.log("DisqusThread: ", identifier, window.location.href);
-
-        setBaseUrl(window.location.href);
+        console.log("DisqusThread:", identifier, window.location.href);
 
         const tempWindow = window.document.createElement("script");
 
@@ -22,7 +19,7 @@ export default function DisqusThread(props: DisqusThreadProps) {
         tempWindow.setAttribute("data-timestamp", new Date().getTime().toString());
 
         window.disqus_config = function () {
-            this.page.url = baseUrl ?? "";
+            this.page.url = window.location.href;
             this.page.identifier = identifier;
         };
         scriptWindow.current = tempWindow;
@@ -41,7 +38,7 @@ export default function DisqusThread(props: DisqusThreadProps) {
                 }
             }
         };
-    }, [baseUrl, identifier, scriptWindow]);
+    }, [identifier, scriptWindow]);
 
     return <div id="disqus_thread" ref={disqusElement}></div>;
 }
