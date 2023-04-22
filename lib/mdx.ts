@@ -71,7 +71,7 @@ function tryToSplitPath(paths: string) {
     return splitForward;
 }
 
-export type PostDataType = "holo9w" | "holoism" | "manga" | "posts";
+export type PostDataType = "holo9w" | "holoism" | "manga" | "posts" | "hyperlinks";
 interface IRemapFile {
     file: string;
     slug: Nullable<string>;
