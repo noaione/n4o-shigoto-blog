@@ -37,17 +37,16 @@ export default function PaginationBar({ totalPages, currentPage, isPosts }: Pagi
                 {prevPage && (
                     <Link
                         href={currentPage - 1 === 1 ? baseUrl : `${baseUrl}page/${currentPage - 1}`}
+                        className="break-words"
                         passHref
                     >
-                        <a className="break-words">
-                            <button
-                                aria-label="Previous Page"
-                                className="flex flex-row items-center text-gray-900 dark:text-gray-100 hover:underline focus:outline-none"
-                            >
-                                <ChevronLeft className="w-5 h-5" aria-label="Paginate to Previous Page" />
-                                <span className="hidden lg:block">Previous</span>
-                            </button>
-                        </a>
+                        <button
+                            aria-label="Previous Page"
+                            className="flex flex-row items-center text-gray-900 dark:text-gray-100 hover:underline focus:outline-none"
+                        >
+                            <ChevronLeft className="w-5 h-5" aria-label="Paginate to Previous Page" />
+                            <span className="hidden lg:block">Previous</span>
+                        </button>
                     </Link>
                 )}
                 <span className="text-gray-700 dark:text-gray-300 font-semibold">{`${currentPage.toLocaleString()} of ${totalPages.toLocaleString()}`}</span>
@@ -62,16 +61,14 @@ export default function PaginationBar({ totalPages, currentPage, isPosts }: Pagi
                     </button>
                 )}
                 {nextPage && (
-                    <Link href={`${baseUrl}page/${currentPage + 1}`} passHref>
-                        <a className="break-words">
-                            <button
-                                aria-label="Previous Page"
-                                className="flex flex-row items-center text-gray-900 dark:text-gray-100 hover:underline focus:outline-none"
-                            >
-                                <span className="hidden lg:block">Next</span>
-                                <ChevronRight className="w-5 h-5" aria-label="Paginate to Next Page" />
-                            </button>
-                        </a>
+                    <Link href={`${baseUrl}page/${currentPage + 1}`} className="break-words" passHref>
+                        <button
+                            aria-label="Previous Page"
+                            className="flex flex-row items-center text-gray-900 dark:text-gray-100 hover:underline focus:outline-none"
+                        >
+                            <span className="hidden lg:block">Next</span>
+                            <ChevronRight className="w-5 h-5" aria-label="Paginate to Next Page" />
+                        </button>
                     </Link>
                 )}
             </nav>

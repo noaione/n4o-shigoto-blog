@@ -5,6 +5,7 @@ import Link from "next/link";
 import Head from "next/head";
 import MetadataHead from "@/components/MetadataHead";
 import Slider from "react-slick";
+import Image from "next/image";
 
 export async function getStaticProps() {
     const { getAllPostsFrontMatter } = await import("@/lib/mdx");
@@ -55,14 +56,14 @@ class ImageCarousel extends React.Component<ImageCarouselProps> {
                             key={`song-${e.thumbfile}_${e.trackNumber}`}
                             className="relative float-left w-full"
                         >
-                            <Link href={`/holo9weeks/${e.slug}`} passHref>
-                                <a className="relative">
-                                    <img
-                                        className="w-full h-full block"
-                                        src={`/assets/img/holo9w/${e.thumbfile}.jpg`}
-                                        alt={e.title}
-                                    />
-                                </a>
+                            <Link href={`/holo9weeks/${e.slug}`} className="relative">
+                                <Image
+                                    className="w-full h-full block"
+                                    src={`/assets/img/holo9w/${e.thumbfile}.jpg`}
+                                    alt={e.title}
+                                    width={1000}
+                                    height={1000}
+                                />
                             </Link>
                         </div>
                     );
@@ -125,10 +126,11 @@ export default function Holo9WeeksIndexPage({ posts }: StaticPropsData) {
                         hololive IDOL PROJECT 9 weeks of consecutive original songs
                     </h2>
                     <h4 className="mb-4 text-lg font-normal">9 weeks of original songs</h4>
-                    <Link href="/" passHref>
-                        <a className="mx-auto px-4 text-lg font-medium hover:text-blue-500 transition">
-                            🏠 Home
-                        </a>
+                    <Link
+                        href="/"
+                        className="mx-auto px-4 text-lg font-medium hover:text-blue-500 transition"
+                    >
+                        🏠 Home
                     </Link>
                     <br />
                     <h4 className="font-light text-lg">Click the Image for more Info</h4>

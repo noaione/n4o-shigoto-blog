@@ -2,6 +2,7 @@ import MetadataHead from "@/components/MetadataHead";
 import { RawBlogContent } from "@/lib/mdx";
 import { isNone, Nullable } from "@/lib/utils";
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -54,7 +55,7 @@ function buildPrevLink(trackNo?: number, hasPrev?: boolean) {
     if (isNone(trackNo) || !hasPrev) {
         return undefined;
     }
-    let prev = trackNo - 1;
+    const prev = trackNo - 1;
     if (prev === 0) {
         return "/holo9weeks/album";
     }
@@ -78,10 +79,11 @@ function NavigationLink(props: { target?: string; children: React.ReactNode }) {
         );
     }
     return (
-        <Link href={target} passHref>
-            <a className="flex flex-row items-center gap-1 mx-3 hover:underline hover:text-blue-500 transition">
-                {children}
-            </a>
+        <Link
+            href={target}
+            className="flex flex-row items-center gap-1 mx-3 hover:underline hover:text-blue-500 transition"
+        >
+            {children}
         </Link>
     );
 }
@@ -123,11 +125,12 @@ export default function LayoutHolo9Weeks(props: Holo9WeeksProps) {
                         </NavigationLink>
                     </div>
                     <div className="flex flex-col items-center">
-                        <Link href="/holo9weeks" passHref>
-                            <a className="flex flex-row items-center gap-1 mx-3 hover:underline hover:text-blue-500 transition">
-                                <i className="naoicon">home</i>
-                                <span> Home</span>
-                            </a>
+                        <Link
+                            href="/holo9weeks"
+                            className="flex flex-row items-center gap-1 mx-3 hover:underline hover:text-blue-500 transition"
+                        >
+                            <i className="naoicon">home</i>
+                            <span> Home</span>
                         </Link>
                     </div>
                     <div className="flex flex-col items-center">
@@ -139,7 +142,13 @@ export default function LayoutHolo9Weeks(props: Holo9WeeksProps) {
                 </div>
                 <hr className="border-black dark:border-gray-500 my-3" />
                 <div className="flex flex-col relative min-w-0 break-words bg-clip-border w-96">
-                    <img className="w-full rounded-t-md" alt="Cover" src={actualImage} />
+                    <Image
+                        className="w-full rounded-t-md"
+                        alt="Cover"
+                        src={actualImage}
+                        width={1000}
+                        height={1000}
+                    />
                     <div className="flex flex-col w-full p-4 mr-auto bg-gray-300 dark:bg-gray-900 rounded-b-md">
                         <h5 className="mb-2 text-xl font-medium">{info.title}</h5>
                         {info.othertitle && <h6 className="-mt-1 mb-2 text-gray-500">{info.othertitle}</h6>}
@@ -199,15 +208,17 @@ export default function LayoutHolo9Weeks(props: Holo9WeeksProps) {
                             })}
                         </p>
                         <div className="flex flex-row gap-2 mb-2">
-                            <Link href={extraData.streamlink} passHref>
-                                <a className="hover:underline font-medium text-blue-700 dark:text-blue-500 hover:text-blue-500 hover:dark:text-blue-400 transition">
-                                    Buy
-                                </a>
+                            <Link
+                                href={extraData.streamlink}
+                                className="hover:underline font-medium text-blue-700 dark:text-blue-500 hover:text-blue-500 hover:dark:text-blue-400 transition"
+                            >
+                                Buy
                             </Link>
-                            <Link href={extraData.nyaaid} passHref>
-                                <a className="hover:underline font-medium text-blue-700 dark:text-blue-500 hover:text-blue-500 hover:dark:text-blue-400 transition">
-                                    Download (Torrent)
-                                </a>
+                            <Link
+                                href={extraData.nyaaid}
+                                className="hover:underline font-medium text-blue-700 dark:text-blue-500 hover:text-blue-500 hover:dark:text-blue-400 transition"
+                            >
+                                Download (Torrent)
                             </Link>
                         </div>
                     </div>

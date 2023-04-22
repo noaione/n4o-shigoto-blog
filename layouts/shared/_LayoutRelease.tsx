@@ -8,6 +8,7 @@ import React from "react";
 import sanitizeHtml from "sanitize-html";
 import HyperlinkListRender, { IHyperlink } from "./HyperlinkList";
 import OtherFooterRender from "./OtherFooter";
+import Image from "next/image";
 
 interface IStaffList {
     position: string;
@@ -118,10 +119,12 @@ export default function LayoutReleaseBasePost(props: ILayoutReleaseProps) {
                 >
                     <h1 className="mt-1 mb-4 mx-0 text-center text-2xl font-bold">{frontMatter.title}</h1>
                     {!isNone(firstImage) && (
-                        <img
+                        <Image
                             className="max-w-full max-h-full block mx-auto"
                             src={firstImage}
                             alt="Post Image"
+                            width={1920}
+                            height={1080}
                         />
                     )}
                     {isBDMVFormat && (

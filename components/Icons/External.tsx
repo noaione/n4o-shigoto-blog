@@ -1,28 +1,28 @@
 // official website
-import IconComikey from "../../public/assets/ico/remote/comikey.png";
-import IconJNovelClub from "../../public/assets/ico/remote/j-novel.png";
-import IconKodansha from "../../public/assets/ico/remote/kodansha.png";
-import IconSevenSeas from "../../public/assets/ico/remote/seven-seas.png";
-import IconSquareEnix from "../../public/assets/ico/remote/square-enix.png";
-import IconYenPress from "../../public/assets/ico/remote/yen-press.png";
+import IconComikey from "#/ico/remote/comikey.png";
+import IconJNovelClub from "#/ico/remote/j-novel.png";
+import IconKodansha from "#/ico/remote/kodansha.png";
+import IconSevenSeas from "#/ico/remote/seven-seas.png";
+import IconSquareEnix from "#/ico/remote/square-enix.png";
+import IconYenPress from "#/ico/remote/yen-press.png";
 
 // reader/tracker
-import IconMangaDex from "../../public/assets/ico/remote/mangadex.png";
-import IconMangaUpdates from "../../public/assets/ico/remote/manga-updates.svg";
-import IconNovelUpdates from "../../public/assets/ico/remote/novelupdates.png";
+import IconMangaDex from "#/ico/remote/mangadex.png";
+import IconMangaUpdates from "#/ico/remote/manga-updates.svg";
+import IconNovelUpdates from "#/ico/remote/novelupdates.png";
 
 // ddl/aggregate
-import IconMegaNZ from "../../public/assets/ico/remote/meganz.png";
-import IconNyaa from "../../public/assets/ico/remote/nyaa.png";
-import IconPerpusIndo from "../../public/assets/ico/remote/perpusindo.png";
+import IconMegaNZ from "#/ico/remote/meganz.png";
+import IconNyaa from "#/ico/remote/nyaa.png";
+import IconPerpusIndo from "#/ico/remote/perpusindo.png";
 
 // other
-import IconAmazon from "../../public/assets/ico/remote/amazon.png";
-import IconDiscord from "../../public/assets/ico/remote/discord.png";
-import IconDiscordWhite from "../../public/assets/ico/remote/discord-white.png";
-import IconDiscordBlack from "../../public/assets/ico/remote/discord-black.png";
-import IconPlayBooks from "../../public/assets/ico/remote/play-books.svg";
-import IconBaseFavicon from "../../public/assets/ico/favicon.png";
+import IconAmazon from "#/ico/remote/amazon.png";
+import IconDiscord from "#/ico/remote/discord.png";
+import IconDiscordWhite from "#/ico/remote/discord-white.png";
+import IconDiscordBlack from "#/ico/remote/discord-black.png";
+import IconPlayBooks from "#/ico/remote/play-books.svg";
+import IconBaseFavicon from "#/ico/favicon.png";
 
 export {
     IconComikey,

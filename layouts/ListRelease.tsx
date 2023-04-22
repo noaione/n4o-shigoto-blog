@@ -4,6 +4,7 @@ import NaoTimesEmbed from "@/components/NaoTimesEmbed";
 import PaginationBar from "@/components/PaginationBar";
 import type { FrontMatterExtended } from "@/lib/mdx";
 import { Nullable, kebabCase } from "@/lib/utils";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -36,7 +37,13 @@ function PostViewer(props: FrontMatterExtended) {
         <div>
             {firstImage && (
                 <div>
-                    <img className="max-w-full mb-2" src={firstImage} alt={props.title + " Thumbnail"} />
+                    <Image
+                        className="max-w-full mb-2"
+                        src={firstImage}
+                        alt={props.title + " Thumbnail"}
+                        width={1920}
+                        height={1080}
+                    />
                 </div>
             )}
             <div>
@@ -45,10 +52,11 @@ function PostViewer(props: FrontMatterExtended) {
                 </time>
             </div>
             <h3 className="text-2xl font-bold leading-8 tracking-tight">
-                <Link href={`/r/${props.slug}`} passHref>
-                    <a className="break-words text-gray-900 dark:text-gray-100 hover:underline">
-                        {props.layout.toLowerCase() === "bdmv" ? <>{`[BDMV] ${props.title}`}</> : props.title}
-                    </a>
+                <Link
+                    href={`/r/${props.slug}`}
+                    className="break-words text-gray-900 dark:text-gray-100 hover:underline"
+                >
+                    {props.layout.toLowerCase() === "bdmv" ? <>{`[BDMV] ${props.title}`}</> : props.title}
                 </Link>
             </h3>
             <div className="text-lg mt-4 text-gray-500 max-w-none dark:text-gray-400">
@@ -61,9 +69,9 @@ function PostViewer(props: FrontMatterExtended) {
                             <Link
                                 key={`tagar-${props.slug}-${tag}`}
                                 href={`/release/tags/${kebabCase(tag)}`}
-                                passHref
+                                className="text-blue-500 hover:opacity-70 transition"
                             >
-                                <a className="text-blue-500 hover:opacity-70 transition">{"#" + tag}</a>
+                                {"#" + tag}
                             </Link>
                         ))}
                     </div>

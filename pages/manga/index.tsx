@@ -434,18 +434,17 @@ function UpcomingReleaseRender(props: { releases: UpcomingReleases; prependKey?:
                                                 key={`${prepKey}-rls-month-${date}-${title}-v${rls.volume}`}
                                                 className="pl-2 text-gray-700 dark:text-gray-300 before:content-['•_']"
                                             >
-                                                <Link href={`/manga/${rls.slug}`} passHref>
-                                                    <a className="transition text-gray-700 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-500">
-                                                        <span>Volume {rls.volume.toLocaleString()}</span>
-                                                        {rls.extra && (
-                                                            <span className="italic font-semibold">
-                                                                {" "}
-                                                                {rls.extra
-                                                                    .replace(/\[/, "(")
-                                                                    .replace(/\]/, ")")}
-                                                            </span>
-                                                        )}
-                                                    </a>
+                                                <Link
+                                                    href={`/manga/${rls.slug}`}
+                                                    className="transition text-gray-700 dark:text-gray-300 hover:text-red-500 dark:hover:text-red-500"
+                                                >
+                                                    <span>Volume {rls.volume.toLocaleString()}</span>
+                                                    {rls.extra && (
+                                                        <span className="italic font-semibold">
+                                                            {" "}
+                                                            {rls.extra.replace(/\[/, "(").replace(/\]/, ")")}
+                                                        </span>
+                                                    )}
                                                 </Link>
                                             </li>
                                         ))}
@@ -542,10 +541,11 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                     </span>
                     <span className="font-light"> Manga Release Index</span>
                 </div>
-                <Link href="/" passHref>
-                    <a className="mt-2 mx-auto px-4 text-lg font-medium hover:text-red-500 transition">
-                        🏠 Home
-                    </a>
+                <Link
+                    href="/"
+                    className="mt-2 mx-auto px-4 text-lg font-medium hover:text-red-500 transition"
+                >
+                    🏠 Home
                 </Link>
                 <div className="flex flex-row mt-2 px-3 justify-center lg:justify-start gap-2 flex-wrap">
                     <StatusPillInfo status="ongoing" onClick={callbackFilterStatus} />
@@ -601,10 +601,8 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                         actualRippedMangaRelease.map((r) => {
                             return (
                                 <div className="flex" key={`rip-rls-${r.slug}`}>
-                                    <Link href={`/manga/${r.slug}`} passHref>
-                                        <a className="transition hover:text-red-500">
-                                            <ProjectStatusInfo status={r.status || "ongoing"} /> {r.title}
-                                        </a>
+                                    <Link href={`/manga/${r.slug}`} className="transition hover:text-red-500">
+                                        <ProjectStatusInfo status={r.status || "ongoing"} /> {r.title}
                                     </Link>
                                 </div>
                             );
@@ -621,8 +619,8 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                         actualScanMangaRelease.map((r) => {
                             return (
                                 <div className="flex" key={`scanlation-rls-${r.slug}`}>
-                                    <Link href={`/manga/${r.slug}`} passHref>
-                                        <a className="transition hover:text-red-500">• {r.title}</a>
+                                    <Link href={`/manga/${r.slug}`} className="transition hover:text-red-500">
+                                        • {r.title}
                                     </Link>
                                     <ProjectStatusInfo status={r.status || "ongoing"} />
                                 </div>

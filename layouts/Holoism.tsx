@@ -1,10 +1,13 @@
 import MDXRenderer from "@/components/MDXRenderer";
 import MetadataHead from "@/components/MetadataHead";
 import { RawBlogContent } from "@/lib/mdx";
-import { isNone, Nullable } from "@/lib/utils";
+import { isNone } from "@/lib/utils";
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+
+import HoloismCover from "#/img/holoism_cover.jpg";
 
 interface ITrackMetadata {
     title: string;
@@ -39,7 +42,7 @@ function buildPrevLink(trackNo?: number, hasPrev?: boolean) {
     if (isNone(trackNo) || !hasPrev) {
         return undefined;
     }
-    let prev = trackNo - 1;
+    const prev = trackNo - 1;
     if (prev < 1) {
         return undefined;
     }
@@ -63,10 +66,11 @@ function NavigationLink(props: { target?: string; children: React.ReactNode }) {
         );
     }
     return (
-        <Link href={target} passHref>
-            <a className="flex flex-row items-center gap-1 mx-3 hover:underline hover:text-blue-500 transition">
-                {children}
-            </a>
+        <Link
+            href={target}
+            className="flex flex-row items-center gap-1 mx-3 hover:underline hover:text-blue-500 transition"
+        >
+            {children}
         </Link>
     );
 }
@@ -163,8 +167,6 @@ export default function LayoutHoloism(props: HoloismProps) {
     const extraData = props.post.extraData as IPostExtra;
     const { info } = extraData;
 
-    const actualImage = `/assets/img/holoism_cover.jpg`;
-
     let actualDesc = info.title;
     if (!frontMatter.title.startsWith("Episode")) {
         actualDesc = `Lyrics for ${info.title} by ${info.altTitle}`;
@@ -177,7 +179,7 @@ export default function LayoutHoloism(props: HoloismProps) {
                 <MetadataHead.SEO
                     title={frontMatter.title}
                     description={actualDesc}
-                    image={actualImage}
+                    image={"/assets/img/holoism_cover.jpg"}
                     urlPath={`/holoism/${frontMatter.slug}`}
                     smallImage
                 />
@@ -200,11 +202,12 @@ export default function LayoutHoloism(props: HoloismProps) {
                         </NavigationLink>
                     </div>
                     <div className="flex flex-col items-center">
-                        <Link href="/holoism" passHref>
-                            <a className="flex flex-row items-center gap-1 mx-3 hover:underline hover:text-blue-500 transition">
-                                <i className="naoicon">home</i>
-                                <span> Home</span>
-                            </a>
+                        <Link
+                            href="/holoism"
+                            className="flex flex-row items-center gap-1 mx-3 hover:underline hover:text-blue-500 transition"
+                        >
+                            <i className="naoicon">home</i>
+                            <span> Home</span>
                         </Link>
                     </div>
                     <div className="flex flex-col items-center">
@@ -216,7 +219,13 @@ export default function LayoutHoloism(props: HoloismProps) {
                 </div>
                 <hr className="border-black dark:border-gray-500 my-3" />
                 <div className="flex flex-col relative min-w-0 break-words bg-clip-border xs:w-64 md:w-72 lg:w-96">
-                    <img className="w-full rounded-t-md" alt="Cover" src={actualImage} />
+                    <Image
+                        className="w-full rounded-t-md"
+                        alt="Cover"
+                        src={HoloismCover}
+                        width={1000}
+                        height={1000}
+                    />
                     <div className="flex flex-col w-full p-4 mr-auto bg-gray-300 dark:bg-gray-900 rounded-b-md">
                         <h5 className="mb-2 text-xl font-medium">{frontMatter.title}</h5>
                         {info.altTitle && <h6 className="-mt-1 mb-2 text-gray-500">{info.altTitle}</h6>}
@@ -237,10 +246,11 @@ export default function LayoutHoloism(props: HoloismProps) {
                         </p>
 
                         <div className="flex flex-row gap-2 mb-2">
-                            <Link href="http://cool-create.cc/cd/cccd60/" passHref>
-                                <a className="hover:underline font-medium text-blue-700 dark:text-blue-500 hover:text-blue-500 hover:dark:text-blue-400 transition">
-                                    Buy
-                                </a>
+                            <Link
+                                href="http://cool-create.cc/cd/cccd60/"
+                                className="hover:underline font-medium text-blue-700 dark:text-blue-500 hover:text-blue-500 hover:dark:text-blue-400 transition"
+                            >
+                                Buy
                             </Link>
                         </div>
                     </div>

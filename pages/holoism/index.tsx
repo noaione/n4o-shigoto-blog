@@ -1,8 +1,11 @@
 import MetadataHead from "@/components/MetadataHead";
 import type { FrontMatterExtended } from "@/lib/mdx";
 import Head from "next/head";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+
+import HoloismThumb from "#/img/holoism_cover.jpg";
 
 export async function getStaticProps() {
     const { getAllPostsFrontMatter } = await import("@/lib/mdx");
@@ -53,11 +56,11 @@ export default function ShigotoHoloismIndex({ posts }: StaticPropsData) {
                 <h1 className="pb-3 text-3xl font-bold">Gensokyo Holoism</h1>
                 <p>A collaboration between Houshou Marine (Hololive) and COOL&CREATE.</p>
                 <div className="flex flex-col relative min-w-8 break-words bg-clip-border w-96 mt-4">
-                    <img className="w-full rounded-md" alt="Cover" src="/assets/img/holoism_cover.jpg" />
+                    <Image className="w-full rounded-md" alt="Cover" src={HoloismThumb} />
                 </div>
                 <div className="mt-4">
-                    <Link href="/" passHref>
-                        <a className="text-lg font-medium hover:text-blue-500 transition">🏠 Go Home</a>
+                    <Link href="/" className="text-lg font-medium hover:text-blue-500 transition">
+                        🏠 Go Home
                     </Link>
                 </div>
                 <hr className="border-gray-400 dark:border-gray-500 my-6" />
@@ -69,11 +72,9 @@ export default function ShigotoHoloismIndex({ posts }: StaticPropsData) {
                             <li key={`holoism-track${track.trackNumber}`}>
                                 <Link
                                     href={`/holoism/track${track.trackNumber.toString().padStart(2, "0")}`}
-                                    passHref
+                                    className="text-blue-700 dark:text-blue-400 font-semibold hover:opacity-80 transition"
                                 >
-                                    <a className="text-blue-700 dark:text-blue-400 font-semibold hover:opacity-80 transition">
-                                        {tTitle}
-                                    </a>
+                                    {tTitle}
                                 </Link>
                                 {isEpisode && ` [Drama]`}
                             </li>

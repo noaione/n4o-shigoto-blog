@@ -1,13 +1,21 @@
+const isDev = process.env.NODE_ENV !== "production";
+
 /**
  * @type {import("next").NextConfig}
  */
-module.exports = {
-    reactStrictMode: true,
-    pageExtensions: ["js", "jsx", "md", "mdx", "tsx", "ts"],
+const extendedProduction = {
     eslint: {
         dirs: ["pages", "components", "lib", "layouts"],
     },
     productionBrowserSourceMaps: true,
+};
+
+/**
+ * @type {import("next").NextConfig}
+ */
+const baseConfig = {
+    reactStrictMode: true,
+    pageExtensions: ["js", "jsx", "md", "mdx", "tsx", "ts"],
     images: {
         domains: [
             "j-novel.club",
@@ -25,7 +33,7 @@ module.exports = {
             "p.ihateani.me",
             "p.n4o.xyz",
             "puu.sh",
-            "m.media-amazon.com"
+            "m.media-amazon.com",
         ],
     },
     async rewrites() {
@@ -52,3 +60,5 @@ module.exports = {
         ];
     },
 };
+
+module.exports = isDev ? baseConfig : { ...baseConfig, ...extendedProduction };

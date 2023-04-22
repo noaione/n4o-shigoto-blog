@@ -3,6 +3,7 @@ import type { RawBlogContent } from "@/lib/mdx";
 import { isNone, kebabCase, Nullable } from "@/lib/utils";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 
 import { unified } from "unified";
@@ -41,127 +42,140 @@ function UnknownIcon() {
     );
 }
 
+function LinkIcon(props: { src: string; text: string }) {
+    const { src, text } = props;
+
+    return (
+        <a
+            href={src}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-1 text-[15px] font-medium text-gray-700 dark:text-gray-300 leading-6 transition hover:text-emerald-600 dark:hover:text-emerald-500"
+        >
+            {text}
+        </a>
+    );
+}
+
 function LinkIconRender(props: HotlinkProps) {
     const { url, title: titleTop } = props;
     const iconDataset = {
         "sevenseasentertainment.com": {
             icon: (
-                <img
-                    alt="Seven Seas Icon"
-                    className="beside-link-icon"
-                    src={ExternalIcons.IconSevenSeas.src}
-                />
+                <Image alt="Seven Seas Icon" className="beside-link-icon" src={ExternalIcons.IconSevenSeas} />
             ),
             title: "Seven Seas Entertainment",
         },
         "kodansha.us": {
-            icon: (
-                <img alt="Kodansha Icon" className="beside-link-icon" src={ExternalIcons.IconKodansha.src} />
-            ),
+            icon: <Image alt="Kodansha Icon" className="beside-link-icon" src={ExternalIcons.IconKodansha} />,
             title: "Kodansha",
         },
         "yenpress.com": {
             icon: (
-                <img
+                <Image
                     alt="Yen Press Icon"
                     className="beside-link-icon !rounded-full"
-                    src={ExternalIcons.IconYenPress.src}
+                    src={ExternalIcons.IconYenPress}
                 />
             ),
             title: "Yen Press",
         },
         "comikey.com": {
-            icon: <img alt="Comikey Icon" className="beside-link-icon" src={ExternalIcons.IconComikey.src} />,
+            icon: <Image alt="Comikey Icon" className="beside-link-icon" src={ExternalIcons.IconComikey} />,
             title: "Comikey",
         },
         "j-novel.club": {
             icon: (
-                <img
+                <Image
                     alt="J-Novel Club Icon"
                     className="beside-link-icon"
-                    src={ExternalIcons.IconJNovelClub.src}
+                    src={ExternalIcons.IconJNovelClub}
                 />
             ),
             title: "J-Novel Club",
         },
         "squareenixmangaandbooks.square-enix-games.com": {
             icon: (
-                <img
+                <Image
                     alt="Square Enix Icon"
                     className="beside-link-icon"
-                    src={ExternalIcons.IconSquareEnix.src}
+                    src={ExternalIcons.IconSquareEnix}
                 />
             ),
             title: "Square Enix Manga",
         },
         "nyaa.si": {
-            icon: <img alt="Nyaa.si Icon" className="beside-link-icon" src={ExternalIcons.IconNyaa.src} />,
+            icon: <Image alt="Nyaa.si Icon" className="beside-link-icon" src={ExternalIcons.IconNyaa} />,
             title: "Nyaa",
         },
         "perpusindo.info": {
             icon: (
-                <img
+                <Image
                     alt="PerpusIndo Icon"
                     className="beside-link-icon"
-                    src={ExternalIcons.IconPerpusIndo.src}
+                    src={ExternalIcons.IconPerpusIndo}
                 />
             ),
             title: "PerpusIndo",
         },
         "mega.nz": {
             icon: (
-                <img
+                <Image
                     alt="Mega.nz Icon"
                     className="beside-link-icon !rounded-full"
-                    src={ExternalIcons.IconMegaNZ.src}
+                    src={ExternalIcons.IconMegaNZ}
                 />
             ),
             title: "MEGA",
         },
         "mangaupdates.com": {
             icon: (
-                <img
+                <Image
                     alt="MangaUpdates Icon"
                     className="beside-link-icon"
-                    src={ExternalIcons.IconMangaUpdates.src}
+                    src={ExternalIcons.IconMangaUpdates}
+                    width={100}
+                    height={100}
                 />
             ),
             title: "MangaUpdates",
         },
         "novelupdates.com": {
             icon: (
-                <img
+                <Image
                     alt="NovelUpdates Icon"
                     className="beside-link-icon"
-                    src={ExternalIcons.IconNovelUpdates.src}
+                    src={ExternalIcons.IconNovelUpdates}
                 />
             ),
             title: "Novel Updates",
         },
         "mangadex.org": {
             icon: (
-                <img
+                <Image
                     alt="MangaDex Icon"
                     className="beside-link-icon !rounded-full"
-                    src={ExternalIcons.IconMangaDex.src}
+                    src={ExternalIcons.IconMangaDex}
                 />
             ),
             title: "MangaDex",
         },
         "amazon.com": {
-            icon: <img alt="Amazon Icon" className="beside-link-icon" src={ExternalIcons.IconAmazon.src} />,
+            icon: <Image alt="Amazon Icon" className="beside-link-icon" src={ExternalIcons.IconAmazon} />,
             title: "Amazon",
         },
         "amazon.co.jp": {
-            icon: <img alt="Amazon Icon" className="beside-link-icon" src={ExternalIcons.IconAmazon.src} />,
+            icon: <Image alt="Amazon Icon" className="beside-link-icon" src={ExternalIcons.IconAmazon} />,
             title: "Amazon Japan",
         },
         "play.google.com": {
             icon: (
-                <img
+                <Image
                     alt="Play Books Icon"
                     className="beside-link-icon"
-                    src={ExternalIcons.IconPlayBooks.src}
+                    src={ExternalIcons.IconPlayBooks}
+                    width={100}
+                    height={100}
                 />
             ),
             title: "Play Books",
@@ -181,29 +195,13 @@ function LinkIconRender(props: HotlinkProps) {
     }
     const IconData = iconDataset[urlDomain as keyof typeof iconDataset];
     if (isNone(IconData)) {
-        return (
-            <a
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mr-1 text-[15px] font-medium text-gray-700 dark:text-gray-300 leading-6 transition hover:text-emerald-600 dark:hover:text-emerald-500"
-            >
-                {titleTop || "Unknown Link"}
-            </a>
-        );
+        return <LinkIcon src={url} text={titleTop || "Unknown Link"} />;
     }
     const { icon, title } = IconData;
     return (
         <div className="flex flex-row items-center">
             {icon}
-            <a
-                className="mr-1 ml-2 text-[15px] font-medium text-gray-700 dark:text-gray-300 leading-6 transition hover:text-emerald-600 dark:hover:text-emerald-500"
-                href={url}
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                {titleTop || title}
-            </a>
+            <LinkIcon src={url} text={titleTop || title || "Unknown Link"} />
         </div>
     );
 }
@@ -300,7 +298,7 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
 
     render(): React.ReactNode {
         const {
-            post: { frontMatter, mdxSource },
+            post: { frontMatter },
         } = this.props;
 
         const extraData = this.props.post.extraData as ExtraData;
@@ -325,7 +323,7 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
         return (
             <>
                 <Head>
-                    <title>{frontMatter.title} :: Manga Index - Shigoto</title>
+                    <title>{`${frontMatter.title} :: Manga Index - Shigoto`}</title>
                     <MetadataHead.SEO
                         title={frontMatter.title}
                         description={processDescription(synopsisForDesc)}
@@ -368,10 +366,11 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
                 <main className="pt-2 pb-8">
                     <div className="flex flex-col justify-center md:justify-start md:flex-row mt-4 mx-4 align-middle">
                         <div className="flex justify-center">
-                            <Link href="/manga" passHref>
-                                <a className="text-2xl font-light w-fit rounded-full border-2 border-emerald-600 select-none text-emerald-500 dark:border-emerald-500 dark:text-emerald-400 mx-1 items-center px-1 hover:opacity-80 transition-opacity">
-                                    立
-                                </a>
+                            <Link
+                                href="/manga"
+                                className="text-2xl font-light w-fit rounded-full border-2 border-emerald-600 select-none text-emerald-500 dark:border-emerald-500 dark:text-emerald-400 mx-1 items-center px-1 hover:opacity-80 transition-opacity"
+                            >
+                                立
                             </Link>
                         </div>
 
@@ -382,13 +381,15 @@ export default class LayoutMangaIndex extends React.Component<MangaLayoutProps> 
                     <div id="cover-img" className="flex flex-row mt-4 mx-4 justify-center md:justify-start">
                         {firstImage && (
                             <div className="xs:w-64 md:w-72 lg:w-96">
-                                <img
+                                <Image
                                     className="w-full rounded-md md:hover:-translate-y-1 md:transition-transform"
                                     alt="Cover"
                                     src={firstImage}
                                     onError={(e) => {
                                         e.currentTarget.src = imagePlaceholder.src;
                                     }}
+                                    width={800}
+                                    height={1200}
                                 />
                             </div>
                         )}

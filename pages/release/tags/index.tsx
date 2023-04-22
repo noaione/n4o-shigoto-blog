@@ -18,10 +18,11 @@ export async function getStaticProps() {
 
 const Tag = ({ text }: { text: string }) => {
     return (
-        <Link href={`/release/tags/${kebabCase(text)}`} passHref>
-            <a className="mr-3 text-sm font-medium text-blue-500 hover:text-blue-600 dark:hover:text-blue-400">
-                {"#" + text}
-            </a>
+        <Link
+            href={`/release/tags/${kebabCase(text)}`}
+            className="mr-3 text-sm font-medium text-blue-500 hover:text-blue-600 dark:hover:text-blue-400"
+        >
+            {"#" + text}
         </Link>
     );
 };

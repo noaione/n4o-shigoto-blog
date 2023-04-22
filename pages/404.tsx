@@ -1,7 +1,7 @@
 import HeaderNav from "@/components/HeaderNav";
 import MetadataHead from "@/components/MetadataHead";
 import Head from "next/head";
-import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
 
@@ -59,7 +59,13 @@ function NotFoundPageDefault() {
 
     return (
         <div className="flex flex-col items-center justify-center h-screen">
-            <img src="/assets/img/nao250px.png" className="rounded-full h-24" />
+            <Image
+                src="/assets/img/nao250px.png"
+                className="rounded-full w-32"
+                alt="Error Icon"
+                width={250}
+                height={250}
+            />
             <h2 className="text-2xl mt-4 font-bold">Page not found!</h2>
             <button
                 onClick={goBack}
