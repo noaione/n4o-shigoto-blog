@@ -15,9 +15,11 @@ const extendedProduction = {
  * @type {import("next").NextConfig}
  */
 const baseConfig = {
+    output: "export",
     reactStrictMode: true,
     pageExtensions: ["js", "jsx", "md", "mdx", "tsx", "ts"],
     images: {
+        unoptimized: true,
         domains: [
             "j-novel.club",
             "sevenseasentertainment.com",
@@ -36,29 +38,6 @@ const baseConfig = {
             "puu.sh",
             "m.media-amazon.com",
         ],
-    },
-    async rewrites() {
-        return {
-            afterFiles: [
-                {
-                    source: "/js/kryptonite.js",
-                    destination: "https://tr.n4o.xyz/js/plausible.js",
-                },
-                {
-                    source: "/api/event",
-                    destination: "https://tr.n4o.xyz/api/event",
-                },
-            ],
-        };
-    },
-    async redirects() {
-        return [
-            {
-                source: "/feed.xml",
-                destination: "/index.xml",
-                permanent: true,
-            },
-        ];
     },
 };
 
