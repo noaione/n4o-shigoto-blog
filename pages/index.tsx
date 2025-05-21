@@ -61,12 +61,6 @@ export default function Home() {
                             >
                                 Release
                             </Link>
-                            <Link
-                                href="/manga"
-                                className="bg-none border-2 border-emerald-400 rounded-md p-4 hover:bg-emerald-500 hover:bg-opacity-50 hover:border-white transition"
-                            >
-                                Manga
-                            </Link>
                         </div>
                         <div className="flex flex-row items-center space-x-1 pt-3">
                             <Link href="/holoism" className="opacity-100 hover:opacity-80 duration-200">
