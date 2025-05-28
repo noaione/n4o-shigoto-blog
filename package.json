@@ -47,7 +47,7 @@
         "eslint-config-prettier": "8.8.0",
         "eslint-plugin-prettier": "4.2.1",
         "eslint-plugin-react": "7.32.2",
-        "postcss": "8.4.23",
+        "postcss": "8.4.31",
         "prettier": "2.8.7",
         "remark-breaks": "3.0.2",
         "remark-html": "15.0.2",
