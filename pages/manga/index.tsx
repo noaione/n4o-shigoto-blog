@@ -463,7 +463,7 @@ function UpcomingReleaseRender(props: { releases: UpcomingReleases; prependKey?:
     );
 }
 
-function filterReleaseByStatus(frontMatter: FrontMatterManga[], statuses: ExtendedProjectStatus[]) {
+function filterReleaseByStatus(frontMatter: FrontMatterManga[], statuses: ExtendedProjectStatus[]): FrontMatterManga[] {
     return frontMatter.filter((e) => statuses.includes(e.status || "ongoing"));
 }
 
@@ -486,7 +486,7 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
         showNextMonth
     );
     const backloggedRelease = getBacklogRelease(rippedMangaRelease, enabledStatuses);
-    const actualRippedMangaRelease = filterReleaseByStatus(rippedMangaRelease, enabledStatuses);
+    const actualRippedMangaRelease: FrontMatterManga[] = []; // filterReleaseByStatus(rippedMangaRelease, enabledStatuses);
     const actualScanMangaRelease = filterReleaseByStatus(scanMangaRelease, enabledStatuses);
 
     const callbackFilterStatus = (stat: ExtendedProjectStatus, isEnabled: boolean) => {
@@ -559,7 +559,7 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                     <div className="flex">
                         <h2 className="text-lg font-medium">Upcoming Releases</h2>
                     </div>
-                    <UpcomingReleaseRender releases={thisMonthRelease} />
+                    {/* <UpcomingReleaseRender releases={thisMonthRelease} /> */}
                 </div>
                 {!isLastWeek && (
                     <div className="flex flex-col mt-2 mx-auto px-2">
@@ -592,11 +592,11 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                 {Object.keys(backloggedRelease).length > 0 && (
                     <div className="flex flex-col mt-2 mx-auto px-4">
                         <h2 className="text-lg font-medium">Backlogged Releases</h2>
-                        <UpcomingReleaseRender releases={backloggedRelease} />
+                        {/* <UpcomingReleaseRender releases={backloggedRelease} /> */}
                     </div>
                 )}
                 <div className="flex flex-col mt-2 mx-auto px-4">
-                    <h2 className="text-lg font-medium">Ripped Release</h2>
+                    <h2 className="text-lg font-medium">Release</h2>
                     {actualRippedMangaRelease.length > 0 ? (
                         actualRippedMangaRelease.map((r) => {
                             return (
@@ -609,12 +609,12 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                         })
                     ) : (
                         <p className="text-gray-500 dark:text-gray-400 cursor-not-allowed select-none">
-                            No ripped release yet
+                            Nothing
                         </p>
                     )}
                 </div>
                 <div className="flex flex-col mt-2 mx-auto px-4">
-                    <h2 className="text-lg font-medium">Scanlation Release</h2>
+                    <h2 className="text-lg font-medium">Scanlations</h2>
                     {actualScanMangaRelease.length > 0 ? (
                         actualScanMangaRelease.map((r) => {
                             return (
@@ -632,6 +632,7 @@ export default function MangaIndexPage({ posts }: StaticPropsData) {
                         </p>
                     )}
                 </div>
+                {/* <!-- somehow i got copyright notice warning from RYM d.b.a. VIZ for some Kodansha titles which is funny --> */}
             </main>
         </>
     );
